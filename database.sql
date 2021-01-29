@@ -6,6 +6,7 @@ CREATE TABLE "user" (
 );
 
 -- New SQL Commands below
+-- Name your SQL database "results" on your local machine
 
 CREATE TABLE "user" (
   "id" SERIAL PRIMARY KEY,
@@ -15,9 +16,6 @@ CREATE TABLE "user" (
   "background" VARCHAR (1000),
   "phone" VARCHAR (25),
   "contact_name" VARCHAR (150),
-  "statement" VARCHAR (1000),
-  "goal" VARCHAR (750),
-  "population" VARCHAR(750),
   "admin" boolean DEFAULT false
 );
 
@@ -43,6 +41,9 @@ CREATE TABLE "app" (
   "timeline" VARCHAR (1500) NOT NULL,
   "budget" int NOT NULL,
   "eval" VARCHAR (1500) NOT NULL,
+  "statement" VARCHAR (1000) NOT NULL,
+  "goal" VARCHAR (750) NOT NULL,
+  "population" VARCHAR(750) NOT NULL,
   "date_received" date NOT NULL DEFAULT CURRENT_DATE,
   "grant_window_id" int REFERENCES "grant_window",
   "focus_area_id" int REFERENCES "focus_area",
@@ -52,11 +53,11 @@ CREATE TABLE "app" (
 CREATE TABLE "review" (
   "id" SERIAL PRIMARY KEY,
   "app_id" int REFERENCES "app",
-  "description_score" int,
+  "eval_score" int,
+  "statement_score" int,
   "goal_score" int,
   "population_score" int,
   "timeline_score" int,
-  "eval_score" int,
   "review_date" date NOT NULL DEFAULT CURRENT_DATE,
   "review_status_id" int REFERENCES "review_status"
 );
