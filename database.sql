@@ -45,18 +45,18 @@ CREATE TABLE "app" (
 CREATE TABLE "review" (
   "id" SERIAL PRIMARY KEY,
   "app_id" int REFERENCES "app",
-  "eval_score" int,
-  "statement_score" int,
-  "goal_score" int,
-  "population_score" int,
-  "timeline_score" int,
+  "eval_score" int DEFAULT 0,
+  "statement_score" int DEFAULT 0,
+  "goal_score" int DEFAULT 0,
+  "population_score" int DEFAULT 0,
+  "timeline_score" int DEFAULT 0,
   "review_date" date NOT NULL DEFAULT CURRENT_DATE,
   "review_status_id" int REFERENCES "review_status"
 );
 
 CREATE TABLE "notes" (
   "id" SERIAL PRIMARY KEY,
-  "review_notes" VARCHAR (750),
+  "review_note" VARCHAR (750),
   "date_added" date NOT NULL DEFAULT CURRENT_DATE,
   "review_id" int REFERENCES "review"
 );
