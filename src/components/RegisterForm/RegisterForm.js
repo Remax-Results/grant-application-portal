@@ -1,38 +1,43 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-class RegisterForm extends Component {
-  state = {
-    username: '',
-    password: '',
-  };
 
-  registerUser = (event) => {
+
+export default function RegisterForm() {
+  const dispatch = useDispatch();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [orgName, setOrgName] = useState('');
+  const [background, setBackground] = useState('');
+  const [phone, setPhone] = useState('');
+  const [contactName, setContactName] = useState('');
+
+
+  const registrationMessage = useSelector(state => state.errors.registrationMessage);
+
+
+  const registerUser = (event) => {
     event.preventDefault();
-
-    this.props.dispatch({
+    dispatch({
       type: 'REGISTER',
       payload: {
-        username: this.state.username,
-        password: this.state.password,
+        username: username,
+        password: password,
+        orgName: orgName,
+        background: background,
+        phone: phone,
+        contactName: contactName
       },
     });
   }; // end registerUser
 
-  handleInputChangeFor = (propertyName) => (event) => {
-    this.setState({
-      [propertyName]: event.target.value,
-    });
-  };
 
-  render() {
     return (
-      <form className="formPanel" onSubmit={this.registerUser}>
-        <h2>Register User</h2>
-        {this.props.store.errors.registrationMessage && (
+      <form className="formPanel" onSubmit={event => {registerUser(event)}}>
+        <h2>Register Organization</h2>
+        {registrationMessage && (
           <h3 className="alert" role="alert">
-            {this.props.store.errors.registrationMessage}
+            {registrationMessage}
           </h3>
         )}
         <div>
@@ -41,9 +46,9 @@ class RegisterForm extends Component {
             <input
               type="text"
               name="username"
-              value={this.state.username}
+              value={username}
               required
-              onChange={this.handleInputChangeFor('username')}
+              onChange={event => setUsername(event.target.value)}
             />
           </label>
         </div>
@@ -53,9 +58,57 @@ class RegisterForm extends Component {
             <input
               type="password"
               name="password"
-              value={this.state.password}
+              value={password}
               required
-              onChange={this.handleInputChangeFor('password')}
+              onChange={event => setPassword(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="orgName">
+            Organization Name
+            <input
+              type="text"
+              name="Organization Name"
+              value={orgName}
+              required
+              onChange={event => setOrgName(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="background">
+            Organization Background
+            <input
+              type="text"
+              name="Organization Background"
+              value={background}
+              required
+              onChange={event => setBackground(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="phone">
+            Phone Number
+            <input
+              type="text"
+              name="phone"
+              value={phone}
+              required
+              onChange={event => setPhone(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="contactName">
+            Contact Name
+            <input
+              type="text"
+              name="Contact Name"
+              value={contactName}
+              required
+              onChange={event => setContactName(event.target.value)}
             />
           </label>
         </div>
@@ -65,6 +118,3 @@ class RegisterForm extends Component {
       </form>
     );
   }
-}
-
-export default connect(mapStoreToProps)(RegisterForm);
