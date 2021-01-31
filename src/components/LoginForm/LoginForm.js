@@ -1,42 +1,35 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-class LoginForm extends Component {
-  state = {
-    username: '',
-    password: '',
-  };
+export default function LoginForm() {
+  const dispatch = useDispatch();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  login = (event) => {
+  const loginMessage = useSelector(state => state.errors.loginMessage);
+
+  const login = (event) => {
     event.preventDefault();
 
-    if (this.state.username && this.state.password) {
-      this.props.dispatch({
+    if (username && password) {
+      dispatch({
         type: 'LOGIN',
         payload: {
-          username: this.state.username,
-          password: this.state.password,
+          username: username,
+          password: password,
         },
       });
     } else {
-      this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
+      dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
   }; // end login
 
-  handleInputChangeFor = (propertyName) => (event) => {
-    this.setState({
-      [propertyName]: event.target.value,
-    });
-  };
-
-  render() {
     return (
-      <form className="formPanel" onSubmit={this.login}>
+      <form className="formPanel" onSubmit={event => {login(event)}}>
         <h2>Login</h2>
-        {this.props.store.errors.loginMessage && (
+        {loginMessage && (
           <h3 className="alert" role="alert">
-            {this.props.store.errors.loginMessage}
+            {loginMessage}
           </h3>
         )}
         <div>
@@ -46,8 +39,8 @@ class LoginForm extends Component {
               type="text"
               name="username"
               required
-              value={this.state.username}
-              onChange={this.handleInputChangeFor('username')}
+              value={username}
+              onChange={event => setUsername(event.target.value)}
             />
           </label>
         </div>
@@ -58,8 +51,8 @@ class LoginForm extends Component {
               type="password"
               name="password"
               required
-              value={this.state.password}
-              onChange={this.handleInputChangeFor('password')}
+              value={password}
+              onChange={event => setPassword(event.target.value)}
             />
           </label>
         </div>
@@ -68,7 +61,4 @@ class LoginForm extends Component {
         </div>
       </form>
     );
-  }
 }
-
-export default connect(mapStoreToProps)(LoginForm);
