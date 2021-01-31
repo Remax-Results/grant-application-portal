@@ -2,18 +2,26 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
+import grantWindowSaga from './grantWindow.saga';
+import applicationSaga from './application.saga';
+import tableSaga from './table.saga';
+import notesSaga from './notes.saga';
+import reviewStatusSaga from './reviewStatus.saga';
+import reviewSaga from './review.saga';
+import focusAreaSaga from './focusArea.saga';
 
-// rootSaga is the primary saga.
-// It bundles up all of the other sagas so our project can use them.
-// This is imported in index.js as rootSaga
 
-// some sagas trigger other sagas, as an example
-// the registration triggers a login
-// and login triggers setting the user
 export default function* rootSaga() {
   yield all([
-    loginSaga(), // login saga is now registered
+    loginSaga(), 
     registrationSaga(),
     userSaga(),
+    grantWindowSaga(),
+    applicationSaga(),
+    tableSaga(),
+    notesSaga(),
+    reviewStatusSaga(),
+    reviewSaga(),
+    foucsAreaSaga(),
   ]);
 }
