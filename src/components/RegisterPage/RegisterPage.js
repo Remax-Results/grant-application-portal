@@ -1,27 +1,28 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import './RegisterPage.css';
+
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
 
-class RegisterPage extends Component {
-  state = {
-    username: '',
-    password: '',
-  };
+export default function RegisterPage() {
 
-  render() {
+  const history = useHistory();
+
     return (
-      <div>
+      <div className="register-page">
+        <p>Welcome to the Results Foundation Application Portal!</p>
+        <p>Please take a moment to register your organization with us before moving on to the grant application.</p>
         <RegisterForm />
 
         <center>
+          <p>Already registered?</p>
           <button
             type="button"
             className="btn btn_asLink"
             onClick={() => {
-              this.props.history.push('/login');
+              history.push('/login');
             }}
           >
             Login
@@ -29,7 +30,4 @@ class RegisterPage extends Component {
         </center>
       </div>
     );
-  }
-}
-
-export default connect(mapStoreToProps)(RegisterPage);
+};
