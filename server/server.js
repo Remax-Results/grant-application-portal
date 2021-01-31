@@ -10,6 +10,13 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
+const grantWindowRouter = require('./routes/grantWindow.router');
+const applicationRouter = require('./routes/application.router');
+const tableRouter = require('./routes/table.router');
+const notesRouter = require('./routes/notes.router');
+const reviewStatusRouter = require('./routes/reviewStatus.router');
+const reviewRouter = require('./routes/review.router');
+
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -24,6 +31,15 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
+app.use('/api/grant-window', grantWindowRouter);
+app.use('/api/application', applicationRouter);
+app.use('/api/table', tableRouter);
+app.use('/api/notes', notesRouter);
+app.use('/api/review-status', reviewStatusRouter);
+app.use('/api/review', reviewRouter);
+
+
+
 
 // Serve static files
 app.use(express.static('build'));
