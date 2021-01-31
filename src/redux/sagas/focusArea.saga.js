@@ -2,7 +2,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 
-function* fetchfocusArea(action){
+function* fetchFocusArea(action){
     const repsonse = yield axios.get(`/api/focus/`);
 
 }

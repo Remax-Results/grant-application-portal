@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 function* fetchAllWindows(action) {
-    const response = yieldaxios.get(`/api/grant-window`);
+    const response = yield axios.get(`/api/grant-window`);
 }
 
 function* fetchCurrentWindow(action){

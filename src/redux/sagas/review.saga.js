@@ -12,7 +12,7 @@ function* updateScore(action){
 //--------------------WATCHER SAGA---------------------------//
 function* reviewSaga() {
   yield takeLatest('UPDATE_SCORE', updateScore);
-  yield takeLatest('UPDATE_STATUS', updateStatus);
+  // yield takeLatest('UPDATE_STATUS', updateStatus);
 }
 
 export default reviewSaga;

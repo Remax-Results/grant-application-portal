@@ -22,6 +22,6 @@ export default function* rootSaga() {
     notesSaga(),
     reviewStatusSaga(),
     reviewSaga(),
-    foucsAreaSaga(),
+    focusAreaSaga(),
   ]);
 }
