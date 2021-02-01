@@ -40,9 +40,6 @@ app.use('/api/review-status', reviewStatusRouter);
 app.use('/api/review', reviewRouter);
 app.use('/api/focus', focusAreaRouter);
 
-
-
-
 // Serve static files
 app.use(express.static('build'));
 

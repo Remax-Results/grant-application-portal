@@ -3,8 +3,8 @@ import axios from 'axios';
 
 
 function* fetchApplication(action){
-    const repsonse = yield axios.get(`/api/application/${action.payload}`);
-
+    const response = yield axios.get(`/api/application/${action.payload}`);
+    yield put({type:'SET_APPLICATION', payload: response.data});
 }
 
 function* postApplication(action){

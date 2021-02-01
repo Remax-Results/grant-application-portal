@@ -3,8 +3,8 @@ import axios from 'axios';
 
 
 function* fetchNotes(action){
-    const repsonse = yield axios.get(`/api/notes/`);
-
+    const response = yield axios.get(`/api/notes/`);
+    yield put({type: 'SET_NOTES', payload: response.data});
 }
 
 function* postNote(action){
