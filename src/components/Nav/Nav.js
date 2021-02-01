@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
-import mapStoreToProps from '../../redux/mapStoreToProps';
 
-const Nav = (props) => {
+export default function Nav() {
+  const user = useSelector(state => state.user);
   let loginLinkData = {
     path: '/login',
     text: 'Login / Register',
   };
 
-  if (props.store.user.id != null) {
+  if (user.id != null) {
     loginLinkData.path = '/user';
     loginLinkData.text = 'Home';
   }
@@ -29,16 +29,23 @@ const Nav = (props) => {
           {loginLinkData.text}
         </Link>
         {/* Show the link to the info page and the logout button if the user is logged in */}
-        {props.store.user.id && (
+        {user.id && (
           <>
-            <Link className="nav-link" to="/info">
-              Info Page
-            </Link>
+            {user.admin ?
+              <Link className="nav-link" to="/home">
+                Admin Test
+              </Link>
+              :
+              <Link className="nav-link" to="/info">
+                Info Page
+              </Link>
+            }
             <LogOutButton className="nav-link" />
           </>
         )}
         {/* Always show this link since the about page is not protected */}
-        <Link className="nav-link" to="/about">
+        {/* Currently links back to the home page as that has all of the grant info */}
+        <Link className="nav-link" to="/home">
           About
         </Link>
       </div>
@@ -46,4 +53,3 @@ const Nav = (props) => {
   );
 };
 
-export default connect(mapStoreToProps)(Nav);
