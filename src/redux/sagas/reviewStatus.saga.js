@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function* fetchStatusDropdown(action){
     const response = yield axios.get(`/api/review-status/`);
-
+    yield put({type:'SET_REVIEW_STATUS', payload: response.data});
 }
 
 
