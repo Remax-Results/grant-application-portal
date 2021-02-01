@@ -10,7 +10,6 @@ export default function LogOutButton(props){
 
   const logoutUser = () => {
     dispatch({ type: 'LOGOUT' });
-    history.push('/home');
   }; // end registerUser
 
   return(
