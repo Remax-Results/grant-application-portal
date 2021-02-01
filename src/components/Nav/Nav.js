@@ -11,9 +11,12 @@ export default function Nav() {
     text: 'Login / Register',
   };
 
-  if (user.id != null) {
+  if (user.id != null && user.admin === false) {
     loginLinkData.path = '/user';
     loginLinkData.text = 'Home';
+  } else if (user.admin === true){
+    loginLinkData.path = '/admin';
+    loginLinkData.text = 'Admin Dashboard';
   }
 
   return (
@@ -28,26 +31,32 @@ export default function Nav() {
           and call this link 'Login / Register' if they are not */}
           {loginLinkData.text}
         </Link>
+        {!user.id &&
+          <Link className="nav-link" to="/home">
+            About
+          </Link>
+        }
         {/* Show the link to the info page and the logout button if the user is logged in */}
         {user.id && (
           <>
+
             {user.admin ?
-              <Link className="nav-link" to="/home">
-                Admin Test
-              </Link>
+              <>
+                <Link className="nav-link" to="/grantwindow">
+                  Grant Window Settings
+                </Link>
+                <Link className="nav-link" to="/questionmanagement">
+                  Question Management
+                </Link>
+              </>
               :
-              <Link className="nav-link" to="/info">
-                Info Page
+              <Link className="nav-link" to="/grantapplication">
+                Grant Application
               </Link>
             }
             <LogOutButton className="nav-link" />
           </>
         )}
-        {/* Always show this link since the about page is not protected */}
-        {/* Currently links back to the home page as that has all of the grant info */}
-        <Link className="nav-link" to="/home">
-          About
-        </Link>
       </div>
     </div>
   );
