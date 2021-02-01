@@ -3,12 +3,14 @@ import axios from 'axios';
 
 
 function* fetchAppTableData(action){
-    const repsonse = yield axios.get(`/api/table/`);
+    const response = yield axios.get(`/api/table/`);
+    yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});
 
 }
 
 function* fetchDetailsData(action){
   const response = yield axios.get(`/api/table/${action.payload}`);
+  yield put({type:'SET_DETAILS_DATA', payload: response.data});
 }
 
 //--------------------WATCHER SAGA---------------------------//

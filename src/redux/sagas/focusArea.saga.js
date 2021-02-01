@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 function* fetchFocusArea(action){
-    const repsonse = yield axios.get(`/api/focus/`);
+    const response = yield axios.get(`/api/focus/`);
 
 }
 

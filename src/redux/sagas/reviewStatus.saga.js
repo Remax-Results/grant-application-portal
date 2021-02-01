@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 function* fetchStatusDropdown(action){
-    const repsonse = yield axios.get(`/api/review-status/`);
+    const response = yield axios.get(`/api/review-status/`);
 
 }
 
