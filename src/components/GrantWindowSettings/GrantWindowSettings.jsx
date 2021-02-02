@@ -12,6 +12,7 @@ export default function GrantWindowSettings(props) {
     <div>
       {JSON.stringify(currentWindow)}
       <h2>Grant Window Settings</h2>
+      {currentWindow}
     </div>
   );
 }
