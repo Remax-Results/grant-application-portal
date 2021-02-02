@@ -21,12 +21,14 @@ import LandingPage from '../LandingPage/LandingPage.jsx';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Admin from '../Admin/Admin.jsx';
+import GrantWindowSettings from '../GrantWindowSettings/GrantWindowSettings.jsx'
 
 import './App.css';
 
 class App extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER' });
+    this.props.dispatch({ type: 'FETCH_CURRENT_WINDOW'})
   }
 
   render() {
@@ -109,6 +111,14 @@ class App extends Component {
               exact
               path="/admin"
               component={Admin}
+            />
+            <AdminRoute
+              // AdminRoute ensures the user is an admin
+              // if not logged in, redirects to login
+              // if logged in but not admin, redirects to user homepage
+              exact
+              path="/grantwindow"
+              component={GrantWindowSettings}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
