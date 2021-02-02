@@ -35,7 +35,7 @@ CREATE TABLE "app" (
   "focus_area_id" int REFERENCES "focus_area",
   "user_id" int REFERENCES "user",
   "review_date" date DEFAULT null,
-  "review_status_id" int REFERENCES "review_status"
+  "review_status_id" int REFERENCES "review_status" DEFAULT 2
 );
 
 CREATE TABLE "question" (
