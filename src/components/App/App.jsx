@@ -22,7 +22,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Admin from '../Admin/Admin.jsx';
 import GrantWindowSettings from '../GrantWindowSettings/GrantWindowSettings.jsx'
-
+import AppDetails from '../AppDetails/AppDetails.jsx';
 import './App.css';
 
 class App extends Component {
@@ -120,7 +120,14 @@ class App extends Component {
               path="/grantwindow"
               component={GrantWindowSettings}
             />
-
+            <AdminRoute
+              // AdminRoute ensures the user is an admin
+              // if not logged in, redirects to login
+              // if logged in but not admin, redirects to user homepage
+              exact
+              path="/appdetails/:id"
+              component={AppDetails}
+            />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
