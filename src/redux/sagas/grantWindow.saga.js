@@ -8,7 +8,7 @@ function* fetchAllWindows(action) {
 }
 
 function* fetchCurrentWindow(action){
-    const response = yield axios.get(`/api/grant-window/${action.payload}`);
+    const response = yield axios.get(`/api/grant-window/current-window`);
     yield put({type: 'SET_CURRENT_WINDOW', payload: response.data});
 }
 

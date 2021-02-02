@@ -5,8 +5,20 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
-  // GET route code here
+router.get('/current-window', (req, res) => {
+  console.log('inside /api/grant-window/current-window')
+
+  const sqlText = `SELECT * FROM grant_window
+  WHERE now() BETWEEN grant_window.start_date AND grant_window.end_date;`
+  pool
+    .query(sqlText)
+    .then((result) => {
+      res.send(result.rows[0])
+    })
+    .catch((err) => {
+      console.log('User registration failed: ', err);
+      res.sendStatus(500);
+    });
 });
 
 /**
