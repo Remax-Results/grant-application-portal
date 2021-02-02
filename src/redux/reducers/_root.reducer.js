@@ -8,6 +8,7 @@ import detailsData from './detailsData.reducer';
 import reviewStatus from './reviewStatus.reducer';
 import notes from './notes.reducer';
 import allWindows from './allWindows.reducer';
+import question from './question.reducer';
 
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   reviewStatus,
   notes,
   allWindows,
+  question,
 });
 
 export default rootReducer;

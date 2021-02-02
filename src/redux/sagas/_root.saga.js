@@ -9,6 +9,7 @@ import notesSaga from './notes.saga';
 import reviewStatusSaga from './reviewStatus.saga';
 import reviewSaga from './review.saga';
 import focusAreaSaga from './focusArea.saga';
+import questionSaga from './question.saga';
 
 
 export default function* rootSaga() {
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     reviewStatusSaga(),
     reviewSaga(),
     focusAreaSaga(),
+    questionSaga(),
   ]);
 }
