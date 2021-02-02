@@ -12,6 +12,7 @@ import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import AdminRoute from '../AdminRoute/AdminRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
@@ -74,6 +75,7 @@ class App extends Component {
               path="/login"
               component={LoginPage}
               authRedirect="/user"
+              adminRedirect="/admin"
             />
             <ProtectedRoute
               // with authRedirect:
@@ -83,6 +85,7 @@ class App extends Component {
               path="/registration"
               component={RegisterPage}
               authRedirect="/user"
+              adminRedirect="/admin"
             />
             <ProtectedRoute
               // with authRedirect:
@@ -92,11 +95,13 @@ class App extends Component {
               path="/home"
               component={LandingPage}
               authRedirect="/user"
+              adminRedirect="/admin"
             />
-            <ProtectedRoute
+            <AdminRoute
               // with authRedirect:
               // - if logged in, redirects to "/user"
               // - else shows LandingPage at "/home"
+              exact
               path="/admin"
               component={Admin}
             />
