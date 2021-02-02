@@ -1,10 +1,17 @@
 import React from 'react';
+import {useDispatch} from 'react-redux';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Button} from 'react-bootstrap';
 
 export default function AppTableList(app) {
+    const dispatch = useDispatch();
+    const goDetails = () => {
+        dispatch({type:'FETCH_DETAILS_DATA', payload: app.app.id});
+    }
 
     return(
         <>
-        <tr key={app.id}>
+        <tr key={app.app.id}>
             <td>{app.app.org_name}</td>
             <td>{app.app.contact_name}</td>
             <td>{app.app.phone}</td>
@@ -13,7 +20,7 @@ export default function AppTableList(app) {
             <td>{app.app.focus}</td>
             <td>{app.app.date_received}</td>
             <td>{app.app.status}</td>
-            <td><button>Details/Score</button></td>
+            <td><Button onClick={(event)=>{goDetails()}}>Details/Score</Button></td>
         </tr>
         </>
     )
