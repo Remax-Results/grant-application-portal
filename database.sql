@@ -64,11 +64,11 @@ CREATE TABLE "notes" (
 
 INSERT INTO "user"("username", "password", "org_name", "background", "phone", "contact_name", "admin") 
 VALUES
-('admin', 'adminadmin', 'Results Foundation', 'Grant-giving non-profit.', '651-123-4567', 'Blaire Molitor', TRUE);
+('admin', '$2a$10$3iBnDAz5DQ.qZjJrzIHUbe3OGJhQY/Zhgh8JSxdX27fOZWF78H17.', 'Results Foundation', 'Grant-giving non-profit.', '651-123-4567', 'Blaire Molitor', TRUE);
 
 INSERT INTO "user"("username", "password", "org_name", "background", "phone", "contact_name", "admin") 
 VALUES 
-('chester@bowl.com', 'chesterbowl', 'Chester Bowl', 'Year-round program providing fun outdoor activities for youth of all ages and from all socio-economic backgrounds.', '612-765-4321', 'Chester A. Bowl', FALSE);
+('chester@bowl.com', '$2a$10$oYihePWEyOXnwkQ8Me6v0e8DJhs4swzIh3R62TwdrAaaU3d26snbi', 'Chester Bowl', 'Year-round program providing fun outdoor activities for youth of all ages and from all socio-economic backgrounds.', '612-765-4321', 'Chester A. Bowl', FALSE);
 
 INSERT INTO "grant_window"("start_date", "end_date", "funds_available") 
 VALUES
