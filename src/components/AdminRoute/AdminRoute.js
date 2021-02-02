@@ -23,10 +23,10 @@ const AdminRoute = (props) => {
   let ComponentToShow;
 
   if (store.user.admin) {
-    // if the user is logged in (only logged in users have ids)
-    // show the component that is protected
+    // if user is logged in and is an admin, show them the component
     ComponentToShow = ComponentToProtect;
   } else if (!store.user.admin && store.user.id){
+    // if user is logged in and is not an admin, show them the default user page
     // TODO change this to more sensible landing page for non-admin users.
     ComponentToShow = UserPage;
   } else {

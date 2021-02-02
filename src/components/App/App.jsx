@@ -54,6 +54,7 @@ class App extends Component {
               // logged in shows UserPage else shows LoginPage
               exact
               path="/user"
+              adminRedirect="/admin"
               component={UserPage}
             />
 
@@ -61,6 +62,7 @@ class App extends Component {
               // logged in shows InfoPage else shows LoginPage
               exact
               path="/info"
+              adminRedirect="/admin"
               component={InfoPage}
             />
 
@@ -70,6 +72,7 @@ class App extends Component {
             <ProtectedRoute
               // with authRedirect:
               // - if logged in, redirects to "/user"
+              // - if admin, redirect to "/admin"
               // - else shows LoginPage at /login
               exact
               path="/login"
@@ -80,6 +83,7 @@ class App extends Component {
             <ProtectedRoute
               // with authRedirect:
               // - if logged in, redirects to "/user"
+              // - if admin, redirect to "/admin"
               // - else shows RegisterPage at "/registration"
               exact
               path="/registration"
@@ -90,6 +94,7 @@ class App extends Component {
             <ProtectedRoute
               // with authRedirect:
               // - if logged in, redirects to "/user"
+              // - if admin, redirect to "/admin"
               // - else shows LandingPage at "/home"
               exact
               path="/home"
@@ -98,9 +103,9 @@ class App extends Component {
               adminRedirect="/admin"
             />
             <AdminRoute
-              // with authRedirect:
-              // - if logged in, redirects to "/user"
-              // - else shows LandingPage at "/home"
+              // AdminRoute ensures the user is an admin
+              // if not logged in, redirects to login
+              // if logged in but not admin, redirects to user homepage
               exact
               path="/admin"
               component={Admin}
