@@ -1,20 +1,29 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import mapStoreToProps from '../../redux/mapStoreToProps';
+import GrantApplicationForm from '../GrantApplicationForm/GrantApplicationForm';
 
-class UserPage extends Component {
-  // this component doesn't do much to start, just renders some user info to the DOM
-  render() {
-    return (
-      <div>
-        <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
-        <p>Your ID is: {this.props.store.user.id}</p>
-        <LogOutButton className="log-in" />
-      </div>
-    );
-  }
+function UserPage (props) {
+  
+  //hooks
+  const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: 'FETCH_ALL_QUESTIONS' });
+    }, []
+  );
+
+  return (
+    <div>
+      <h1 id="welcome">Welcome, {user.contact_name}!</h1>
+      <p>Your ID is: {user.id}</p>
+      <GrantApplicationForm />
+      <LogOutButton className="log-in" />
+    </div>
+  );
+  
 }
 
 // this allows us to use <App /> in index.js
-export default connect(mapStoreToProps)(UserPage);
+export default UserPage;
