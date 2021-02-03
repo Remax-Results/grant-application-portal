@@ -10,10 +10,7 @@ function UserPage (props) {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch({ type: 'FETCH_ALL_QUESTIONS' });
-    }, []
-  );
+  
 
   return (
     <div>

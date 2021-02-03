@@ -28,13 +28,11 @@ function GrantApplicationForm(props) {
                   grant_window_id: grantWindow.id, 
                   focus_area_id: focusAreaId
                 } });
-    setValues({});
-    setFocusAreaId(0);
   }
 
   useEffect(() => {
     dispatch({ type: 'FETCH_FOCUS_AREA' });
-    }, [setValues, setFocusAreaId]
+    }, []
   );
 
   // callback provided to components to update the main list of form values
