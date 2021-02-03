@@ -17,7 +17,8 @@ function* fetchCurrentWindow(action){
 }
 
 function* postGrantWindow(action) {
-    yield axios.post(`/api/grant-window`, action.payload);
+    console.log('inside postGrantWindow', action.payload);
+    // yield axios.post(`/api/grant-window`, action.payload);
 }
 
 function* updateGrantWindow(action) {

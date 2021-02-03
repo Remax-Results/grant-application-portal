@@ -6,8 +6,14 @@ const router = express.Router();
 router.get('/current-window', (req, res) => {
   console.log('inside /api/grant-window/current-window')
 
-  const sqlText = `SELECT * FROM grant_window
-  WHERE now() BETWEEN grant_window.start_date AND grant_window.end_date;`
+  const sqlText = `
+                  SELECT g.id, g.start_date, g.end_date, g.funds_available, count(a.id) AS app_count FROM grant_window AS g
+                  LEFT JOIN app AS a ON a.grant_window_id = g.id
+                  WHERE now() BETWEEN g.start_date AND g.end_date
+                  GROUP BY g.id
+                  ;`
+
+
   pool
     .query(sqlText)
     .then((result) => {
