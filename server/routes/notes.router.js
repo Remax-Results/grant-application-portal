@@ -16,7 +16,16 @@ router.get('/:id', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  
+  const {note, app_id} = req.body;
+  const sqlText =  `INSERT INTO notes (review_note, app_id) VALUES ($1, $2);`;
+  console.log('in post note', note, app_id);
+  pool.query(sqlText, [note, app_id])
+  .then(result => {
+    res.sendStatus(200);
+  })
+  .catch((error) => {
+    console.log('error posting new note to database from server', error)
+  })
 });
 
 module.exports = router;

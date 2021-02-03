@@ -19,7 +19,7 @@ export default function AppDetails(){
     const qANDa = useSelector(state => state.qANDa);
     const handleSave = async () => {
         setShow(false);
-        await dispatch({type:'POST_NOTE', payload: newNote});
+        await dispatch({type:'POST_NOTE', payload: {note:newNote, app_id:detailsData.id}});
         setNewNote('');
     }
     useEffect(() => {dispatch({type: 'FETCH_DETAILS_DATA', payload: id})}, [dispatch]);
@@ -77,7 +77,7 @@ export default function AppDetails(){
                         <Button variant="secondary" onClick={event=>setShow(false)}>
                             Cancel
                         </Button>
-                        <Button onClick={event=>setShow(false)} variant="primary">Save</Button>
+                        <Button onClick={event=>handleSave()} variant="primary">Save</Button>
                     </Modal.Footer>
                 </Modal>
             </Container>

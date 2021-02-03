@@ -9,6 +9,7 @@ function* fetchNotes(action){
 
 function* postNote(action){
   yield axios.post(`/api/notes/`, action.payload);
+  yield put({type: 'FETCH_NOTES', payload: action.payload.app_id});
 }
 
 function* updateNote(action){
