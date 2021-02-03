@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Form, Container, Row, Col, Button, Dropdown } from 'react-bootstrap';
+import React from 'react';
+import { Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function GrantApplicationFormInput ({ question, questionChanged, value }) {

@@ -12,24 +12,56 @@ router.get('/', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   // this function is taking the dynamic object coming over
-  // from the client, and for each piece of that object it will 
-  // make an insert into the database
-  console.log('if this goes off at least I know at least the thing made it here....');
-  const insertApp = (appData) => {
-    for (let question of appData) {
-      const sqlText = `INSERT INTO "app_question"("app_id", "question_id", "answer_text")
-                      VALUES ($1, $2, $3);`;
-      pool.query(sqlText, [question.id, question.id, question.answer_text])
-          .then(result => {
-            res.sendStatus(201);
-          }).catch(error => {
-            console.log('error adding application question answer to the database... ------>', error);
-            res.sendStatus(500);
-          });
-    }
-  };
+  // and destructuring it, before using the pieces to insert 
+  // the full application with all the information into the DB
+  const { values, grant_window_id, user_id, focus_area_id } = req.body;
+  console.log('values are --->', values);
+  console.log('grant_window_id is --->', grant_window_id);
+  console.log('user_id is --->', user_id);
+  console.log('focus_area_id is --->', focus_area_id);
+
+  // destructuring the object to map over key value pairs
+  const questionIdArray = Object.keys(values);
+  const questionAnswerArray = Object.values(values);
+  console.log('question id array... --->', questionIdArray);
+  console.log('question answer array... --->', questionAnswerArray);
+
+  // pool connection
+  const client = await pool.connect();
+  
+  // begin POST route, first inserting the app
+  try {
+    await client.query('BEGIN;')
+    const sqlInsertAppReturnId = 
+          await client.query(`INSERT INTO "app"("grant_window_id", "focus_area_id", "user_id")
+            VALUES ($1, $2, $3) 
+            RETURNING "id";`, [grant_window_id, focus_area_id, user_id]);
+          
+    // grab app_id
+    const app_id = sqlInsertAppReturnId.rows[0].id;
+
+    // using app_id, insert application answers into DB
+    await Promise.all(questionIdArray.map((id) => {
+      const insertAppQuestionText = `INSERT INTO "app_question"("app_id", "question_id", "answer_text")
+                                      VALUES ($1, $2, $3);`;
+      const insertAppQuestionValues = [app_id, id, values[id]];
+      return client.query(insertAppQuestionText, insertAppQuestionValues);
+    }));
+
+    // commit the changes
+    await client.query('COMMIT;');
+    res.sendStatus(201);
+  } catch (error) {
+    // rollback changes in case of errors
+    await client.query('ROLLBACK;');
+    console.log('Error POSTing application to database... --->', error);
+    res.sendStatus(500);
+  } finally {
+    client.release();
+  }
+  
 });
 
 module.exports = router;
