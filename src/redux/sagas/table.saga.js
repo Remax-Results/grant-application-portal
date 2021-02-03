@@ -11,7 +11,7 @@ function* fetchAppTableData(action){
 function* fetchDetailsData(action){
   const response = yield axios.get(`/api/table/${action.payload}`);
   yield put({type:'SET_DETAILS_DATA', payload: response.data});
-  yield put({type:'FETCH_ALL_QUESTIONS'});
+  yield put({type:'FETCH_Q_AND_A', payload: action.payload});
 }
 
 //--------------------WATCHER SAGA---------------------------//

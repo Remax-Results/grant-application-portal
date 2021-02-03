@@ -12,19 +12,19 @@ export default function AppDetails(){
     let budget = 0;
     const dispatch = useDispatch();
     const detailsData = useSelector(state => state.detailsData);
-    const question = useSelector(state => state.question);
+    const qANDa = useSelector(state => state.qANDa);
     useEffect(() => {dispatch({type: 'FETCH_DETAILS_DATA', payload: id})}, [dispatch]);
     return(
         <div>
             <Card>
                 <Card.Header>{detailsData && detailsData.org_name}</Card.Header>
             </Card>
-            {question.length > 0 && question.map(q=>(
+            {qANDa.length > 0 && qANDa.map(q=>(
                 <Container>
                     <Row>
-                        <Col><Question question = {q}/></Col>
-                        <Col><Answer question = {q}/></Col>
-                        <Col><Score question = {q}/></Col>
+                        <Col><Question qANDa = {q}/></Col>
+                        <Col><Answer qANDa = {q}/></Col>
+                        <Col><Score qANDa = {q}/></Col>
                     </Row>
                 </Container>
                 ))

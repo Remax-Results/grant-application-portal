@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+
+
 
 export default function Answer(props) {
-    const {question} = props;
+    const {qANDa} = props;
+
 
     return (
-        <p>Answer</p>
+        <p>{qANDa.answer_text}</p>
     )
 }
