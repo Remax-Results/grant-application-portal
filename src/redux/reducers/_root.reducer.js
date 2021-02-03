@@ -10,6 +10,7 @@ import notes from './notes.reducer';
 import allWindows from './allWindows.reducer';
 import question from './question.reducer';
 import previousWindows from './previousWindows.reducer'
+import qANDa from './qANDa.reducer';
 
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   allWindows,
   question,
   previousWindows,
+  qANDa,
 });
 
 export default rootReducer;
