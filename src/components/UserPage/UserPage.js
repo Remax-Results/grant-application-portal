@@ -10,8 +10,6 @@ function UserPage (props) {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
-  
-
   return (
     <div>
       <h1 id="welcome">Welcome, {user.contact_name}!</h1>

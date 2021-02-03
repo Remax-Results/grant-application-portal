@@ -31,9 +31,14 @@ function GrantApplicationForm(props) {
   }
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_FOCUS_AREA' });
+    dispatch({ type: 'FETCH_FOCUS_QUESTION' });
     }, []
   );
+
+  // useEffect(() => {
+  //   dispatch({ type: 'FETCH_FOCUS_AREA' });
+  //   }, []
+  // );
 
   // callback provided to components to update the main list of form values
   const questionChanged = (questionId, value) => {
