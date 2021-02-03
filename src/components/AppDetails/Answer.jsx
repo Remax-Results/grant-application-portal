@@ -8,6 +8,6 @@ export default function Answer(props) {
 
 
     return (
-        <p>{qANDa.answer_text}</p>
+        <>{qANDa.answer_text}</>
     )
 }

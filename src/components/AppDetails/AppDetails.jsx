@@ -7,6 +7,7 @@ import Question from './Question.jsx';
 import Answer from './Answer.jsx';
 import Score from './Score.jsx';
 
+
 export default function AppDetails(){
     const {id} = useParams();
     let budget = 0;
@@ -15,20 +16,20 @@ export default function AppDetails(){
     const qANDa = useSelector(state => state.qANDa);
     useEffect(() => {dispatch({type: 'FETCH_DETAILS_DATA', payload: id})}, [dispatch]);
     return(
-        <div>
-            <Card>
-                <Card.Header>{detailsData && detailsData.org_name}</Card.Header>
+        <Container style={{backgroundColor:'#CECECE'}}>
+            <Card style={{backgroundColor:'#1C479A', color: 'white'}}>
+                <Card.Header style={{fontSize:'4rem'}}>{detailsData && detailsData.org_name}</Card.Header>
             </Card>
             {qANDa.length > 0 && qANDa.map(q=>(
-                <Container>
-                    <Row>
-                        <Col><Question qANDa = {q}/></Col>
-                        <Col><Answer qANDa = {q}/></Col>
-                        <Col><Score qANDa = {q}/></Col>
+                <Container style={{backgroundColor:'white'}}>
+                    <Row style={{minHeight:'100px', border: '1px solid #303030'}}>
+                        <Col style={{backgroundColor:'#1C479A', color: 'white'}}><Question qANDa = {q}/></Col>
+                        <Col  xs={8}><Answer qANDa = {q}/></Col>
+                        <Col  xs={4}><Score qANDa = {q}/></Col>
                     </Row>
                 </Container>
                 ))
             }
-        </div>
+        </Container>
     )
 }
