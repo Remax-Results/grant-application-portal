@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function* fetchFocusArea(action){
   const response = yield axios.get(`/api/focus`);
-  yield put({ type: 'SET_FOCUS_AREA'});
+  yield put({ type: 'SET_FOCUS_AREA', payload: response.data });
 }
 
 
