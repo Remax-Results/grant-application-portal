@@ -22,7 +22,7 @@ router.get(`/status/:id`, (req, res) => {
     });
 });
 router.get('/:id', (req, res) => {
-  sqlText= `SELECT  a.id, a.date_received, u.org_name, u.contact_name, 
+  const sqlText= `SELECT  a.id, a.date_received, u.org_name, u.contact_name, 
             u.phone, u.username, f.focus, r.status  
             FROM "user" as u
             JOIN app AS a ON u.id=a.user_id
@@ -35,10 +35,6 @@ router.get('/:id', (req, res) => {
           });
 
           
-
-/**
- * POST route template
- */
 router.post('/', async (req, res) => {
   // this function is taking the dynamic object coming over
   // and destructuring it, before using the pieces to insert 

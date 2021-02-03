@@ -8,7 +8,14 @@ function UserPage (props) {
   
   //hooks
   const user = useSelector((store) => store.user);
+  const currentWindow = useSelector((store) => store.currentWindow);
   const dispatch = useDispatch();
+
+  // useEffect
+  useEffect(() => {
+    dispatch({ type: 'FETCH_APPLICATION', payload: currentWindow.id });
+    }, [dispatch]
+  );
 
   return (
     <div>
