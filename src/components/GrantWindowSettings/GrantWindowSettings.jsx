@@ -13,6 +13,11 @@ export default function GrantWindowSettings(props) {
   // Reducer for the current grant window.
   const currentWindow = useSelector(state => state.currentWindow);
 
+  const closeWindow = () => {
+    console.log('inside closeWindow')
+    dispatch({type: 'CLOSE_CURRENT_WINDOW'})
+  }
+
   useEffect(() => {
     dispatch({type: 'FETCH_PREVIOUS_GRANT_WINDOWS'})
   }, [])
@@ -26,7 +31,7 @@ export default function GrantWindowSettings(props) {
         <h3>Current Grant Window runs from {moment(currentWindow.start_date).format('LL')} to {moment(currentWindow.end_date).format('LL')} with a budget of {currentWindow.funds_available}</h3>
         <h4>Number of applications: {currentWindow.app_count}</h4>
         <Button>Edit Current Grant Window</Button>
-        <Button>Close Current Grant Window</Button>
+        <Button onClick={(event)=>{closeWindow()}}>Close Current Grant Window</Button>
       </div>
       :
       <GrantWindowForm />
