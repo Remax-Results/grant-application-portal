@@ -1,11 +1,11 @@
 import React from 'react';
 
 export default function Question(props) {
-    const {question} = props;
+    const {qANDa} = props;
 
     return(
         <p>
-            {question.question_text}
+            {qANDa.question_text}
         </p>
     )
 }
