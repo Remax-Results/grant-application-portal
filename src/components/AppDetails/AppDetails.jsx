@@ -12,10 +12,16 @@ import NotesTable from './NotesTable.jsx';
 export default function AppDetails(){
     const {id} = useParams();
     const [show, setShow] = useState(false);
+    const [newNote, setNewNote] = useState('');
     const dispatch = useDispatch();
     const detailsData = useSelector(state => state.detailsData);
     const notes = useSelector(state => state.notes);
     const qANDa = useSelector(state => state.qANDa);
+    const handleSave = async () => {
+        setShow(false);
+        await dispatch({type:'POST_NOTE', payload: {note:newNote, app_id:detailsData.id}});
+        setNewNote('');
+    }
     useEffect(() => {dispatch({type: 'FETCH_DETAILS_DATA', payload: id})}, [dispatch]);
     return(
         <Container style={{backgroundColor:'#CECECE'}}>
@@ -64,14 +70,14 @@ export default function AppDetails(){
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Make a note</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl as="textarea" rows="10" aria-label="With textarea" />
+                            <FormControl as="textarea" rows="10" aria-label="With textarea" onChange={event => {setNewNote(event.target.value)}}/>
                         </InputGroup>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={event=>setShow(false)}>
                             Cancel
                         </Button>
-                        <Button onClick={event=>setShow(false)} variant="primary">Save</Button>
+                        <Button onClick={event=>handleSave()} variant="primary">Save</Button>
                     </Modal.Footer>
                 </Modal>
             </Container>
