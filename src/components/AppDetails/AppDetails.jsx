@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Card, Container, Col, Row, Table, Button, Modal, InputGroup, FormControl} from 'react-bootstrap';
+import {Card, Container, Col, Row, Table, Button, Modal, InputGroup, FormControl, Dropdown} from 'react-bootstrap';
 import Question from './Question.jsx';
 import Answer from './Answer.jsx';
 import Score from './Score.jsx';
@@ -38,7 +38,7 @@ export default function AppDetails(){
                 </Container>
                 ))
             }
-            <Container>
+            <Container style={{backgroundColor: 'white'}}>
                 <Card style={{backgroundColor:'#1C479A', color: 'white'}}>
                     <Card.Header style={{fontSize:'4rem'}}>
                         <p>Notes</p>
@@ -49,7 +49,8 @@ export default function AppDetails(){
                         <tr>
                             <th>Note Preview</th>
                             <th>Date Added</th>
-                            <th>View/Edit</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -80,6 +81,24 @@ export default function AppDetails(){
                         <Button onClick={event=>handleSave()} variant="primary">Save</Button>
                     </Modal.Footer>
                 </Modal>
+            </Container>
+            <Container>
+                <Row>
+                    <Col>
+                        <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                            Set Review Status
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item>Action</Dropdown.Item>
+                            <Dropdown.Item>Another action</Dropdown.Item>
+                            <Dropdown.Item>Something else</Dropdown.Item>
+                        </Dropdown.Menu>    
+                        </Dropdown>
+                    </Col>
+                    <Col><Button>View Printable Report</Button></Col>
+                    <Col><Button>Back to Admin Main Page</Button></Col>
+                </Row>
             </Container>
         </Container>
     )
