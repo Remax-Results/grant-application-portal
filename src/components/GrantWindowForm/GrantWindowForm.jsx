@@ -16,6 +16,7 @@ export default function GrantWindowForm() {
         <h2>Create a New Grant Window</h2>
         <div className="date-pickers">
           <DatePicker
+            placeholderText = "Start Date"
             selected={startDate}
             onChange={date => setStartDate(date)}
             selectsStart
@@ -23,6 +24,7 @@ export default function GrantWindowForm() {
             endDate={endDate}
           />
           <DatePicker
+            placeholderText = "End Date"
             selected={endDate}
             onChange={date => setEndDate(date)}
             selectsEnd
@@ -32,6 +34,7 @@ export default function GrantWindowForm() {
           />
         </div>
         <div className="budget">
+          <label>Budget: </label>
           <input type="number"></input>
         </div>
         <input id="submit-button" type="submit" value="Submit" />
