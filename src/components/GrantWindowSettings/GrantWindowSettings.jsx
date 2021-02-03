@@ -4,6 +4,8 @@ import GrantWindowForm from '../GrantWindowForm/GrantWindowForm.jsx'
 import GrantWindowTable from '../GrantWindowTable/GrantWindowTable.jsx'
 import {Button} from 'react-bootstrap';
 import moment from 'moment'
+import './GrantWindowSettings.css'
+
 
 export default function GrantWindowSettings(props) {
 
