@@ -21,6 +21,24 @@ router.get('/current-window', (req, res) => {
     });
 });
 
+router.get('/previous-windows', (req, res) => {
+  console.log('inside /api/grant-window/previous-windows')
+
+  const sqlText = `
+                  SELECT * FROM grant_window 
+                  WHERE now() > end_date
+                  ;`
+  pool
+    .query(sqlText)
+    .then((result) => {
+      res.send(result.rows[0])
+    })
+    .catch((err) => {
+      console.log('User registration failed: ', err);
+      res.sendStatus(500);
+    });
+});
+
 /**
  * POST route template
  */
