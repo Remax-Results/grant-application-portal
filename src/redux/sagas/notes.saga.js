@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 function* fetchNotes(action){
-    const response = yield axios.get(`/api/notes/`);
+    const response = yield axios.get(`/api/notes/${action.payload}`);
     yield put({type: 'SET_NOTES', payload: response.data});
 }
 
