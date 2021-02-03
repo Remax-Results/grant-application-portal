@@ -10,7 +10,6 @@ export default function GrantWindowTable() {
 
     return (
       <div>
-        <h2>GrantWindowTable</h2>
         {JSON.stringify(previousWindows)}
         <Container>
           <Row style={{display:'flex', justifyContent:'center'}}><h2>Previous Grant Windows</h2></Row>
@@ -25,7 +24,7 @@ export default function GrantWindowTable() {
                 </thead>
                 <tbody>
                     {previousWindows.length > 0 && previousWindows.map((window)=>(
-                        <GrantWindowTableRow window={window}/>
+                        <GrantWindowTableRow key={window.id} window={window}/>
                         ))}
                 </tbody>
             </Table>
