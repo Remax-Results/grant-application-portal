@@ -3,8 +3,8 @@ import axios from 'axios';
 
 
 function* updateScore(action){
-    yield axios.put(`/api/review/${action.payload}`);
-    yield axios.put(`/api/review/status/${action.payload}`);
+
+    yield axios.put(`/api/review/`, action.payload);
 }
 
 
