@@ -31,7 +31,7 @@ router.get('/previous-windows', (req, res) => {
   pool
     .query(sqlText)
     .then((result) => {
-      res.send(result.rows[0])
+      res.send(result.rows)
     })
     .catch((err) => {
       console.log('User registration failed: ', err);

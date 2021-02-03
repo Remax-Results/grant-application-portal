@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import GrantWindowForm from '../GrantWindowForm/GrantWindowForm.jsx'
+import GrantWindowTable from '../GrantWindowTable/GrantWindowTable.jsx'
 
 
 
@@ -23,9 +24,10 @@ export default function GrantWindowSettings(props) {
       <h3>Current Grant Window runs from {currentWindow.start_date} to {currentWindow.end_date} with a budget of {currentWindow.budget}</h3>
       :
       <GrantWindowForm />
-
-
       }
+      <div>
+        <GrantWindowTable />
+      </div>
     </div>
   );
 }
