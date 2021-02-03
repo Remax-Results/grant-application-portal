@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import moment from 'moment'
 
 export default function GrantWindowTableRow(props) {
+
   const { window } = props;
-  const previousWindows = useSelector(state => state.previousWindows);
 
     return (
       <>
-        <tr key={window.id}>
-          <td>{window.start_date}</td>
-          <td>{window.end_date}</td>
+        <tr>
+          <td>{moment(window.start_date).format('LL')}</td>
+          <td>{moment(window.end_date).format('LL')}</td>
           <td>{window.app_count}</td>
-          <Button>View Window</Button>
+          <td><Button>View Window</Button></td>
         </tr>
       </>
     );
