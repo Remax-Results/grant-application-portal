@@ -20,6 +20,8 @@ function* fetchCurrentWindow(action){
 
 function* closeGrantWindow(action) {
     yield axios.put(`/api/grant-window/close/${action.payload}`);
+    yield put({type: 'FETCH_CURRENT_WINDOW'})
+    yield put({type: 'FETCH_PREVIOUS_GRANT_WINDOWS'})
 }
 
 function* postGrantWindow(action) {
