@@ -10,6 +10,9 @@ import notes from './notes.reducer';
 import allWindows from './allWindows.reducer';
 import question from './question.reducer';
 import focusArea from './focusArea.reducer';
+import currentStatus from './currentStatus.reducer';
+import previousWindows from './previousWindows.reducer'
+import qANDa from './qANDa.reducer';
 
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
@@ -23,6 +26,9 @@ const rootReducer = combineReducers({
   allWindows,
   question,
   focusArea,
+  currentStatus, 
+  previousWindows,
+  qANDa,
 });
 
 export default rootReducer;
