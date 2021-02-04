@@ -50,7 +50,7 @@ export default function AppDetails(){
                     <thead>
                         <tr>
                             <th>Note Preview</th>
-                            <th>Date Added</th>
+                            <th>Last Modified</th>
                             <th>&nbsp;</th>
                             <th>&nbsp;</th>
                         </tr>
