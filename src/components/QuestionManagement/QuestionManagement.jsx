@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ListGroup, Container } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Question from './Question.jsx'
 
 
 
 export default function QuestionManagement() {
 
   const dispatch = useDispatch();
-  const [editMode, changeEditMode] = useState(false)
 
-  // Reducer for the current grant window.
-  const currentWindow = useSelector(state => state.currentWindow);
+  // Reducer for all questions.
+  const allQuestion = useSelector(state => state.allQuestion);
 
   // Fetch the previous grant windows to populate the table.
   useEffect(() => {
@@ -19,6 +21,12 @@ export default function QuestionManagement() {
   return (
     <div>
       <h2>QuestionManagement</h2>
+      <Container>
+        <ListGroup variant="flush">
+          {allQuestion.length > 0 && allQuestion.map(question => 
+            (<Question key={question.id} question={question}/>))}
+        </ListGroup>
+      </Container>
     </div>
   );
 }

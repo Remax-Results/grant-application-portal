@@ -23,6 +23,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import Admin from '../Admin/Admin.jsx';
 import GrantWindowSettings from '../GrantWindowSettings/GrantWindowSettings.jsx'
 import AppDetails from '../AppDetails/AppDetails.jsx';
+import QuestionManagement from '../QuestionManagement/QuestionManagement.jsx';
 import './App.css';
 
 class App extends Component {
@@ -127,6 +128,14 @@ class App extends Component {
               exact
               path="/appdetails/:id"
               component={AppDetails}
+            />
+            <AdminRoute
+              // AdminRoute ensures the user is an admin
+              // if not logged in, redirects to login
+              // if logged in but not admin, redirects to user homepage
+              exact
+              path="/questionmanagement"
+              component={QuestionManagement}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

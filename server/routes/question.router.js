@@ -1,18 +1,27 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-/**
- * GET route template
- */
-router.get('/active', (req, res) => { // GET all active questions
-  const sqlText = `SELECT * FROM "question" WHERE "active"=TRUE;`;
+
+router.get('/', (req, res) => { // GET all questions
+  const sqlText = `SELECT * FROM "question" ORDER BY id ASC;`;
   pool.query(sqlText).then(result => {
       res.send(result.rows); // sending back application questions
   }).catch((error) => {
       console.log('error retrieving application questions from the database... -------->', error);
   });
 });
+
+router.get('/active', (req, res) => { // GET all active questions
+  const sqlText = `SELECT * FROM "question" WHERE "active"=TRUE;`;
+  pool.query(sqlText).then(result => {
+      res.send(result.rows); // sending back application questions
+  }).catch((error) => {
+      console.log('error retrieving active application questions from the database... -------->', error);
+  });
+});
+
 
 router.get('/:id', (req, res) => { // GET all active questions from a specific application
   const sqlText = ` SELECT q.id, q.question_text, aq.answer_text, aq.review_score 
@@ -24,6 +33,26 @@ router.get('/:id', (req, res) => { // GET all active questions from a specific a
   }).catch((error) => {
       console.log('error retrieving application questions from the database... -------->', error);
   });
+});
+
+router.put('/question-status/:id', rejectUnauthenticated, (req, res, next) => 
+{
+  console.log(req.body);
+  if (req.user.admin){
+ 
+    const sqlText = `
+                    UPDATE question
+                    SET active = $1
+                    WHERE id=$2
+                    ;`
+    pool
+      .query(sqlText, [req.body.newStatus, req.params.id])
+      .then(() => res.sendStatus(201))
+      .catch((err) => {
+        console.log('question/question-status PUT failed ', err);
+        res.sendStatus(500);
+      });
+  } 
 });
 
 /**
