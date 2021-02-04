@@ -1,4 +1,4 @@
-const reviewStatusReducer = (state = {}, action) => {
+const reviewStatusReducer = (state = [], action) => {
   if(action.type === 'SET_REVIEW_STATUS') {
       return action.payload;
   }
