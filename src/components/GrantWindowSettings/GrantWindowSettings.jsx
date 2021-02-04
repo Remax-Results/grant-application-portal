@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import GrantWindowForm from '../GrantWindowForm/GrantWindowForm.jsx'
 import GrantWindowTable from '../GrantWindowTable/GrantWindowTable.jsx'
 import GrantWindowEdit from '../GrantWindowEdit/GrantWindowEdit.jsx'
-import {Button} from 'react-bootstrap';
-import moment from 'moment'
+import GrantWindowInfo from './GrantWindowInfo.jsx'
 import './GrantWindowSettings.css'
 
 
@@ -15,12 +14,6 @@ export default function GrantWindowSettings(props) {
 
   // Reducer for the current grant window.
   const currentWindow = useSelector(state => state.currentWindow);
-
-  // Function to close the current grant window if there is one.
-  const closeWindow = () => {
-    console.log('inside closeWindow')
-    dispatch({type: 'CLOSE_WINDOW', payload: currentWindow.id})
-  }
 
   // Fetch the previous grant windows to populate the table.
   useEffect(() => {
@@ -35,19 +28,17 @@ export default function GrantWindowSettings(props) {
         {editMode ? 
           // If current window exists, and edit mode is true, GrantWindowEdit component will show.
           <GrantWindowEdit 
-          changeEditMode={changeEditMode} 
-          editMode={editMode}
-          currentWindow = {currentWindow} />
+            changeEditMode={changeEditMode} 
+            editMode={editMode}
+            currentWindow = {currentWindow} 
+          />
           :
           // If current window exists, and edit mode is false, information about the current grant window will be shown.
-          <div className ="current-grant-window-info">
-            <h3>Current Grant Window runs from {moment(currentWindow.start_date).format('LL')} to {moment(currentWindow.end_date).format('LL')}</h3>
-            <h4>Budget: {currentWindow.funds_available}</h4>
-            <h4>Number of applications: {currentWindow.app_count}</h4>
-            <Button onClick={(event)=>{changeEditMode(!editMode)}}>Edit Current Grant Window</Button>
-            <Button onClick={(event)=>{closeWindow()}}>Close Current Grant Window</Button>
-          </div>
-
+          <GrantWindowInfo 
+            changeEditMode={changeEditMode} 
+            editMode={editMode}
+            currentWindow = {currentWindow} 
+          />
         } 
       </>
       :
