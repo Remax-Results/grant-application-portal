@@ -88,7 +88,7 @@ export default function AppDetails(){
                 <Row>
                     <Col>
                         <Dropdown
-                        
+                            onSelect={(event) => {dispatch({type:'UPDATE_STATUS', payload:{status: event, id:detailsData.id}})}}
                         >
                         <Dropdown.Toggle variant="success" id="dropdown-basic">
                             Set Review Status
