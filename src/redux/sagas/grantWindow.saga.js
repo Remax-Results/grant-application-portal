@@ -18,13 +18,21 @@ function* fetchCurrentWindow(action){
     
 }
 
+function* closeGrantWindow(action) {
+    yield axios.put(`/api/grant-window/close/${action.payload}`);
+    yield put({type: 'FETCH_CURRENT_WINDOW'})
+    yield put({type: 'FETCH_PREVIOUS_GRANT_WINDOWS'})
+}
+
 function* postGrantWindow(action) {
     console.log('inside postGrantWindow', action.payload);
-    // yield axios.post(`/api/grant-window`, action.payload);
+    yield axios.post(`/api/grant-window`, action.payload);
+    yield put({type: 'FETCH_CURRENT_WINDOW'})
 }
 
 function* updateGrantWindow(action) {
-    yield axios.put(`/api/grant-window/${action.payload}`);
+    yield axios.put(`/api/grant-window/${action.payload.windowId}`, action.payload);
+    yield put({type: 'FETCH_CURRENT_WINDOW'})
 }
 
 
@@ -34,6 +42,7 @@ function* grantWindowSaga() {
   yield takeLatest('FETCH_ALL_WINDOWS', fetchAllWindows);
   yield takeLatest('POST_GRANT_WINDOW', postGrantWindow);
   yield takeLatest('UPDATE_GRANT_WINDOW', updateGrantWindow);
+  yield takeLatest('CLOSE_WINDOW', closeGrantWindow);
   yield takeLatest('FETCH_PREVIOUS_GRANT_WINDOWS', fetchPreviousWindows);
 }
 

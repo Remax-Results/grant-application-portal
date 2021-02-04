@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import {useDispatch} from 'react-redux';
 import DatePicker from "react-datepicker";
-import './GrantWindowForm.css'
-import "react-datepicker/dist/react-datepicker.css";
 import {Button} from 'react-bootstrap';
+import './GrantWindowEdit.css'
+import "react-datepicker/dist/react-datepicker.css";
+import moment from 'moment'
 
 
+export default function GrantWindowEdit(props) {
 
-export default function GrantWindowForm() {
+  // Getting the functions and variables to change the edit mode from the GrantWindowSettings component
+  // currentWindow has the window info to populate the input fields of the edit form.
+  const { changeEditMode, editMode, currentWindow } = props;
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null);
-  const [budget, setBudget] = useState(0);
+  const [startDate, setStartDate] = useState(moment(currentWindow.start_date).toDate());
+  const [endDate, setEndDate] = useState(moment(currentWindow.end_date).toDate());
+  const [budget, setBudget] = useState(currentWindow.funds_available);
   
   const dispatch = useDispatch();
 
@@ -23,20 +27,27 @@ export default function GrantWindowForm() {
     return [date.getFullYear(), mnth, day].join("-");
   }
 
-  const createGrantWindow = (event) => {
+  // 
+  const updateGrantWindow = (event) => {
     event.preventDefault();
     // Convert the dates from react-datepicker to SQL dates
     const convertedStartDate = convert(startDate)
     const convertedEndDate = convert(endDate)
-    dispatch({type: 'POST_GRANT_WINDOW', payload: {
+
+    // Send all necessary info to the saga.
+    dispatch({type: 'UPDATE_GRANT_WINDOW', payload: {
       startDate: convertedStartDate, 
       endDate: convertedEndDate,
-      budget: budget
+      budget: budget,
+      windowId: currentWindow.id
     }})
+
+    // Change the edit mode back to false on the GrantWindowSettings component.
+    changeEditMode(!editMode);
   }
 
     return (
-      <form onSubmit={event => {createGrantWindow(event)}} className="grant-window-form">
+      <form onSubmit={event => {updateGrantWindow(event)}} className="grant-window-form">
         <h2>Create a New Grant Window</h2>
         <div className="date-pickers">
           <DatePicker
@@ -69,7 +80,8 @@ export default function GrantWindowForm() {
             onChange={event => setBudget(event.target.value)}
           />
         </div>
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Save</Button>
+        <Button onClick={(event)=>{changeEditMode(!editMode)}}>Cancel</Button>
       </form>
     );
   }
