@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  sqlText= `SELECT  a.id, a.date_received, u.org_name, u.contact_name, 
+  sqlText= `SELECT  a.id, a.date_received, u.background, u.org_name, u.contact_name, 
             u.phone, u.username, f.focus, r.status  
             FROM "user" as u
             JOIN app AS a ON u.id=a.user_id
@@ -31,8 +31,11 @@ router.get('/:id', (req, res) => {
           });
 
 
-router.post('/', (req, res) => {
-  // POST route code here
+router.get(`/budget/:id`, (req, res) => {
+  sqlText = `SELECT answer_text AS budget FROM app_question WHERE app_id=$1 AND question_id=5;`;
+  pool.query(sqlText, [req.params.id])
+  .then(result => {res.send(result.rows[0])})
+  .catch(error=> console.log('Error retrieving app table data from server', error))
 });
 
 module.exports = router;

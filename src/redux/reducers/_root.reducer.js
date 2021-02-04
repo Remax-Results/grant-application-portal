@@ -13,6 +13,7 @@ import focusArea from './focusArea.reducer';
 import currentStatus from './currentStatus.reducer';
 import previousWindows from './previousWindows.reducer'
 import qANDa from './qANDa.reducer';
+import budget from './budget.reducer';
 
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   currentStatus, 
   previousWindows,
   qANDa,
+  budget,
 });
 
 export default rootReducer;
