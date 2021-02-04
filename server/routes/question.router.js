@@ -37,7 +37,6 @@ router.get('/:id', (req, res) => { // GET all active questions from a specific a
 
 router.put('/question-status/:id', rejectUnauthenticated, (req, res, next) => 
 {
-  console.log(req.body);
   if (req.user.admin){
  
     const sqlText = `
