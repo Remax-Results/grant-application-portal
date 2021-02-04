@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-//import mapStoreToProps from '../../redux/mapStoreToProps';
+import moment from 'moment';
+import './AppStatus.css';
 
 
 export default function AppStatus(props) {
@@ -17,12 +18,12 @@ export default function AppStatus(props) {
   
   return (
       
-    <div>
+    <div className="appStatus">
         
-      <h2>WELCOME BACK</h2>
+      <h2>Welcome Back, {user.contact_name}!</h2>
       <p>Thank you for your application.</p>
-      {currentStatus && <p>Your application has been received and is currently: {currentStatus.status}</p>}
-      {currentWindow && <p>Our grant window runs {currentWindow.start_date} to {currentWindow.end_date}</p>}
+      {currentStatus && <p>Your application has been received and is currently: <b>{currentStatus.status}</b></p>}
+      {currentWindow && <p>Our grant window runs <b>{moment(currentWindow.start_date).format('LL')}</b> to <b>{moment(currentWindow.end_date).format('LL')}</b></p>}
       <p>We will inform you as soon as possible of our decision.</p>
     </div>
   );
