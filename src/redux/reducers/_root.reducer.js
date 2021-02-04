@@ -8,7 +8,7 @@ import detailsData from './detailsData.reducer';
 import reviewStatus from './reviewStatus.reducer';
 import notes from './notes.reducer';
 import allWindows from './allWindows.reducer';
-import question from './question.reducer';
+import activeQuestion from './activeQuestion.reducer';
 import focusArea from './focusArea.reducer';
 import currentStatus from './currentStatus.reducer';
 import previousWindows from './previousWindows.reducer'
@@ -24,7 +24,7 @@ const rootReducer = combineReducers({
   reviewStatus,
   notes,
   allWindows,
-  question,
+  activeQuestion,
   focusArea,
   currentStatus, 
   previousWindows,

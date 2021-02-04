@@ -17,7 +17,8 @@ function* postNote(action){
 }
 
 function* updateNote(action){
-    yield axios.put(`api/notes/${action.payload}`)
+    yield axios.put(`api/notes/`, action.payload);
+    yield put({type: 'FETCH_NOTES', payload: action.payload.app_id});
 }
 
 //--------------------WATCHER SAGA---------------------------//

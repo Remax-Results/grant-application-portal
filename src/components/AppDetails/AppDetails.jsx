@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card, Container, Col, Row, Table, Button, Modal, InputGroup, FormControl, Dropdown} from 'react-bootstrap';
 import Question from './Question.jsx';
@@ -10,10 +10,12 @@ import NotesTable from './NotesTable.jsx';
 
 
 export default function AppDetails(){
+    const history = useHistory();
     const {id} = useParams();
     const [show, setShow] = useState(false);
     const [newNote, setNewNote] = useState('');
     const dispatch = useDispatch();
+    const reviewStatus = useSelector(state=>state.reviewStatus);
     const detailsData = useSelector(state => state.detailsData);
     const notes = useSelector(state => state.notes);
     const qANDa = useSelector(state => state.qANDa);
@@ -48,7 +50,7 @@ export default function AppDetails(){
                     <thead>
                         <tr>
                             <th>Note Preview</th>
-                            <th>Date Added</th>
+                            <th>Last Modified</th>
                             <th>&nbsp;</th>
                             <th>&nbsp;</th>
                         </tr>
@@ -85,19 +87,19 @@ export default function AppDetails(){
             <Container>
                 <Row>
                     <Col>
-                        <Dropdown>
+                        <Dropdown
+                            onSelect={(event) => {dispatch({type:'UPDATE_STATUS', payload:{status: event, id:detailsData.id}})}}
+                        >
                         <Dropdown.Toggle variant="success" id="dropdown-basic">
                             Set Review Status
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            <Dropdown.Item>Action</Dropdown.Item>
-                            <Dropdown.Item>Another action</Dropdown.Item>
-                            <Dropdown.Item>Something else</Dropdown.Item>
+                            {reviewStatus && reviewStatus.map((rs)=>(<Dropdown.Item eventKey={rs.id}>{rs.status}</Dropdown.Item>))}
                         </Dropdown.Menu>    
                         </Dropdown>
                     </Col>
-                    <Col><Button>View Printable Report</Button></Col>
-                    <Col><Button>Back to Admin Main Page</Button></Col>
+                    <Col><Button onClick={()=>{history.push(`/report/${id}`)}}>View Printable Report</Button></Col>
+                    <Col><Button onClick={()=>{history.push('/admin')}}>Back to Admin Main Page</Button></Col>
                 </Row>
             </Container>
         </Container>

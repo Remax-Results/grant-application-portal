@@ -11,7 +11,7 @@ import './GrantApplicationForm.css';
 function GrantApplicationForm(props) {
 
   // hooks
-  const questions = useSelector((store) => store.question);
+  const questions = useSelector((store) => store.activeQuestion);
   const focusArea = useSelector((store) => store.focusArea);
   const user = useSelector((store) => store.user);
   const grantWindow = useSelector((store) => store.currentWindow);
