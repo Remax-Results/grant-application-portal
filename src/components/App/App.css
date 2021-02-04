@@ -3,7 +3,20 @@ body,
 #react-root {
   height: 100%;
 }
-
+@font-face {
+  font-family: 'Gotham Book';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Gotham Bold'), url('../../fonts/GothamBold.otf') format('woff');
+  
+}
+@font-face {
+  font-family: 'Gotham Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Gotham Book'), url('../../fonts/GothamBook.otf') format('woff');
+  
+}
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
