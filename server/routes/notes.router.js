@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 router.get('/:id', (req, res) => {
-  const sqlText = `SELECT * FROM notes WHERE app_id=$1;`;
+  const sqlText = `SELECT * FROM notes WHERE app_id=$1 ORDER BY id;`;
   pool.query(sqlText, [req.params.id])
   .then(result => {
     res.send(result.rows); 
@@ -36,6 +36,17 @@ router.delete(`/:id`, (req, res) => {
   })
   .catch((error) => {
     console.log('error deleting note from server', error)
+  })
+})
+
+router.put(`/`, (req, res) => {
+  const sqlText = `UPDATE notes SET review_note=$1 WHERE id=$2;`;
+  pool.query(sqlText, [req.body.note, req.body.note_id])
+  .then(result => {
+    res.sendStatus(200);
+  })
+  .catch((error) => {
+    console.log('error updating note from server', error)
   })
 })
 

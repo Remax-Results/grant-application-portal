@@ -1,13 +1,14 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import LoginForm from '../LoginForm/LoginForm';
+import './LoginPage.css';
 
 export default function LoginPage() {
 
   const history = useHistory();
 
   return (
-    <div>
+    <div className="login_page">
       <LoginForm />
 
       <center>

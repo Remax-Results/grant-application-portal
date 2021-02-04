@@ -35,7 +35,8 @@ export default function NotesTable(props) {
     };
 
     const handleSave = () => {
-        console.log('hi mom');
+        dispatch({type:'UPDATE_NOTE', payload:{note_id: note.id, note:thisNote, app_id:detailsData.id}});
+        setShow(false);
     }
          
 
