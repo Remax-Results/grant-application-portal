@@ -31,7 +31,7 @@ function GrantApplicationForm(props) {
   }
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_FOCUS_AREA' });
+    dispatch({ type: 'FETCH_FOCUS_QUESTION' });
     }, []
   );
 

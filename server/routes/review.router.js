@@ -12,7 +12,7 @@ router.put(`/`, (req, res) => {
     {res.sendStatus(200);
   })
   .catch((error) => {
-      console.log('erros updating the score on the server', error);
+      console.log('errors updating the score on the server', error);
   });
 })
 
