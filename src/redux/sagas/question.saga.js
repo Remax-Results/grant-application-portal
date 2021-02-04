@@ -2,9 +2,9 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 
-function* fetchAllQuestions() { 
-    const response = yield axios.get(`/api/question`);
-    yield put({ type:'SET_ALL_QUESTIONS', payload: response.data });
+function* fetchActiveQuestions() { 
+    const response = yield axios.get(`/api/question/active`);
+    yield put({ type:'SET_ACTIVE_QUESTIONS', payload: response.data });
 }
 
 function* postNewQuestion(action) {
@@ -26,7 +26,7 @@ function* fetchQandA(action) {
 
 //--------------------WATCHER SAGA---------------------------//
 function* grantWindowSaga() {
-  yield takeLatest('FETCH_ALL_QUESTIONS', fetchAllQuestions);
+  yield takeLatest('FETCH_ACTIVE_QUESTIONS', fetchActiveQuestions);
   yield takeLatest('POST_NEW_QUESTION', postNewQuestion);
   yield takeLatest('CHANGE_QUESTION_STATUS', changeQuestionStatus);
   yield takeLatest('DELETE_QUESTION', deleteQuestion);

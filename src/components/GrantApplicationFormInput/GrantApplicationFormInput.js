@@ -11,7 +11,10 @@ function GrantApplicationFormInput ({ question, questionChanged, value }) {
         <>
             <Form.Group key={question.id}>
                 <Form.Label htmlFor={question.id}>{question.question_text}</Form.Label>
-                <Form.Control name={question.id} value={value} placeholder={question.question_text}
+                <Form.Control 
+                    name={question.id} 
+                    value={value} 
+                    as="textarea" rows={3}
                     onChange={(e) => {
                         // Notify the main state of the new value
                         questionChanged(question.id, e.target.value);

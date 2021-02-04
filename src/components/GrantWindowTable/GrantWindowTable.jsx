@@ -10,7 +10,7 @@ export default function GrantWindowTable() {
 
     return (
       <div>
-        {JSON.stringify(previousWindows)}
+        {/* {JSON.stringify(previousWindows)} */}
         <Container>
           <Row style={{display:'flex', justifyContent:'center'}}><h2>Previous Grant Windows</h2></Row>
           <Table striped bordered hover >

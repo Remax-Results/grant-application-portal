@@ -8,17 +8,25 @@ function UserPage (props) {
   
   //hooks
   const user = useSelector((store) => store.user);
+  const currentWindow = useSelector((store) => store.currentWindow);
   const dispatch = useDispatch();
+  const app = useSelector((store) => store.application);
 
-  
+  // useEffect
+  useEffect(() => {
+    dispatch({ type: 'FETCH_APPLICATION', payload: currentWindow.id });
+    }, [dispatch]
+  );
 
   return (
     <div>
       <h1 id="welcome">Welcome, {user.contact_name}!</h1>
       <p>Your ID is: {user.id}</p>
-      {/* conditional render appstatus */}
-      <AppStatus />
-      <GrantApplicationForm />
+      {
+        app.length ?
+          <AppStatus /> :
+          <GrantApplicationForm />
+      }
       <LogOutButton className="log-in" />
     </div>
   );
