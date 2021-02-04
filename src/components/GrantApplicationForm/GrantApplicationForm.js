@@ -4,6 +4,7 @@ import GrantApplicationFormInput from '../GrantApplicationFormInput/GrantApplica
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import swal from 'sweetalert';
+import './GrantApplicationForm.css';
 
 
 
@@ -65,10 +66,10 @@ function GrantApplicationForm(props) {
 
   return (
     <>
-      <Container>
-        <Row>
-          <h2>Grant Application Form</h2>
-        </Row>
+        <Container>
+          <h2 className="headerRow">Grant Application Form</h2>
+        
+        <Container className="formContainer">
         <Row>
         <Col>
           <Form>
@@ -78,9 +79,11 @@ function GrantApplicationForm(props) {
                     key={question.id}
                     questionChanged={questionChanged}
                     value={values[question.id]}
-                    question={question} />
+                    question={question}
+                    className="form" />
                 ))
               }
+              <p>Please select your area of focus from the list.</p>
               <Form.Control as="select" onChange={(e) => setFocusAreaId(e.target.value)}>
                 <option>Area of Focus</option>
                   {
@@ -88,11 +91,13 @@ function GrantApplicationForm(props) {
                       <option key={area.id} value={area.id}>{area.focus}</option>
                   ))
                   }
-              </Form.Control>  
+              </Form.Control>
+              <br />
               <Button variant="secondary" onClick={onSubmit}>Submit Grant Application</Button>
           </Form>
         </Col>
         </Row>
+      </Container>
       </Container>
     </>
   );
