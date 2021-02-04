@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import GrantApplicationFormInput from '../GrantApplicationFormInput/GrantApplicationFormInput';
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import swal from 'sweetalert';
 
 
 
@@ -21,13 +22,30 @@ function GrantApplicationForm(props) {
     e.preventDefault();
     console.log('current values are....', values);
     // send data to server
-    dispatch({ type: 'POST_APPLICATION', 
+    
+          swal({
+            title: "Does the above information look correct to you?",
+            text: "Please take a moment to double check your application if you are unsure.",
+            icon: "info",
+            buttons: true,
+            dangerMode: false,
+          })
+          .then((willSubmit) => {
+            if (willSubmit) {
+              dispatch({ type: 'POST_APPLICATION', 
               payload: { 
                   values: values, 
                   user_id: user.id, 
                   grant_window_id: grantWindow.id, 
                   focus_area_id: focusAreaId
                 } });
+              swal("Great! Your application has been submitted.", {
+                icon: "success",
+              });
+            } else {
+              swal("Hmm... something went wrong. Please try again.");
+            }
+          });
   }
 
   useEffect(() => {
