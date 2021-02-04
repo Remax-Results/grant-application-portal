@@ -33,11 +33,13 @@ export default function GrantWindowSettings(props) {
       {currentWindow ?
       <>
         {editMode ? 
+          // If current window exists, and edit mode is true, GrantWindowEdit component will show.
           <GrantWindowEdit 
           changeEditMode={changeEditMode} 
           editMode={editMode}
           currentWindow = {currentWindow} />
           :
+          // If current window exists, and edit mode is false, information about the current grant window will be shown.
           <div className ="current-grant-window-info">
             <h3>Current Grant Window runs from {moment(currentWindow.start_date).format('LL')} to {moment(currentWindow.end_date).format('LL')}</h3>
             <h4>Budget: {currentWindow.funds_available}</h4>
@@ -49,9 +51,11 @@ export default function GrantWindowSettings(props) {
         } 
       </>
       :
+      // If no current window, the form to create one will appear.
       <GrantWindowForm />
       }
       <div>
+        {/* Table to show previous grant window info */}
         <GrantWindowTable />
       </div>
     </div>

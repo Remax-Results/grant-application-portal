@@ -57,10 +57,10 @@ router.post('/', rejectUnauthenticated, (req, res, next) => {
     console.log('inside post route', endDate);
   
     const sqlText = `
-                      INSERT INTO grant_window
-                      (start_date, end_date, funds_available)
-                      VALUES ($1, $2, $3)
-                      ;`
+                    INSERT INTO grant_window
+                    (start_date, end_date, funds_available)
+                    VALUES ($1, $2, $3)
+                    ;`
     pool
       .query(sqlText, [startDate, endDate, budget])
       .then(() => res.sendStatus(201))

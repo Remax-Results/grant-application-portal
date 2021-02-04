@@ -9,6 +9,8 @@ import moment from 'moment'
 
 export default function GrantWindowEdit(props) {
 
+  // Getting the functions and variables to change the edit mode from the GrantWindowSettings component
+  // currentWindow has the window info to populate the input fields of the edit form.
   const { changeEditMode, editMode, currentWindow } = props;
 
   const [startDate, setStartDate] = useState(moment(currentWindow.start_date).toDate());
@@ -25,19 +27,22 @@ export default function GrantWindowEdit(props) {
     return [date.getFullYear(), mnth, day].join("-");
   }
 
+  // 
   const updateGrantWindow = (event) => {
     event.preventDefault();
     // Convert the dates from react-datepicker to SQL dates
     const convertedStartDate = convert(startDate)
     const convertedEndDate = convert(endDate)
 
+    // Send all necessary info to the saga.
     dispatch({type: 'UPDATE_GRANT_WINDOW', payload: {
       startDate: convertedStartDate, 
       endDate: convertedEndDate,
       budget: budget,
       windowId: currentWindow.id
     }})
-    
+
+    // Change the edit mode back to false on the GrantWindowSettings component.
     changeEditMode(!editMode);
   }
 
