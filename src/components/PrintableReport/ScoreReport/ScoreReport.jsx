@@ -1,11 +1,27 @@
 import React from 'react';
+import styled from 'styled-components';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Card, Container, Col, Row, Table, Button, Modal, InputGroup, FormControl, Dropdown} from 'react-bootstrap';
+
+
+const SubHeader = styled.p `
+    font-size: 1.4rem;
+    text-decoration: underline;
+`
 
 export default function ScoreReport(props) {
     const {qa} = props;
     return (
-        <div>
-            <h4>{qa.question_text} </h4>
-            <p>{qa.answer_text} {qa.review_score}</p>
-        </div>
+        <Container>
+            <SubHeader>{qa.question_text} </SubHeader>
+            <Row>
+                <Col xs={10}>
+                    {qa.answer_text} 
+                </Col>
+                <Col xs={2}>
+                    <b>Review Score: </b>{qa.review_score}
+                </Col>
+            </Row>   
+        </Container>
     )
 }
