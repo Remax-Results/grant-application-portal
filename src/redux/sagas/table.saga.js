@@ -13,6 +13,7 @@ function* fetchDetailsData(action){
   yield put({type:'SET_DETAILS_DATA', payload: response.data});
   yield put({type:'FETCH_Q_AND_A', payload: action.payload});
   yield put({type:'FETCH_NOTES', payload: action.payload});
+  yield put({type:'FETCH_STATUS_DROPDOWN'});
 }
 
 //--------------------WATCHER SAGA---------------------------//
