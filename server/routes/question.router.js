@@ -5,7 +5,7 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/', (req, res) => { // GET all active questions
+router.get('/active', (req, res) => { // GET all active questions
   const sqlText = `SELECT * FROM "question" WHERE "active"=TRUE;`;
   pool.query(sqlText).then(result => {
       res.send(result.rows); // sending back application questions
@@ -14,7 +14,7 @@ router.get('/', (req, res) => { // GET all active questions
   });
 });
 
-router.get('/:id', (req, res) => { // GET all active questions
+router.get('/:id', (req, res) => { // GET all active questions from a specific application
   const sqlText = ` SELECT q.id, q.question_text, aq.answer_text, aq.review_score 
                     FROM question AS q
                     JOIN app_question AS aq ON q.id=aq.question_id
