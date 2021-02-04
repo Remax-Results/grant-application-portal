@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import './RegisterForm.css'
 
 
 export default function RegisterForm() {
@@ -42,8 +42,10 @@ export default function RegisterForm() {
         )}
         <div>
           <label htmlFor="username">
-            Username:
+            Email:
+            <br></br>
             <input
+              className="register"
               type="text"
               name="username"
               value={username}
@@ -55,7 +57,9 @@ export default function RegisterForm() {
         <div>
           <label htmlFor="password">
             Password:
+            <br></br>
             <input
+              className="register"
               type="password"
               name="password"
               value={password}
@@ -64,34 +68,14 @@ export default function RegisterForm() {
             />
           </label>
         </div>
-        <div>
-          <label htmlFor="orgName">
-            Organization Name
-            <input
-              type="text"
-              name="Organization Name"
-              value={orgName}
-              required
-              onChange={event => setOrgName(event.target.value)}
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="background">
-            Organization Background
-            <input
-              type="text"
-              name="Organization Background"
-              value={background}
-              required
-              onChange={event => setBackground(event.target.value)}
-            />
-          </label>
-        </div>
+        
+        
         <div>
           <label htmlFor="phone">
             Phone Number
+            <br></br>
             <input
+              className="register"
               type="text"
               name="phone"
               value={phone}
@@ -103,12 +87,42 @@ export default function RegisterForm() {
         <div>
           <label htmlFor="contactName">
             Contact Name
+            <br></br>
             <input
+              className="register"
               type="text"
               name="Contact Name"
               value={contactName}
               required
               onChange={event => setContactName(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="orgName">
+            Organization Name
+            <br></br>
+            <input
+              className="register"
+              type="text"
+              name="Organization Name"
+              value={orgName}
+              required
+              onChange={event => setOrgName(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="background">
+            Organization Background
+            <br></br>
+            <input
+              className="register"
+              type="text"
+              name="Organization Background"
+              value={background}
+              required
+              onChange={event => setBackground(event.target.value)}
             />
           </label>
         </div>
