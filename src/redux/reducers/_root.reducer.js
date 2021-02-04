@@ -13,6 +13,7 @@ import focusArea from './focusArea.reducer';
 import currentStatus from './currentStatus.reducer';
 import previousWindows from './previousWindows.reducer'
 import qANDa from './qANDa.reducer';
+import allQuestion from './allQuestion.reducer';
 import budget from './budget.reducer';
 
 const rootReducer = combineReducers({
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   currentStatus, 
   previousWindows,
   qANDa,
+  allQuestion,
   budget,
 });
 

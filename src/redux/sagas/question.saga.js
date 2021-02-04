@@ -7,12 +7,20 @@ function* fetchActiveQuestions() {
     yield put({ type:'SET_ACTIVE_QUESTIONS', payload: response.data });
 }
 
+function* fetchAllQuestions() { 
+    const response = yield axios.get(`/api/question`);
+    yield put({ type:'SET_ALL_QUESTIONS', payload: response.data });
+}
+
 function* postNewQuestion(action) {
     yield axios.post(`/api/question`, action.payload);
 }
 
 function* changeQuestionStatus(action) {
-    yield axios.put(`/api/question/${action.payload}`);
+    const { questionId, newStatus } = action.payload;
+    yield axios.put(`/api/question/question-status/${questionId}`, {newStatus: newStatus});
+    yield put({ type:'FETCH_ALL_QUESTIONS' });
+
 }
 
 function* deleteQuestion(action) {
@@ -26,11 +34,12 @@ function* fetchQandA(action) {
 
 //--------------------WATCHER SAGA---------------------------//
 function* grantWindowSaga() {
-  yield takeLatest('FETCH_ACTIVE_QUESTIONS', fetchActiveQuestions);
-  yield takeLatest('POST_NEW_QUESTION', postNewQuestion);
-  yield takeLatest('CHANGE_QUESTION_STATUS', changeQuestionStatus);
-  yield takeLatest('DELETE_QUESTION', deleteQuestion);
-  yield takeLatest('FETCH_Q_AND_A', fetchQandA);
+    yield takeLatest('FETCH_ALL_QUESTIONS', fetchAllQuestions);
+    yield takeLatest('FETCH_ACTIVE_QUESTIONS', fetchActiveQuestions);
+    yield takeLatest('POST_NEW_QUESTION', postNewQuestion);
+    yield takeLatest('CHANGE_QUESTION_STATUS', changeQuestionStatus);
+    yield takeLatest('DELETE_QUESTION', deleteQuestion);
+    yield takeLatest('FETCH_Q_AND_A', fetchQandA);
 }
 
 export default grantWindowSaga;
