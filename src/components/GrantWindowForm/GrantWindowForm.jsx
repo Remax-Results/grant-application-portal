@@ -3,8 +3,8 @@ import {useDispatch} from 'react-redux';
 import DatePicker from "react-datepicker";
 import './GrantWindowForm.css'
 import "react-datepicker/dist/react-datepicker.css";
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
+import {Button} from 'react-bootstrap';
+
 
 
 export default function GrantWindowForm() {
@@ -69,7 +69,7 @@ export default function GrantWindowForm() {
             onChange={event => setBudget(event.target.value)}
           />
         </div>
-        <input id="submit-button" type="submit" value="Submit" />
+        <Button type="submit">Submit</Button>
       </form>
     );
   }

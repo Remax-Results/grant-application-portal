@@ -31,7 +31,8 @@ function* postGrantWindow(action) {
 }
 
 function* updateGrantWindow(action) {
-    yield axios.put(`/api/grant-window/${action.payload}`);
+    yield axios.put(`/api/grant-window/${action.payload.windowId}`, action.payload);
+    yield put({type: 'FETCH_CURRENT_WINDOW'})
 }
 
 

@@ -89,4 +89,26 @@ router.put('/close/:id', rejectUnauthenticated, (req, res, next) => {
   } 
 });
 
+router.put('/:id', rejectUnauthenticated, (req, res, next) => {
+  const { startDate, endDate, budget } = req.body;
+
+  if (req.user.admin){
+ 
+    const sqlText = `
+                    UPDATE grant_window
+                    SET start_date = $1,
+                    end_date = $2,
+                    funds_available = $3
+                    WHERE grant_window.id = $4
+                    ;`
+    pool
+      .query(sqlText, [startDate, endDate, budget, req.params.id])
+      .then(() => res.sendStatus(201))
+      .catch((err) => {
+        console.log('grantWindow/close PUT failed ', err);
+        res.sendStatus(500);
+      });
+  } 
+});
+
 module.exports = router;

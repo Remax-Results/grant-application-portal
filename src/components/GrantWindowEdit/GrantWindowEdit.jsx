@@ -30,11 +30,15 @@ export default function GrantWindowEdit(props) {
     // Convert the dates from react-datepicker to SQL dates
     const convertedStartDate = convert(startDate)
     const convertedEndDate = convert(endDate)
-    dispatch({type: 'POST_GRANT_WINDOW', payload: {
+
+    dispatch({type: 'UPDATE_GRANT_WINDOW', payload: {
       startDate: convertedStartDate, 
       endDate: convertedEndDate,
-      budget: budget
+      budget: budget,
+      windowId: currentWindow.id
     }})
+    
+    changeEditMode(!editMode);
   }
 
     return (
@@ -71,7 +75,7 @@ export default function GrantWindowEdit(props) {
             onChange={event => setBudget(event.target.value)}
           />
         </div>
-        <input id="submit-button" type="submit" value="Submit" />
+        <Button type="submit">Save</Button>
         <Button onClick={(event)=>{changeEditMode(!editMode)}}>Cancel</Button>
       </form>
     );
