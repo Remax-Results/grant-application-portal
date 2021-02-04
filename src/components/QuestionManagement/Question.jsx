@@ -20,7 +20,7 @@ export default function Question(props) {
         <div>
             <ListGroup.Item>
                 <Row>
-                    <Col xs={8}>
+                    <Col xs={9}>
                         {question.question_text}
                         {question.active ? 
                         'active'
@@ -30,7 +30,7 @@ export default function Question(props) {
                     <Col xs={1}>
                         <Button size="sm">Edit</Button>
                     </Col>                    
-                    <Col xs={3}>
+                    <Col xs={2}>
                         <Form>
                             <Form.Group>
                             <Form.Control 
