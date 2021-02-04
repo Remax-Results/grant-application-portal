@@ -33,7 +33,10 @@ export default function GrantWindowSettings(props) {
       {currentWindow ?
       <>
         {editMode ? 
-          <GrantWindowEdit changeEditMode={changeEditMode} editMode={editMode} />
+          <GrantWindowEdit 
+          changeEditMode={changeEditMode} 
+          editMode={editMode}
+          currentWindow = {currentWindow} />
           :
           <div className ="current-grant-window-info">
             <h3>Current Grant Window runs from {moment(currentWindow.start_date).format('LL')} to {moment(currentWindow.end_date).format('LL')}</h3>

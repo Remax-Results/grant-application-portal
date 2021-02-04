@@ -4,14 +4,16 @@ import DatePicker from "react-datepicker";
 import {Button} from 'react-bootstrap';
 import './GrantWindowEdit.css'
 import "react-datepicker/dist/react-datepicker.css";
+import moment from 'moment'
 
 
 export default function GrantWindowEdit(props) {
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null);
-  const [budget, setBudget] = useState(0);
-  const { changeEditMode, editMode } = props;
+  const { changeEditMode, editMode, currentWindow } = props;
+
+  const [startDate, setStartDate] = useState(moment(currentWindow.start_date).toDate());
+  const [endDate, setEndDate] = useState(moment(currentWindow.end_date).toDate());
+  const [budget, setBudget] = useState(currentWindow.funds_available);
   
   const dispatch = useDispatch();
 
