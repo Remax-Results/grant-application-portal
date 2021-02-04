@@ -21,6 +21,7 @@ router.get(`/status/:id`, (req, res) => {
       res.sendStatus(500);
     });
 });
+
 router.get('/:id', (req, res) => {
   const sqlText= `SELECT  a.id, a.date_received, u.org_name, u.contact_name, 
             u.phone, u.username, f.focus, r.status  

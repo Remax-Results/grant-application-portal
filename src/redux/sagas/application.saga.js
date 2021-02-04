@@ -11,6 +11,7 @@ function* fetchApplication(action){
 
 function* postApplication(action){
     yield axios.post(`/api/application`, action.payload);
+    yield put ({ type: 'FETCH_APPLICATION' });
 }
 
 //--------------------WATCHER SAGA---------------------------//

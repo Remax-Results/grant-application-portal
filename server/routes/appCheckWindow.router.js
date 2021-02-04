@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// GET route for grabbing application when user logs in
+// GET route for grabbing application data when user logs in
 router.get('/:id', (req, res) => {
     console.log('current window id is..... --->', req.params.id);
     console.log('current user id is..... --->', req.user.id);
