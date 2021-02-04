@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
+import moment from 'moment';
 
 
 export default function AppTableList(props) {
@@ -23,7 +24,7 @@ export default function AppTableList(props) {
             <td>{app.username}</td>
             <td>{app.budget}</td>
             <td>{app.focus}</td>
-            <td>{app.date_received}</td>
+            <td>{moment(app.date_received).format('LL')}</td>
             <td>{app.status}</td>
             <td><Button onClick={(event)=>{goDetails()}}>Details/Score</Button></td>
         </tr>
