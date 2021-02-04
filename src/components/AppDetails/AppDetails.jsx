@@ -98,7 +98,7 @@ export default function AppDetails(){
                         </Dropdown.Menu>    
                         </Dropdown>
                     </Col>
-                    <Col><Button onClick={()=>{history.push('/report')}}>View Printable Report</Button></Col>
+                    <Col><Button onClick={()=>{history.push(`/report/${id}`)}}>View Printable Report</Button></Col>
                     <Col><Button onClick={()=>{history.push('/admin')}}>Back to Admin Main Page</Button></Col>
                 </Row>
             </Container>
