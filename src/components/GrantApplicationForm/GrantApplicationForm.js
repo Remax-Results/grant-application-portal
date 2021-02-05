@@ -21,7 +21,7 @@ function GrantApplicationForm(props) {
   
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log('current values are....', values);
+   
     // send data to server
     
           swal({

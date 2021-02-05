@@ -22,7 +22,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   if(req.user.admin){
   const {note, app_id} = req.body;
   const sqlText =  `INSERT INTO notes (review_note, app_id) VALUES ($1, $2);`;
-  console.log('in post note', note, app_id);
+  
   pool.query(sqlText, [note, app_id])
   .then(result => {
     res.sendStatus(200);

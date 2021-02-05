@@ -5,7 +5,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 // Route to get the review status for a particular application.  user view
 router.get(`/status/:id`, rejectUnauthenticated, (req, res) => {
-  console.log('inside /api/application/status')
+  
   
     const sqlText = `SELECT rs.status FROM "user" AS u JOIN app ON u.id=app.user_id
     JOIN review_status AS rs ON app.review_status_id=rs.id WHERE u.id=$1;`;
@@ -49,8 +49,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
   // destructuring the object to map over key value pairs
   const questionIdArray = Object.keys(values);
   const questionAnswerArray = Object.values(values);
-  console.log('question id array... --->', questionIdArray);
-  console.log('question answer array... --->', questionAnswerArray);
+  
 
   // pool connection
   const client = await pool.connect();

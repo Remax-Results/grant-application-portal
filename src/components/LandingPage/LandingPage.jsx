@@ -10,9 +10,7 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 
 export default function LandingPage() {
   
-  // state = {
-  //   heading: 'Class Component',
-  // };
+  
 
   const history = useHistory();
   //this brings
@@ -72,4 +70,4 @@ export default function LandingPage() {
   }
 
 
-// export default connect(mapStoreToProps)(LandingPage);
+
