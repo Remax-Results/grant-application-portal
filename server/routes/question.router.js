@@ -3,17 +3,20 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-
-router.get('/', (req, res) => { // GET all questions
+//gets everything in question table
+router.get('/', rejectUnauthenticated, (req, res) => { // GET all questions
+  if(req.user.admin){
   const sqlText = `SELECT * FROM "question" ORDER BY id ASC;`;
   pool.query(sqlText).then(result => {
       res.send(result.rows); // sending back application questions
   }).catch((error) => {
       console.log('error retrieving application questions from the database... -------->', error);
   });
+}
 });
 
-router.get('/active', (req, res) => { // GET all active questions
+//only active questions, user only view
+router.get('/active', rejectUnauthenticated, (req, res) => { // GET all active questions
   const sqlText = `SELECT * FROM "question" WHERE "active"=TRUE;`;
   pool.query(sqlText).then(result => {
       res.send(result.rows); // sending back application questions
@@ -23,7 +26,8 @@ router.get('/active', (req, res) => { // GET all active questions
 });
 
 
-router.get('/:id', (req, res) => { // GET all active questions from a specific application
+router.get('/:id', rejectUnauthenticated, (req, res) => { // GET all active questions from a specific application
+  if(req.user.admin){
   const sqlText = ` SELECT q.id, q.question_text, aq.answer_text, aq.review_score 
                     FROM question AS q
                     JOIN app_question AS aq ON q.id=aq.question_id
@@ -33,11 +37,11 @@ router.get('/:id', (req, res) => { // GET all active questions from a specific a
   }).catch((error) => {
       console.log('error retrieving application questions from the database... -------->', error);
   });
+}
 });
 
 // Toggles a question between active and inactive.
-router.put('/question-status/:id', rejectUnauthenticated, (req, res, next) => 
-{
+router.put('/question-status/:id', rejectUnauthenticated, (req, res, next) => {
   if (req.user.admin){
  
     const sqlText = `
@@ -56,8 +60,7 @@ router.put('/question-status/:id', rejectUnauthenticated, (req, res, next) =>
 });
 
 // Update the question text of a particular question.
-router.put('/question-text/:id', rejectUnauthenticated, (req, res, next) => 
-{
+router.put('/question-text/:id', rejectUnauthenticated, (req, res, next) => {
   if (req.user.admin){
  
     const sqlText = `
@@ -76,8 +79,7 @@ router.put('/question-text/:id', rejectUnauthenticated, (req, res, next) =>
 });
 
 // Post new question
-router.post('/', rejectUnauthenticated, (req, res, next) => 
-{
+router.post('/', rejectUnauthenticated, (req, res, next) => {
   if (req.user.admin){
     const sqlText = `INSERT INTO question (question_text) VALUES ($1);`
     pool
