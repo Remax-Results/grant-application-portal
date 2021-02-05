@@ -12,7 +12,6 @@ function* fetchPreviousWindows(action) {
 }
 
 function* fetchCurrentWindow(action){
-    console.log('in grantWindow saga line 11', action.payload);
     const response = yield axios.get(`/api/grant-window/current-window`);
     yield put({type: 'SET_CURRENT_WINDOW', payload: response.data});
     
@@ -25,7 +24,6 @@ function* closeGrantWindow(action) {
 }
 
 function* postGrantWindow(action) {
-    console.log('inside postGrantWindow', action.payload);
     yield axios.post(`/api/grant-window`, action.payload);
     yield put({type: 'FETCH_CURRENT_WINDOW'})
 }
