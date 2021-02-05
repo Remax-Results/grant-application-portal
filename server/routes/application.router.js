@@ -45,10 +45,6 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
   // and destructuring it, before using the pieces to insert 
   // the full application with all the information into the DB
   const { values, grant_window_id, user_id, focus_area_id } = req.body;
-  console.log('values are --->', values);
-  console.log('grant_window_id is --->', grant_window_id);
-  console.log('user_id is --->', user_id);
-  console.log('focus_area_id is --->', focus_area_id);
 
   // destructuring the object to map over key value pairs
   const questionIdArray = Object.keys(values);

@@ -4,16 +4,14 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 // Get route for current grant window, if one is currently open.
+//this can be open for anyone to see
 router.get('/current-window', (req, res) => {
-  console.log('inside /api/grant-window/current-window')
-
   const sqlText = `
                   SELECT g.id, g.start_date, g.end_date, g.funds_available, count(a.id) AS app_count FROM grant_window AS g
                   LEFT JOIN app AS a ON a.grant_window_id = g.id
                   WHERE now() BETWEEN g.start_date AND g.end_date
                   GROUP BY g.id
                   ;`
-
 
   pool
     .query(sqlText)
@@ -28,9 +26,9 @@ router.get('/current-window', (req, res) => {
 
 
 // Route to get previous grant windows and the amount of applications within that grant window.
+//admin only view
 router.get('/previous-windows', rejectUnauthenticated, (req, res) => {
-  console.log('inside /api/grant-window/previous-windows')
-
+  if(req.user.admin){
   const sqlText = `
                   SELECT g.id, g.start_date, g.end_date, COUNT(a.id) AS app_count FROM grant_window AS g
                   LEFT JOIN app AS a ON a.grant_window_id = g.id 
@@ -47,15 +45,13 @@ router.get('/previous-windows', rejectUnauthenticated, (req, res) => {
       console.log('User registration failed: ', err);
       res.sendStatus(500);
     });
+  }
 });
 
-
+// Post route for the admin to create a new grant window.
 router.post('/', rejectUnauthenticated, (req, res, next) => {
   if (req.user.admin){
     const { startDate, endDate, budget } = req.body
-    console.log('inside post route', startDate);
-    console.log('inside post route', endDate);
-  
     const sqlText = `
                     INSERT INTO grant_window
                     (start_date, end_date, funds_available)
@@ -71,6 +67,7 @@ router.post('/', rejectUnauthenticated, (req, res, next) => {
   } 
 });
 
+// Put route for the admin to close the current grant window.
 router.put('/close/:id', rejectUnauthenticated, (req, res, next) => {
   if (req.user.admin){
  
@@ -89,6 +86,7 @@ router.put('/close/:id', rejectUnauthenticated, (req, res, next) => {
   } 
 });
 
+// Put route for the admin to change the details of the current grant window.
 router.put('/:id', rejectUnauthenticated, (req, res, next) => {
   const { startDate, endDate, budget } = req.body;
 

@@ -24,11 +24,4 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     })
 });
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
-});
-
 module.exports = router;
