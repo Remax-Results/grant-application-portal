@@ -5,6 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card, Container, Col, Row, Table, Button, Modal, InputGroup, FormControl, Dropdown} from 'react-bootstrap';
 import ScoreReport from './ScoreReport/ScoreReport.jsx';
 import NotesReport from './NotesReport/NotesReport.jsx';
+import styled from 'styled-components';
+
+const SubHeader = styled.p `
+    font-size: 1.4rem;
+    text-decoration: underline;
+`
+
+
+
 
 export default function PrintableReport() {
     const {id} = useParams();
@@ -18,22 +27,30 @@ export default function PrintableReport() {
 
 
     return (
-        <Container>
-            {org_name && <h1>{org_name}</h1>}
-            <p>Contact:</p>
-            {contact_name && <p>{contact_name}</p>}
-            {username && <p>{username}</p>}
-            {phone && <p>{phone}</p>}
-            <h3>Organization Background:</h3>
-            {background && <p>{background}</p>}
-            <h3>Area of Focus:</h3>
-            {focus && <p>{focus}</p>}
-            <h3>Budget</h3>
-            {budget && <p>{budget}</p>}
-
-            <h3>Evaluation</h3>
+        <Container style={{backgroundColor:'white'}}>
+            <Container style={{textAlign:'center'}}>
+                {org_name && <h1>{org_name}</h1>}
+                <SubHeader>Contact Info:</SubHeader>
+                {contact_name && <p>{contact_name}</p>}
+                {username && <p>{username}</p>}
+                {phone && <p>{phone}</p>}
+            </Container>
+            <Container style={{textAlign:'center'}}>
+                <SubHeader>Organization Background:</SubHeader>
+                {background && <p>{background}</p>}
+                <Row>
+                    <Col>
+                        <SubHeader>Area of Focus:</SubHeader>
+                        {focus && <p>{focus}</p>}
+                    </Col>
+                    <Col>
+                        <SubHeader>Budget</SubHeader>
+                        {budget && <p>{budget}</p>}
+                    </Col>
+                </Row>
+            </Container>
             {qANDa.length > 0 && qANDa.map((qa) => <ScoreReport qa={qa}/>)}
-            <h3>Notes</h3>
+            <h3 style={{textAlign:'center'}}>Notes</h3>
             {notes.length > 0 && notes.map((n)=> <NotesReport n={n}/>)}
             <Button onClick={()=>{history.push('/admin')}}>Back to Admin Main Page</Button>
         </Container>
