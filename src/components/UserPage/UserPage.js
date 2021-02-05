@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import GrantApplicationForm from '../GrantApplicationForm/GrantApplicationForm';
 import AppStatus from '../AppStatus/AppStatus.jsx';
 
@@ -22,6 +21,8 @@ function UserPage (props) {
 
   return (
     <div>
+      {JSON.stringify(app)}
+      {JSON.stringify(currentWindow)}
       {
         app.length ?
           <AppStatus /> :
