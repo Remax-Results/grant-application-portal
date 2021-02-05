@@ -13,12 +13,22 @@ function* fetchAllQuestions() {
 }
 
 function* postNewQuestion(action) {
+    
     yield axios.post(`/api/question`, action.payload);
+    yield put({ type:'FETCH_ALL_QUESTIONS' });
+
 }
 
 function* changeQuestionStatus(action) {
     const { questionId, newStatus } = action.payload;
     yield axios.put(`/api/question/question-status/${questionId}`, {newStatus: newStatus});
+    yield put({ type:'FETCH_ALL_QUESTIONS' });
+
+}
+
+function* changeQuestionText(action) {
+    const { questionId, newText } = action.payload;
+    yield axios.put(`/api/question/question-text/${questionId}`, {newText: newText});
     yield put({ type:'FETCH_ALL_QUESTIONS' });
 
 }
@@ -38,6 +48,7 @@ function* grantWindowSaga() {
     yield takeLatest('FETCH_ACTIVE_QUESTIONS', fetchActiveQuestions);
     yield takeLatest('POST_NEW_QUESTION', postNewQuestion);
     yield takeLatest('CHANGE_QUESTION_STATUS', changeQuestionStatus);
+    yield takeLatest('CHANGE_QUESTION_TEXT', changeQuestionText);
     yield takeLatest('DELETE_QUESTION', deleteQuestion);
     yield takeLatest('FETCH_Q_AND_A', fetchQandA);
 }
