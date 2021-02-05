@@ -1,10 +1,10 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+const { rejectUnauthenticatedAdmin } = require('../modules/admin-authentication-middleware');
 
 //updates application and sets scores --admin only
-router.put(`/`, rejectUnauthenticated, (req, res) => {
+router.put(`/`, rejectUnauthenticatedAdmin, (req, res) => {
   if(req.user.admin){
     const sqlText = `UPDATE app_question
                     SET review_score=$1

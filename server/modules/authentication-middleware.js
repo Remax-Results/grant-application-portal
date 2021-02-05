@@ -10,6 +10,4 @@ const rejectUnauthenticated = (req, res, next) => {
   }
 };
 
-//add another if in logic to check for admin/applicant?
-
 module.exports = { rejectUnauthenticated };
