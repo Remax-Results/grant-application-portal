@@ -8,6 +8,7 @@ import moment from 'moment';
 
 export default function AppTableList(props) {
     const {app} = props;
+    const mailText = "mailto:" + app.username;
     const dispatch = useDispatch();
     const history = useHistory();
     const goDetails = async() => {
@@ -21,7 +22,7 @@ export default function AppTableList(props) {
             <td>{app.org_name}</td>
             <td>{app.contact_name}</td>
             <td>{app.phone}</td>
-            <td>{app.username}</td>
+            <td><a href={mailText}>{app.username}</a></td>
             <td>{app.budget}</td>
             <td>{app.focus}</td>
             <td>{moment(app.date_received).format('LL')}</td>
