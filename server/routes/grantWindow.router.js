@@ -28,7 +28,6 @@ router.get('/current-window', (req, res) => {
 // Route to get previous grant windows and the amount of applications within that grant window.
 //admin only view
 router.get('/previous-windows', rejectUnauthenticated, (req, res) => {
-  if(req.user.admin){
   const sqlText = `
                   SELECT g.id, g.start_date, g.end_date, COUNT(a.id) AS app_count FROM grant_window AS g
                   LEFT JOIN app AS a ON a.grant_window_id = g.id 
@@ -45,12 +44,10 @@ router.get('/previous-windows', rejectUnauthenticated, (req, res) => {
       console.log('User registration failed: ', err);
       res.sendStatus(500);
     });
-  }
 });
 
 // Post route for the admin to create a new grant window.
 router.post('/', rejectUnauthenticated, (req, res, next) => {
-  if (req.user.admin){
     const { startDate, endDate, budget } = req.body
     const sqlText = `
                     INSERT INTO grant_window
@@ -69,12 +66,10 @@ router.post('/', rejectUnauthenticated, (req, res, next) => {
         console.log('grantWindow POST failed ', err);
         res.sendStatus(500);
       });
-  } 
 });
 
 // Put route for the admin to close the current grant window.
 router.put('/close/:id', rejectUnauthenticated, (req, res, next) => {
-  if (req.user.admin){
  
     const sqlText = `
                     UPDATE grant_window
@@ -88,14 +83,12 @@ router.put('/close/:id', rejectUnauthenticated, (req, res, next) => {
         console.log('grantWindow/close PUT failed ', err);
         res.sendStatus(500);
       });
-  } 
 });
 
 // Put route for the admin to change the details of the current grant window.
 router.put('/:id', rejectUnauthenticated, (req, res, next) => {
   const { startDate, endDate, budget } = req.body;
 
-  if (req.user.admin){
  
     const sqlText = `
                     UPDATE grant_window
@@ -111,7 +104,6 @@ router.put('/:id', rejectUnauthenticated, (req, res, next) => {
         console.log('grantWindow/close PUT failed ', err);
         res.sendStatus(500);
       });
-  } 
 });
 
 module.exports = router;
