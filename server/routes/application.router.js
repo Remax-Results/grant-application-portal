@@ -3,10 +3,10 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-// Route to get the review status for a particular application.
+// Route to get the review status for a particular application.  user view
 router.get(`/status/:id`, rejectUnauthenticated, (req, res) => {
   console.log('inside /api/application/status')
-  if(req.user.admin){
+  
     const sqlText = `SELECT rs.status FROM "user" AS u JOIN app ON u.id=app.user_id
     JOIN review_status AS rs ON app.review_status_id=rs.id WHERE u.id=$1;`;
     pool
@@ -18,7 +18,7 @@ router.get(`/status/:id`, rejectUnauthenticated, (req, res) => {
         console.log('status check failed', err);
         res.sendStatus(500);
       });
-    }
+ 
 });
 
 

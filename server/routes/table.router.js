@@ -22,7 +22,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 //gets single application detail --admin only
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-  if(req.body.admin){
+  if(req.user.admin){
     sqlText= `SELECT  a.id, a.date_received, u.background, u.org_name, u.contact_name, 
               u.phone, u.username, f.focus, r.status  
               FROM "user" as u
@@ -38,7 +38,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 
 //getting just budget from application
 router.get(`/budget/:id`, rejectUnauthenticated, (req, res) => {
-    if(req.body.admin){
+    if(req.user.admin){
     sqlText = `SELECT answer_text AS budget FROM app_question WHERE app_id=$1 AND question_id=5;`;
     pool.query(sqlText, [req.params.id])
     .then(result => {res.send(result.rows[0])})

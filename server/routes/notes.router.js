@@ -5,7 +5,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 //gets notes on an application
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-  if(req.body.admin){
+  if(req.user.admin){
   const sqlText = `SELECT * FROM notes WHERE app_id=$1 ORDER BY id;`;
   pool.query(sqlText, [req.params.id])
   .then(result => {
@@ -19,7 +19,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 
 //creation of note on application
 router.post('/', rejectUnauthenticated, (req, res) => {
-  if(req.body.admin){
+  if(req.user.admin){
   const {note, app_id} = req.body;
   const sqlText =  `INSERT INTO notes (review_note, app_id) VALUES ($1, $2);`;
   console.log('in post note', note, app_id);
@@ -35,7 +35,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 //deletes notes - admin only route
 router.delete(`/:id`, rejectUnauthenticated, (req, res) => {
-  if(req.body.admin){
+  if(req.user.admin){
   const sqlText = `DELETE FROM notes WHERE id=$1;`;
   pool.query(sqlText, [req.params.id])
   .then(result => {
@@ -49,7 +49,7 @@ router.delete(`/:id`, rejectUnauthenticated, (req, res) => {
 
 //updates notes on admin side
 router.put(`/`, rejectUnauthenticated, (req, res) => {
-  if(req.body.admin){
+  if(req.user.admin){
   const sqlText = `UPDATE notes SET review_note=$1 WHERE id=$2;`;
   pool.query(sqlText, [req.body.note, req.body.note_id])
   .then(result => {
