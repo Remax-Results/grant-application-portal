@@ -5,7 +5,11 @@ import axios from 'axios';
 function* fetchApplication(action){
     const currentWindow = yield axios.get(`/api/grant-window/current-window`);
     console.log('inside fetchApplication', currentWindow.data.id)
-    const response = yield axios.get(`/api/app-check/${currentWindow.data.id}`);
+    let axiosRoute = '/api/app-check/'
+    if (currentWindow.data.id){
+      axiosRoute += currentWindow.data.id
+    } 
+    const response = yield axios.get(axiosRoute);
     yield put({type:'SET_APPLICATION', payload: response.data});
 }
 

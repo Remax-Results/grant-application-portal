@@ -10,13 +10,14 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     const windowId = req.params.id;
     const userId = req.user.id;
     const sqlText = 
-    `SELECT "date_received", "grant_window_id", "focus_area_id", "user_id", "review_date", "review_status_id" 
+    `SELECT "app".id, "date_received", "grant_window_id", "focus_area_id", "user_id", "review_date", "review_status_id" 
     FROM "app" 
     JOIN "grant_window" ON "grant_window".id="app".grant_window_id
     JOIN "user" ON "user".id="app".user_id
-    WHERE "user".id=$1;`;
-    pool.query(sqlText, [userId]).then((result) => {
-        res.send(result.rows);
+    WHERE "user".id=$1
+    AND app.grant_window_id=$2;`;
+    pool.query(sqlText, [userId, windowId]).then((result) => {
+        res.send(result.rows[0]);
     }).catch((error) => {
         console.log('Error retrieving users application details... --->', error);
         res.sendStatus(500);

@@ -8,14 +8,13 @@ import AppStatus from '../AppStatus/AppStatus.jsx';
 function UserPage (props) {
   
   //hooks
-  const user = useSelector((store) => store.user);
   const currentWindow = useSelector((store) => store.currentWindow);
   const dispatch = useDispatch();
   const app = useSelector((store) => store.application);
 
   // useEffect
   useEffect(() => {
-    dispatch({ type: 'FETCH_APPLICATION', payload: currentWindow.id });
+    dispatch({ type: 'FETCH_APPLICATION' });
     }, [dispatch]
   );
 
@@ -24,8 +23,8 @@ function UserPage (props) {
       {JSON.stringify(app)}
       {JSON.stringify(currentWindow)}
       {
-        app.length ?
-          <AppStatus /> :
+        Object.keys(app).length > 0 ?
+          <AppStatus app={app} /> :
           <GrantApplicationForm />
       }
     </div>
