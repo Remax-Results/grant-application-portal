@@ -1,9 +1,10 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 // GET route for grabbing application data when user logs in
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
     console.log('current window id is..... --->', req.params.id);
     console.log('current user id is..... --->', req.user.id);
     // userId and windowId will help to grab the right application

@@ -3,21 +3,22 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-// Route to get the review 
+// Route to get the review status for a particular application.
 router.get(`/status/:id`, rejectUnauthenticated, (req, res) => {
   console.log('inside /api/application/status')
-
-  const sqlText = `SELECT rs.status FROM "user" AS u JOIN app ON u.id=app.user_id
-  JOIN review_status AS rs ON app.review_status_id=rs.id WHERE u.id=$1;`;
-  pool
-    .query(sqlText, [req.params.id])
-    .then((result) => {
-      res.send(result.rows[0])
-    })
-    .catch((err) => {
-      console.log('status check failed', err);
-      res.sendStatus(500);
-    });
+  if(req.user.admin){
+    const sqlText = `SELECT rs.status FROM "user" AS u JOIN app ON u.id=app.user_id
+    JOIN review_status AS rs ON app.review_status_id=rs.id WHERE u.id=$1;`;
+    pool
+      .query(sqlText, [req.params.id])
+      .then((result) => {
+        res.send(result.rows[0])
+      })
+      .catch((err) => {
+        console.log('status check failed', err);
+        res.sendStatus(500);
+      });
+    }
 });
 
 
@@ -37,7 +38,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
             }
           });
 //^this route also has admin protection
-          
+  
+// this route is POSTing the new grant application from the user acount
 router.post('/', rejectUnauthenticated, async (req, res) => {
   // this function is taking the dynamic object coming over
   // and destructuring it, before using the pieces to insert 
