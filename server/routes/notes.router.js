@@ -14,7 +14,6 @@ router.get('/:id', (req, res) => {
   });
 });
 
-
 router.post('/', (req, res) => {
   const {note, app_id} = req.body;
   const sqlText =  `INSERT INTO notes (review_note, app_id) VALUES ($1, $2);`;
