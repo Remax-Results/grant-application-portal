@@ -35,6 +35,7 @@ router.get('/:id', (req, res) => { // GET all active questions from a specific a
   });
 });
 
+// Toggles a question between active and inactive.
 router.put('/question-status/:id', rejectUnauthenticated, (req, res, next) => 
 {
   if (req.user.admin){
@@ -49,6 +50,26 @@ router.put('/question-status/:id', rejectUnauthenticated, (req, res, next) =>
       .then(() => res.sendStatus(201))
       .catch((err) => {
         console.log('question/question-status PUT failed ', err);
+        res.sendStatus(500);
+      });
+  } 
+});
+
+
+router.put('/question-text/:id', rejectUnauthenticated, (req, res, next) => 
+{
+  if (req.user.admin){
+ 
+    const sqlText = `
+                    UPDATE question
+                    SET question_text = $1
+                    WHERE id=$2
+                    ;`
+    pool
+      .query(sqlText, [req.body.newText, req.params.id])
+      .then(() => res.sendStatus(201))
+      .catch((err) => {
+        console.log('question/question-text PUT failed ', err);
         res.sendStatus(500);
       });
   } 

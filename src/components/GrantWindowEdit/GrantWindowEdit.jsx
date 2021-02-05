@@ -74,7 +74,7 @@ export default function GrantWindowEdit(props) {
           <label htmlFor="budget">Budget: </label>
           <input 
             type="number"
-            name="budger"
+            name="budget"
             required
             value={budget}
             onChange={event => setBudget(event.target.value)}
