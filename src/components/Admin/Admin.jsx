@@ -39,9 +39,18 @@ export default function Admin() {
                                 <Dropdown.Item onSelect={()=>dispatch({type:'SORT_BUDGET_DESC'})}>10-1</Dropdown.Item>
                             </DropdownButton>
                         </th>
-                        <th>Area of Focus</th>
+                        <th>
+                            <DropdownButton title="Area of Focus">
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_FOCUS_ASC'})}>A-Z</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_FOCUS_DESC'})}>Z-A</Dropdown.Item>
+                            </DropdownButton>
+                        </th>
                         <th>Date Recieved</th>
-                        <th>Status</th>
+                        <th>
+                            <DropdownButton title="Status">
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_STATUS_ASC'})}>A-Z</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_STATUS_DESC'})}>Z-A</Dropdown.Item>
+                            </DropdownButton></th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
