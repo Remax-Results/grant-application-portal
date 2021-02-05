@@ -7,9 +7,9 @@ import AppStatus from '../AppStatus/AppStatus.jsx';
 
 function UserPage (props) {
   
+  const dispatch = useDispatch();
   //hooks
   const currentWindow = useSelector((store) => store.currentWindow);
-  const dispatch = useDispatch();
   const app = useSelector((store) => store.application);
 
   // useEffect

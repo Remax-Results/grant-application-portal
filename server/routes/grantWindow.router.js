@@ -57,9 +57,14 @@ router.post('/', rejectUnauthenticated, (req, res, next) => {
                     (start_date, end_date, funds_available)
                     VALUES ($1, $2, $3)
                     ;`
+    const appCheckSqlText = `
+                            SELECT
+                            `
     pool
       .query(sqlText, [startDate, endDate, budget])
-      .then(() => res.sendStatus(201))
+      .then(() =>{
+        res.sendStatus(201)
+      })
       .catch((err) => {
         console.log('grantWindow POST failed ', err);
         res.sendStatus(500);

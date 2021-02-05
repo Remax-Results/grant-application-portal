@@ -7,13 +7,12 @@ import './AppStatus.css';
 
 export default function AppStatus(props) {
   const dispatch = useDispatch();
-  //const [heading, setHeading] = useState('Functional Component');
-  const history = useHistory();
-  //go to state, pull out current user and store here in this new variable
+
   const { app } = props;
   const user = useSelector(state => state.user)
   const currentWindow = useSelector(state => state.currentWindow);
   const currentStatus = useSelector(state => state.currentStatus);
+  
   useEffect(() => {dispatch({type: 'FETCH_CURRENT_STATUS', payload: app.id})}, [dispatch]);
   //allows us to combine
   

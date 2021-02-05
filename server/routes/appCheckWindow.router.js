@@ -4,7 +4,7 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 
-// GET route for grabbing application data when user logs in
+// GET route for grabbing application data 
 router.get('/', rejectUnauthenticated, (req, res) => {
     
     // userId will help to grab the right application
