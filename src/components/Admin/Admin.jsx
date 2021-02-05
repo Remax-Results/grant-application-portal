@@ -20,16 +20,25 @@ export default function Admin() {
                 <thead style={{backgroundColor:'#1C479A', color: 'white'}}>
                     <tr>
                         <th>
-                            <DropdownButton title="OrgName">Organization Name
+                            <DropdownButton title="OrgName">
                                 <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ORG_NAME_ASC'})}>A-Z</Dropdown.Item>
                                 <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ORG_NAME_DESC'})}>Z-A</Dropdown.Item>
                             </DropdownButton>
-                            
                         </th>
-                        <th>Contact Name</th>
+                        <th>
+                            <DropdownButton title="Contact Name">
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_CONTACT_ASC'})}>A-Z</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_CONTACT_DESC'})}>Z-A</Dropdown.Item>
+                            </DropdownButton>
+                        </th>
                         <th>Phone</th>
                         <th>Email</th>
-                        <th>Budget Requested</th>
+                        <th>
+                            <DropdownButton title="Budget Request">
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_BUDGET_ASC'})}>1-10</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_BUDGET_DESC'})}>10-1</Dropdown.Item>
+                            </DropdownButton>
+                        </th>
                         <th>Area of Focus</th>
                         <th>Date Recieved</th>
                         <th>Status</th>

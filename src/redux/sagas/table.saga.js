@@ -32,6 +32,25 @@ function* sortOrgNameDesc(action){
   yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});
 }
 
+function* sortContactDesc(action){
+  const response = yield axios.get(`/api/sort/contact/desc`);
+  yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});
+}
+
+function* sortContactAsc(action){
+  const response = yield axios.get(`/api/sort/contact`);
+  yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});
+}
+
+function* sortBudgetDesc(action){
+  const response = yield axios.get(`/api/sort/budget/desc`);
+  yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});
+}
+
+function* sortBudgetAsc(action){
+  const response = yield axios.get(`/api/sort/budget`);
+  yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});
+}
 
 //--------------------WATCHER SAGA---------------------------//
 function* tableSaga() {
@@ -40,6 +59,10 @@ function* tableSaga() {
   yield takeLatest('FETCH_BUDGET', fetchBudget);
   yield takeLatest('SORT_ORG_NAME_DESC', sortOrgNameDesc);
   yield takeLatest('SORT_ORG_NAME_ASC', sortOrgNameAsc);
+  yield takeLatest('SORT_CONTACT_ASC', sortContactAsc);
+  yield takeLatest('SORT_CONTACT_DESC', sortContactDesc);
+  yield takeLatest('SORT_BUDGET_ASC', sortBudgetAsc);
+  yield takeLatest('SORT_BUDGET_DESC', sortBudgetDesc);
 }
 
 export default tableSaga;
