@@ -46,8 +46,8 @@ export default function Admin() {
                         <th>Email</th>
                         <th>
                             <DropdownButton title="Budget Request">
-                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 3, desc: false}})}>1-10</Dropdown.Item>
-                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 3, desc: true}})}>10-1</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 3, desc: false}})}>Low-High</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 3, desc: true}})}>High-Low</Dropdown.Item>
                             </DropdownButton>
                         </th>
                         <th>
@@ -56,11 +56,15 @@ export default function Admin() {
                                 <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 4, desc: true}})}>Z-A</Dropdown.Item>
                             </DropdownButton>
                         </th>
-                        <th>Date Recieved</th>
+                        <th>
+                            <DropdownButton title="Date Recieved">
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 5, desc: false}})}>Recent-Earlier</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 5, desc: true}})}>Earlier-Recent</Dropdown.Item>
+                            </DropdownButton></th>
                         <th>
                             <DropdownButton title="Status">
-                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 5, desc: false}})}>A-Z</Dropdown.Item>
-                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 5, desc: true}})}>Z-A</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 6, desc: false}})}>A-Z</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 6, desc: true}})}>Z-A</Dropdown.Item>
                             </DropdownButton></th>
                         <th>&nbsp;</th>
                     </tr>
