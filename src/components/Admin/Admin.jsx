@@ -21,35 +21,35 @@ export default function Admin() {
                     <tr>
                         <th>
                             <DropdownButton title="OrgName">
-                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ORG_NAME_ASC'})}>A-Z</Dropdown.Item>
-                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ORG_NAME_DESC'})}>Z-A</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 1, desc: false}})}>A-Z</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 1, desc: true}})}>Z-A</Dropdown.Item>
                             </DropdownButton>
                         </th>
                         <th>
                             <DropdownButton title="Contact Name">
-                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_CONTACT_ASC'})}>A-Z</Dropdown.Item>
-                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_CONTACT_DESC'})}>Z-A</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 2, desc: false}})}>A-Z</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 2, desc: true}})}>Z-A</Dropdown.Item>
                             </DropdownButton>
                         </th>
                         <th>Phone</th>
                         <th>Email</th>
                         <th>
                             <DropdownButton title="Budget Request">
-                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_BUDGET_ASC'})}>1-10</Dropdown.Item>
-                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_BUDGET_DESC'})}>10-1</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 3, desc: false}})}>1-10</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 3, desc: true}})}>10-1</Dropdown.Item>
                             </DropdownButton>
                         </th>
                         <th>
                             <DropdownButton title="Area of Focus">
-                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_FOCUS_ASC'})}>A-Z</Dropdown.Item>
-                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_FOCUS_DESC'})}>Z-A</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 4, desc: false}})}>A-Z</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 4, desc: true}})}>Z-A</Dropdown.Item>
                             </DropdownButton>
                         </th>
                         <th>Date Recieved</th>
                         <th>
                             <DropdownButton title="Status">
-                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_STATUS_ASC'})}>A-Z</Dropdown.Item>
-                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_STATUS_DESC'})}>Z-A</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 5, desc: false}})}>A-Z</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 5, desc: true}})}>Z-A</Dropdown.Item>
                             </DropdownButton></th>
                         <th>&nbsp;</th>
                     </tr>
