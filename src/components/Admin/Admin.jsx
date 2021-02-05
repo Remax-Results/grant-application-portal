@@ -46,8 +46,8 @@ export default function Admin() {
                         <th>Email</th>
                         <th>
                             <DropdownButton title="Budget Request">
-                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 3, desc: false}})}>1-10</Dropdown.Item>
-                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 3, desc: true}})}>10-1</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 3, desc: false}})}>Low-High</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: 3, desc: true}})}>High-Low</Dropdown.Item>
                             </DropdownButton>
                         </th>
                         <th>
