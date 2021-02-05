@@ -28,7 +28,7 @@ export default function AppStatus(props) {
       {currentWindow ? 
       <p>Our grant window runs <b>{moment(currentWindow.start_date).format('LL')}</b> to <b>{moment(currentWindow.end_date).format('LL')}</b></p>
       :
-      <p>There is currently no grant window, however your application will be reviewed as soon as one is opened.</p>
+      <p>There is currently no grant window, however your application will be added to the next window that is opened.</p>
       }
       <p>We will inform you as soon as possible of our decision.</p>
     </div>

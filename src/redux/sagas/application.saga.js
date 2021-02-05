@@ -9,6 +9,7 @@ function* fetchApplication(action){
     if (currentWindow.data.id){
       axiosRoute += currentWindow.data.id
     } 
+    console.log('inside fetchApplication', axiosRoute)
     const response = yield axios.get(axiosRoute);
     yield put({type:'SET_APPLICATION', payload: response.data});
 }
