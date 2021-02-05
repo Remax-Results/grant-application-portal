@@ -55,7 +55,7 @@ router.put('/question-status/:id', rejectUnauthenticated, (req, res, next) =>
   } 
 });
 
-
+// Update the question text of a particular question.
 router.put('/question-text/:id', rejectUnauthenticated, (req, res, next) => 
 {
   if (req.user.admin){
@@ -75,11 +75,19 @@ router.put('/question-text/:id', rejectUnauthenticated, (req, res, next) =>
   } 
 });
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
+// Post new question
+router.post('/', rejectUnauthenticated, (req, res, next) => 
+{
+  if (req.user.admin){
+    const sqlText = `INSERT INTO question (question_text) VALUES ($1);`
+    pool
+      .query(sqlText, [req.body.newQuestion])
+      .then(() => res.sendStatus(201))
+      .catch((err) => {
+        console.log('question/ POST failed ', err);
+        res.sendStatus(500);
+      });
+  } 
 });
 
 module.exports = router;

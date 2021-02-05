@@ -13,7 +13,10 @@ function* fetchAllQuestions() {
 }
 
 function* postNewQuestion(action) {
+    
     yield axios.post(`/api/question`, action.payload);
+    yield put({ type:'FETCH_ALL_QUESTIONS' });
+
 }
 
 function* changeQuestionStatus(action) {

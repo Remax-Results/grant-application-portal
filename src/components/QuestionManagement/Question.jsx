@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-
 import { ListGroup, Row, Col, Form, FormControl, InputGroup, Button } from 'react-bootstrap';
 
 export default function Question(props) {

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ListGroup, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Question from './Question.jsx'
+import AddQuestionForm from './AddQuestionForm.jsx'
 import './QuestionManagement.css';
 
 
@@ -28,6 +29,7 @@ export default function QuestionManagement() {
             (<Question key={question.id} question={question}/>))}
         </ListGroup>
       </Container>
+      <AddQuestionForm />
     </div>
   );
 }
