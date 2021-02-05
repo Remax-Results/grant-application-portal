@@ -19,7 +19,6 @@ function* fetchDetailsData(action){
   yield put({type:'FETCH_Q_AND_A', payload: action.payload});
   yield put({type:'FETCH_NOTES', payload: action.payload});
   yield put({type:'FETCH_STATUS_DROPDOWN'});
-  yield put({type:'FETCH_CURRENT_WINDOW'}); 
   yield put({type:'FETCH_BUDGET', payload: action.payload});
 }
 

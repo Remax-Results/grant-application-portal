@@ -1,4 +1,4 @@
-const appTableReducer = (state = {}, action) => {
+const appTableReducer = (state = [], action) => {
   if(action.type === 'SET_APP_TABLE_DATA') {
       return action.payload;
   }
