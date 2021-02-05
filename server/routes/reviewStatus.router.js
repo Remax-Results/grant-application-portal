@@ -1,11 +1,11 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+const { rejectUnauthenticatedAdmin } = require('../modules/admin-authentication-middleware');
 
 //populate dropdown menu on admin for application status -- admin only
-router.get('/', rejectUnauthenticated, (req, res) => {
-  if(req.user.admin){
+router.get('/', rejectUnauthenticatedAdmin, (req, res) => {
+  // if(req.user.admin){
       const sqlText = `SELECT * FROM review_status;`;
       pool.query(sqlText)
       .then((result) => {
@@ -14,11 +14,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
       .catch((error) => {
       console.log('error retrieving review_statuses from the database... ----->', error);
     })
-  }
+  // }
 });
 
 //get review status of individual application -user view
-router.get('/:id', rejectUnauthenticated, (req, res) => {
+router.get('/:id', rejectUnauthenticatedAdmin, (req, res) => {
   const sqlText=`SELECT rs.status FROM review_status AS rs
                 JOIN app ON app.review_status_id=rs.id
                 WHERE app.id=$1;`
@@ -32,8 +32,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 })
 
 //updating status of application - admin only view
-router.put('/', rejectUnauthenticated, (req, res) => {
-  if(req.user.admin){
+router.put('/', rejectUnauthenticatedAdmin, (req, res) => {
+  // if(req.user.admin){
     
     const sqlText = `UPDATE app SET review_status_id=$1 WHERE id=$2;`;
     pool.query(sqlText, [req.body.status, req.body.id])
@@ -43,7 +43,7 @@ router.put('/', rejectUnauthenticated, (req, res) => {
     .catch(error => {
       console.log('error updating review_status_id on the database from the server... -------->', error);
     })
-  }
+  // }
 });
 
 module.exports = router;

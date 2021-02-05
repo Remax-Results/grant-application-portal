@@ -1,9 +1,10 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticatedAdmin } = require('../modules/admin-authentication-middleware');
 
 
-router.get(`/:col/:desc`, (req, res) => {
+router.get(`/:col/:desc`, rejectUnauthenticatedAdmin, (req, res) => {
   const {col, desc} = req.params
   //Setting column name value on server side for security purposes
   let col_name = '';
