@@ -19,6 +19,7 @@ const reviewRouter = require('./routes/review.router');
 const focusAreaRouter = require('./routes/focusArea.router');
 const questionRouter = require('./routes/question.router');
 const appCheckWindowRouter = require('./routes/appCheckWindow.router');
+const sortRouter= require('./routes/sort.router');
 
 
 // Body parser middleware
@@ -43,6 +44,7 @@ app.use('/api/review', reviewRouter);
 app.use('/api/focus', focusAreaRouter);
 app.use('/api/question', questionRouter);
 app.use('/api/app-check', appCheckWindowRouter);
+app.use('/api/sort', sortRouter);
 
 // Serve static files
 app.use(express.static('build'));

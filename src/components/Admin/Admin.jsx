@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Card, Table, Container, Row} from 'react-bootstrap';
+import {Card, Table, Container, Row, DropdownButton, Dropdown} from 'react-bootstrap';
 import AppTableList from './AppTableList.jsx';
 
 export default function Admin() {
@@ -19,7 +19,13 @@ export default function Admin() {
             <Table striped bordered hover >
                 <thead style={{backgroundColor:'#1C479A', color: 'white'}}>
                     <tr>
-                        <th>Organization Name</th>
+                        <th>
+                            <DropdownButton title="OrgName">Organization Name
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ORG_NAME_ASC'})}>A-Z</Dropdown.Item>
+                                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ORG_NAME_DESC'})}>Z-A</Dropdown.Item>
+                            </DropdownButton>
+                            
+                        </th>
                         <th>Contact Name</th>
                         <th>Phone</th>
                         <th>Email</th>

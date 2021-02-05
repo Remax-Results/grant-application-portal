@@ -22,11 +22,24 @@ function* fetchDetailsData(action){
   yield put({type:'FETCH_BUDGET', payload: action.payload});
 }
 
+function* sortOrgNameAsc(action){
+  const response = yield axios.get(`/api/sort/org`);
+  yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});
+}
+
+function* sortOrgNameDesc(action){
+  const response = yield axios.get(`/api/sort/org/desc`);
+  yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});
+}
+
+
 //--------------------WATCHER SAGA---------------------------//
 function* tableSaga() {
   yield takeLatest('FETCH_APP_TABLE_DATA', fetchAppTableData);
   yield takeLatest('FETCH_DETAILS_DATA', fetchDetailsData);
   yield takeLatest('FETCH_BUDGET', fetchBudget);
+  yield takeLatest('SORT_ORG_NAME_DESC', sortOrgNameDesc);
+  yield takeLatest('SORT_ORG_NAME_ASC', sortOrgNameAsc);
 }
 
 export default tableSaga;
