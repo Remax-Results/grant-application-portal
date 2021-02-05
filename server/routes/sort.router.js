@@ -22,6 +22,8 @@ router.get(`/:col/:desc`, (req, res) => {
       col_name = 'f.focus';
       break;
     case '5':
+      col_name = 'a.date_recieved';
+    case '6':
       col_name = 'r.status';
       break;
     default:
