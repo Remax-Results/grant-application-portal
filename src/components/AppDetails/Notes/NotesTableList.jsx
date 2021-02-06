@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card, Container, Col, Row, Table, Button, Modal, InputGroup, FormControl, Dropdown} from 'react-bootstrap';
 
 
-export default function NotesTable(props) {
+export default function NotesTableList(props) {
     const dispatch = useDispatch();
     const detailsData = useSelector(state => state.detailsData);
     const {note} = props;
