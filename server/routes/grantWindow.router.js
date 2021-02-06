@@ -54,17 +54,20 @@ router.post('/', rejectUnauthenticated, async (req, res, next) => {
     
     try{
       await client.query('BEGIN')
+      // create the grant window, returning the id into this variable
       const grantWindowId =
         await client.query(`
                             INSERT INTO grant_window
                             (start_date, end_date, funds_available)
                             VALUES ($1, $2, $3)
                             returning id;`, [startDate, endDate, budget])
+      // sql query to get all applications without a grant window
       const windowlessApps =
         await client.query(`
                             SELECT * FROM app
                             WHERE grant_window_id IS NULL
                             `)
+      // map over the windowless applications, update their grant window to the new grant window.
       await Promise.all(windowlessApps.rows.map((app) => {
         const sqlText = `
                         UPDATE app 
