@@ -48,7 +48,7 @@ router.get('/previous-windows', rejectUnauthenticatedAdmin, (req, res) => {
 });
 
 // Post route for the admin to create a new grant window.
-router.post('/', rejectUnauthenticatedAdmin, (req, res, next) => {
+router.post('/', rejectUnauthenticatedAdmin, async (req, res, next) => {
     const { startDate, endDate, budget } = req.body
 
     const client = await pool.connect()

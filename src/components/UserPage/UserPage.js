@@ -8,8 +8,8 @@ import AppStatus from '../AppStatus/AppStatus.jsx';
 function UserPage (props) {
   
   const dispatch = useDispatch();
-  //hooks
-  const currentWindow = useSelector((store) => store.currentWindow);
+  
+  // grabbing the application info from the redux store
   const app = useSelector((store) => store.application);
 
   // useEffect
@@ -20,8 +20,7 @@ function UserPage (props) {
 
   return (
     <div>
-      {JSON.stringify(app)}
-      {JSON.stringify(currentWindow)}
+
       {
         Object.keys(app).length > 0 ?
           <AppStatus app={app} /> :
