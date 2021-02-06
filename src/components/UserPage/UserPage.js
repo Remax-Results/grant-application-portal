@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import GrantApplicationForm from '../GrantApplicationForm/GrantApplicationForm';
 import AppStatus from '../AppStatus/AppStatus.jsx';
 
@@ -8,23 +7,23 @@ import AppStatus from '../AppStatus/AppStatus.jsx';
 
 function UserPage (props) {
   
-  //hooks
-  const user = useSelector((store) => store.user);
-  const currentWindow = useSelector((store) => store.currentWindow);
   const dispatch = useDispatch();
+  
+  // grabbing the application info from the redux store
   const app = useSelector((store) => store.application);
 
   // useEffect
   useEffect(() => {
-    dispatch({ type: 'FETCH_APPLICATION', payload: currentWindow.id });
+    dispatch({ type: 'FETCH_APPLICATION' });
     }, [dispatch]
   );
 
   return (
     <div>
+
       {
-        app.length ?
-          <AppStatus /> :
+        Object.keys(app).length > 0 ?
+          <AppStatus app={app} /> :
           <GrantApplicationForm />
       }
     </div>

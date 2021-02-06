@@ -8,7 +8,7 @@ router.get(`/status/:id`, rejectUnauthenticated, (req, res) => {
   
   
     const sqlText = `SELECT rs.status FROM "user" AS u JOIN app ON u.id=app.user_id
-    JOIN review_status AS rs ON app.review_status_id=rs.id WHERE u.id=$1;`;
+    JOIN review_status AS rs ON app.review_status_id=rs.id WHERE app.id=$1;`;
     pool
       .query(sqlText, [req.params.id])
       .then((result) => {

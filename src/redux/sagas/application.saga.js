@@ -4,7 +4,16 @@ import axios from 'axios';
 
 function* fetchApplication(action){
     const currentWindow = yield axios.get(`/api/grant-window/current-window`);
-    const response = yield axios.get(`/api/app-check/${currentWindow.data.id}`);
+    console.log('inside fetchApplication', currentWindow.data.id)
+    let axiosRoute = '/api/app-check/'
+    // if there is currently a window, add that to the route parameters.
+    // otherwise it will run a seperate route without a grant window as a parameter
+    // this ensures that no matter if there is a current window or not, the user cannot submit duplicate applications.
+    if (currentWindow.data.id){
+      axiosRoute += currentWindow.data.id
+    } 
+    console.log('inside fetchApplication', axiosRoute)
+    const response = yield axios.get(axiosRoute);
     yield put({type:'SET_APPLICATION', payload: response.data});
 }
 
