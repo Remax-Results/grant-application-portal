@@ -47,25 +47,42 @@ router.get('/previous-windows', rejectUnauthenticated, (req, res) => {
 });
 
 // Post route for the admin to create a new grant window.
-router.post('/', rejectUnauthenticated, (req, res, next) => {
+router.post('/', rejectUnauthenticated, async (req, res, next) => {
     const { startDate, endDate, budget } = req.body
-    const sqlText = `
-                    INSERT INTO grant_window
-                    (start_date, end_date, funds_available)
-                    VALUES ($1, $2, $3)
-                    ;`
-    const appCheckSqlText = `
-                            SELECT
-                            `
-    pool
-      .query(sqlText, [startDate, endDate, budget])
-      .then(() =>{
-        res.sendStatus(201)
-      })
-      .catch((err) => {
-        console.log('grantWindow POST failed ', err);
-        res.sendStatus(500);
-      });
+
+    const client = await pool.connect()
+    
+    try{
+      await client.query('BEGIN')
+      const grantWindowId =
+        await client.query(`
+                            INSERT INTO grant_window
+                            (start_date, end_date, funds_available)
+                            VALUES ($1, $2, $3)
+                            returning id;`, [startDate, endDate, budget])
+      const windowlessApps =
+        await client.query(`
+                            SELECT * FROM app
+                            WHERE grant_window_id IS NULL
+                            `)
+      await Promise.all(windowlessApps.rows.map((app) => {
+        const sqlText = `
+                        UPDATE app 
+                        SET grant_window_id = $1
+                        WHERE id = $2
+                        ;`
+        return client.query(sqlText, [grantWindowId.rows[0].id, app.id])
+      }));
+      await client.query('COMMIT;');
+      res.sendStatus(201);
+    } catch (error){
+      await client.query('ROLLBACK;');
+      console.log('ERROR creating new grant window', error);
+      res.sendStatus(500);
+
+    } finally {
+      client.release();
+    }
 });
 
 // Put route for the admin to close the current grant window.
