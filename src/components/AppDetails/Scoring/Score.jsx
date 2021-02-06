@@ -2,13 +2,14 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
+import TenPointScale from './TenPointScale.jsx';
 
 export default function Score(props) {
     const dispatch = useDispatch();
     const {qANDa} = props;
     const detailsData = useSelector(state => state.detailsData);
     const [score, setScore] = useState(0);
-
+    const numberLine = [...Array(11).keys()];
     return (
         <>
         <InputGroup size="sm">
@@ -22,6 +23,7 @@ export default function Score(props) {
                 onChange={event=>{setScore(event.target.value)}}
             />
             <InputGroup.Append>
+                {numberLine.length && numberLine.map(number => (<TenPointScale number={number}/>))}
                 <Button type="submit" style={{backgroundColor:'#97CAEB', color:'#303030'}}
                     onClick={()=>{dispatch({type:'UPDATE_SCORE', 
                     payload: {score: score, q_id: qANDa.id, app_id:detailsData.id}})}}
