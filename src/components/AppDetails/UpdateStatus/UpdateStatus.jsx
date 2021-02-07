@@ -11,9 +11,9 @@ export default function UpdateStatus() {
         swal({
             title: "Grant Application Status Change!",
             text: "You are about the review status for this grant application. OK?",
-            icon: "warning",
+            icon: "info",
             buttons: true,
-            dangerMode: true,
+            dangerMode: false,
           })
           .then((willDelete) => {
             if (willDelete) {
