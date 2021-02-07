@@ -18,7 +18,7 @@ export default function NotesTable(props) {
                 </tr>
             </thead>
             <tbody>
-                {notes.length && notes.map(note => (<NotesTableList note={note}/>))}
+                {notes.length > 0 && notes.map(note => (<NotesTableList note={note}/>))}
             </tbody>
         </Table>
     )

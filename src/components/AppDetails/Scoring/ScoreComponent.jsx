@@ -9,7 +9,7 @@ export default function ScoreComponent(props) {
     return (
         <>
         {qANDa.map(q=>(
-            <Container style={{backgroundColor:'white'}}>
+            <Container key={q.id} style={{backgroundColor:'white'}}>
                 <Row style={{minHeight:'100px', border: '1px solid #303030'}}>
                     <Col style={{backgroundColor:'#1C479A', color: 'white'}}>{q.question_text}</Col>
                      <Col  xs={8}>{q.answer_text}</Col>
