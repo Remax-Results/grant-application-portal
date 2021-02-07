@@ -1,13 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Card, Container, Col, Row, Table, Button, Modal, InputGroup, FormControl, Dropdown} from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 
-
-const SubHeader = styled.p `
-    font-size: 1.4rem;
-    text-decoration: underline;
-`
 
 export default function NotesReport(props) {
     const {n} = props;

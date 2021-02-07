@@ -51,7 +51,7 @@ function GrantApplicationForm(props) {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_FOCUS_QUESTION' });
-    }, []
+    }, [dispatch]
   );
 
   // callback provided to components to update the main list of form values

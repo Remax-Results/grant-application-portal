@@ -18,7 +18,7 @@ export default function GrantWindowSettings(props) {
   // Fetch the previous grant windows to populate the table.
   useEffect(() => {
     dispatch({type: 'FETCH_PREVIOUS_GRANT_WINDOWS'})
-  }, [])
+  }, [dispatch])
 
   return (
     <div>
