@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Card, Container, Col, Row, Table, Button, Modal, InputGroup, FormControl, Dropdown} from 'react-bootstrap';
+import {Container, Col, Row} from 'react-bootstrap';
 
 
 const SubHeader = styled.p `
@@ -9,8 +9,8 @@ const SubHeader = styled.p `
     text-decoration: underline;
 `
 
-export default function ScoreReport(props) {
-    const {qa} = props;
+export default function ScoreReport({qa}) {
+
     return (
         <Container>
             <SubHeader>{qa.question_text} </SubHeader>
@@ -19,7 +19,7 @@ export default function ScoreReport(props) {
                     {qa.answer_text} 
                 </Col>
                 <Col xs={2}>
-                    <b>Review Score: </b>{qa.review_score}
+                   {qa.review_score && <span><b>Review Score: </b>{qa.review_score}</span>}
                 </Col>
             </Row>   
         </Container>
