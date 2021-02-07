@@ -17,7 +17,7 @@ router.get(`/:col/:desc`, rejectUnauthenticatedAdmin, (req, res) => {
       col_name = 'u.contact_name';
       break;
     case '3': 
-      col_name = 'aq.answer_text';
+      col_name = 'a.budget';
       break;
     case '4':
       col_name = 'f.focus';
@@ -37,8 +37,7 @@ router.get(`/:col/:desc`, rejectUnauthenticatedAdmin, (req, res) => {
                       FROM "user" as u
                       JOIN app AS a ON u.id=a.user_id
                       JOIN focus_area AS f ON a.focus_area_id=f.id
-                      JOIN review_status AS r ON r.id=a.review_status_id
-                      ;`;
+                      JOIN review_status AS r ON r.id=a.review_status_id`;
   const sqlOrderBy = ` ORDER BY ${col_name}`
   if(desc==='true'){
     sqlDirection = ` DESC;`;
