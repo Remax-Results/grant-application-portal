@@ -1,17 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './RegisterForm.css'
-import styled from 'styled-components';
-import { FcCheckmark } from 'react-icons/fc';
-
-const MismatchedPassword = styled.input `
-    border: red 1px solid   
-`
-
-const MatchedPassword = styled.input `
-    border: green 1px solid   
-`
-
 
 export default function RegisterForm() {
   const dispatch = useDispatch();
@@ -29,18 +18,21 @@ export default function RegisterForm() {
 
   const registerUser = (event) => {
     event.preventDefault();
-    if (username && password && passwordConfirm && orgName && background && phone && contactName)
-    dispatch({
-      type: 'REGISTER',
-      payload: {
-        username: username,
-        password: password,
-        orgName: orgName,
-        background: background,
-        phone: phone,
-        contactName: contactName
-      },
-    });
+    if (password !== passwordConfirm){
+      dispatch({type: 'PASSWORD_DOES_NOT_MATCH'})
+    } else if (username && password && passwordConfirm && orgName && background && phone && contactName){
+      dispatch({
+        type: 'REGISTER',
+        payload: {
+          username: username,
+          password: password,
+          orgName: orgName,
+          background: background,
+          phone: phone,
+          contactName: contactName
+        },
+      });
+    } 
   }; // end registerUser
 
 
