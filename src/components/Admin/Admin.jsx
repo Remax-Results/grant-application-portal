@@ -19,8 +19,7 @@ export default function Admin() {
                 <thead style={{backgroundColor:'#1C479A', color: 'white'}}>
                     <tr>
                         <HeaderDropdown title="Organization" col="1"/>
-                        <HeaderDropdown title="Contact" col="2"/>
-                        
+                        <HeaderDropdown title="Contact" col="2"/>  
                         <th>Phone</th>
                         <th>Email</th>
                         <HeaderDropdown title="Budget Requested" col="3"/>
