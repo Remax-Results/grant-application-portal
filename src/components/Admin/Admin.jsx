@@ -20,9 +20,10 @@ export default function Admin() {
                     <tr>
                         <HeaderDropdown title="Organization" col="1"/>
                         <HeaderDropdown title="Contact" col="2"/>
-                        <HeaderDropdown title="Budget Requested" col="3"/>
+                        
                         <th>Phone</th>
                         <th>Email</th>
+                        <HeaderDropdown title="Budget Requested" col="3"/>
                         <HeaderDropdown title="Area of Focus" col="4"/>
                         <HeaderDropdown title="Date Recieved" col="5"/>
                         <HeaderDropdown title="Status" col="6"/>
