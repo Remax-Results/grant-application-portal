@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Table, Container, Row} from 'react-bootstrap';
-import GrantWindowTableRow from '../GrantWindowTableRow/GrantWindowTableRow.jsx'
+import GrantWindowTableRow from './GrantWindowTableRow.jsx'
 
 export default function GrantWindowTable() {
 

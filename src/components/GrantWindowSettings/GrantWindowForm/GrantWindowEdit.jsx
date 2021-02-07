@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {useDispatch} from 'react-redux';
 import DatePicker from "react-datepicker";
 import {Button} from 'react-bootstrap';
-import './GrantWindowEdit.css'
+import './GrantWindowForm.css'
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment'
 
