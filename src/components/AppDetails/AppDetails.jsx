@@ -6,6 +6,9 @@ import {Card, Container, Col, Row, Table, Button, Modal, InputGroup, FormControl
 import TitleCard from './TitleCard/TitleCard.jsx';
 import ScoreComponent from './Scoring/ScoreComponent.jsx';
 import Notes from './Notes/Notes.jsx';
+import Sidebar from './Sidebar/Sidebar';
+import './AppDetails.css';
+
 
 export default function AppDetails(){
     const history = useHistory();
@@ -18,7 +21,9 @@ export default function AppDetails(){
     
     useEffect(() => {dispatch({type: 'FETCH_DETAILS_DATA', payload: id})}, [dispatch]);
     return(
-        <Container style={{backgroundColor:'#CECECE'}}>
+        <>
+        <Sidebar />
+        <Container className='container' style={{backgroundColor:'#CECECE'}}>
             <TitleCard />
             {qANDa.length > 0 && <ScoreComponent qANDa = {qANDa} />}
             <Notes notes = {notes} detailsData={detailsData}/>
@@ -41,5 +46,6 @@ export default function AppDetails(){
                 </Row>
             </Container>
         </Container>
+        </>
     )
 }
