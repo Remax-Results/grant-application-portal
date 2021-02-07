@@ -39,7 +39,8 @@ function GrantApplicationForm(props) {
                   values: values, 
                   user_id: user.id, 
                   grant_window_id: grantWindow.id, 
-                  focus_area_id: focusAreaId
+                  focus_area_id: focusAreaId,
+                  budget: budget
                 } });
               swal("Great! Your application has been submitted.", {
                 icon: "success",
