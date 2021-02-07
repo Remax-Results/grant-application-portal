@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import swal from 'sweetalert';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Card, Container, Col, Row, Table, Button, Modal, InputGroup, FormControl, Dropdown} from 'react-bootstrap';
+import {Button, Modal, InputGroup, FormControl} from 'react-bootstrap';
 
 
 export default function NotesTableList(props) {

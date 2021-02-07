@@ -18,7 +18,7 @@ export default function QuestionManagement() {
   // Fetch the previous grant windows to populate the table.
   useEffect(() => {
     dispatch({type: 'FETCH_ALL_QUESTIONS'})
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="question-manager">

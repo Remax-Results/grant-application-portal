@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Card, Container, Col, Row, Table, Button, Modal, InputGroup, FormControl, Dropdown} from 'react-bootstrap';
+import {Container, Col, Row,  Button} from 'react-bootstrap';
 import ScoreReport from './ScoreReport/ScoreReport.jsx';
 import NotesReport from './NotesReport/NotesReport.jsx';
 import styled from 'styled-components';
@@ -23,7 +23,7 @@ export default function PrintableReport() {
     const {budget} = useSelector(state => state.budget);
     const {org_name, background, focus, phone, status, username, contact_name} = useSelector(state => state.detailsData);
     const qANDa = useSelector(state => state.qANDa);
-    useEffect(() => {dispatch({type: 'FETCH_DETAILS_DATA', payload: id})}, [dispatch]);
+    useEffect(() => {dispatch({type: 'FETCH_DETAILS_DATA', payload: id})}, [dispatch, id]);
 
 
     return (

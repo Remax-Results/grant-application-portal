@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import './AppStatus.css';
 
@@ -14,7 +13,7 @@ export default function AppStatus(props) {
   const currentWindow = useSelector(state => state.currentWindow);
   const currentStatus = useSelector(state => state.currentStatus);
   
-  useEffect(() => {dispatch({type: 'FETCH_CURRENT_STATUS', payload: app.id})}, [dispatch]);
+  useEffect(() => {dispatch({type: 'FETCH_CURRENT_STATUS', payload: app.id})}, [dispatch, app.id]);
   
   return (
       

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import NotesTable from './NotesTable.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Container, Table, Button, Modal, InputGroup, FormControl} from 'react-bootstrap';
+import {Container, Button, Modal, InputGroup, FormControl} from 'react-bootstrap';
 import NotesTitle from './NotesTitle.jsx';
 
 export default function Notes(props) {

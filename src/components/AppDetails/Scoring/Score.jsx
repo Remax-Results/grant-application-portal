@@ -1,38 +1,25 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { InputGroup, FormControl, Button } from 'react-bootstrap';
-import TenPointScale from './TenPointScale/TenPointScale.jsx';
+import {useSelector, useDispatch} from 'react-redux';
+import TenPointScale from './TenPointScale.jsx';
+import {Container, Row} from 'react-bootstrap';
 
-export default function Score(props) {
-    const dispatch = useDispatch();
-    const {qANDa} = props;
-    const detailsData = useSelector(state => state.detailsData);
-    const [score, setScore] = useState(0);
-  
+
+export default function Score({q}) {
+    const dispatch=useDispatch();
+    const numberLine = [...Array(11).keys()];
+    const [selectedNumbers, setSelectedNumbers] = useState(q.review_score);
+    const detailsData = useSelector(state=>state.detailsData);
     return (
-        <>
-        <InputGroup size="sm">
-            <InputGroup.Prepend>
-                <InputGroup.Text style={{backgroundColor:'#303030', color: 'white'}}id="inputGroup-sizing-lg">Score (1-10)</InputGroup.Text>
-            </InputGroup.Prepend>
-            <FormControl aria-label="Large" 
-                aria-describedby="inputGroup-sizing-sm" 
-                placeholder={qANDa.review_score}
-                style={{textAlign:'right'}}
-                onChange={event=>{setScore(event.target.value)}}
-            />
-            <InputGroup.Append>
-                <TenPointScale />
-                
-                <Button type="submit" style={{backgroundColor:'#97CAEB', color:'#303030'}}
-                    onClick={()=>{dispatch({type:'UPDATE_SCORE', 
-                    payload: {score: score, q_id: qANDa.id, app_id:detailsData.id}})}}
-                >
-                    Submit
-                </Button>
-            </InputGroup.Append>
-        </InputGroup>
-        </>
+        <Container>
+            <Row>
+                <h3>Enter Score</h3> 
+                <p>('X' means you do not want a score)</p>
+            </Row>
+            <Row>
+                {numberLine.map((number) => (<TenPointScale key={number} selected={selectedNumbers >= number} number={number} onSelect={()=>{setSelectedNumbers(number); {dispatch({type:'UPDATE_SCORE', 
+                            payload: {score: number, q_id: q.id, app_id:detailsData.id}})}}}/>))  }
+            </Row>
+        </Container>
     )
+
 }
