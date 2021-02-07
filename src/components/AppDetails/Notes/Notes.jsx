@@ -4,6 +4,7 @@ import NotesTable from './NotesTable.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Button, Modal, InputGroup, FormControl} from 'react-bootstrap';
 import NotesTitle from './NotesTitle.jsx';
+import { IoCreateSharp } from "react-icons/io5";
 
 export default function Notes(props) {
     const dispatch=useDispatch();
@@ -20,7 +21,7 @@ export default function Notes(props) {
         <Container style={{backgroundColor: 'white'}}>
             <NotesTitle/>
             {<NotesTable notes={notes} />}
-                <Button onClick={(event)=>{setShow(true)}}>Create New Note</Button>
+                <Button onClick={(event)=>{setShow(true)}}>Create New Note <IoCreateSharp/></Button>
                 <Modal
                     show={show}
                     onHide={(event)=>{setShow(false)}}

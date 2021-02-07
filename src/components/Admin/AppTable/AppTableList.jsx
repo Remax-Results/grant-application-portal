@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
 import moment from 'moment';
-
+import { BiDetail } from "react-icons/bi";
 
 export default function AppTableList(props) {
     const {app} = props;
@@ -27,7 +27,7 @@ export default function AppTableList(props) {
             <td>{app.focus}</td>
             <td>{moment(app.date_received).format('LL')}</td>
             <td>{app.status}</td>
-            <td><Button onClick={(event)=>{goDetails()}}>Details/Score</Button></td>
+            <td><Button onClick={(event)=>{goDetails()}}>Details/Score <BiDetail/></Button></td>
         </tr>
         </>
     )
