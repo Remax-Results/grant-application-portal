@@ -31,14 +31,14 @@ router.get(`/:col/:desc`, rejectUnauthenticatedAdmin, (req, res) => {
       col_name = 'a.id';
   } 
   //pieces of sql code that need to be combined for dynamic querying
-  const sqlPrefix = `SELECT  a.id, a.date_received, aq.answer_text AS budget,
+  const sqlPrefix = `SELECT  a.id, a.date_received, a.budget,
                       u.org_name, u.contact_name, u.phone, u.username, 
                         f.focus, r.status   
                       FROM "user" as u
                       JOIN app AS a ON u.id=a.user_id
                       JOIN focus_area AS f ON a.focus_area_id=f.id
                       JOIN review_status AS r ON r.id=a.review_status_id
-                      JOIN app_question AS aq ON aq.app_id=a.id WHERE aq.question_id=5`;
+                      ;`;
   const sqlOrderBy = ` ORDER BY ${col_name}`
   if(desc==='true'){
     sqlDirection = ` DESC;`;
