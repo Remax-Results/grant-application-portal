@@ -7,6 +7,7 @@ export default function RegisterForm() {
   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const [orgName, setOrgName] = useState('');
   const [background, setBackground] = useState('');
   const [phone, setPhone] = useState('');
@@ -65,6 +66,20 @@ export default function RegisterForm() {
               value={password}
               required
               onChange={event => setPassword(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="passwordConfirm">
+            Confirm Password:
+            <br></br>
+            <input
+              className="register"
+              type="password"
+              name="passwordConfirm"
+              value={passwordConfirm}
+              required
+              onChange={event => setPasswordConfirm(event.target.value)}
             />
           </label>
         </div>
