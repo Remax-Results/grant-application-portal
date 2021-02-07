@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import GrantWindowForm from './GrantWindowForm/GrantWindowForm.jsx'
-import GrantWindowTable from './GrantWindowTable.jsx'
+import GrantWindowTable from './GrantWindowTable/GrantWindowTable.jsx'
 import GrantWindowEdit from './GrantWindowForm/GrantWindowEdit.jsx'
 import GrantWindowInfo from './GrantWindowInfo.jsx'
 import './GrantWindowSettings.css'
