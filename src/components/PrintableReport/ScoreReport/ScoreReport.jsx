@@ -9,8 +9,8 @@ const SubHeader = styled.p `
     text-decoration: underline;
 `
 
-export default function ScoreReport(props) {
-    const {qa} = props;
+export default function ScoreReport({qa}) {
+
     return (
         <Container>
             <SubHeader>{qa.question_text} </SubHeader>
@@ -19,7 +19,7 @@ export default function ScoreReport(props) {
                     {qa.answer_text} 
                 </Col>
                 <Col xs={2}>
-                    <b>Review Score: </b>{qa.review_score}
+                   {qa.review_score && <span><b>Review Score: </b>{qa.review_score}</span>}
                 </Col>
             </Row>   
         </Container>
