@@ -25,6 +25,8 @@ const registrationMessage = (state = '', action) => {
       return '';
     case 'REGISTRATION_INPUT_ERROR':
       return 'Choose a username and password!';
+    case 'PASSWORD_DOES_NOT_MATCH':
+      return 'Password does not match Password Confirmation!'
     case 'REGISTRATION_FAILED':
       return "Oops! That didn't work. The username might already be taken. Try again!";
     default:
