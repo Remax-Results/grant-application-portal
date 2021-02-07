@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './RegisterForm.css'
+import styled from 'styled-components';
+import { FcCheckmark } from 'react-icons/fc';
+
+const MismatchedPassword = styled.input `
+    border: red 1px solid   
+`
+
+const MatchedPassword = styled.input `
+    border: green 1px solid   
+`
 
 
 export default function RegisterForm() {
@@ -19,6 +29,7 @@ export default function RegisterForm() {
 
   const registerUser = (event) => {
     event.preventDefault();
+    if (username && password && passwordConfirm && orgName && background && phone && contactName)
     dispatch({
       type: 'REGISTER',
       payload: {
@@ -59,6 +70,7 @@ export default function RegisterForm() {
           <label htmlFor="password">
             Password:
             <br></br>
+          </label>
             <input
               className="register"
               type="password"
@@ -67,21 +79,27 @@ export default function RegisterForm() {
               required
               onChange={event => setPassword(event.target.value)}
             />
-          </label>
         </div>
         <div>
           <label htmlFor="passwordConfirm">
             Confirm Password:
             <br></br>
-            <input
-              className="register"
-              type="password"
-              name="passwordConfirm"
-              value={passwordConfirm}
-              required
-              onChange={event => setPasswordConfirm(event.target.value)}
-            />
           </label>
+          <input
+            className="register confirm"
+            type="password"
+            name="passwordConfirm"
+            value={passwordConfirm}
+            style={{
+              border: password === passwordConfirm && passwordConfirm ?
+              'green 1px solid'
+              :
+              'red 1px solid'
+            }}
+            required
+            onChange={event => setPasswordConfirm(event.target.value)}
+          />
+            
         </div>
         
         
@@ -142,7 +160,11 @@ export default function RegisterForm() {
           </label>
         </div>
         <div>
-          <input className="btn" type="submit" name="submit" value="Register" />
+          <input 
+            className="btn" 
+            type="submit" 
+            name="submit" 
+            value="Register" />
         </div>
       </form>
     );
