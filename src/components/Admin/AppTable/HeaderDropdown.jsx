@@ -10,8 +10,14 @@ export default function HeaderDropdown({title, col}) {
     return (
         <th>
             <DropdownButton title={title}>
-                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: col, desc: false}})}><ImSortAlphaAsc /></Dropdown.Item>
-                <Dropdown.Item onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: col, desc: true}})}><ImSortAlphaDesc /></Dropdown.Item>
+                <Dropdown.Item 
+                    onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: col, desc: false}})}>
+                    {title==="Budget Requested" ? <ImSortNumericAsc/> : <ImSortAlphaAsc />}
+                </Dropdown.Item>
+                <Dropdown.Item 
+                    onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: col, desc: true}})}>
+                    {title ==="Budget Requested" ? <ImSortNumbericDesc/> : <ImSortAlphaDesc />}
+                </Dropdown.Item>
             </DropdownButton>
         </th>
     )
