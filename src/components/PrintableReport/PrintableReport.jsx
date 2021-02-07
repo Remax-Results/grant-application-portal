@@ -12,9 +12,6 @@ const SubHeader = styled.p `
     text-decoration: underline;
 `
 
-
-
-
 export default function PrintableReport() {
     const {id} = useParams();
     const dispatch = useDispatch();

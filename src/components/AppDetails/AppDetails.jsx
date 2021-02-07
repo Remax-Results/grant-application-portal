@@ -6,6 +6,7 @@ import {Container, Col, Row, Button, Dropdown} from 'react-bootstrap';
 import TitleCard from './TitleCard/TitleCard.jsx';
 import ScoreComponent from './Scoring/ScoreComponent.jsx';
 import Notes from './Notes/Notes.jsx';
+import UpdateStatus from './UpdateStatus/UpdateStatus.jsx';
 
 export default function AppDetails(){
     const history = useHistory();
@@ -24,18 +25,7 @@ export default function AppDetails(){
             <Notes notes = {notes} detailsData={detailsData}/>
             <Container>
                 <Row>
-                    <Col>
-                        <Dropdown
-                            onSelect={(event) => {dispatch({type:'UPDATE_STATUS', payload:{status: event, id:detailsData.id}})}}
-                        >
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
-                            Set Review Status
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            {reviewStatus && reviewStatus.map((rs)=>(<Dropdown.Item eventKey={rs.id}>{rs.status}</Dropdown.Item>))}
-                        </Dropdown.Menu>    
-                        </Dropdown>
-                    </Col>
+                    <UpdateStatus />
                     <Col><Button onClick={()=>{history.push(`/report/${id}`)}}>View Printable Report</Button></Col>
                     <Col><Button onClick={()=>{history.push('/admin')}}>Back to Admin Main Page</Button></Col>
                 </Row>

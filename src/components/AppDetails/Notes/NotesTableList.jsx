@@ -26,7 +26,7 @@ export default function NotesTableList(props) {
                 icon: "success",
               });
             } else {
-              swal("Your note is not deleted!");
+              swal("Your note reamins!");
             }
           });
     };
