@@ -14,7 +14,7 @@ body,
   font-family: 'Gotham Book';
   font-style: normal;
   font-weight: normal;
-  src: local('Gotham Bold'), url('../../fonts/GothamBold.otf') format('woff');
+  src: local('Gotham Book'), url('../../fonts/GothamBook.otf') format('woff');
   
 }
 
@@ -22,12 +22,12 @@ body,
   font-family: 'Gotham Bold';
   font-style: normal;
   font-weight: normal;
-  src: local('Gotham Book'), url('../../fonts/GothamBook.otf') format('woff');
+  src: local('Gotham Bold'), url('../../fonts/GothamBold.otf') format('woff');
   
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Gotham Book', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
 }
 
@@ -48,7 +48,7 @@ Container
 Button
 -------------------------------------------------------------------------------- */
 
-.btn {
+ .btn {
   display: inline-block;
   padding: 10px 20px;
   border-color: #303030;
@@ -82,7 +82,7 @@ Button
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
-.btn_asLink {
+/* .btn_asLink {
   padding: 0;
   border-width: 0;
   border-bottom: 1px solid #444;
@@ -96,7 +96,7 @@ Button
   background-color: transparent;
   border-color: #97CAEB;
   color: #97CAEB;
-}
+} */
 
 /* --------------------------------------------------------------------------------
 Alert
@@ -113,6 +113,9 @@ Alert
   font-size: 0.8rem;
 }
 
+body {
+  background-color: #CECECE ;
+}
 /* --------------------------------------------------------------------------------
 Form Treatment
 -------------------------------------------------------------------------------- */
