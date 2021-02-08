@@ -114,7 +114,8 @@ Alert
 }
 
 body {
-  background-color: #CECECE ;
+  background: rgb(206,206,206);
+  background: linear-gradient(90deg, rgba(206,206,206,1) 0%, rgba(231,231,231,1) 21%, rgba(255,255,255,1) 100%);
 }
 /* --------------------------------------------------------------------------------
 Form Treatment
