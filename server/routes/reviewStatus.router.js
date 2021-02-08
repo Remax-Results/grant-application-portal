@@ -33,8 +33,6 @@ router.get('/:id', rejectUnauthenticatedAdmin, (req, res) => {
 
 //updating status of application - admin only view
 router.put('/', rejectUnauthenticatedAdmin, (req, res) => {
-  // if(req.user.admin){
-    
     const sqlText = `UPDATE app SET review_status_id=$1 WHERE id=$2;`;
     pool.query(sqlText, [req.body.status, req.body.id])
     .then(result => {
@@ -43,7 +41,7 @@ router.put('/', rejectUnauthenticatedAdmin, (req, res) => {
     .catch(error => {
       console.log('error updating review_status_id on the database from the server... -------->', error);
     })
-  // }
+ 
 });
 
 module.exports = router;
