@@ -10,6 +10,7 @@
   margin: 0 0 30px;
   background-color:#1C479A;
   overflow: hidden;
+  z-index: 2147483647;
 }
 
 .nav-link {

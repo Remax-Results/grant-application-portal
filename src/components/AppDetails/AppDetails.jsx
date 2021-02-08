@@ -6,6 +6,9 @@ import {Container, Col, Row, Button} from 'react-bootstrap';
 import TitleCard from './TitleCard/TitleCard.jsx';
 import ScoreComponent from './Scoring/ScoreComponent.jsx';
 import Notes from './Notes/Notes.jsx';
+import Sidebar from './Sidebar/Sidebar';
+import './AppDetails.css';
+
 import UpdateStatus from './UpdateStatus/UpdateStatus.jsx';
 import DetailsSubheader from './DetailsSubheader/DetailsSubheader.jsx';
 
@@ -19,7 +22,9 @@ export default function AppDetails(){
     
     useEffect(() => {dispatch({type: 'FETCH_DETAILS_DATA', payload: id})}, [dispatch, id]);
     return(
-        <Container style={{backgroundColor:'#CECECE'}}>
+        <>
+        <Sidebar />
+        <Container className='container' style={{backgroundColor:'#CECECE'}}>
             <TitleCard />
             <DetailsSubheader details={detailsData}/>
             {qANDa.length > 0 && <ScoreComponent qANDa = {qANDa} />}
@@ -32,5 +37,6 @@ export default function AppDetails(){
                 </Row>
             </Container>
         </Container>
+        </>
     )
 }
