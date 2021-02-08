@@ -11,7 +11,7 @@ const NumberBox = styled.div `
 export default function TenPointScale({number, selected=false, onSelect = f => f}) {
     return (
         <>
-            <NumberBox style={{backgroundColor: selected ? 'red' : 'white'}} onClick={onSelect}>{number > 0 ? number : 'X'} 
+            <NumberBox style={{backgroundColor: selected ? 'red' : 'white', cursor: 'pointer'}} onClick={onSelect}>{number > 0 ? number : 'X'} 
             </NumberBox>
         </>
     )

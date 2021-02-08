@@ -5,6 +5,11 @@ body,
   position: relative;
 }
 
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
 @font-face {
   font-family: 'Gotham Book';
   font-style: normal;
@@ -43,13 +48,13 @@ Container
 Button
 -------------------------------------------------------------------------------- */
 
-/* .btn {
+ .btn {
   display: inline-block;
   padding: 10px 20px;
   border-color: #303030;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #97CAEB;
+  /* background-color: #97CAEB; */
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -91,7 +96,7 @@ Button
   background-color: transparent;
   border-color: #97CAEB;
   color: #97CAEB;
-} */ */
+} */
 
 /* --------------------------------------------------------------------------------
 Alert
