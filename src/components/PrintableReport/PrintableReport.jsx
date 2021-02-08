@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Card, Container, Col, Row, Table, Button, Modal, InputGroup, FormControl, Dropdown} from 'react-bootstrap';
+import {Container, Col, Row,  Button} from 'react-bootstrap';
 import ScoreReport from './ScoreReport/ScoreReport.jsx';
 import NotesReport from './NotesReport/NotesReport.jsx';
 import styled from 'styled-components';
@@ -12,9 +12,6 @@ const SubHeader = styled.p `
     text-decoration: underline;
 `
 
-
-
-
 export default function PrintableReport() {
     const {id} = useParams();
     const dispatch = useDispatch();
@@ -23,7 +20,7 @@ export default function PrintableReport() {
     const {budget} = useSelector(state => state.budget);
     const {org_name, background, focus, phone, status, username, contact_name} = useSelector(state => state.detailsData);
     const qANDa = useSelector(state => state.qANDa);
-    useEffect(() => {dispatch({type: 'FETCH_DETAILS_DATA', payload: id})}, [dispatch]);
+    useEffect(() => {dispatch({type: 'FETCH_DETAILS_DATA', payload: id})}, [dispatch, id]);
 
 
     return (
@@ -49,7 +46,7 @@ export default function PrintableReport() {
                     </Col>
                 </Row>
             </Container>
-            {qANDa.length > 0 && qANDa.map((qa) => <ScoreReport qa={qa}/>)}
+            {qANDa.length > 0 && qANDa.map((qa) => <ScoreReport key={qa.id} qa={qa}/>)}
             <h3 style={{textAlign:'center'}}>Notes</h3>
             {notes.length > 0 && notes.map((n)=> <NotesReport n={n}/>)}
             <Button onClick={()=>{history.push('/admin')}}>Back to Admin Main Page</Button>

@@ -2,7 +2,10 @@ import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import swal from 'sweetalert';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Card, Container, Col, Row, Table, Button, Modal, InputGroup, FormControl, Dropdown} from 'react-bootstrap';
+import {Button, Modal, InputGroup, FormControl} from 'react-bootstrap';
+import { MdEdit } from "react-icons/md";
+import { RiDeleteBin2Line } from "react-icons/ri";
+
 
 
 export default function NotesTableList(props) {
@@ -26,7 +29,7 @@ export default function NotesTableList(props) {
                 icon: "success",
               });
             } else {
-              swal("Your note is not deleted!");
+              swal("Your note reamins!");
             }
           });
     };
@@ -45,8 +48,8 @@ export default function NotesTableList(props) {
      <tr key={note.id}>
          <td>{note.review_note}</td>
          <td>{note.date_added}</td>
-         <td><Button onClick={(event)=>{handleEdit()}}>View/Edit</Button></td>
-         <td><Button onClick={(event)=>{handleDelete()}}>Delete</Button></td>
+         <td><Button onClick={(event)=>{handleEdit()}}>View/Edit <MdEdit/></Button></td>
+         <td><Button onClick={(event)=>{handleDelete()}}>Delete <RiDeleteBin2Line/></Button></td>
      </tr>
      <Modal
         show={show}

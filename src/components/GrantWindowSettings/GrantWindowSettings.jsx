@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import GrantWindowForm from '../GrantWindowForm/GrantWindowForm.jsx'
-import GrantWindowTable from '../GrantWindowTable/GrantWindowTable.jsx'
-import GrantWindowEdit from '../GrantWindowEdit/GrantWindowEdit.jsx'
+import GrantWindowForm from './GrantWindowForm/GrantWindowForm.jsx'
+import GrantWindowTable from './GrantWindowTable/GrantWindowTable.jsx'
+import GrantWindowEdit from './GrantWindowForm/GrantWindowEdit.jsx'
 import GrantWindowInfo from './GrantWindowInfo.jsx'
 import './GrantWindowSettings.css'
 
@@ -18,7 +18,7 @@ export default function GrantWindowSettings(props) {
   // Fetch the previous grant windows to populate the table.
   useEffect(() => {
     dispatch({type: 'FETCH_PREVIOUS_GRANT_WINDOWS'})
-  }, [])
+  }, [dispatch])
 
   return (
     <div>

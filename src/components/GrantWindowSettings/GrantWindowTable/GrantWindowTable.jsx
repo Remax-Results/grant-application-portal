@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Card, Table, Container, Row} from 'react-bootstrap';
-import GrantWindowTableRow from '../GrantWindowTableRow/GrantWindowTableRow.jsx'
+import {Table, Container, Row} from 'react-bootstrap';
+import GrantWindowTableRow from './GrantWindowTableRow.jsx'
 
 export default function GrantWindowTable() {
 

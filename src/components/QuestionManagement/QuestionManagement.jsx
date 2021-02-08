@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ListGroup, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,7 +18,7 @@ export default function QuestionManagement() {
   // Fetch the previous grant windows to populate the table.
   useEffect(() => {
     dispatch({type: 'FETCH_ALL_QUESTIONS'})
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="question-manager">

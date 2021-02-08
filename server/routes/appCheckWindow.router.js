@@ -10,7 +10,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     // userId will help to grab the right application
     const userId = req.user.id;
     const sqlText = 
-    `SELECT "app".id, "date_received", "grant_window_id", "focus_area_id", "user_id", "review_date", "review_status_id" 
+    `SELECT "app".id, "date_received", "grant_window_id", "focus_area_id", "user_id", "review_status_id" 
     FROM "app" 
     JOIN "user" ON "user".id="app".user_id
     WHERE "user".id=$1
@@ -30,7 +30,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     const windowId = req.params.id;
     const userId = req.user.id;
     const sqlText = 
-    `SELECT "app".id, "date_received", "grant_window_id", "focus_area_id", "user_id", "review_date", "review_status_id" 
+    `SELECT "app".id, "date_received", "grant_window_id", "focus_area_id", "user_id", "review_status_id" 
     FROM "app" 
     JOIN "grant_window" ON "grant_window".id="app".grant_window_id
     JOIN "user" ON "user".id="app".user_id

@@ -18,6 +18,7 @@ function GrantApplicationForm(props) {
   const dispatch = useDispatch();
   const [values, setValues] = useState({});
   const [focusAreaId, setFocusAreaId] = useState(0);
+  const [budget, setBudget] = useState(0);
   
   const onSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +39,8 @@ function GrantApplicationForm(props) {
                   values: values, 
                   user_id: user.id, 
                   grant_window_id: grantWindow.id, 
-                  focus_area_id: focusAreaId
+                  focus_area_id: focusAreaId,
+                  budget: budget
                 } });
               swal("Great! Your application has been submitted.", {
                 icon: "success",
@@ -51,7 +53,7 @@ function GrantApplicationForm(props) {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_FOCUS_QUESTION' });
-    }, []
+    }, [dispatch]
   );
 
   // callback provided to components to update the main list of form values
@@ -83,6 +85,12 @@ function GrantApplicationForm(props) {
                     className="form" />
                 ))
               }
+              <Form.Label htmlFor="budget">Budget</Form.Label>
+              <Form.Control
+                name="budget"
+                type="number"
+                onChange={(e) => setBudget(e.target.value)}
+              />
               <p>Please select your area of focus from the list.</p>
               <Form.Control as="select" onChange={(e) => setFocusAreaId(e.target.value)}>
                 <option>Area of Focus</option>

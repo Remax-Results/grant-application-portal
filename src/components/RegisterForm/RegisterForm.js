@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './RegisterForm.css'
 
-
 export default function RegisterForm() {
   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const [orgName, setOrgName] = useState('');
   const [background, setBackground] = useState('');
   const [phone, setPhone] = useState('');
@@ -18,17 +18,21 @@ export default function RegisterForm() {
 
   const registerUser = (event) => {
     event.preventDefault();
-    dispatch({
-      type: 'REGISTER',
-      payload: {
-        username: username,
-        password: password,
-        orgName: orgName,
-        background: background,
-        phone: phone,
-        contactName: contactName
-      },
-    });
+    if (password !== passwordConfirm){
+      dispatch({type: 'PASSWORD_DOES_NOT_MATCH'})
+    } else if (username && password && passwordConfirm && orgName && background && phone && contactName){
+      dispatch({
+        type: 'REGISTER',
+        payload: {
+          username: username,
+          password: password,
+          orgName: orgName,
+          background: background,
+          phone: phone,
+          contactName: contactName
+        },
+      });
+    } 
   }; // end registerUser
 
 
@@ -58,6 +62,7 @@ export default function RegisterForm() {
           <label htmlFor="password">
             Password:
             <br></br>
+          </label>
             <input
               className="register"
               type="password"
@@ -66,7 +71,27 @@ export default function RegisterForm() {
               required
               onChange={event => setPassword(event.target.value)}
             />
+        </div>
+        <div>
+          <label htmlFor="passwordConfirm">
+            Confirm Password:
+            <br></br>
           </label>
+          <input
+            className="register confirm"
+            type="password"
+            name="passwordConfirm"
+            value={passwordConfirm}
+            style={{
+              border: password === passwordConfirm && passwordConfirm ?
+              'green 1px solid'
+              :
+              'red 1px solid'
+            }}
+            required
+            onChange={event => setPasswordConfirm(event.target.value)}
+          />
+            
         </div>
         
         
@@ -127,7 +152,11 @@ export default function RegisterForm() {
           </label>
         </div>
         <div>
-          <input className="btn" type="submit" name="submit" value="Register" />
+          <input 
+            className="btn" 
+            type="submit" 
+            name="submit" 
+            value="Register" />
         </div>
       </form>
     );

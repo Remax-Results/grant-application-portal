@@ -1,5 +1,4 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Table} from 'react-bootstrap';
 import NotesTableList from './NotesTableList.jsx';
@@ -19,7 +18,7 @@ export default function NotesTable(props) {
                 </tr>
             </thead>
             <tbody>
-                {notes.length && notes.map(note => (<NotesTableList note={note}/>))}
+                {notes.length > 0 && notes.map(note => (<NotesTableList note={note}/>))}
             </tbody>
         </Table>
     )
