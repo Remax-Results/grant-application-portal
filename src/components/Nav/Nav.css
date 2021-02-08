@@ -8,7 +8,8 @@
 
 .nav {
   margin: 0 0 30px;
-  background-color:#1C479A;
+  background: rgb(28,71,154);
+  background: linear-gradient(90deg, rgba(28,71,154,1) 0%, rgba(77,123,186,1) 56%, rgba(151,202,235,1) 100%);
   overflow: hidden;
   z-index: 2147483647;
 }
@@ -16,7 +17,7 @@
 .nav-link {
   float: left;
   color: #f2f2f2;
-  background-color: #1C479A;
+  background-color: inherit;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
@@ -34,5 +35,5 @@
 }
 
 .nav-right {
-  float: right;
+  margin-left: auto;
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './RegisterForm.css'
-import {Form} from 'react-bootstrap';
+import {Form, Container} from 'react-bootstrap';
 
 export default function RegisterForm() {
   const dispatch = useDispatch();
@@ -38,9 +38,10 @@ export default function RegisterForm() {
 
 
     return (
-      <Form className="formPanel" onSubmit={event => {registerUser(event)}}>
+     <Container style={{backgroundColor: 'white', margin: 'auto'}}>
+      <Form onSubmit={event => {registerUser(event)}}>
         <h2>Register Organization</h2>
-        {registrationMessage && (
+          {registrationMessage && (
           <h3 className="alert" role="alert">
             {registrationMessage}
           </h3>
@@ -159,5 +160,6 @@ export default function RegisterForm() {
             value="Register" />
         </Form.Group>
       </Form>
+      </Container>
     );
   }
