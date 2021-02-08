@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'react-bootstrap';
 import './Sidebar.css';
 import * as FaIcons from 'react-icons/fa';
 import moment from 'moment';
-import UpdateStatus from '../UpdateStatus/UpdateStatus.jsx';
 import Icon02 from "../../../logos/Icons-02.png";
 
 
@@ -15,24 +13,33 @@ function Sidebar(props) {
     const history = useHistory();
     const [sidebar, setSidebar] = useState(false);
     const { budget, focus, contact_name, date_received, phone, username } = props.detailsData;
-    const { id } = props.id;
+    const { id } = props;
 
     const showSidebar = () => setSidebar(!sidebar);
+
+    const openNav = () => {
+        setSidebar(!sidebar);
+        
+    }
+
+    const closeNav = () => {
+        setSidebar(!sidebar);
+       
+    }
 
     return (
         <>
         
             <div className="navbar">
-                <FaIcons.FaBars onClick={showSidebar} className="menu-bars" /> 
+                <FaIcons.FaBars onClick={openNav} className="menu-bars" /> 
             </div>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
                 <div className='nav-menu-items'>
-                    <div className='navbar-toggle' onClick={showSidebar}>
-                        <img className="rf-logo" src={Icon02} alt="RF Logo"></img>
+                    <div className='rf-logo-side' onClick={showSidebar}>
+                        <img src={Icon02} alt="RF Logo"></img>
                     </div>
-                
-                    <h4 style={{ color: '#fff' }} onClick={showSidebar}><u>Contact Information</u></h4>
-                    <br />
+                    <p class="close-btn nav-text" onClick={closeNav}>&times;</p>
+                    <h4 className="nav-text" onClick={showSidebar}><u>Contact Information</u></h4>
                     <div className="nav-text">
                         <p>
                             <b>Contact Name:</b>
@@ -75,9 +82,6 @@ function Sidebar(props) {
                             {budget}
                         </p>
                     </div>
-                    <UpdateStatus className="sideNav-btn" />
-                    <Button onClick={()=>{history.push(`/report/${id}`)}} className="sideNav-btn">View Printable Report</Button>
-                    <Button onClick={()=>{history.push('/admin')}} className="sideNav-btn">Back to Admin Main Page</Button>
                 </div>
             </nav>
         </>
