@@ -7,13 +7,13 @@ import TitleCard from './TitleCard/TitleCard.jsx';
 import ScoreComponent from './Scoring/ScoreComponent.jsx';
 import Notes from './Notes/Notes.jsx';
 import Sidebar from './Sidebar/Sidebar';
-import './AppDetails.css';
 import UpdateStatus from './UpdateStatus/UpdateStatus.jsx';
 
-
 export default function AppDetails(){
+    const history = useHistory();
     const {id} = useParams();
     const dispatch = useDispatch();
+    // const qANDa = useSelector(state => state.qANDa);
     const detailsData = useSelector(state => state.detailsData);
     const notes = useSelector(state => state.notes);
     
@@ -25,11 +25,18 @@ export default function AppDetails(){
     }, [dispatch, id]);
     return(
         <>
-        <Sidebar detailsData={detailsData} id={id} />
+        <Sidebar detailsData={detailsData} />
         <Container className='container' style={{backgroundColor:'#CECECE'}}>
             <TitleCard />
-            <ScoreComponent/>
-            <Notes notes = {notes} detailsData={detailsData}/>
+            <ScoreComponent />
+            <Notes notes={notes} detailsData={detailsData}/>
+            <Container>
+                <Row>
+                    <UpdateStatus />
+                    <Col><Button onClick={()=>{history.push(`/report/${id}`)}}>View Printable Report</Button></Col>
+                    <Col><Button onClick={()=>{history.push('/admin')}}>Back to Admin Main Page</Button></Col>
+                </Row>
+            </Container>
         </Container>
         </>
     )

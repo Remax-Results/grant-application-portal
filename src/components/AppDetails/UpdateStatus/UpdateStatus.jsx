@@ -29,8 +29,8 @@ export default function UpdateStatus() {
 
     return (
         <Col>
-            <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Dropdown style={{backgroundColor: "#1C479A !important;"}}>
+              <Dropdown.Toggle id="dropdown-basic">
                   Set Review Status
               </Dropdown.Toggle>
               <Dropdown.Menu>
