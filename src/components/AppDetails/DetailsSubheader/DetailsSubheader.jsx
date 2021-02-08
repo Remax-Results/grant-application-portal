@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container} from 'react-bootstrap';
 
-export default function Details(props){
+export default function DetailsSubheader(props){
 
     const { details } = props;
     // budget, contact_name, phone, username, focus

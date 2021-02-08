@@ -7,14 +7,13 @@ import TitleCard from './TitleCard/TitleCard.jsx';
 import ScoreComponent from './Scoring/ScoreComponent.jsx';
 import Notes from './Notes/Notes.jsx';
 import UpdateStatus from './UpdateStatus/UpdateStatus.jsx';
-import Details from './Details/Details.jsx';
+import DetailsSubheader from './DetailsSubheader/DetailsSubheader.jsx';
 
 export default function AppDetails(){
     const history = useHistory();
     const {id} = useParams();
     const dispatch = useDispatch();
     const qANDa = useSelector(state => state.qANDa);
-    const reviewStatus = useSelector(state=>state.reviewStatus);
     const detailsData = useSelector(state => state.detailsData);
     const notes = useSelector(state => state.notes);
     
@@ -22,7 +21,7 @@ export default function AppDetails(){
     return(
         <Container style={{backgroundColor:'#CECECE'}}>
             <TitleCard />
-            <Details details={detailsData}/>
+            <DetailsSubheader details={detailsData}/>
             {qANDa.length > 0 && <ScoreComponent qANDa = {qANDa} />}
             <Notes notes = {notes} detailsData={detailsData}/>
             <Container>
