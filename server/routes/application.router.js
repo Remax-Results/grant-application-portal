@@ -2,7 +2,6 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
-
 // Route to get the review status for a particular application.  user view
 router.get(`/status/:id`, rejectUnauthenticated, (req, res) => {
   

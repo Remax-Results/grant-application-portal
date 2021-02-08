@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './RegisterForm.css'
+import {Form} from 'react-bootstrap';
 
 export default function RegisterForm() {
   const dispatch = useDispatch();
@@ -37,18 +38,17 @@ export default function RegisterForm() {
 
 
     return (
-      <form className="formPanel" onSubmit={event => {registerUser(event)}}>
+      <Form className="formPanel" onSubmit={event => {registerUser(event)}}>
         <h2>Register Organization</h2>
         {registrationMessage && (
           <h3 className="alert" role="alert">
             {registrationMessage}
           </h3>
         )}
-        <div>
-          <label htmlFor="username">
-            Email:
+        <Form.Group>
+          <Form.Label htmlFor="username">Email:</Form.Label>
             <br></br>
-            <input
+            <Form.Control
               className="register"
               type="text"
               name="username"
@@ -56,14 +56,13 @@ export default function RegisterForm() {
               required
               onChange={event => setUsername(event.target.value)}
             />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="password">
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="password">
             Password:
             <br></br>
-          </label>
-            <input
+          </Form.Label>
+            <Form.Control
               className="register"
               type="password"
               name="password"
@@ -71,13 +70,13 @@ export default function RegisterForm() {
               required
               onChange={event => setPassword(event.target.value)}
             />
-        </div>
-        <div>
-          <label htmlFor="passwordConfirm">
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="passwordConfirm">
             Confirm Password:
             <br></br>
-          </label>
-          <input
+          </Form.Label>
+          <Form.Control
             className="register confirm"
             type="password"
             name="passwordConfirm"
@@ -92,14 +91,14 @@ export default function RegisterForm() {
             onChange={event => setPasswordConfirm(event.target.value)}
           />
             
-        </div>
+        </Form.Group>
         
         
-        <div>
-          <label htmlFor="phone">
+        <Form.Group>
+          <Form.Label htmlFor="phone">
             Phone Number
             <br></br>
-            <input
+            <Form.Control
               className="register"
               type="text"
               name="phone"
@@ -107,13 +106,13 @@ export default function RegisterForm() {
               required
               onChange={event => setPhone(event.target.value)}
             />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="contactName">
+          </Form.Label>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="contactName">
             Contact Name
             <br></br>
-            <input
+            <Form.Control
               className="register"
               type="text"
               name="Contact Name"
@@ -121,13 +120,13 @@ export default function RegisterForm() {
               required
               onChange={event => setContactName(event.target.value)}
             />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="orgName">
+          </Form.Label>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="orgName">
             Organization Name
             <br></br>
-            <input
+            <Form.Control
               className="register"
               type="text"
               name="Organization Name"
@@ -135,29 +134,30 @@ export default function RegisterForm() {
               required
               onChange={event => setOrgName(event.target.value)}
             />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="background">
+          </Form.Label>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="background">
             Organization Background
             <br></br>
-            <input
+            <Form.Control
               className="register"
-              type="text"
+              as="textarea"
+              rows={10}
               name="Organization Background"
               value={background}
               required
               onChange={event => setBackground(event.target.value)}
             />
-          </label>
-        </div>
-        <div>
-          <input 
+          </Form.Label>
+        </Form.Group>
+        <Form.Group>
+          <Form.Control 
             className="btn" 
             type="submit" 
             name="submit" 
             value="Register" />
-        </div>
-      </form>
+        </Form.Group>
+      </Form>
     );
   }
