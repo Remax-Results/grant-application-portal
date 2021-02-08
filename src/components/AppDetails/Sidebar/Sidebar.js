@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Sidebar.css';
 import * as FaIcons from 'react-icons/fa';
@@ -10,10 +9,8 @@ import Icon02 from "../../../logos/Icons-02.png";
 
 function Sidebar(props) {
 
-    const history = useHistory();
     const [sidebar, setSidebar] = useState(false);
     const { budget, focus, contact_name, date_received, phone, username } = props.detailsData;
-    const { id } = props;
 
     const showSidebar = () => setSidebar(!sidebar);
 

@@ -75,6 +75,7 @@
     display: block !important;
     margin: 1rem;
     background-color: #1C479A !important;
+    cursor: pointer;
 }
 
 span {
