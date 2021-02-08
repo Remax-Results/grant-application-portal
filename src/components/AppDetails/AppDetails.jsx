@@ -14,17 +14,21 @@ import UpdateStatus from './UpdateStatus/UpdateStatus.jsx';
 export default function AppDetails(){
     const {id} = useParams();
     const dispatch = useDispatch();
-    const qANDa = useSelector(state => state.qANDa);
     const detailsData = useSelector(state => state.detailsData);
     const notes = useSelector(state => state.notes);
     
-    useEffect(() => {dispatch({type: 'FETCH_DETAILS_DATA', payload: id})}, [dispatch, id]);
+    useEffect(() => {
+        dispatch({type: 'FETCH_DETAILS_DATA', payload: id})
+        return () => {
+            dispatch({type: 'UNSET_DETAILS'})
+        }
+    }, [dispatch, id]);
     return(
         <>
         <Sidebar detailsData={detailsData} id={id} />
         <Container className='container' style={{backgroundColor:'#CECECE'}}>
             <TitleCard />
-            {qANDa.length > 0 && <ScoreComponent qANDa = {qANDa} />}
+            <ScoreComponent/>
             <Notes notes = {notes} detailsData={detailsData}/>
         </Container>
         </>
