@@ -1,4 +1,4 @@
-
+3
 const express = require('express');
 require('dotenv').config();
 
@@ -20,6 +20,7 @@ const focusAreaRouter = require('./routes/focusArea.router');
 const questionRouter = require('./routes/question.router');
 const appCheckWindowRouter = require('./routes/appCheckWindow.router');
 const sortRouter= require('./routes/sort.router');
+const mailRouter = require('./routes/mail.router.js');
 
 
 // Body parser middleware
@@ -45,7 +46,7 @@ app.use('/api/focus', focusAreaRouter);
 app.use('/api/question', questionRouter);
 app.use('/api/app-check', appCheckWindowRouter);
 app.use('/api/sort', sortRouter);
-
+app.use('/api/mail', mailRouter);
 // Serve static files
 app.use(express.static('build'));
 
