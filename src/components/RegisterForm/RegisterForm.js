@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './RegisterForm.css'
-import {Form, Container} from 'react-bootstrap';
+import {Form, Container, Row, Col} from 'react-bootstrap';
 
 export default function RegisterForm() {
   const dispatch = useDispatch();
@@ -47,8 +47,8 @@ export default function RegisterForm() {
           </h3>
         )}
         <Form.Group>
-          <Form.Label htmlFor="username">Email:</Form.Label>
-            <br></br>
+          <Form.Label htmlFor="username">Email:<br></br></Form.Label>
+          
             <Form.Control
               className="register"
               type="text"
