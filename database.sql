@@ -1,5 +1,6 @@
-DROP TABLE app_question, question, app, notes, app, grant_window, focus_area, review_status, "user";
 
+-- If you need to restart the database, this drop statement will drop everything in the correct order. 
+-- DROP TABLE app_question, question, app, notes, app, grant_window, focus_area, review_status, "user";
 
 --------------------- CREATE TABLES ------------------
 
