@@ -4,10 +4,10 @@ import swal from 'sweetalert';
 import {Col, Dropdown} from 'react-bootstrap';
 
 export default function UpdateStatus() {
-    const dispatch=useDispatch();
+    const dispatch = useDispatch();
     const reviewStatus = useSelector(state=>state.reviewStatus);
     const detailsData = useSelector(state => state.detailsData);
-    const handleChange = (event) => {
+    const handleChange = (event, rs_id) => {
         swal({
             title: "Grant Application Status Change!",
             text: "You are about the review status for this grant application. OK?",
@@ -17,7 +17,7 @@ export default function UpdateStatus() {
           })
           .then((willDelete) => {
             if (willDelete) {
-              dispatch({type:'UPDATE_STATUS', payload:{status: event, id:detailsData.id}});
+              dispatch({ type:'UPDATE_STATUS', payload:{ status: rs_id, id: detailsData.id }});
               swal("Status updated!", {
                 icon: "success",
               });
@@ -29,15 +29,23 @@ export default function UpdateStatus() {
 
     return (
         <Col>
-            <Dropdown
-                onSelect={(event) => {handleChange(event)}}
-            >
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Set Review Status
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-                {reviewStatus && reviewStatus.map((rs)=>(<Dropdown.Item key={rs.id}>{rs.status}</Dropdown.Item>))}
-            </Dropdown.Menu>    
+            <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  Set Review Status
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                  {reviewStatus && reviewStatus.map((rs) => 
+                      (
+                        <Dropdown.Item 
+                          onSelect={(event) => {handleChange(event, rs.id)}}
+                          key={rs.id} 
+                          value={rs.id}
+                          >
+                            {rs.status}
+                        </Dropdown.Item>
+                      ))
+                  }
+              </Dropdown.Menu>    
             </Dropdown>
         </Col>
     )

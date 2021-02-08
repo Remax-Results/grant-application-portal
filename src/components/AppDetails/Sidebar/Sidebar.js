@@ -1,54 +1,87 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'react-bootstrap';
 import './Sidebar.css';
 import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
-import { Link } from 'react-router-dom';
-import { IconContext } from 'react-icons';
-import { useSelector } from 'react-redux';
+import moment from 'moment';
+import UpdateStatus from '../UpdateStatus/UpdateStatus.jsx';
+import Icon02 from "../../../logos/Icons-02.png";
 
 
-function Navbar() {
 
+function Sidebar(props) {
+
+    const history = useHistory();
     const [sidebar, setSidebar] = useState(false);
-    const user = useSelector((store) => store.user);
+    const { budget, focus, contact_name, date_received, phone, username } = props.detailsData;
+    const { id } = props.id;
 
     const showSidebar = () => setSidebar(!sidebar);
 
     return (
         <>
-        <IconContext.Provider value={{color: '#fff'}}>
+        
             <div className="navbar">
-                <Link to="#" className='menu-bars'>
-                    <FaIcons.FaBars onClick={showSidebar} />
-                </Link>
+                <FaIcons.FaBars onClick={showSidebar} className="menu-bars" /> 
             </div>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-                <ul className='nav-menu-items' onClick={showSidebar}>
-                    <li className='navbar-toggle'>
-                        <Link to="#" className="menu-bars">
-                            <AiIcons.AiOutlineClose />
-                        </Link>
-                    </li>
-                    <li>
-                        {user.contact_name}
-                    </li>
-                    <li>
-                        {user.phone}
-                    </li>
-                    <li>
-                        {user.org_name}
-                    </li>
-                    <li>
-                        {user.background}
-                    </li>
-                    <li>
-                        {user.username}
-                    </li>
-                </ul>
+                <div className='nav-menu-items'>
+                    <div className='navbar-toggle' onClick={showSidebar}>
+                        <img className="rf-logo" src={Icon02} alt="RF Logo"></img>
+                    </div>
+                
+                    <h4 style={{ color: '#fff' }} onClick={showSidebar}><u>Contact Information</u></h4>
+                    <br />
+                    <div className="nav-text">
+                        <p>
+                            <b>Contact Name:</b>
+                            &nbsp;
+                            {contact_name}
+                        </p>
+                    </div>
+                    <div className="nav-text">
+                        <p>
+                            <b>Phone:</b>
+                            &nbsp;
+                            {phone}
+                        </p>
+                    </div>
+                    <div className="nav-text">
+                        <p>
+                            <b>Email:</b>
+                            &nbsp;
+                            {username}
+                        </p>
+                    </div>
+                    <div className="nav-text">
+                        <p>
+                            <b>Date Received:</b>
+                            &nbsp;
+                            {moment(date_received).format('LL')}
+                        </p>
+                    </div>
+                    <div className="nav-text">
+                        <p>
+                            <b>Focus Area:</b>
+                            &nbsp;
+                            {focus}
+                        </p>
+                    </div>
+                    <div className="nav-text">
+                        <p>
+                            <b>Budget:</b>
+                            &nbsp;
+                            {budget}
+                        </p>
+                    </div>
+                    <UpdateStatus className="sideNav-btn" />
+                    <Button onClick={()=>{history.push(`/report/${id}`)}} className="sideNav-btn">View Printable Report</Button>
+                    <Button onClick={()=>{history.push('/admin')}} className="sideNav-btn">Back to Admin Main Page</Button>
+                </div>
             </nav>
-            </IconContext.Provider>
         </>
     )
 }
 
-export default Navbar;
+export default Sidebar;

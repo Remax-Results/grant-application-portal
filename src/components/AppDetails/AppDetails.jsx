@@ -8,12 +8,10 @@ import ScoreComponent from './Scoring/ScoreComponent.jsx';
 import Notes from './Notes/Notes.jsx';
 import Sidebar from './Sidebar/Sidebar';
 import './AppDetails.css';
-
 import UpdateStatus from './UpdateStatus/UpdateStatus.jsx';
-import DetailsSubheader from './DetailsSubheader/DetailsSubheader.jsx';
+
 
 export default function AppDetails(){
-    const history = useHistory();
     const {id} = useParams();
     const dispatch = useDispatch();
     const qANDa = useSelector(state => state.qANDa);
@@ -23,19 +21,11 @@ export default function AppDetails(){
     useEffect(() => {dispatch({type: 'FETCH_DETAILS_DATA', payload: id})}, [dispatch, id]);
     return(
         <>
-        <Sidebar />
+        <Sidebar detailsData={detailsData} id={id} />
         <Container className='container' style={{backgroundColor:'#CECECE'}}>
             <TitleCard />
-            <DetailsSubheader details={detailsData}/>
             {qANDa.length > 0 && <ScoreComponent qANDa = {qANDa} />}
             <Notes notes = {notes} detailsData={detailsData}/>
-            <Container>
-                <Row>
-                    <UpdateStatus />
-                    <Col><Button onClick={()=>{history.push(`/report/${id}`)}}>View Printable Report</Button></Col>
-                    <Col><Button onClick={()=>{history.push('/admin')}}>Back to Admin Main Page</Button></Col>
-                </Row>
-            </Container>
         </Container>
         </>
     )

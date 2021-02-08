@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
+import Icon04 from "../../logos/Icons-04.png";
+
 
 export default function Nav() {
   const user = useSelector(state => state.user);
@@ -22,7 +24,7 @@ export default function Nav() {
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">RESULTS FOUNDATION</h2>
+        <img className="rf-logo" src={Icon04} alt="RF Logo"></img>
       </Link>
       <div className="nav-right">
         <Link className="nav-link" to={loginLinkData.path}>
