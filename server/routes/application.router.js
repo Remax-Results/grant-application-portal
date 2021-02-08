@@ -44,7 +44,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
   // this function is taking the dynamic object coming over
   // and destructuring it, before using the pieces to insert 
   // the full application with all the information into the DB
-  const { values, grant_window_id, user_id, focus_area_id } = req.body;
+  const { values, grant_window_id, user_id, focus_area_id, budget } = req.body;
 
   // destructuring the object to map over key value pairs
   const questionIdArray = Object.keys(values);
@@ -58,9 +58,9 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
   try {
     await client.query('BEGIN;')
     const sqlInsertAppReturnId = 
-          await client.query(`INSERT INTO "app"("grant_window_id", "focus_area_id", "user_id")
-            VALUES ($1, $2, $3) 
-            RETURNING "id";`, [grant_window_id, focus_area_id, user_id]);
+          await client.query(`INSERT INTO "app"("grant_window_id", "focus_area_id", "user_id", "budget")
+            VALUES ($1, $2, $3, $4) 
+            RETURNING "id";`, [grant_window_id, focus_area_id, user_id, budget]);
           
     // grab app_id
     const app_id = sqlInsertAppReturnId.rows[0].id;

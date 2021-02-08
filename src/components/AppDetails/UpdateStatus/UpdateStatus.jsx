@@ -36,7 +36,7 @@ export default function UpdateStatus() {
                 Set Review Status
             </Dropdown.Toggle>
             <Dropdown.Menu>
-                {reviewStatus && reviewStatus.map((rs)=>(<Dropdown.Item eventKey={rs.id}>{rs.status}</Dropdown.Item>))}
+                {reviewStatus && reviewStatus.map((rs)=>(<Dropdown.Item key={rs.id}>{rs.status}</Dropdown.Item>))}
             </Dropdown.Menu>    
             </Dropdown>
         </Col>

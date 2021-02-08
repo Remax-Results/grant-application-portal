@@ -46,7 +46,7 @@ export default function PrintableReport() {
                     </Col>
                 </Row>
             </Container>
-            {qANDa.length > 0 && qANDa.map((qa) => <ScoreReport qa={qa}/>)}
+            {qANDa.length > 0 && qANDa.map((qa) => <ScoreReport key={qa.id} qa={qa}/>)}
             <h3 style={{textAlign:'center'}}>Notes</h3>
             {notes.length > 0 && notes.map((n)=> <NotesReport n={n}/>)}
             <Button onClick={()=>{history.push('/admin')}}>Back to Admin Main Page</Button>

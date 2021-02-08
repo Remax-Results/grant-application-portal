@@ -1,3 +1,7 @@
+
+-- If you need to restart the database, this drop statement will drop everything in the correct order. 
+-- DROP TABLE app_question, question, app, notes, app, grant_window, focus_area, review_status, "user";
+
 --------------------- CREATE TABLES ------------------
 
 CREATE TABLE "user" (
@@ -34,7 +38,7 @@ CREATE TABLE "app" (
   "grant_window_id" int REFERENCES "grant_window",
   "focus_area_id" int REFERENCES "focus_area",
   "user_id" int REFERENCES "user",
-  "review_date" date DEFAULT null,
+  "budget" INT,
   "review_status_id" int REFERENCES "review_status" DEFAULT 2
 );
 
@@ -72,7 +76,7 @@ VALUES
 
 INSERT INTO "grant_window"("start_date", "end_date", "funds_available") 
 VALUES
-('2021-01-29', '2021-06-21', 20000);
+('2021-01-29', '2021-06-21', 20000), ('2020-01-29', '2020-06-21', 20000), ('2019-01-29', '2019-06-21', 20000);
 
 INSERT INTO "focus_area"("focus") 
 VALUES
@@ -87,9 +91,9 @@ VALUES
 ('Pending'), 
 ('Rejected');
 
-INSERT INTO "app"("grant_window_id", "focus_area_id", "user_id") 
+INSERT INTO "app"("grant_window_id", "focus_area_id", "user_id", "budget") 
 VALUES
-(1, 3, 2);
+(1, 3, 2, 2500);
 
 INSERT INTO "question"("question_text") 
 VALUES 
@@ -97,7 +101,6 @@ VALUES
 ('Goals and Objectives'), 
 ('Target Population'), 
 ('Timeline of Activities'), 
-('Budget'), 
 ('How will you measure the use of funds issued by the grant?');
 
 INSERT INTO "app_question"("app_id", "question_id", "answer_text")
@@ -106,5 +109,4 @@ VALUES
 (1, 2, 'Our goal is to give today''s youth a safe place to be young and enjoy the wonderful things that nature in northern Minnesota has to offer.'), 
 (1, 3, 'Teens & other youth.'), 
 (1, 4, 'The activities these funds will be used for will take place over the winter months, from mid-October to the end of February.'), 
-(1, 5, 2500), 
-(1, 6, 'Success will be measured by ticket sales. If we can increase the amount of participants at Chester Bowl from last year this will be considered a successful use of funds.');
+(1, 5, 'Success will be measured by ticket sales. If we can increase the amount of participants at Chester Bowl from last year this will be considered a successful use of funds.');

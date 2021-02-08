@@ -55,7 +55,7 @@ export default function AppTable() {
                 </thead>
                 <tbody>
                     {appTableData.length > 0 && appTableData.map((app)=>(
-                        <AppTableList app={app}/>)
+                        <AppTableList key={app.id} app={app}/>)
                     )}
                 </tbody>
             </Table>
