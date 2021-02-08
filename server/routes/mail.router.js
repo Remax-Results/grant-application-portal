@@ -22,13 +22,9 @@ const transporter = nodemailer.createTransport( {
 });
 
 router.post('/confirmation', (req, res) => {
-    console.log('username', process.env.MAIL_USERNAME)
-    console.log('password', process.env.MAIL_PASSWORD)
-    console.log('recipient', req.body.to)
-    
     const mailData = {
         from: process.env.MAIL_USERNAME,
-        to: req.body.to,
+        to: req.user.username,
         subject: 'Thank You for your Application',
         text: 'Thank you for your application, we will be in touch!'
     }
