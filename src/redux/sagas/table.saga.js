@@ -22,6 +22,14 @@ function* fetchDetailsData(action){
   yield put({type:'FETCH_BUDGET', payload: action.payload});
 }
 
+function* unsetDetailsData(action){
+  yield put({type:'UNSET_DETAILS_DATA'});
+  yield put({type:'UNSET_Q_AND_A'});
+  yield put({type:'UNSET_NOTES'});
+  yield put({type:'UNSET_BUDGET'});
+}
+
+
 function* sortAdminTable(action){
   const response = yield axios.get(`/api/sort/${action.payload.col}/${action.payload.desc}`);
   yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});
@@ -31,6 +39,7 @@ function* sortAdminTable(action){
 function* tableSaga() {
   yield takeLatest('FETCH_APP_TABLE_DATA', fetchAppTableData);
   yield takeLatest('FETCH_DETAILS_DATA', fetchDetailsData);
+  yield takeLatest('UNSET_DETAILS', unsetDetailsData);
   yield takeLatest('FETCH_BUDGET', fetchBudget);
   yield takeLatest('SORT_ADMIN_TABLE', sortAdminTable);
 }
