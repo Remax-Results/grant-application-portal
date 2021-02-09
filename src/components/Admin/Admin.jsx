@@ -12,17 +12,25 @@ export default function Admin() {
     useEffect(() => {dispatch({type: 'FETCH_APP_TABLE_DATA'})}, [dispatch]);
  
     return(
+        <>
         <Container>
             <AdminTitle />
             <Row style={{display:'flex', justifyContent:'center'}}><h2>Applications</h2></Row>
-            <Table striped bordered hover >
+        </Container>
+        <Container fluid>
+            <Table 
+                striped 
+                bordered 
+                hover 
+                
+            >
                 <thead style={{backgroundColor:'#1C479A', color: 'white'}}>
                     <tr>
                         <HeaderDropdown title="Organization" col="1"/>
                         <HeaderDropdown title="Contact" col="2"/>  
                         <th>Phone</th>
                         <th>Email</th>
-                        <HeaderDropdown title="Budget Requested" col="3"/>
+                        <HeaderDropdown title="Budget" col="3"/>
                         <HeaderDropdown title="Area of Focus" col="4"/>
                         <HeaderDropdown title="Date Recieved" col="5"/>
                         <HeaderDropdown title="Status" col="6"/>
@@ -35,6 +43,8 @@ export default function Admin() {
                     )}
                 </tbody>
             </Table>
+
         </Container>
+            </>
     )
 }
