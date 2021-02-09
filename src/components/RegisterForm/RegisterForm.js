@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './RegisterForm.css'
-import {Form, Container, Row, Col} from 'react-bootstrap';
+import {Form, Container, Row, Col, Button} from 'react-bootstrap';
 
 export default function RegisterForm() {
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ export default function RegisterForm() {
 
     return (
      <Container style={{backgroundColor: 'white', margin: 'auto'}}>
-      <Form onSubmit={event => {registerUser(event)}}>
+      <Form className="register-form" onSubmit={event => {registerUser(event)}}>
         <h2>Register Organization</h2>
           {registrationMessage && (
           <h3 className="alert" role="alert">
@@ -47,20 +47,22 @@ export default function RegisterForm() {
           </h3>
         )}
         <Form.Group>
-          <Form.Label htmlFor="username">Email:<br></br></Form.Label>
-          
-            <Form.Control
-              className="register"
-              type="text"
-              name="username"
-              value={username}
-              required
-              onChange={event => setUsername(event.target.value)}
-            />
+          <Form.Label htmlFor="username">
+            Email
+            <br></br>
+          </Form.Label>
+          <Form.Control
+            className="register"
+            type="text"
+            name="username"
+            value={username}
+            required
+            onChange={event => setUsername(event.target.value)}
+          />
         </Form.Group>
         <Form.Group>
           <Form.Label htmlFor="password">
-            Password:
+            Password
             <br></br>
           </Form.Label>
             <Form.Control
@@ -74,7 +76,7 @@ export default function RegisterForm() {
         </Form.Group>
         <Form.Group>
           <Form.Label htmlFor="passwordConfirm">
-            Confirm Password:
+            Confirm Password
             <br></br>
           </Form.Label>
           <Form.Control
@@ -91,73 +93,73 @@ export default function RegisterForm() {
             required
             onChange={event => setPasswordConfirm(event.target.value)}
           />
-            
         </Form.Group>
-        
         
         <Form.Group>
           <Form.Label htmlFor="phone">
             Phone Number
             <br></br>
-            <Form.Control
-              className="register"
-              type="text"
-              name="phone"
-              value={phone}
-              required
-              onChange={event => setPhone(event.target.value)}
-            />
           </Form.Label>
+          <Form.Control
+            className="register"
+            type="text"
+            name="phone"
+            value={phone}
+            required
+            onChange={event => setPhone(event.target.value)}
+          />
         </Form.Group>
         <Form.Group>
           <Form.Label htmlFor="contactName">
             Contact Name
             <br></br>
-            <Form.Control
-              className="register"
-              type="text"
-              name="Contact Name"
-              value={contactName}
-              required
-              onChange={event => setContactName(event.target.value)}
-            />
           </Form.Label>
+          <Form.Control
+            className="register"
+            type="text"
+            name="Contact Name"
+            value={contactName}
+            required
+            onChange={event => setContactName(event.target.value)}
+          />
         </Form.Group>
         <Form.Group>
           <Form.Label htmlFor="orgName">
             Organization Name
             <br></br>
-            <Form.Control
-              className="register"
-              type="text"
-              name="Organization Name"
-              value={orgName}
-              required
-              onChange={event => setOrgName(event.target.value)}
-            />
           </Form.Label>
+          <Form.Control
+            className="register"
+            type="text"
+            name="Organization Name"
+            value={orgName}
+            required
+            onChange={event => setOrgName(event.target.value)}
+          />
         </Form.Group>
         <Form.Group>
           <Form.Label htmlFor="background">
             Organization Background
             <br></br>
-            <Form.Control
-              className="register"
-              as="textarea"
-              rows={10}
-              name="Organization Background"
-              value={background}
-              required
-              onChange={event => setBackground(event.target.value)}
-            />
           </Form.Label>
+          <Form.Control
+            className="register"
+            as="textarea"
+            rows={10}
+            name="Organization Background"
+            value={background}
+            required
+            onChange={event => setBackground(event.target.value)}
+          />
         </Form.Group>
-        <Form.Group>
-          <Form.Control 
+        <Form.Group style={{textAlign: 'center'}}>
+          <Button 
             className="btn" 
             type="submit" 
             name="submit" 
-            value="Register" />
+          >
+            Register
+          </Button>
         </Form.Group>
       </Form>
       </Container>

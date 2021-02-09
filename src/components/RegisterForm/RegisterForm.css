@@ -1,6 +1,17 @@
-.register {
-    width: 42em;
+.register-form input {
+    width: 42vh;
+    margin: auto;
 }
+.register-form textarea {
+    width: 42vh;
+    margin: auto;
+}
+
+.register-form{
+    text-align: center
+}
+
+
 .formPanel {
     font-family: 'Gotham Book';
     font-style: normal;

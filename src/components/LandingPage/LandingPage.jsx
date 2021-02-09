@@ -1,7 +1,6 @@
 import React from 'react';
-//import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-//import mapStoreToProps from '../../redux/mapStoreToProps';
+import {Button} from 'react-bootstrap';
 
 import './LandingPage.css';
 
@@ -46,19 +45,27 @@ export default function LandingPage() {
                   donations from generous individuals and community partners.</p>
               </div>
             <center>
-              <button className="btn btn_sizeSm" onClick={() =>
-              history.push('/registration')}>
-                Create a Profile
-              </button>
+              <br></br>
+            <Button
+              className="landing-registration-button"
+              variant= 'primary'
+              type="button"
+              onClick={() => {
+                history.push('/registration');
+              }}
+            >
+              Create a Profile
+            </Button>
               <h4>Already a Member?</h4>
-              <button className="btn btn_sizeSm" onClick={() => {
+            <Button
+              variant= 'primary'
+              type="button"
+              onClick={() => {
                 history.push('/login');
-              }}>
-              {/* rather than using this.props.history.push this shortens it and uses the
-              history we brought in at the top - there is now no more this.state, look at login
-              form that's how you get state */}
-                Login
-              </button>
+              }}
+            >
+              Login
+            </Button>
             </center>
 
           </div>
