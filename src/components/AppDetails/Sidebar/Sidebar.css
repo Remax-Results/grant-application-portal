@@ -78,10 +78,6 @@
     cursor: pointer;
 }
 
-span {
-    margin-left: 16px;
-}
-
 .rf-logo-side {
     width: 5rem;
     height: 4.3rem;
@@ -101,4 +97,4 @@ span {
     font-size: 36px;
     margin-left: 50px;
     cursor: pointer;
-  }
+}
