@@ -1,4 +1,4 @@
-import { actionChannel, put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* fetchActiveGreeting(){
@@ -24,7 +24,7 @@ function* fetchAllMessages(){
 //--------------------WATCHER SAGA---------------------------//
 function* greetingSaga() {
    yield takeLatest('FETCH_ACTIVE_GREETING', fetchActiveGreeting);
-   yield takeLatest('FETCH_ALLGREETINGS', fetchAllGreetings);
+   yield takeLatest('FETCH_ALL_GREETINGS', fetchAllGreetings);
    yield takeLatest('FETCH_ALL_HEADERS', fetchAllHeaders);
    yield takeLatest('FETCH_ALL_MESSAGES', fetchAllMessages);
 }

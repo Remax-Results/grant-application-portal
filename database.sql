@@ -67,13 +67,13 @@ CREATE TABLE "notes" (
 CREATE TABLE greeting_headers (
 	"id" SERIAL PRIMARY KEY,
 	"header" VARCHAR (500),
-	"render_position" INT
+	"render_position" INT DEFAULT 0
 );
 
 CREATE TABLE greeting_messages (
 	"id" SERIAL PRIMARY KEY,
 	"message" VARCHAR (2000),
-	"render_position" INT
+	"render_position" INT DEFAULT 0
 );
 
 ----------- TEST DATA INSERTS -----------------------------------

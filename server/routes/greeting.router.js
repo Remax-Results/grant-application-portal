@@ -9,29 +9,32 @@ router.get('/active', rejectUnauthenticated, (req,res) => {
                 JOIN greeting_messages AS gm ON gh.render_position=gm.render_position
                 WHERE gh.render_position > 0;`
     pool.query(sqlText)
-    .then()(result => {
+    .then((result => {
         res.send(result.rows);
-      }).catch((error) => {
+      }))
+    .catch((error) => {
         console.log('Error retrieving greetings from the DB... ----->', error);
-      });
+    });
 });
 
 router.get('/header', rejectUnauthenticated, (req,res) => {
     const sqlText = `SELECT * FROM greeting_headers`;
     pool.query(sqlText)
-    .then()(result => {
+    .then((result => {
         res.send(result.rows);
-      }).catch((error) => {
+      }))
+      .catch((error) => {
         console.log('Error retrieving all headers from the DB... ----->', error);
-      });
+    });
 });
 
 router.get('/message', rejectUnauthenticated, (req,res) => {
     const sqlText = `SELECT * FROM greeting_messages`;
     pool.query(sqlText)
-    .then()(result => {
+    .then((result => {
         res.send(result.rows);
-      }).catch((error) => {
+      }))
+      .catch((error) => {
         console.log('Error retrieving all messages from the DB... ----->', error);
       });
 });
