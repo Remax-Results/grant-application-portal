@@ -1,4 +1,3 @@
-3
 const express = require('express');
 require('dotenv').config();
 
@@ -21,7 +20,7 @@ const questionRouter = require('./routes/question.router');
 const appCheckWindowRouter = require('./routes/appCheckWindow.router');
 const sortRouter= require('./routes/sort.router');
 const mailRouter = require('./routes/mail.router.js');
-
+const greetingRouter = require('./routes/greeting.router.js');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -47,6 +46,7 @@ app.use('/api/question', questionRouter);
 app.use('/api/app-check', appCheckWindowRouter);
 app.use('/api/sort', sortRouter);
 app.use('/api/mail', mailRouter);
+app.use('/api/greeting', greetingRouter);
 // Serve static files
 app.use(express.static('build'));
 
