@@ -11,7 +11,7 @@ import reviewSaga from './review.saga';
 import focusAreaSaga from './focusArea.saga';
 import questionSaga from './question.saga';
 import uberSaga from './uber.saga';
-
+import greetingSaga from './greeting.saga';
 
 
 export default function* rootSaga() {
@@ -28,5 +28,6 @@ export default function* rootSaga() {
     focusAreaSaga(),
     questionSaga(),
     uberSaga(),
+    greetingSaga(),
   ]);
 }
