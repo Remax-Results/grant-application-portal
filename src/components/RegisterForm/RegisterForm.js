@@ -47,19 +47,22 @@ export default function RegisterForm() {
           </h3>
         )}
         <Form.Group>
-          <Form.Label htmlFor="username">Email:<br></br></Form.Label>
-            <Form.Control
-              className="register"
-              type="text"
-              name="username"
-              value={username}
-              required
-              onChange={event => setUsername(event.target.value)}
-            />
+          <Form.Label htmlFor="username">
+            Email
+            <br></br>
+          </Form.Label>
+          <Form.Control
+            className="register"
+            type="text"
+            name="username"
+            value={username}
+            required
+            onChange={event => setUsername(event.target.value)}
+          />
         </Form.Group>
         <Form.Group>
           <Form.Label htmlFor="password">
-            Password:
+            Password
             <br></br>
           </Form.Label>
             <Form.Control
@@ -73,7 +76,7 @@ export default function RegisterForm() {
         </Form.Group>
         <Form.Group>
           <Form.Label htmlFor="passwordConfirm">
-            Confirm Password:
+            Confirm Password
             <br></br>
           </Form.Label>
           <Form.Control

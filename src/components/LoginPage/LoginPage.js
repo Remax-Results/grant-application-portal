@@ -2,6 +2,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import LoginForm from '../LoginForm/LoginForm';
 import './LoginPage.css';
+import { Button } from 'react-bootstrap';
+
 
 export default function LoginPage() {
 
@@ -13,15 +15,15 @@ export default function LoginPage() {
 
       <center>
         <p>Not registered?</p>
-        <button
+        <Button
+          variant= 'primary'
           type="button"
-          className="btn btn_asLink"
           onClick={() => {
             history.push('/registration');
           }}
         >
           Register
-        </button>
+        </Button>
       </center>
     </div>
   );
