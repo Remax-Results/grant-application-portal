@@ -13,7 +13,6 @@ CREATE TABLE "user" (
   "contact_name" VARCHAR (150),
   "admin" boolean DEFAULT false,
   "remax_employee" boolean DEFAULT false
-
 );
 
 CREATE TABLE "grant_window" (
@@ -185,7 +184,7 @@ VALUES
 
 INSERT INTO "user" ("username", "password", "phone", "contact_name")
 VALUES
-('lara_the_realtor@remaxresults.net', '$2a$10$3iBnDAz5DQ.qZjJrzIHUbe3OGJhQY/Zhgh8JSxdX27fOZWF78H17.', '651-867-5309', 'Lara T. Realtor');
+('lara_the_realtor@remaxresults.net', '$2a$10$/1jeV.fNN.HAO0vxw4AaiOVRRQjqsZv.T/XXzMr2F1iX8OG7fqjX2', '651-867-5309', 'Lara T. Realtor');
 
 INSERT INTO "ce_app" ("user_id")
 VALUES

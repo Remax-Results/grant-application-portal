@@ -27,6 +27,8 @@ const registrationMessage = (state = '', action) => {
       return 'Choose a username and password!';
     case 'PASSWORD_DOES_NOT_MATCH':
       return 'Password does not match Password Confirmation!'
+    case 'INVALID_RESULTS_EMAIL':
+      return 'Invalid email for Community Engagement profile! You must have a results.net domain!'
     case 'REGISTRATION_FAILED':
       return "Oops! That didn't work. The username might already be taken. Try again!";
     default:

@@ -24,6 +24,7 @@ import AppDetails from '../AppDetails/AppDetails.jsx';
 import QuestionManagement from '../QuestionManagement/QuestionManagement.jsx';
 import PrintableReport from '../PrintableReport/PrintableReport.jsx';
 import GreetingManagement from '../GreetingManagement/GreetingManagement.jsx';
+import RegisterPageCE from '../CommunityEngagement/RegisterPageCE/RegisterPageCE'
 import './App.css';
 
 class App extends Component {
@@ -91,6 +92,17 @@ class App extends Component {
               exact
               path="/registration"
               component={RegisterPage}
+              authRedirect="/user"
+              adminRedirect="/admin"
+            />
+            <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - if admin, redirect to "/admin"
+              // - else shows RegisterPage at "/registration"
+              exact
+              path="/ceregistration"
+              component={RegisterPageCE}
               authRedirect="/user"
               adminRedirect="/admin"
             />
