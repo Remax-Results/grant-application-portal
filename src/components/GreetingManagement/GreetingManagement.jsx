@@ -5,10 +5,10 @@ import DisplayList from './DisplayList.jsx';
 
 export default function GreetingManagement() {
     const dispatch = useDispatch();
-            const greeting = useSelector(state => state.greeting);
-            useEffect(() => {
-              dispatch({type: 'FETCH_GREETING'})
-            }, [dispatch])
+    const greeting = useSelector(state => state.greeting);
+    useEffect(() => {
+        dispatch({type: 'FETCH_GREETING'})
+    }, [dispatch])
           
     return (
 
