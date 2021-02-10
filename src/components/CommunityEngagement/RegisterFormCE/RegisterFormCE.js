@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './RegisterFormCE.css'
-import {Form, Container, Row, Col, Button} from 'react-bootstrap';
+import {Form, Container, Button} from 'react-bootstrap';
 
 export default function RegisterForm() {
   const dispatch = useDispatch();

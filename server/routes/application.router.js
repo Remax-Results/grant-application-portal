@@ -86,4 +86,54 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
   
 });
 
+// this route is POSTing the new grant application from the Community Engagement user acount
+router.post('/ce', rejectUnauthenticated, async (req, res) => {
+  if (req.user.remax_employee){
+    // this function is taking the dynamic object coming over
+    // and destructuring it, before using the pieces to insert 
+    // the full application with all the information into the DB
+    const { values, budget } = req.body;
+  
+    // destructuring the object to map over key value pairs
+    const questionIdArray = Object.keys(values);  
+  
+    // pool connection
+    const client = await pool.connect();
+    
+    // begin POST route, first inserting the app
+    try {
+      await client.query('BEGIN;')
+      const sqlInsertAppReturnId = 
+            await client.query(`INSERT INTO "ce_app"("user_id", "budget")
+              VALUES ($1, $2) 
+              RETURNING "id";`, [req.user.id, budget]);
+            
+      // grab app_id
+      const app_id = sqlInsertAppReturnId.rows[0].id;
+  
+      // using app_id, insert application answers into DB
+      await Promise.all(questionIdArray.map((id) => {
+        const insertAppQuestionText = `INSERT INTO "ce_app_question"("ce_app_id", "ce_question_id", "ce_answer_text")
+                                        VALUES ($1, $2, $3);`;
+        const insertAppQuestionValues = [app_id, id, values[id]];
+        return client.query(insertAppQuestionText, insertAppQuestionValues);
+      }));
+  
+      // commit the changes
+      await client.query('COMMIT;');
+      res.sendStatus(201);
+    } catch (error) {
+      // rollback changes in case of errors
+      await client.query('ROLLBACK;');
+      console.log('Error POSTing ce_application to database... --->', error);
+      res.sendStatus(500);
+    } finally {
+      client.release();
+    }
+  } else {
+    sendStatus(403)
+  }
+  
+});
+
 module.exports = router;

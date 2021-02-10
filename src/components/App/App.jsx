@@ -13,7 +13,7 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AdminRoute from '../AdminRoute/AdminRoute';
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
+import UserPage from '../UserPage/UserPage.jsx';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage.jsx';
 import LoginPage from '../LoginPage/LoginPage';
