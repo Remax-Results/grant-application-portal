@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Container, Row} from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import DisplayList from './DisplayList.jsx';
 
 export default function GreetingManagement() {

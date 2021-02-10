@@ -3,16 +3,12 @@ import GrantApplicationFormCE from '../CommunityEngagement/GrantApplicationCE/Gr
 
 
 
-function UserPageCE (props) {
+export default function UserPageCE (props) {
 
   return (
     <div>
-        <h2>Hello from UserPageCE</h2>
         <GrantApplicationFormCE />
     </div>
   );
   
 }
-
-// this allows us to use <App /> in index.js
-export default UserPageCE;
