@@ -1,21 +1,9 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import GrantApplicationFormCE from '../CommunityEngagement/GrantApplicationCE/GrantApplicationFormCE/GrantApplicationFormCE';
 
 
 
-function UserPage (props) {
-  
-  const dispatch = useDispatch();
-  
-  // grabbing the application info from the redux store
-  const app = useSelector((store) => store.application);
-
-  // useEffect
-  useEffect(() => {
-    dispatch({ type: 'FETCH_APPLICATION' });
-    }, [dispatch]
-  );
+function UserPageCE (props) {
 
   return (
     <div>
@@ -27,4 +15,4 @@ function UserPage (props) {
 }
 
 // this allows us to use <App /> in index.js
-export default UserPage;
+export default UserPageCE;

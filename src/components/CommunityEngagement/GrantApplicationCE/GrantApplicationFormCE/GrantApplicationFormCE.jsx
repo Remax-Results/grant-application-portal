@@ -13,7 +13,6 @@ function GrantApplicationForm(props) {
   // hooks
   const questions = useSelector((store) => store.activeQuestion);
   const budgetWording = useSelector((store) => store.budgetWording);
-  const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const [values, setValues] = useState({});
   const [budget, setBudget] = useState(0);
@@ -32,10 +31,9 @@ function GrantApplicationForm(props) {
           })
           .then((willSubmit) => {
             if (willSubmit) {
-              dispatch({ type: 'POST_APPLICATION', 
+              dispatch({ type: 'POST_CE_APPLICATION', 
               payload: { 
                   values: values, 
-                  user_id: user.id, 
                   budget: budget
                 } });
               swal("Great! Your application has been submitted.", {

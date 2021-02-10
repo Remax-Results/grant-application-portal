@@ -1,8 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import './RegisterPage.css';
-import {Card, Container, Row, Col, Button, Image} from 'react-bootstrap';
-import veggies from '../../images/dan-gold-4_jhDO54BYg-unsplash.jpg'
+import {Card, Container, Row, Button} from 'react-bootstrap';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
