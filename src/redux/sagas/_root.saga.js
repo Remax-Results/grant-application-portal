@@ -12,6 +12,7 @@ import focusAreaSaga from './focusArea.saga';
 import questionSaga from './question.saga';
 import uberSaga from './uber.saga';
 import greetingSaga from './greeting.saga';
+import filterSaga from './filter.saga';
 
 
 export default function* rootSaga() {
@@ -29,5 +30,6 @@ export default function* rootSaga() {
     questionSaga(),
     uberSaga(),
     greetingSaga(),
+    filterSaga()
   ]);
 }

@@ -5,7 +5,8 @@ import axios from 'axios';
 function* fetchAppTableData(action){
     const response = yield axios.get(`/api/table/`);
     yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});
-
+    yield put({type: 'FETCH_FOCUS_AREA'});
+    yield put({type: 'FETCH_STATUS_DROPDOWN'});
 }
 
 function* fetchBudget(action){
