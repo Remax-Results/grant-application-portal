@@ -3,10 +3,17 @@ import axios from 'axios';
 
 
 function* fetchAppTableData(action){
-    const response = yield axios.get(`/api/table/`);
-    yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});
-    yield put({type: 'FETCH_FOCUS_AREA'});
-    yield put({type: 'FETCH_STATUS_DROPDOWN'});
+  const response = yield axios.get(`/api/table/`);
+  yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});
+  yield put({type: 'FETCH_FOCUS_AREA'});
+  yield put({type: 'FETCH_STATUS_DROPDOWN'});
+}
+
+function* fetchCeAppTableData(action){
+  const response = yield axios.get(`/api/table/ce`);
+  yield put({type: 'SET_CE_APP_TABLE_DATA', payload: response.data});
+  yield put({type: 'FETCH_FOCUS_AREA'});
+  yield put({type: 'FETCH_STATUS_DROPDOWN'});
 }
 
 function* fetchBudget(action){
@@ -39,6 +46,7 @@ function* sortAdminTable(action){
 //--------------------WATCHER SAGA---------------------------//
 function* tableSaga() {
   yield takeLatest('FETCH_APP_TABLE_DATA', fetchAppTableData);
+  yield takeLatest('FETCH_CE_APP_TABLE_DATA', fetchCeAppTableData);
   yield takeLatest('FETCH_DETAILS_DATA', fetchDetailsData);
   yield takeLatest('UNSET_DETAILS', unsetDetailsData);
   yield takeLatest('FETCH_BUDGET', fetchBudget);

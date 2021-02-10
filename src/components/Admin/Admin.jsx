@@ -10,7 +10,10 @@ import Search from './Search/Search.jsx';
 export default function Admin() {
     const dispatch = useDispatch();
     const appTableData = useSelector(state=>state.appTableData);
-    useEffect(() => {dispatch({type: 'FETCH_APP_TABLE_DATA'})}, [dispatch]);
+    useEffect(() => {
+        dispatch({type: 'FETCH_APP_TABLE_DATA'})
+        dispatch({type: 'FETCH_CE_APP_TABLE_DATA'})
+    }, [dispatch]);
  
     return(
         <>
