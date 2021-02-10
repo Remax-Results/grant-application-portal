@@ -11,10 +11,16 @@ function* filterStatus(action) {
     const response = yield axios.get(`/api/filter/status/${action.payload}`);
     yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});
 }
+
+function* searchTable(action) {
+    const response = yield axios.get(`/api/filter/search/${action.payload}`);
+    yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});  
+}
 //--------------------WATCHER SAGA---------------------------//
 function* filterSaga() {
     yield takeLatest('FILTER_FOCUS', filterFocus);
     yield takeLatest('FILTER_STATUS', filterStatus);
+    yield takeLatest('SEARCH_TABLE', searchTable)
   }
   
   export default filterSaga;
