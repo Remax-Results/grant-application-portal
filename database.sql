@@ -187,7 +187,7 @@ VALUES
 
 INSERT INTO "ce_app" ("user_id")
 VALUES
-(10);
+(5);
 
 INSERT INTO "ce_app_question"("ce_app_id", "ce_question_id", "ce_answer_text")
 VALUES
