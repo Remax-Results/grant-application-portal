@@ -12,7 +12,6 @@ export default function GrantWindowForm() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
   const [budget, setBudget] = useState(0);
-  
   const dispatch = useDispatch();
 
   // function to convert the datepicker format to a more digestable format in SQL.

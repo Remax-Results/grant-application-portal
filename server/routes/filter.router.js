@@ -45,4 +45,33 @@ router.get('/focus/:id', rejectUnauthenticatedAdmin, (req, res) => {
         .then(result => {res.send(result.rows)})
         .catch(error=> console.log('Error retrieving app table data from server', error))
   });
+
+  router.get('/budget/:low/:high', rejectUnauthenticatedAdmin, (req, res) => {
+      console.log('in budget server', req.params.low, req.params.high);
+      const sqlText = `SELECT a.id, a.date_received, a.budget,
+                        u.org_name, u.contact_name, u.phone, u.username, f.focus, r.status   
+                        FROM "user" as u
+                        JOIN app AS a ON u.id=a.user_id
+                        JOIN focus_area AS f ON a.focus_area_id=f.id
+                        JOIN review_status AS r ON r.id=a.review_status_id
+                        WHERE a.budget >= $1 AND a.budget <= $2;`;
+        pool.query(sqlText, [req.params.low, req.params.high])
+        .then(result => {res.send(result.rows)})
+        .catch(error=> console.log('Error retrieving app table data from server', error))
+  });
+
+  router.get('/dates/:start/:end', rejectUnauthenticatedAdmin, (req, res) => {
+    const {start, end} = req.params;
+    const sqlText = `SELECT a.id, a.date_received, a.budget,
+                      u.org_name, u.contact_name, u.phone, u.username, f.focus, r.status   
+                      FROM "user" as u
+                      JOIN app AS a ON u.id=a.user_id
+                      JOIN focus_area AS f ON a.focus_area_id=f.id
+                      JOIN review_status AS r ON r.id=a.review_status_id
+                      WHERE a.budget >= $1 AND a.budget <= $2;`;
+      pool.query(sqlText, [start, end])
+      .then(result => {res.send(result.rows)})
+      .catch(error=> console.log('Error retrieving app table data from server', error))
+});
+
   module.exports = router;
