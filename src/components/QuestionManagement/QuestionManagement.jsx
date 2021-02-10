@@ -6,6 +6,7 @@ import Question from './Question.jsx';
 import AddQuestionForm from './AddQuestionForm.jsx';
 import BudgetWording from './BudgetWording.jsx';
 import FocusArea from './FocusArea.jsx';
+import AddFocusAreaForm from './AddFocusAreaForm.jsx';
 import './QuestionManagement.css';
 
 
@@ -41,11 +42,12 @@ export default function QuestionManagement() {
         </ListGroup>
         
       <AddQuestionForm />
-        <h2>Focus Area Manager</h2>
+        <h2 style={{paddingBottom: '15px'}}>Focus Area Manager</h2>
         <ListGroup variant="flush">
             {focusArea.length > 0 && focusArea.map(focus => (
               <FocusArea key={focus.id} focusArea={focus} />
               ))}
+        <AddFocusAreaForm />
         </ListGroup>
       </Container>
     </div>

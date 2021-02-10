@@ -65,7 +65,7 @@ router.post('/', rejectUnauthenticated, (req, res, next) => {
   if (req.user.admin){
     const sqlText = `INSERT INTO "focus_area" ("focus") VALUES ($1);`;
     pool
-      .query(sqlText, [req.body.newQuestion])
+      .query(sqlText, [req.body.newFocusArea])
       .then(() => res.sendStatus(201))
       .catch((err) => {
         console.log('question/ POST failed ', err);
