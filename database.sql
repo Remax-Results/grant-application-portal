@@ -1,6 +1,6 @@
 
 -- If you need to restart the database, this drop statement will drop everything in the correct order. 
--- DROP TABLE greeting_headers, greeting_messages, app_question, question, app, notes, app, grant_window, focus_area, review_status, "user";
+--DROP TABLE greeting, app_question, question, app, notes, app, grant_window, focus_area, review_status, "user";
 
 --------------------- CREATE TABLES ------------------
 
@@ -64,16 +64,11 @@ CREATE TABLE "notes" (
   "app_id" int REFERENCES "app"
 );
 
-CREATE TABLE greeting_headers (
+CREATE TABLE greeting (
 	"id" SERIAL PRIMARY KEY,
-	"header" VARCHAR (500),
-	"render_position" INT DEFAULT 0
-);
-
-CREATE TABLE greeting_messages (
-	"id" SERIAL PRIMARY KEY,
-	"message" VARCHAR (2000),
-	"render_position" INT DEFAULT 0
+	"header" VARCHAR(100),
+	"message" VARCHAR(1000),
+	"render_position" INT 
 );
 
 ----------- TEST DATA INSERTS -----------------------------------
@@ -134,7 +129,9 @@ VALUES
 (3, 4, 'January: Acquisition of materials, February - March: Greenhouse growing, April: Beginning of community classes, May - August: gardening!, September: Harvest Party!'),
 (3, 5, 'By the amount of contact our program is able to make with the community, bringing in gardeners, volunteers, and other organizations to help our garden grow.');
 
-INSERT INTO greeting_headers("header", "render_position") VALUES('About Us', 1),('Mission',2),('Funding',3);
 
-INSERT INTO greeting_messages("message", "render_position") VALUES('The Results Foundation was established in 2015 by RE/MAX Results to give back to local communities by providing grants and scholarships to organizations and individuals throughout Minnesota and Wisconsin, believing there’s no greater investment than helping individuals and communities overcome obstacles and achieve their goals. Inspired by the philanthropic work of the Sales Executives and staff of RE/MAX Results, the foundation has donated nearly $250,000 in grants to date.',1),('To partner with community organizations and educational institutions in Minnesota and Wisconsin to empower individuals to achieve success through housing, health, education, and mentoring programs.',2), ('A portion of every closed sale from RE/MAX Results and Results Title is donated to the foundation. Funding is also provided via Results Foundation events including the annual golf tournament, Rock the Foundation, as well as donations from generous individuals and community partners.
-',3);
+INSERT INTO greeting ("header", "message", "render_position")
+VALUES ('About Us', 'The Results Foundation was established in 2015 by RE/MAX Results to give back to local communities by providing grants and scholarships to organizations and individuals 
+throughout Minnesota and Wisconsin, believing there’s no greater investment than helping individuals and communities overcome obstacles and achieve their goals. Inspired by the philanthropic work of the Sales Executives and staff of RE/MAX Results, the foundation has donated nearly $250,000 in grants to date.', 1),
+('Mission','To partner with community organizations and educational institutions in Minnesota and Wisconsin to empower individuals to achieve success through housing, health, education, and mentoring programs.', 2),
+('Funding', 'A portion of every closed sale from RE/MAX Results and Results Title is donated to the foundation. Funding is also provided via Results Foundation events including the annual golf tournament, Rock the Foundation, as well as donations from generous individuals and community partners.', 3);

@@ -1,26 +1,22 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Container} from 'react-bootstrap';
+import {Container, Row} from 'react-bootstrap';
+import DisplayList from './DisplayList.jsx';
 
 export default function GreetingManagement() {
     const dispatch = useDispatch();
-          
-            // Reducer for all questions.
-            const allHeaders = useSelector(state => state.allHeaders);
-            const allMessages = useSelector(state => state.allMessages);
-          
-            // Fetch the previous grant windows to populate the table.
-            useEffect(() => {
-              dispatch({type: 'FETCH_ALL_GREETINGS'})
-            }, [dispatch])
+    const greeting = useSelector(state => state.greeting);
+    useEffect(() => {
+        dispatch({type: 'FETCH_GREETING'})
+    }, [dispatch])
           
     return (
-        <Container>
-            <h2>Greeting Manager</h2>
-            <Container>
-                {JSON.stringify(allHeaders, allMessages)}
+
+        <Container style={{textAlign:'center'}}>
+                <h2>Set Landing Page Information</h2>
+            <Container style={{backgroundColor:'white'}}>
+                {greeting.map((g)=> (<DisplayList g={g}/>))}
             </Container>
-           
        </Container>
     )
 }
