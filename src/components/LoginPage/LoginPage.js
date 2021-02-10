@@ -13,7 +13,7 @@ export default function LoginPage() {
     <div className="login_page">
       <LoginForm />
 
-      <center>
+      <center style={{paddingTop: '10px'}}>
         <p>Not registered?</p>
         <Button
           variant= 'primary'

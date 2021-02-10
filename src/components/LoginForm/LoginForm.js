@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './LoginForm.css'
-import {Container, Form, Button} from 'react-bootstrap';
+import {Container, Col, Row, Form, Button} from 'react-bootstrap';
 
 
 export default function LoginForm() {
@@ -28,9 +28,12 @@ export default function LoginForm() {
   }; // end login
 
     return (
-      <Container style={{backgroundColor: 'white', margin: 'auto', width: '50%'}}>
-        <Form className="login-form" onSubmit={event => {login(event)}}>
+      <Container>
+        <Col>
+        <Row className="login-header">
           <h2>Login</h2>
+        </Row>
+        <Form className="login-form" onSubmit={event => {login(event)}}>
           {loginMessage && (
             <h3 className="alert" role="alert">
               {loginMessage}
@@ -61,14 +64,14 @@ export default function LoginForm() {
               />
           </Form.Group>
           <Button 
-            className="btn" 
+            className="btn login-btn" 
             type="submit" 
             name="submit" 
           >
             Login
           </Button>
         </Form>
-
+        </Col>
       </Container>
     );
 }
