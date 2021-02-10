@@ -9,14 +9,14 @@ function* fetchFocusArea(action){
 
 function* changeFocusStatus(action) {
   const { focusId, newStatus } = action.payload;
-  yield axios.put(`/api/question/question-status/${focusId}`, {newStatus: newStatus});
+  yield axios.put(`/api/focus/status/${focusId}`, {newStatus: newStatus});
   yield put({ type:'FETCH_FOCUS_AREA' });
 
 }
 
 function* changeFocusText(action) {
   const { focusId, newText } = action.payload;
-  yield axios.put(`/api/question/question-text/${focusId}`, {newText: newText});
+  yield axios.put(`/api/focus/text/${focusId}`, {newText: newText});
   yield put({ type:'FETCH_FOCUS_AREA' });
 }
 

@@ -23,4 +23,55 @@ router.get('/active', rejectUnauthenticated, (req, res) => {
   });
 });
 
+// Toggles a question between active and inactive.
+router.put('/status/:id', rejectUnauthenticated, (req, res, next) => {
+   if (req.user.admin){
+    const sqlText = `
+                    UPDATE "focus_area"
+                    SET active = $1
+                    WHERE id=$2
+                    ;`;
+    pool
+      .query(sqlText, [req.body.newStatus, req.params.id])
+      .then(() => res.sendStatus(201))
+      .catch((err) => {
+        console.log('focus/focus-status PUT failed ', err);
+        res.sendStatus(500);
+      });
+   } 
+});
+
+// Update the text of a particular focus area.
+router.put('/text/:id', rejectUnauthenticated, (req, res, next) => {
+  if (req.user.admin){
+ 
+    const sqlText = `
+                    UPDATE "focus_area"
+                    SET "focus" = $1
+                    WHERE id=$2
+                    ;`
+    pool
+      .query(sqlText, [req.body.newText, req.params.id])
+      .then(() => res.sendStatus(201))
+      .catch((err) => {
+        console.log('focus/text PUT failed ', err);
+        res.sendStatus(500);
+      });
+  } 
+});
+
+// Post new focus area
+router.post('/', rejectUnauthenticated, (req, res, next) => {
+  if (req.user.admin){
+    const sqlText = `INSERT INTO "focus_area" ("focus") VALUES ($1);`;
+    pool
+      .query(sqlText, [req.body.newQuestion])
+      .then(() => res.sendStatus(201))
+      .catch((err) => {
+        console.log('question/ POST failed ', err);
+        res.sendStatus(500);
+      });
+  } 
+});
+
 module.exports = router;
