@@ -1,7 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-
 function* fetchAllWindows(action) {
     const response = yield axios.get(`/api/grant-window`);
     yield put({type:'SET_ALL_WINDOWS', payload: response.data});
@@ -14,7 +13,6 @@ function* fetchPreviousWindows(action) {
 function* fetchCurrentWindow(action){
     const response = yield axios.get(`/api/grant-window/current-window`);
     yield put({type: 'SET_CURRENT_WINDOW', payload: response.data});
-    
 }
 
 function* closeGrantWindow(action) {
