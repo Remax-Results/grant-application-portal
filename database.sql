@@ -1,6 +1,6 @@
 
 -- If you need to restart the database, this drop statement will drop everything in the correct order. 
---DROP TABLE greeting, app_question, question, app, notes, app, grant_window, focus_area, review_status, "user";
+--DROP TABLE budget_wording, greeting, app_question, question, app, notes, app, grant_window, focus_area, review_status, "user";
 
 --------------------- CREATE TABLES ------------------
 
@@ -71,6 +71,11 @@ CREATE TABLE greeting (
 	"render_position" INT 
 );
 
+CREATE TABLE "budget_wording" (
+  "id" SERIAL PRIMARY KEY,
+  "question_wording" VARCHAR(120) NOT NULL
+);
+
 ----------- TEST DATA INSERTS -----------------------------------
 
 INSERT INTO "user"("username", "password", "org_name", "background", "phone", "contact_name", "admin") 
@@ -135,3 +140,7 @@ VALUES ('About Us', 'The Results Foundation was established in 2015 by RE/MAX Re
 throughout Minnesota and Wisconsin, believing there’s no greater investment than helping individuals and communities overcome obstacles and achieve their goals. Inspired by the philanthropic work of the Sales Executives and staff of RE/MAX Results, the foundation has donated nearly $250,000 in grants to date.', 1),
 ('Mission','To partner with community organizations and educational institutions in Minnesota and Wisconsin to empower individuals to achieve success through housing, health, education, and mentoring programs.', 2),
 ('Funding', 'A portion of every closed sale from RE/MAX Results and Results Title is donated to the foundation. Funding is also provided via Results Foundation events including the annual golf tournament, Rock the Foundation, as well as donations from generous individuals and community partners.', 3);
+
+INSERT INTO "budget_wording" ("question_wording")
+VALUES ('Budget')
+;

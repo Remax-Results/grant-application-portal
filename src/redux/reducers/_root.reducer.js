@@ -16,6 +16,7 @@ import qANDa from './qANDa.reducer';
 import allQuestion from './allQuestion.reducer';
 import budget from './budget.reducer';
 import greeting from './greeting.reducer';
+import budgetWording from './budgetWording.reducer';
 
 
 const rootReducer = combineReducers({
@@ -36,7 +37,7 @@ const rootReducer = combineReducers({
   allQuestion,
   budget,
   greeting,
-  
+  budgetWording,
 });
 
 export default rootReducer;
