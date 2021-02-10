@@ -25,6 +25,16 @@ router.get('/active', rejectUnauthenticated, (req, res) => { // GET all active q
   });
 });
 
+//only active questions, user only view
+router.get('/ce/active', rejectUnauthenticated, (req, res) => { // GET all active questions
+  const sqlText = `SELECT * FROM "ce_question" WHERE "active"=TRUE;`;
+  pool.query(sqlText).then(result => {
+      res.send(result.rows); // sending back application questions
+  }).catch((error) => {
+      console.log('error retrieving active application questions from the database... -------->', error);
+  });
+});
+
 
 router.get('/:id', rejectUnauthenticated, (req, res) => { // GET all active questions from a specific application
   if(req.user.admin){
