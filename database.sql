@@ -71,6 +71,36 @@ CREATE TABLE greeting (
 	"render_position" INT 
 );
 
+CREATE TABLE "ce_app" (
+	"id" SERIAL PRIMARY KEY,
+	"ce_date_received" date NOT NULL DEFAULT CURRENT_DATE,
+	"ce_focus_area" int REFERENCES "focus_area",
+	"user_id" int REFERENCES "user",
+	"ce_review_date" date DEFAULT null,
+	"review_status_id" int REFERENCES "review_status" DEFAULT 2
+);
+
+CREATE TABLE "ce_question" (
+	"id" SERIAL PRIMARY KEY,
+	"ce_question_text" varchar,
+	"active" boolean DEFAULT true,
+	"created" date DEFAULT CURRENT_DATE
+);
+
+CREATE TABLE "ce_app_question"(
+	"id" SERIAL PRIMARY KEY,
+	"ce_app_id" INT REFERENCES "ce_app",
+	"ce_question_id" INT REFERENCES "ce_question",
+	"ce_answer_text" varchar,
+	"ce_review_score" int
+);
+
+CREATE TABLE "ce_notes" (
+	"id" SERIAL PRIMARY KEY,
+	"ce_review_note" VARCHAR (750),
+	"date_added" date NOT NULL DEFAULT CURRENT_DATE,
+	"ce_app_id" INT REFERENCES "ce_app");
+
 CREATE TABLE "budget_wording" (
   "id" SERIAL PRIMARY KEY,
   "question_wording" VARCHAR(120) NOT NULL
@@ -141,6 +171,32 @@ throughout Minnesota and Wisconsin, believing there’s no greater investment th
 ('Mission','To partner with community organizations and educational institutions in Minnesota and Wisconsin to empower individuals to achieve success through housing, health, education, and mentoring programs.', 2),
 ('Funding', 'A portion of every closed sale from RE/MAX Results and Results Title is donated to the foundation. Funding is also provided via Results Foundation events including the annual golf tournament, Rock the Foundation, as well as donations from generous individuals and community partners.', 3);
 
+
+INSERT INTO "ce_question"("ce_question_text")
+VALUES
+('Organization or Event Name'),
+('Organization or event information'),
+('Description of request'),
+('Requested amount'),
+('How does this request support the community?'),
+('Request timeline, when is the funding needed?');
+
+INSERT INTO "user" ("username", "password", "phone", "contact_name")
+VALUES
+('lara_the_realtor@remaxresults.net', 'password1234', '651-867-5309', 'Lara T. Realtor');
+
+INSERT INTO "ce_app" ("user_id")
+VALUES
+(10);
+
+INSERT INTO "ce_app_question"("ce_app_id", "ce_question_id", "ce_answer_text")
+VALUES
+(1, 1, 'Helping Hands of MN'),
+(1, 2, 'Feeding the sick and homebound hot and from scratch meals'),
+(1, 3, 'We will pay for the supplies needed to make 200 from scratch meals for homebound hospice patients'),
+(1, 4, 'We are requesting $500'),
+(1, 5, 'This supports the community by feeding and lifting the spirits of those unseen by many, it will also get us points with the big guy upstairs because hey helping the sick yo'),
+(1, 6, 'We would like the requested amount in May, as that is when the charity typically sees its lowest donations but highest need');
+
 INSERT INTO "budget_wording" ("question_wording")
-VALUES ('Budget')
-;
+VALUES ('Budget');
