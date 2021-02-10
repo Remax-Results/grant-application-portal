@@ -1,26 +1,26 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Container} from 'react-bootstrap';
 
 export default function GreetingManagement() {
     const dispatch = useDispatch();
           
             // Reducer for all questions.
-            const allQuestion = useSelector(state => state.allQuestion);
+            const allHeaders = useSelector(state => state.allHeaders);
+            const allMessages = useSelector(state => state.allMessages);
           
             // Fetch the previous grant windows to populate the table.
             useEffect(() => {
-              dispatch({type: 'FETCH_ALL_QUESTIONS'})
+              dispatch({type: 'FETCH_ALL_GREETINGS'})
             }, [dispatch])
           
     return (
-              <div className="question-manager">
-                <h2>Question Manager</h2>
-                <Container>
-                  <ListGroup variant="flush">
-                    {allQuestion.length > 0 && allQuestion.map(question => 
-                      (<Question key={question.id} question={question}/>))}
-                  </ListGroup>
-                </Container>
-                <AddQuestionForm />
-              </div>
+        <Container>
+            <h2>Greeting Manager</h2>
+            <Container>
+                {JSON.stringify(allHeaders, allMessages)}
+            </Container>
+           
+       </Container>
     )
 }
