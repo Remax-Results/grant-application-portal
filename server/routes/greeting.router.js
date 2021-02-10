@@ -7,7 +7,8 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 router.get('/active', rejectUnauthenticated, (req,res) => {
     const sqlText = `SELECT gh.render_position, gh.header, gm.message FROM greeting_headers AS gh
                 JOIN greeting_messages AS gm ON gh.render_position=gm.render_position
-                WHERE gh.render_position > 0;`
+                WHERE gh.render_position > 0
+                ORDER BY gh.render_position;`
     pool.query(sqlText)
     .then((result => {
         res.send(result.rows);
@@ -38,5 +39,9 @@ router.get('/message', rejectUnauthenticated, (req,res) => {
         console.log('Error retrieving all messages from the DB... ----->', error);
       });
 });
+
+router.put('/', rejectUnauthenticated, (req, res) => {
+  const sqlText = `UPDATE `
+})
 
 module.exports = router;
