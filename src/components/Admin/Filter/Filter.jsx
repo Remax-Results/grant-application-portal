@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {Container, Row, Dropdown, Button} from 'react-bootstrap';
+import {Container, Row, Dropdown, Button, InputGroup, Form, FormControl} from 'react-bootstrap';
 
 
 export default function Filter () {
@@ -21,12 +21,18 @@ export default function Filter () {
                 <Dropdown.Menu>
                     <Dropdown.Item onSelect={()=>{setColumn(1); setFilterValue('none')}}>Area of Focus</Dropdown.Item>
                     <Dropdown.Item onSelect={()=>{setColumn(2); setFilterValue('none')}}>Status</Dropdown.Item>
+                    <Dropdown.Item onSelect={()=>{setColumn(3); setFilterValue('none')}}>Budget</Dropdown.Item>
+                    {/* <Dropdown.Item onSelect={()=>{setColumn(4); setFilterValue('none')}}>Dates</Dropdown.Item> */}
+
                 </Dropdown.Menu>
             </Dropdown>
             {column === 0 && <p>Filtering Column: none</p>}
             {column === 1 && <p>Filtering Column: Area of Focus</p>}
             {column === 2 && <p>Filtering Column: Status</p>}
-            <Dropdown style={{margin:"10px"}}>
+            {column === 3 && <p>Filtering Column: Budget</p>}
+            {column < 3 ?
+                <>
+                <Dropdown style={{margin:"10px"}}>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                     Filter By
                 </Dropdown.Toggle>
@@ -57,7 +63,41 @@ export default function Filter () {
                     : <Dropdown.Menu>Select Column First</Dropdown.Menu>
                 }
                 </Dropdown>
-            <p>Filtering by: {filterValue}</p>
+                <p>Filtering by: {filterValue}</p>
+                </>
+            : column === 3 ? 
+                <Form inline>
+                    <Form.Label>From</Form.Label> 
+                    <InputGroup>
+                        <InputGroup.Prepend>
+                            <InputGroup.Text>$</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl required></FormControl>
+                    </InputGroup>
+                    <Form.Label>To</Form.Label> 
+                    <InputGroup>
+                        <InputGroup.Prepend>
+                            <InputGroup.Text>$</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl required></FormControl>
+                    </InputGroup>
+                    <Button type="submit">Filter</Button>
+                </Form>
+            :
+            <Form inline>
+            <Form.Label>From</Form.Label> 
+            <InputGroup>
+                
+                <FormControl required></FormControl>
+            </InputGroup>
+            <Form.Label>To</Form.Label> 
+            <InputGroup>
+                <FormControl required></FormControl>
+            </InputGroup>
+            <Button type="submit">Filter</Button>
+        </Form>
+            }
+            
             <Button style={{marginLeft:'10px'}} variant="danger" size="sm" 
                     onClick={()=>{
                         dispatch({type:'FETCH_APP_TABLE_DATA'});
