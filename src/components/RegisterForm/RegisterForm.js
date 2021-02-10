@@ -38,7 +38,7 @@ export default function RegisterForm() {
 
 
     return (
-     <Container style={{backgroundColor: 'white', margin: 'auto'}}>
+     <Container style={{backgroundColor: 'aliceblue', margin: 'auto'}}>
       <Form className="register-form" onSubmit={event => {registerUser(event)}}>
         <h2>Register Organization</h2>
           {registrationMessage && (

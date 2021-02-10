@@ -13,7 +13,7 @@ export default function GreetingManagement() {
     return (
 
         <Container style={{textAlign:'center'}}>
-                <h2>Set Landing Page Information</h2>
+                <h2>Set Welcome Page Messages</h2>
             <Container style={{backgroundColor:'white'}}>
                 {greeting.map((g)=> (<DisplayList g={g}/>))}
             </Container>
