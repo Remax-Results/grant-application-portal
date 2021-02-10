@@ -53,7 +53,7 @@ router.post('/register', (req, res, next) => {
 });
 
 // Handles POST request with new user data for community engagement registration
-router.post('/ce-register', (req, res, next) => {
+router.post('/ce/register', (req, res, next) => {
   // validate email on client AND in post route so postman can't get around verification
   if (validateEmail(req.body.username)){
     const username = req.body.username;

@@ -1,3 +1,4 @@
+
 -- If you need to restart the database, this drop statement will drop everything in the correct order. 
 -- DROP TABLE budget_wording, greeting, app_question, ce_app_question, question, ce_question, app, ce_notes, notes, ce_app, app, grant_window, focus_area, review_status, "user";
 
@@ -13,6 +14,7 @@ CREATE TABLE "user" (
   "contact_name" VARCHAR (150),
   "admin" boolean DEFAULT false,
   "remax_employee" boolean DEFAULT false
+
 );
 
 CREATE TABLE "grant_window" (
@@ -29,7 +31,8 @@ CREATE TABLE "review_status" (
 
 CREATE TABLE "focus_area" (
   "id" SERIAL PRIMARY KEY,
-  "focus" VARCHAR (50)
+  "focus" VARCHAR (50),
+  "active" BOOLEAN DEFAULT true
 );
 
 CREATE TABLE "app" (
@@ -64,7 +67,7 @@ CREATE TABLE "notes" (
   "app_id" int REFERENCES "app"
 );
 
-CREATE TABLE greeting (
+CREATE TABLE "greeting" (
 	"id" SERIAL PRIMARY KEY,
 	"header" VARCHAR(100),
 	"message" VARCHAR(1000),
@@ -77,6 +80,7 @@ CREATE TABLE "ce_app" (
 	"ce_focus_area" int REFERENCES "focus_area" DEFAULT 5,
 	"user_id" int REFERENCES "user",
 	"ce_review_date" date DEFAULT null,
+	"budget" INT,
 	"review_status_id" int REFERENCES "review_status" DEFAULT 2
 );
 
@@ -178,26 +182,24 @@ VALUES
 ('Organization or Event Name'),
 ('Organization or event information'),
 ('Description of request'),
-('Requested amount'),
 ('How does this request support the community?'),
 ('Request timeline, when is the funding needed?');
 
 INSERT INTO "user" ("username", "password", "phone", "contact_name")
 VALUES
-('lara_the_realtor@remaxresults.net', '$2a$10$/1jeV.fNN.HAO0vxw4AaiOVRRQjqsZv.T/XXzMr2F1iX8OG7fqjX2', '651-867-5309', 'Lara T. Realtor');
+('lara_the_realtor@remaxresults.net', '$2a$10$3iBnDAz5DQ.qZjJrzIHUbe3OGJhQY/Zhgh8JSxdX27fOZWF78H17.', '651-867-5309', 'Lara T. Realtor');
 
-INSERT INTO "ce_app" ("user_id")
+INSERT INTO "ce_app" ("user_id", "budget")
 VALUES
-(5);
+(5, 2500);
 
 INSERT INTO "ce_app_question"("ce_app_id", "ce_question_id", "ce_answer_text")
 VALUES
 (1, 1, 'Helping Hands of MN'),
 (1, 2, 'Feeding the sick and homebound hot and from scratch meals'),
 (1, 3, 'We will pay for the supplies needed to make 200 from scratch meals for homebound hospice patients'),
-(1, 4, 'We are requesting $500'),
-(1, 5, 'This supports the community by feeding and lifting the spirits of those unseen by many, it will also get us points with the big guy upstairs because hey helping the sick yo'),
-(1, 6, 'We would like the requested amount in May, as that is when the charity typically sees its lowest donations but highest need');
+(1, 4, 'This supports the community by feeding and lifting the spirits of those unseen by many, it will also get us points with the big guy upstairs because hey helping the sick yo'),
+(1, 5, 'We would like the requested amount in May, as that is when the charity typically sees its lowest donations but highest need');
 
 INSERT INTO "budget_wording" ("question_wording")
 VALUES ('Budget');

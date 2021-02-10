@@ -7,10 +7,31 @@ function* fetchFocusArea(action){
   yield put({ type: 'SET_FOCUS_AREA', payload: response.data });
 }
 
+function* changeFocusStatus(action) {
+  const { focusId, newStatus } = action.payload;
+  yield axios.put(`/api/focus/status/${focusId}`, {newStatus: newStatus});
+  yield put({ type:'FETCH_FOCUS_AREA' });
+
+}
+
+function* changeFocusText(action) {
+  const { focusId, newText } = action.payload;
+  yield axios.put(`/api/focus/text/${focusId}`, {newText: newText});
+  yield put({ type:'FETCH_FOCUS_AREA' });
+}
+
+function* postNewFocusArea(action) {
+  yield axios.post(`/api/focus`, action.payload);
+  yield put({ type:'FETCH_FOCUS_AREA' });
+}
+
 
 //--------------------WATCHER SAGA---------------------------//
 function* focusAreaSaga() {
   yield takeLatest('FETCH_FOCUS_AREA', fetchFocusArea);
+  yield takeLatest('CHANGE_FOCUS_STATUS', changeFocusStatus);
+  yield takeLatest('CHANGE_FOCUS_TEXT', changeFocusText);
+  yield takeLatest('POST_NEW_FOCUS_AREA', postNewFocusArea)
 }
 
 export default focusAreaSaga;

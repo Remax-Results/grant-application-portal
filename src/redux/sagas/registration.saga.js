@@ -28,7 +28,7 @@ function* registerCeUser(action) {
     yield put({ type: 'CLEAR_REGISTRATION_ERROR' });
 
     // passes the username and password from the payload to the server
-    yield axios.post('/api/user/ce-register', action.payload);
+    yield axios.post('/api/user/ce/register', action.payload);
 
     // automatically log a user in after registration
     yield put({ type: 'LOGIN', payload: action.payload });

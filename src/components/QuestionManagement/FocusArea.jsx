@@ -1,17 +1,25 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { ListGroup, Row, Col, FormControl, InputGroup, Button } from 'react-bootstrap';
+import { ListGroup, Row, Col, Form, FormControl, InputGroup, Button } from 'react-bootstrap';
 
-export default function BudgetWording(props) {
+export default function FocusArea(props) {
 
     const dispatch = useDispatch();
-    const {budgetWording} = props;
+    const { focusArea } = props;
     const [editMode, setEditMode] = useState(false);
-    const [updatedWording, setUpdatedWording] = useState(budgetWording.question_wording);
+    const [focusAreaText, setFocusAreaText] = useState(focusArea.focus);
+
+    const changeFocusStatus = (event) => {
+        dispatch({type: 'CHANGE_FOCUS_STATUS', payload: {
+            focusId: focusArea.id,
+            newStatus: event.target.value
+        }})
+    }
 
     const submitEdit = (event) => {
-        dispatch({type: 'CHANGE_BUDGET_WORDING', payload: {
-            updatedWording: updatedWording
+        dispatch({type: 'CHANGE_FOCUS_TEXT', payload: {
+            focusId: focusArea.id,
+            newText: focusAreaText
         }})
         setEditMode(!editMode)
     }
@@ -26,8 +34,8 @@ export default function BudgetWording(props) {
                         <InputGroup className="mb-3">
                             <FormControl
                                 type="text" 
-                                value={updatedWording}
-                                onChange={(event)=>{setUpdatedWording(event.target.value)}} 
+                                value={focusAreaText}
+                                onChange={(event)=>{setFocusAreaText(event.target.value)}} 
                             />
                             <InputGroup.Append>
                                 <Button 
@@ -41,7 +49,7 @@ export default function BudgetWording(props) {
                         </>
                         :
                         <>
-                            {budgetWording.question_wording}
+                            {focusArea.focus}
                         </>
                         }
                     </Col>
@@ -55,6 +63,19 @@ export default function BudgetWording(props) {
                         </Button>
                     </Col>                    
                     <Col xs={2}>
+                        <Form>
+                            <Form.Group style={{marginBottom: 0}}>
+                            <Form.Control 
+                                size="sm" 
+                                as="select"
+                                defaultValue={focusArea.active}
+                                onChange = {(event)=>{changeFocusStatus(event)}}
+                            >
+                                <option value={true}>Active</option>
+                                <option value={false}>Disabled</option>
+                            </Form.Control>
+                            </Form.Group>
+                        </Form>
                     </Col>
 
                 </Row>
