@@ -71,6 +71,37 @@ CREATE TABLE greeting (
 	"render_position" INT 
 );
 
+CREATE TABLE "ce_app" (
+	"id" SERIAL PRIMARY KEY,
+	"ce_date_received" date NOT NULL DEFAULT CURRENT_DATE,
+	"ce_focus_area" int REFERENCES "focus_area",
+	"user_id" int REFERENCES "user",
+	"ce_review_date" date DEFAULT null,
+	"review_status_id" int REFERENCES "review_status" DEFAULT 2
+);
+
+CREATE TABLE "ce_question" (
+	"id" SERIAL PRIMARY KEY,
+	"ce_question_text" varchar,
+	"active" boolean DEFAULT true,
+	"created" date DEFAULT CURRENT_DATE
+);
+
+CREATE TABLE "ce_app_question"(
+	"id" SERIAL PRIMARY KEY,
+	"ce_app_id" INT REFERENCES "ce_app",
+	"ce_question_id" INT REFERENCES "ce_question",
+	"ce_answer_text" varchar,
+	"ce_review_score" int
+);
+
+CREATE TABLE "ce_notes" (
+	"id" SERIAL PRIMARY KEY,
+	"ce_review_note" VARCHAR (750),
+	"date_added" date NOT NULL DEFAULT CURRENT_DATE,
+	"ce_app_id" INT REFERENCES "ce_app"
+);
+
 ----------- TEST DATA INSERTS -----------------------------------
 
 INSERT INTO "user"("username", "password", "org_name", "background", "phone", "contact_name", "admin") 
