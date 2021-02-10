@@ -68,7 +68,7 @@ router.get('/focus/:id', rejectUnauthenticatedAdmin, (req, res) => {
                       JOIN app AS a ON u.id=a.user_id
                       JOIN focus_area AS f ON a.focus_area_id=f.id
                       JOIN review_status AS r ON r.id=a.review_status_id
-                      WHERE a.budget >= $1 AND a.budget <= $2;`;
+                      WHERE a.date_received >= $1 AND a.date_received <= $2;`;
       pool.query(sqlText, [start, end])
       .then(result => {res.send(result.rows)})
       .catch(error=> console.log('Error retrieving app table data from server', error))
