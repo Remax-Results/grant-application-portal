@@ -13,12 +13,9 @@ function GrantApplicationForm(props) {
   // hooks
   const questions = useSelector((store) => store.activeQuestion);
   const budgetWording = useSelector((store) => store.budgetWording);
-  const focusArea = useSelector((store) => store.focusArea);
   const user = useSelector((store) => store.user);
-  const grantWindow = useSelector((store) => store.currentWindow);
   const dispatch = useDispatch();
   const [values, setValues] = useState({});
-  const [focusAreaId, setFocusAreaId] = useState(0);
   const [budget, setBudget] = useState(0);
   
   const onSubmit = (e) => {
@@ -39,8 +36,6 @@ function GrantApplicationForm(props) {
               payload: { 
                   values: values, 
                   user_id: user.id, 
-                  grant_window_id: grantWindow.id, 
-                  focus_area_id: focusAreaId,
                   budget: budget
                 } });
               swal("Great! Your application has been submitted.", {
@@ -70,7 +65,7 @@ function GrantApplicationForm(props) {
   return (
     <>
         <Container>
-          <h2 className="headerRow">Grant Application Form</h2>
+          <h2 className="headerRow">Community Engagement Grant Application Form</h2>
         
         <Container className="formContainer">
         <Row>

@@ -15,7 +15,7 @@ function* fetchCeQuestions(){
 //--------------------WATCHER SAGA---------------------------//
 function* uberSaga() {
   yield takeLatest('FETCH_FOCUS_QUESTION', fetchFocusAreaQuestion);
-  yield takeLatest('FETCH_CE_QUESTIONS', fetchCeQuestions);
+  yield takeLatest('FETCH_CE_QUESTION', fetchCeQuestions);
 }
 
 export default uberSaga;

@@ -1,9 +1,15 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-
+// Fetches active questions for the grant application
 function* fetchActiveQuestions() { 
     const response = yield axios.get(`/api/question/active`);
+    yield put({ type:'SET_ACTIVE_QUESTIONS', payload: response.data });
+}
+
+// Fetches active questions for the CE grant application.
+function* fetchActiveCeQuestions() { 
+    const response = yield axios.get(`/api/question/ce/active`);
     yield put({ type:'SET_ACTIVE_QUESTIONS', payload: response.data });
 }
 
@@ -32,9 +38,6 @@ function* changeQuestionText(action) {
     yield put({ type:'FETCH_ALL_QUESTIONS' });
 }
 
-function* deleteQuestion(action) {
-    yield axios.delete(`/api/question/${action.payload}`);
-}
 
 function* fetchBudgetWording() { 
     const response = yield axios.get(`/api/budget-wording`);
@@ -57,12 +60,12 @@ function* fetchQandA(action) {
 function* grantWindowSaga() {
     yield takeLatest('FETCH_ALL_QUESTIONS', fetchAllQuestions);
     yield takeLatest('FETCH_ACTIVE_QUESTIONS', fetchActiveQuestions);
+    yield takeLatest('FETCH_ACTIVE_CE_QUESTIONS', fetchActiveCeQuestions);
     yield takeLatest('FETCH_BUDGET_WORDING', fetchBudgetWording);
     yield takeLatest('CHANGE_BUDGET_WORDING', changeBudgetWording);
     yield takeLatest('POST_NEW_QUESTION', postNewQuestion);
     yield takeLatest('CHANGE_QUESTION_STATUS', changeQuestionStatus);
     yield takeLatest('CHANGE_QUESTION_TEXT', changeQuestionText);
-    yield takeLatest('DELETE_QUESTION', deleteQuestion);
     yield takeLatest('FETCH_Q_AND_A', fetchQandA);
 }
 

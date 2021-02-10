@@ -10,7 +10,7 @@ function GrantApplicationFormInput ({ question, questionChanged, value }) {
     return (
         <>
             <Form.Group key={question.id}>
-                <Form.Label htmlFor={question.id}>{question.question_text}</Form.Label>
+                <Form.Label htmlFor={question.id}>{question.ce_question_text}</Form.Label>
                 <Form.Control 
                     name={question.id} 
                     value={value} 
