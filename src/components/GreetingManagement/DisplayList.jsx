@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {Row, Col, Form, FormControl, FormGroup, Button} from 'react-bootstrap';
+import swal from 'sweetalert';
+
 
 export default function DisplayList({g}) {
     const dispatch = useDispatch();
@@ -9,7 +11,23 @@ export default function DisplayList({g}) {
     const [message, setMessage] = useState(g.message);
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch({type:'UPDATE_GREETING', payload:{header:header, message: message, render_position:g.render_position}});
+        swal({
+            title: "Change Greeting",
+            text: "You are about submit changes to this greeting. Once submitted, changes cannot be cancelled. OK?",
+            icon: "info",
+            buttons: true,
+            dangerMode: false,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              dispatch({type:'UPDATE_GREETING', payload:{header:header, message: message, render_position:g.render_position}});
+              swal("Greeting updated!", {
+                icon: "success",
+              });
+            } else {
+              swal("Change to greeting was not committed");
+            }
+          });
     }
 
     return(
@@ -36,7 +54,10 @@ export default function DisplayList({g}) {
                                     onChange={((event)=>setMessage(event.target.value))}
                                 />
                         </Col>
-                        <Col><Button type="submit" variant="success">Submit Edits</Button><Button variant="danger">Cancel Changes</Button></Col>
+                        <Col>
+                            <Button type="submit" variant="success">Submit</Button>
+                            <Button variant="danger">Cancel</Button>
+                        </Col>
                     </FormGroup>
                 </Form>
             </div>

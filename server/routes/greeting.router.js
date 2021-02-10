@@ -18,30 +18,28 @@ router.get('/active', rejectUnauthenticated, (req,res) => {
     });
 });
 
-router.get('/header', rejectUnauthenticated, (req,res) => {
-    const sqlText = `SELECT * FROM greeting_headers`;
+router.get('/', rejectUnauthenticated, (req,res) => {
+    const sqlText = `SELECT * FROM greeting ORDER BY render_position;`;
     pool.query(sqlText)
     .then((result => {
         res.send(result.rows);
       }))
       .catch((error) => {
-        console.log('Error retrieving all headers from the DB... ----->', error);
+        console.log('Error retrieving greetings from the DB... ----->', error);
     });
 });
 
-router.get('/message', rejectUnauthenticated, (req,res) => {
-    const sqlText = `SELECT * FROM greeting_messages`;
-    pool.query(sqlText)
-    .then((result => {
-        res.send(result.rows);
-      }))
-      .catch((error) => {
-        console.log('Error retrieving all messages from the DB... ----->', error);
-      });
-});
 
 router.put('/', rejectUnauthenticated, (req, res) => {
-  const sqlText = `UPDATE `
+  const {header, message, render_position} = req.body;
+  const sqlText = `UPDATE greeting SET header=$1, message=$2 WHERE render_position=$3;`;
+  pool.query(sqlText, [header, message, render_position])
+    .then((result => {
+        res.sendStatus(200);
+      }))
+      .catch((error) => {
+        console.log('Error udpating greetings from the server... ----->', error);
+    });
 })
 
 module.exports = router;

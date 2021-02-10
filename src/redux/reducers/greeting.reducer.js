@@ -1,5 +1,5 @@
-const allHeaders = (state = [], action) => {
-    if(action.type === 'SET_ALL_HEADERS') {
+const greeting = (state = [], action) => {
+    if(action.type === 'SET_GREETING') {
         return action.payload;
     }
         return state;
@@ -7,4 +7,4 @@ const allHeaders = (state = [], action) => {
   
   // user will be on the redux state at:
   // state.user
-  export default allHeaders;
+  export default greeting;
