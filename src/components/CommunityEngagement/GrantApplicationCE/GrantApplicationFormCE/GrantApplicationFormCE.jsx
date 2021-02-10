@@ -53,7 +53,7 @@ function GrantApplicationForm(props) {
   }
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_FOCUS_QUESTION' });
+    dispatch({ type: 'FETCH_CE_QUESTION' });
     }, [dispatch]
   );
 
@@ -78,7 +78,7 @@ function GrantApplicationForm(props) {
           <Form>
               {
                 questions.map((question) => (
-                  <GrantApplicationFormInput 
+                  <GrantApplicationFormInputCE 
                     key={question.id}
                     questionChanged={questionChanged}
                     value={values[question.id]}
@@ -91,16 +91,7 @@ function GrantApplicationForm(props) {
                 name="budget"
                 type="number"
                 onChange={(e) => setBudget(e.target.value)}
-              />
-              <p>Please select your area of focus from the list.</p>
-              <Form.Control as="select" onChange={(e) => setFocusAreaId(e.target.value)}>
-                <option>Area of Focus</option>
-                  {
-                    focusArea.map((area) => (
-                      <option key={area.id} value={area.id}>{area.focus}</option>
-                  ))
-                  }
-              </Form.Control>
+              />          
               <br />
               <Button onClick={onSubmit}>Submit Grant Application</Button>
           </Form>

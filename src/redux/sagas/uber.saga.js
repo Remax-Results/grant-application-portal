@@ -7,9 +7,15 @@ function* fetchFocusAreaQuestion(){
   yield put({ type: 'FETCH_BUDGET_WORDING'});
 }
 
+function* fetchCeQuestions(){
+  yield put({ type: 'FETCH_ACTIVE_CE_QUESTIONS' });
+  yield put({ type: 'FETCH_BUDGET_WORDING'});
+}
+
 //--------------------WATCHER SAGA---------------------------//
 function* uberSaga() {
   yield takeLatest('FETCH_FOCUS_QUESTION', fetchFocusAreaQuestion);
+  yield takeLatest('FETCH_CE_QUESTIONS', fetchCeQuestions);
 }
 
 export default uberSaga;
