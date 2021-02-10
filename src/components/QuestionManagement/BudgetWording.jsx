@@ -1,25 +1,17 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ListGroup, Row, Col, Form, FormControl, InputGroup, Button } from 'react-bootstrap';
 
-export default function Question(props) {
+export default function BudgetWording(props) {
 
     const dispatch = useDispatch();
-    const { question } = props;
+    const {budgetWording} = props;
     const [editMode, setEditMode] = useState(false);
-    const [questionText, setQuestionText] = useState(question.question_text);
-
-    const changeQuestionStatus = (event) => {
-        dispatch({type: 'CHANGE_QUESTION_STATUS', payload: {
-            questionId: question.id,
-            newStatus: event.target.value
-        }})
-    }
+    const [updatedWording, setUpdatedWording] = useState(budgetWording.question_wording);
 
     const submitEdit = (event) => {
-        dispatch({type: 'CHANGE_QUESTION_TEXT', payload: {
-            questionId: question.id,
-            newText: questionText
+        dispatch({type: 'CHANGE_BUDGET_WORDING', payload: {
+            updatedWording: updatedWording
         }})
         setEditMode(!editMode)
     }
@@ -34,8 +26,8 @@ export default function Question(props) {
                         <InputGroup className="mb-3">
                             <FormControl
                                 type="text" 
-                                value={questionText}
-                                onChange={(event)=>{setQuestionText(event.target.value)}} 
+                                value={updatedWording}
+                                onChange={(event)=>{setUpdatedWording(event.target.value)}} 
                             />
                             <InputGroup.Append>
                                 <Button 
@@ -49,7 +41,7 @@ export default function Question(props) {
                         </>
                         :
                         <>
-                            {question.question_text}
+                            {budgetWording.question_wording}
                         </>
                         }
                     </Col>
@@ -63,19 +55,6 @@ export default function Question(props) {
                         </Button>
                     </Col>                    
                     <Col xs={2}>
-                        <Form>
-                            <Form.Group style={{marginBottom: 0}}>
-                            <Form.Control 
-                                size="sm" 
-                                as="select"
-                                defaultValue={question.active}
-                                onChange = {(event)=>{changeQuestionStatus(event)}}
-                            >
-                                <option value={true}>Active</option>
-                                <option value={false}>Disabled</option>
-                            </Form.Control>
-                            </Form.Group>
-                        </Form>
                     </Col>
 
                 </Row>
