@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
@@ -8,6 +8,9 @@ import Icon04 from "../../logos/Icons-04.png";
 
 export default function Nav() {
   const user = useSelector(state => state.user);
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   let loginLinkData = {
     path: '/login',
     text: 'Login / Register',
@@ -22,10 +25,13 @@ export default function Nav() {
   }
 
   return (
+    <>
+    {currentPath.startsWith('/report')  ? '' : 
     <div className="nav">
       <Link to="/home">
         <img className="rf-logo" src={Icon04} alt="RF Logo"></img>
       </Link>
+      
       <div className="nav-right">
         <Link className="nav-link" to={loginLinkData.path}>
           {/* Show this link if they are logged in or not,
@@ -44,6 +50,7 @@ export default function Nav() {
 
             {user.admin ?
               <>
+              
                 <Link className="nav-link" to="/grantwindow">
                   Grant Window Settings
                 </Link>
@@ -61,6 +68,8 @@ export default function Nav() {
         )}
       </div>
     </div>
+    }
+    </>
   );
 };
 
