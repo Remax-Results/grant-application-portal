@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-//import './RegisterPage.css';
+import './RegisterPage.css';
 import {Card, Container, Row, Col, Button, Image} from 'react-bootstrap';
 import veggies from '../../images/dan-gold-4_jhDO54BYg-unsplash.jpg'
 
@@ -15,10 +15,10 @@ export default function RegisterPage() {
       <Container>
         <Row>
           <Card>
-            <Card.Header style={{backgroundColor:'#1C479A', color: 'white'}}>
+            <Card.Header className="register-header">
               <h2>Welcome to the Results Foundation Application Portal!</h2>
             </Card.Header>
-            <Card.Body>
+            <Card.Body className="register-sub-header">
               <h4>Please take a moment to register your organization with us before moving on to the grant application</h4>
             </Card.Body>
           </Card>
@@ -28,7 +28,7 @@ export default function RegisterPage() {
         </Row>
           
 
-          <center>
+          <center style={{paddingTop: '10px'}}>
             <p>Already registered?</p>
             <Button
               variant= 'primary'
