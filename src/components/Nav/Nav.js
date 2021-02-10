@@ -57,6 +57,9 @@ export default function Nav() {
                 <Link className="nav-link" to="/questionmanagement">
                   Question Management
                 </Link>
+                <Link className="nav-link" to="/greetingmanagement">
+                  Edit Welcome Page
+                </Link>
               </>
               :
               <Link className="nav-link" to="/grantapplication">

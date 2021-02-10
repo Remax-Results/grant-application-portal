@@ -40,6 +40,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => { // GET all active ques
 }
 });
 
+
 // Toggles a question between active and inactive.
 router.put('/question-status/:id', rejectUnauthenticated, (req, res, next) => {
   if (req.user.admin){
@@ -91,5 +92,8 @@ router.post('/', rejectUnauthenticated, (req, res, next) => {
       });
   } 
 });
+
+
+
 
 module.exports = router;

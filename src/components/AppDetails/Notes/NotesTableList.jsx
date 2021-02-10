@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Modal, InputGroup, FormControl} from 'react-bootstrap';
 import { MdEdit } from "react-icons/md";
 import { RiDeleteBin2Line } from "react-icons/ri";
+import moment from 'moment';
 
 
 
@@ -29,7 +30,7 @@ export default function NotesTableList(props) {
                 icon: "success",
               });
             } else {
-              swal("Your note reamins!");
+              swal("Your note remains!");
             }
           });
     };
@@ -47,7 +48,7 @@ export default function NotesTableList(props) {
     <>
      <tr key={note.id}>
          <td>{note.review_note}</td>
-         <td>{note.date_added}</td>
+         <td>{moment(note.date_added).format('LL')}</td>
          <td><Button onClick={(event)=>{handleEdit()}}>View/Edit <MdEdit/></Button></td>
          <td><Button onClick={(event)=>{handleDelete()}}>Delete <RiDeleteBin2Line/></Button></td>
      </tr>

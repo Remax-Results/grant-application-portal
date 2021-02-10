@@ -1,6 +1,6 @@
 
 -- If you need to restart the database, this drop statement will drop everything in the correct order. 
---DROP TABLE greeting, app_question, question, app, notes, app, grant_window, focus_area, review_status, "user";
+--DROP TABLE budget_wording, greeting, app_question, question, app, notes, app, grant_window, focus_area, review_status, "user";
 
 --------------------- CREATE TABLES ------------------
 
@@ -99,7 +99,11 @@ CREATE TABLE "ce_notes" (
 	"id" SERIAL PRIMARY KEY,
 	"ce_review_note" VARCHAR (750),
 	"date_added" date NOT NULL DEFAULT CURRENT_DATE,
-	"ce_app_id" INT REFERENCES "ce_app"
+	"ce_app_id" INT REFERENCES "ce_app");
+
+CREATE TABLE "budget_wording" (
+  "id" SERIAL PRIMARY KEY,
+  "question_wording" VARCHAR(120) NOT NULL
 );
 
 ----------- TEST DATA INSERTS -----------------------------------
@@ -179,11 +183,11 @@ VALUES
 
 INSERT INTO "user" ("username", "password", "phone", "contact_name")
 VALUES
-('lara_the_realtor@remaxresults.net', 'password1234', '651-867-5309', 'Lara T. Realtor')
+('lara_the_realtor@remaxresults.net', 'password1234', '651-867-5309', 'Lara T. Realtor');
 
 INSERT INTO "ce_app" ("user_id")
 VALUES
-(10)
+(10);
 
 INSERT INTO "ce_app_question"("ce_app_id", "ce_question_id", "ce_answer_text")
 VALUES
@@ -192,4 +196,7 @@ VALUES
 (1, 3, 'We will pay for the supplies needed to make 200 from scratch meals for homebound hospice patients'),
 (1, 4, 'We are requesting $500'),
 (1, 5, 'This supports the community by feeding and lifting the spirits of those unseen by many, it will also get us points with the big guy upstairs because hey helping the sick yo'),
-(1, 6, 'We would like the requested amount in May, as that is when the charity typically sees its lowest donations but highest need')
+(1, 6, 'We would like the requested amount in May, as that is when the charity typically sees its lowest donations but highest need');
+
+INSERT INTO "budget_wording" ("question_wording")
+VALUES ('Budget');

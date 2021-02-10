@@ -20,6 +20,8 @@ const questionRouter = require('./routes/question.router');
 const appCheckWindowRouter = require('./routes/appCheckWindow.router');
 const sortRouter= require('./routes/sort.router');
 const mailRouter = require('./routes/mail.router.js');
+const budgetWording = require('./routes/budgetWording.router.js');
+
 const greetingRouter = require('./routes/greeting.router.js');
 
 // Body parser middleware
@@ -46,6 +48,7 @@ app.use('/api/question', questionRouter);
 app.use('/api/app-check', appCheckWindowRouter);
 app.use('/api/sort', sortRouter);
 app.use('/api/mail', mailRouter);
+app.use('/api/budget-wording', budgetWording);
 app.use('/api/greeting', greetingRouter);
 // Serve static files
 app.use(express.static('build'));

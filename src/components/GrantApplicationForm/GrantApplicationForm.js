@@ -12,6 +12,7 @@ function GrantApplicationForm(props) {
 
   // hooks
   const questions = useSelector((store) => store.activeQuestion);
+  const budgetWording = useSelector((store) => store.budgetWording);
   const focusArea = useSelector((store) => store.focusArea);
   const user = useSelector((store) => store.user);
   const grantWindow = useSelector((store) => store.currentWindow);
@@ -85,7 +86,7 @@ function GrantApplicationForm(props) {
                     className="form" />
                 ))
               }
-              <Form.Label htmlFor="budget">Budget</Form.Label>
+              <Form.Label htmlFor="budget">{budgetWording.question_wording}</Form.Label>
               <Form.Control
                 name="budget"
                 type="number"
