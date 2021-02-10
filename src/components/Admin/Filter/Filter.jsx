@@ -5,8 +5,9 @@ import {Container, Row, Dropdown, Button} from 'react-bootstrap';
 
 export default function Filter () {
    const dispatch = useDispatch();
-   const [column, setColumn] = useState(0);
    const [filterValue, setFilterValue] = useState('none');
+
+   const [column, setColumn] = useState(0);
    const reviewStatus = useSelector(state=>state.reviewStatus);
    const focusArea = useSelector(state=>state.focusArea);
    return(
@@ -58,13 +59,13 @@ export default function Filter () {
                 </Dropdown>
             <p>Filtering by: {filterValue}</p>
             <Button style={{marginLeft:'10px'}} variant="danger" size="sm" 
-                onClick={()=>{
-                    dispatch({type:'FETCH_APP_TABLE_DATA'});
-                    setFilterValue('none');
-                    setColumn(0);
-                }}>
-                    Clear Filter
-            </Button>
+                    onClick={()=>{
+                        dispatch({type:'FETCH_APP_TABLE_DATA'});
+                        setFilterValue('none');
+                        setColumn(0);
+                    }}>
+                        Clear Filter
+                </Button>
         </Row>
     </Container>
     )
