@@ -102,7 +102,7 @@ function GrantApplicationForm(props) {
                   }
               </Form.Control>
               <br />
-              <Button variant="secondary" onClick={onSubmit}>Submit Grant Application</Button>
+              <Button onClick={onSubmit}>Submit Grant Application</Button>
           </Form>
         </Col>
         </Row>
