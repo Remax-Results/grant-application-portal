@@ -8,6 +8,10 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
+// This function was created by a stackoverflow user here: 
+//https://stackoverflow.com/questions/12175111/validate-accept-only-emails-from-a-specific-domain-name
+  
+// bless them
 const validateEmail = (email) => { 
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   if(re.test(email)){
