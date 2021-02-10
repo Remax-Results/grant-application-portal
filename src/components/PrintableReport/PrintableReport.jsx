@@ -15,7 +15,6 @@ const SubHeader = styled.p `
 export default function PrintableReport() {
     const {id} = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
     const notes = useSelector(state => state.notes);
     const {budget} = useSelector(state => state.budget);
     const {org_name, background, focus, phone, status, username, contact_name} = useSelector(state => state.detailsData);
@@ -49,7 +48,6 @@ export default function PrintableReport() {
             {qANDa.length > 0 && qANDa.map((qa) => <ScoreReport key={qa.id} qa={qa}/>)}
             <h3 style={{textAlign:'center'}}>Notes</h3>
             {notes.length > 0 && notes.map((n)=> <NotesReport n={n}/>)}
-            <Button onClick={()=>{history.push('/admin')}}>Back to Admin Main Page</Button>
         </Container>
         
         )
