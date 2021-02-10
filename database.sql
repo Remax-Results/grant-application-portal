@@ -1,6 +1,5 @@
-
 -- If you need to restart the database, this drop statement will drop everything in the correct order. 
---DROP TABLE budget_wording, greeting, app_question, question, app, notes, app, grant_window, focus_area, review_status, "user";
+-- DROP TABLE budget_wording, greeting, app_question, ce_app_question, question, ce_question, app, ce_notes, notes, ce_app, app, grant_window, focus_area, review_status, "user";
 
 --------------------- CREATE TABLES ------------------
 
@@ -12,7 +11,8 @@ CREATE TABLE "user" (
   "background" VARCHAR (1000),
   "phone" VARCHAR (25),
   "contact_name" VARCHAR (150),
-  "admin" boolean DEFAULT false
+  "admin" boolean DEFAULT false,
+  "remax_employee" boolean DEFAULT false
 );
 
 CREATE TABLE "grant_window" (
@@ -74,7 +74,7 @@ CREATE TABLE greeting (
 CREATE TABLE "ce_app" (
 	"id" SERIAL PRIMARY KEY,
 	"ce_date_received" date NOT NULL DEFAULT CURRENT_DATE,
-	"ce_focus_area" int REFERENCES "focus_area",
+	"ce_focus_area" int REFERENCES "focus_area" DEFAULT 5,
 	"user_id" int REFERENCES "user",
 	"ce_review_date" date DEFAULT null,
 	"review_status_id" int REFERENCES "review_status" DEFAULT 2
@@ -124,7 +124,8 @@ VALUES
 ('Education'), 
 ('Health'), 
 ('Mentorship'), 
-('Housing');
+('Housing'),
+('Community Engagement');
 
 INSERT INTO "review_status"("status") 
 VALUES
@@ -183,7 +184,7 @@ VALUES
 
 INSERT INTO "user" ("username", "password", "phone", "contact_name")
 VALUES
-('lara_the_realtor@remaxresults.net', 'password1234', '651-867-5309', 'Lara T. Realtor');
+('lara_the_realtor@remaxresults.net', '$2a$10$/1jeV.fNN.HAO0vxw4AaiOVRRQjqsZv.T/XXzMr2F1iX8OG7fqjX2', '651-867-5309', 'Lara T. Realtor');
 
 INSERT INTO "ce_app" ("user_id")
 VALUES
