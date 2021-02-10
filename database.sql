@@ -29,7 +29,8 @@ CREATE TABLE "review_status" (
 
 CREATE TABLE "focus_area" (
   "id" SERIAL PRIMARY KEY,
-  "focus" VARCHAR (50)
+  "focus" VARCHAR (50),
+  "active" BOOLEAN DEFAULT true
 );
 
 CREATE TABLE "app" (
@@ -64,7 +65,7 @@ CREATE TABLE "notes" (
   "app_id" int REFERENCES "app"
 );
 
-CREATE TABLE greeting (
+CREATE TABLE "greeting" (
 	"id" SERIAL PRIMARY KEY,
 	"header" VARCHAR(100),
 	"message" VARCHAR(1000),
