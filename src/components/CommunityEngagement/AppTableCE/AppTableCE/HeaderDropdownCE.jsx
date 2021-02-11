@@ -11,11 +11,11 @@ export default function HeaderDropdown({title, col}) {
         <th>
             <DropdownButton size="sm" title={title}>
                 <Dropdown.Item 
-                    onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: col, desc: false}})}>
+                    onSelect={()=>dispatch({type:'SORT_ADMIN_CE_TABLE', payload: {col: col, desc: false}})}>
                     {title==="Budget" ? <ImSortNumericAsc/> : <ImSortAlphaAsc />}
                 </Dropdown.Item>
                 <Dropdown.Item 
-                    onSelect={()=>dispatch({type:'SORT_ADMIN_TABLE', payload: {col: col, desc: true}})}>
+                    onSelect={()=>dispatch({type:'SORT_ADMIN_CE_TABLE', payload: {col: col, desc: true}})}>
                     {title ==="Budget" ? <ImSortNumbericDesc/> : <ImSortAlphaDesc />}
                 </Dropdown.Item>
             </DropdownButton>

@@ -27,6 +27,7 @@ router.get('/ce', rejectUnauthenticatedAdmin, (req, res) => {
                       JOIN ce_app AS a ON u.id=a.user_id
                       JOIN focus_area AS f ON a.focus_area_id=f.id
                       JOIN review_status AS r ON r.id=a.review_status_id
+                      ORDER BY a.date_received DESC
                       ;`;
     pool.query(sqlText)
     .then(result => {res.send(result.rows)})
