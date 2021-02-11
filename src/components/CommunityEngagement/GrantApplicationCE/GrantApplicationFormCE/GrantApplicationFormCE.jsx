@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import GrantApplicationFormInput from '../GrantApplicationFormInput/GrantApplicationFormInput';
+import GrantApplicationFormInputCE from '../GrantApplicationFormInputCE/GrantApplicationFormInputCE.jsx';
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import swal from 'sweetalert';
-import './GrantApplicationForm.css';
+import './GrantApplicationFormCE.css';
 
 
 
@@ -13,12 +13,8 @@ function GrantApplicationForm(props) {
   // hooks
   const questions = useSelector((store) => store.activeQuestion);
   const budgetWording = useSelector((store) => store.budgetWording);
-  const focusArea = useSelector((store) => store.focusArea);
-  const user = useSelector((store) => store.user);
-  const grantWindow = useSelector((store) => store.currentWindow);
   const dispatch = useDispatch();
   const [values, setValues] = useState({});
-  const [focusAreaId, setFocusAreaId] = useState(0);
   const [budget, setBudget] = useState(0);
   
   const onSubmit = (e) => {
@@ -35,12 +31,9 @@ function GrantApplicationForm(props) {
           })
           .then((willSubmit) => {
             if (willSubmit) {
-              dispatch({ type: 'POST_APPLICATION', 
+              dispatch({ type: 'POST_CE_APPLICATION', 
               payload: { 
                   values: values, 
-                  user_id: user.id, 
-                  grant_window_id: grantWindow.id, 
-                  focus_area_id: focusAreaId,
                   budget: budget
                 } });
               swal("Great! Your application has been submitted.", {
@@ -53,7 +46,7 @@ function GrantApplicationForm(props) {
   }
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_FOCUS_QUESTION' });
+    dispatch({ type: 'FETCH_CE_QUESTION' });
     }, [dispatch]
   );
 
@@ -70,7 +63,7 @@ function GrantApplicationForm(props) {
   return (
     <>
         <Container>
-          <h2 className="headerRow">Grant Application Form</h2>
+          <h2 className="headerRow">Community Engagement Grant Application Form</h2>
         
         <Container className="formContainer">
         <Row>
@@ -78,7 +71,7 @@ function GrantApplicationForm(props) {
           <Form>
               {
                 questions.map((question) => (
-                  <GrantApplicationFormInput 
+                  <GrantApplicationFormInputCE 
                     key={question.id}
                     questionChanged={questionChanged}
                     value={values[question.id]}
@@ -91,16 +84,7 @@ function GrantApplicationForm(props) {
                 name="budget"
                 type="number"
                 onChange={(e) => setBudget(e.target.value)}
-              />
-              <p>Please select your area of focus from the list.</p>
-              <Form.Control as="select" onChange={(e) => setFocusAreaId(e.target.value)}>
-                <option>Area of Focus</option>
-                  {
-                    focusArea.filter(focus=>focus.id!=5).map((area) => (
-                      <option key={area.id} value={area.id}>{area.focus}</option>
-                  ))
-                  }
-              </Form.Control>
+              />          
               <br />
               <Button onClick={onSubmit}>Submit Grant Application</Button>
           </Form>

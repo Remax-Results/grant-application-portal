@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ListGroup, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Question from './Question.jsx'
-import AddQuestionForm from './AddQuestionForm.jsx'
-import BudgetWording from './BudgetWording.jsx'
+import Question from './Question.jsx';
+import AddQuestionForm from './AddQuestionForm.jsx';
+import BudgetWording from './BudgetWording.jsx';
+import FocusArea from './FocusArea.jsx';
+import AddFocusAreaForm from './AddFocusAreaForm.jsx';
 import './QuestionManagement.css';
 
 
@@ -13,14 +15,16 @@ export default function QuestionManagement() {
 
   const dispatch = useDispatch();
 
-  // Reducer for all questions.
+  // Reducers for all questions.
   const allQuestion = useSelector(state => state.allQuestion);
   const budgetWording = useSelector(state => state.budgetWording);
+  const focusArea = useSelector(state => state.focusArea);
 
   // Fetch the previous grant windows to populate the table.
   useEffect(() => {
     dispatch({type: 'FETCH_ALL_QUESTIONS'})
     dispatch({type: 'FETCH_BUDGET_WORDING'})
+    dispatch({type: 'FETCH_FOCUS_AREA'})
   }, [dispatch])
 
   return (
@@ -36,8 +40,16 @@ export default function QuestionManagement() {
           {allQuestion.length > 0 && allQuestion.map(question => 
             (<Question key={question.id} question={question}/>))}
         </ListGroup>
-      </Container>
+        
       <AddQuestionForm />
+        <h2 style={{paddingBottom: '15px'}}>Focus Area Manager</h2>
+        <ListGroup variant="flush">
+            {focusArea.length > 0 && focusArea.filter(focus=>focus.id!=5).map(focus => (
+              <FocusArea key={focus.id} focusArea={focus} />
+              ))}
+        <AddFocusAreaForm />
+        </ListGroup>
+      </Container>
     </div>
   );
 }

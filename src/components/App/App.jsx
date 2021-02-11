@@ -13,7 +13,7 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AdminRoute from '../AdminRoute/AdminRoute';
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
+import UserPage from '../UserPage/UserPage.jsx';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage.jsx';
 import LoginPage from '../LoginPage/LoginPage';
@@ -24,6 +24,7 @@ import AppDetails from '../AppDetails/AppDetails.jsx';
 import QuestionManagement from '../QuestionManagement/QuestionManagement.jsx';
 import PrintableReport from '../PrintableReport/PrintableReport.jsx';
 import GreetingManagement from '../GreetingManagement/GreetingManagement.jsx';
+import RegisterPageCE from '../CommunityEngagement/RegisterPageCE/RegisterPageCE'
 import './App.css';
 
 class App extends Component {
@@ -91,6 +92,17 @@ class App extends Component {
               exact
               path="/registration"
               component={RegisterPage}
+              authRedirect="/user"
+              adminRedirect="/admin"
+            />
+            <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - if admin, redirect to "/admin"
+              // - else shows RegisterPage at "/registration"
+              exact
+              path="/ceregistration"
+              component={RegisterPageCE}
               authRedirect="/user"
               adminRedirect="/admin"
             />

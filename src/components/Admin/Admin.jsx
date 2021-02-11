@@ -4,7 +4,8 @@ import {Table, Container, Row} from 'react-bootstrap';
 import AppTableList from './AppTable/AppTableList.jsx';
 import AdminTitle from './AdminTitle/AdminTitle.jsx';
 import HeaderDropdown from './AppTable/HeaderDropdown.jsx';
-
+import Filter from './Filter/Filter.jsx';
+import Search from './Search/Search.jsx';
 
 export default function Admin() {
     const dispatch = useDispatch();
@@ -17,6 +18,8 @@ export default function Admin() {
             <AdminTitle />
             <Row style={{display:'flex', justifyContent:'center'}}><h2>Applications</h2></Row>
         </Container>
+        <Filter />
+        <Search/>
         <Container fluid>
             <Table 
                 striped 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import './RegisterPage.css';
+import './RegisterPageCE.css';
 import {Card, Container, Row, Button} from 'react-bootstrap';
 
 // CUSTOM COMPONENTS
-import RegisterForm from '../RegisterForm/RegisterForm';
+import RegisterFormCE from '../RegisterFormCE/RegisterFormCE';
 
 export default function RegisterPage() {
 
@@ -18,12 +18,12 @@ export default function RegisterPage() {
               <h2>Welcome to the Results Foundation Application Portal!</h2>
             </Card.Header>
             <Card.Body className="register-sub-header">
-              <h4>Please take a moment to register your organization with us before moving on to the grant application</h4>
+              <h4>Please take a moment to register your Results Foundation Community Engagement profile using a results.net email!</h4>
             </Card.Body>
           </Card>
         </Row>
         <Row>
-            <RegisterForm />
+            <RegisterFormCE />
         </Row>
           
 

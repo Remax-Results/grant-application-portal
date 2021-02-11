@@ -8,6 +8,22 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
+// This function was created by a stackoverflow user here: 
+//https://stackoverflow.com/questions/12175111/validate-accept-only-emails-from-a-specific-domain-name
+  
+// bless them
+const validateEmail = (email) => { 
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if(re.test(email)){
+      //Email valid. Proceed to test if it's from the right domain (Second argument is to check that the string ENDS with this domain, and that it doesn't just contain it)
+      if(email.indexOf("@results.net", email.length - "@results.net".length) !== -1){
+          //VALID
+          return true
+      }
+  }
+  return false
+}
+
 // Handles Ajax request for user information if user is authenticated
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
@@ -34,6 +50,30 @@ router.post('/register', (req, res, next) => {
       console.log('User registration failed: ', err);
       res.sendStatus(500);
     });
+});
+
+// Handles POST request with new user data for community engagement registration
+router.post('/ce/register', (req, res, next) => {
+  // validate email on client AND in post route so postman can't get around verification
+  if (validateEmail(req.body.username)){
+    const username = req.body.username;
+    const password = encryptLib.encryptPassword(req.body.password);
+    const orgName = req.body.orgName;
+    const phone = req.body.phone;
+    const contactName = req.body.contactName;
+  
+    const queryText = `INSERT INTO "user" (username, password, org_name, phone, contact_name, remax_employee)
+      VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`;
+    pool
+      .query(queryText, [username, password, orgName, phone, contactName, true])
+      .then(() => res.sendStatus(201))
+      .catch((err) => {
+        console.log('User registration failed: ', err);
+        res.sendStatus(500);
+      });
+  } else {
+    res.sendStatus(500);
+  }
 });
 
 // Handles login form authenticate/login POST

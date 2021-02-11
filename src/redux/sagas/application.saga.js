@@ -28,10 +28,22 @@ function* postApplication(action){
   }
 }
 
+function* postCeApplication(action){
+  try{
+    yield axios.post(`/api/application/ce`, action.payload);
+    yield axios.post(`/api/mail/confirmation`, )
+    yield put ({ type: 'FETCH_APPLICATION' });
+  }
+  catch(error){
+    console.log('postApplication saga failed appSaga line 26', error);
+  }
+}
+
 //--------------------WATCHER SAGA---------------------------//
 function* applicationSaga() {
   yield takeLatest('FETCH_APPLICATION', fetchApplication);
   yield takeLatest('POST_APPLICATION', postApplication);
+  yield takeLatest('POST_CE_APPLICATION', postCeApplication);
 }
 
 export default applicationSaga;
