@@ -96,7 +96,7 @@ function GrantApplicationForm(props) {
               <Form.Control as="select" onChange={(e) => setFocusAreaId(e.target.value)}>
                 <option>Area of Focus</option>
                   {
-                    focusArea.filter(focus=>focus.id!=5&&focus.active===true).map((area) => (
+                    focusArea.filter(focus=>focus.id!=5).map((area) => (
                       <option key={area.id} value={area.id}>{area.focus}</option>
                   ))
                   }
