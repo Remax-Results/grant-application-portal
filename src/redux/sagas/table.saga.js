@@ -12,8 +12,6 @@ function* fetchAppTableData(action){
 function* fetchCeAppTableData(action){
   const response = yield axios.get(`/api/table/ce`);
   yield put({type: 'SET_CE_APP_TABLE_DATA', payload: response.data});
-  yield put({type: 'FETCH_FOCUS_AREA'});
-  yield put({type: 'FETCH_STATUS_DROPDOWN'});
 }
 
 function* fetchBudget(action){

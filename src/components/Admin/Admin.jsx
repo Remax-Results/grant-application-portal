@@ -10,6 +10,7 @@ import Search from './Search/Search.jsx';
 export default function Admin() {
     const dispatch = useDispatch();
     const appTableData = useSelector(state=>state.appTableData);
+    
     useEffect(() => {
         dispatch({type: 'FETCH_APP_TABLE_DATA'})
         dispatch({type: 'FETCH_CE_APP_TABLE_DATA'})
@@ -18,6 +19,7 @@ export default function Admin() {
     return(
         <>
         <Container>
+            
             <AdminTitle />
             <Row style={{display:'flex', justifyContent:'center'}}><h2>Applications</h2></Row>
         </Container>
