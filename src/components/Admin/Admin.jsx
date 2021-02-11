@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Table, Container, Row} from 'react-bootstrap';
+import {Table, Container, Row, ButtonGroup, ToggleButton} from 'react-bootstrap';
 import AppTableList from './AppTable/AppTableList.jsx';
 import AdminTitle from './AdminTitle/AdminTitle.jsx';
 import HeaderDropdown from './AppTable/HeaderDropdown.jsx';
@@ -10,6 +10,14 @@ import Search from './Search/Search.jsx';
 export default function Admin() {
     const dispatch = useDispatch();
     const appTableData = useSelector(state=>state.appTableData);
+    const [radioValue, setRadioValue] = useState('1');
+
+    const radios = [
+        { name: 'All', value: '1' },
+        { name: 'CE', value: '2' },
+      ];
+
+
     
     useEffect(() => {
         dispatch({type: 'FETCH_APP_TABLE_DATA'})
@@ -19,40 +27,57 @@ export default function Admin() {
     return(
         <>
         <Container>
-            
+            <ButtonGroup toggle>
+                {radios.map((radio, idx) => (
+                <ToggleButton
+                    key={idx}
+                    type="radio"
+                    variant="secondary"
+                    name="radio"
+                    value={radio.value}
+                    checked={radioValue === radio.value}
+                    onChange={(e) => setRadioValue(e.currentTarget.value)}
+                >
+                    {radio.name}
+                </ToggleButton>
+                ))}
+            </ButtonGroup>
             <AdminTitle />
             <Row style={{display:'flex', justifyContent:'center'}}><h2>Applications</h2></Row>
         </Container>
-        <Filter />
-        <Search/>
-        <Container fluid>
-            <Table 
-                striped 
-                bordered 
-                hover 
-                
-            >
-                <thead style={{backgroundColor:'#1C479A', color: 'white'}}>
-                    <tr>
-                        <HeaderDropdown title="Organization" col="1"/>
-                        <HeaderDropdown title="Contact" col="2"/>  
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <HeaderDropdown title="Budget" col="3"/>
-                        <HeaderDropdown title="Area of Focus" col="4"/>
-                        <HeaderDropdown title="Date Recieved" col="5"/>
-                        <HeaderDropdown title="Status" col="6"/>
-                        <th>&nbsp;</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {appTableData.length > 0 && appTableData.map((app)=>(
-                        <AppTableList key={app.id} app={app}/>)
-                    )}
-                </tbody>
-            </Table>
-
-        </Container>
+        { radioValue === '1' &&
+        <>
+            <Filter />
+            <Search/>
+            <Container fluid>
+                <Table 
+                    striped 
+                    bordered 
+                    hover 
+                    
+                >
+                    <thead style={{backgroundColor:'#1C479A', color: 'white'}}>
+                        <tr>
+                            <HeaderDropdown title="Organization" col="1"/>
+                            <HeaderDropdown title="Contact" col="2"/>  
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <HeaderDropdown title="Budget" col="3"/>
+                            <HeaderDropdown title="Area of Focus" col="4"/>
+                            <HeaderDropdown title="Date Recieved" col="5"/>
+                            <HeaderDropdown title="Status" col="6"/>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {appTableData.length > 0 && appTableData.map((app)=>(
+                            <AppTableList key={app.id} app={app}/>)
+                        )}
+                    </tbody>
+                </Table>
+            </Container>
+        </>
+        }
             </>
     )
 }
