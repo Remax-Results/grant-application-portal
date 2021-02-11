@@ -113,7 +113,7 @@ router.post('/ce', rejectUnauthenticated, async (req, res) => {
   
       // using app_id, insert application answers into DB
       await Promise.all(questionIdArray.map((id) => {
-        const insertAppQuestionText = `INSERT INTO "ce_app_question"("ce_app_id", "ce_question_id", "ce_answer_text")
+        const insertAppQuestionText = `INSERT INTO "ce_app_question"("app_id", "question_id", "answer_text")
                                         VALUES ($1, $2, $3);`;
         const insertAppQuestionValues = [app_id, id, values[id]];
         return client.query(insertAppQuestionText, insertAppQuestionValues);
