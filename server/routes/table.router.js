@@ -24,7 +24,7 @@ router.get('/ce', rejectUnauthenticatedAdmin, (req, res) => {
                       u.org_name, u.contact_name, u.phone, u.username, 
                         f.focus, r.status   
                       FROM "user" as u
-                      JOIN app AS a ON u.id=a.user_id
+                      JOIN ce_app AS a ON u.id=a.user_id
                       JOIN focus_area AS f ON a.focus_area_id=f.id
                       JOIN review_status AS r ON r.id=a.review_status_id
                       ;`;

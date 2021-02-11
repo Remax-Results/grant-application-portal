@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Table, Container, Row, ButtonGroup, ToggleButton} from 'react-bootstrap';
+import AppTableCE from '../CommunityEngagement/AppTableCE/AppTable/AppTableCE'
 import AppTableList from './AppTable/AppTableList.jsx';
 import AdminTitle from './AdminTitle/AdminTitle.jsx';
 import HeaderDropdown from './AppTable/HeaderDropdown.jsx';
@@ -13,8 +14,8 @@ export default function Admin() {
     const [radioValue, setRadioValue] = useState('1');
 
     const radios = [
-        { name: 'All', value: '1' },
-        { name: 'CE', value: '2' },
+        { name: 'Results Foundation Applicants', value: '1' },
+        { name: 'Community Engagement', value: '2' },
       ];
 
 
@@ -26,7 +27,7 @@ export default function Admin() {
  
     return(
         <>
-        <Container>
+        <Container style={{textAlign: 'center'}}>
             <ButtonGroup toggle>
                 {radios.map((radio, idx) => (
                 <ToggleButton
@@ -42,11 +43,13 @@ export default function Admin() {
                 </ToggleButton>
                 ))}
             </ButtonGroup>
-            <AdminTitle />
-            <Row style={{display:'flex', justifyContent:'center'}}><h2>Applications</h2></Row>
         </Container>
         { radioValue === '1' &&
         <>
+            <Container>
+                <AdminTitle />
+            </Container>
+            <Row style={{display:'flex', justifyContent:'center'}}><h2>Applications</h2></Row>
             <Filter />
             <Search/>
             <Container fluid>
@@ -77,6 +80,10 @@ export default function Admin() {
                 </Table>
             </Container>
         </>
+        }
+        { radioValue === '2' && 
+            <AppTableCE/>
+        
         }
             </>
     )
