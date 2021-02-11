@@ -35,7 +35,7 @@ function Sidebar(props) {
                     <div className='rf-logo-side' onClick={showSidebar}>
                         <img src={Icon02} alt="RF Logo"></img>
                     </div>
-                    <p class="close-btn nav-text" onClick={closeNav}>&times;</p>
+                    <p className="close-btn nav-text" onClick={closeNav}>&times;</p>
                     <h4 className="nav-text" onClick={showSidebar}><u>Contact Information</u></h4>
                     <div className="nav-text">
                         <p>

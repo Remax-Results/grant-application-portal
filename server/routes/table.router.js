@@ -18,6 +18,22 @@ router.get('/', rejectUnauthenticatedAdmin, (req, res) => {
     .catch(error=> console.log('Error retrieving app table data from server', error))
 });
 
+//gets all application details for community engagement -- admin only view
+router.get('/ce', rejectUnauthenticatedAdmin, (req, res) => {
+    const sqlText = `SELECT  a.id, a.date_received, a.budget,
+                      u.org_name, u.contact_name, u.phone, u.username, 
+                        f.focus, r.status   
+                      FROM "user" as u
+                      JOIN ce_app AS a ON u.id=a.user_id
+                      JOIN focus_area AS f ON a.focus_area_id=f.id
+                      JOIN review_status AS r ON r.id=a.review_status_id
+                      ORDER BY a.date_received DESC
+                      ;`;
+    pool.query(sqlText)
+    .then(result => {res.send(result.rows)})
+    .catch(error=> console.log('Error retrieving app table data from server', error))
+});
+
 //gets single application detail --admin only
 router.get('/:id', rejectUnauthenticatedAdmin, (req, res) => {
     const sqlText= `SELECT  a.id, a.date_received, a.budget, u.background, u.org_name, u.contact_name, 
