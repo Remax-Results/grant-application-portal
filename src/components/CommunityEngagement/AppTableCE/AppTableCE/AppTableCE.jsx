@@ -1,5 +1,5 @@
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import AppTableListCE from './AppTableListCE.jsx';
 import { Table, Container } from 'react-bootstrap';
 import HeaderDropdownCE from './HeaderDropdownCE.jsx';
@@ -10,14 +10,13 @@ import SearchCE from '../SearchCE/SearchCE';
 
 export default function AppTable() {
 
-    const dispatch = useDispatch();
     const ceAppTableData = useSelector(state=>state.ceAppTableData);
 
     return (
         <>
-            <h2>Community Engagement Applications</h2>
             <FilterCE/>
             <SearchCE/>
+            <h2>Community Engagement Applications</h2>
             <Container fluid>
                     <Table 
                         striped 
