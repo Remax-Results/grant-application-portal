@@ -14,7 +14,6 @@ export default function Filter () {
    const [startDate, setStartDate] = useState(new Date());
    const [endDate, setEndDate] = useState(new Date());
    const reviewStatus = useSelector(state=>state.reviewStatus);
-   const focusArea = useSelector(state=>state.focusArea);
    const handleBudgetFilter = (event) => {
        event.preventDefault();
        dispatch({type:'FILTER_CE_BUDGET', payload: {budgetLow:budgetLow, budgetHigh: budgetHigh}});

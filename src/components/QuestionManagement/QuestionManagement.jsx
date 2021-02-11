@@ -44,7 +44,7 @@ export default function QuestionManagement() {
       <AddQuestionForm />
         <h2 style={{paddingBottom: '15px'}}>Focus Area Manager</h2>
         <ListGroup variant="flush">
-            {focusArea.length > 0 && focusArea.filter(focus=>focus.id!=5).map(focus => (
+            {focusArea.length > 0 && focusArea.filter(focus=>focus.id!==5).map(focus => (
               <FocusArea key={focus.id} focusArea={focus} />
               ))}
         <AddFocusAreaForm />
