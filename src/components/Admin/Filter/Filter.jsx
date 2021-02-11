@@ -39,7 +39,11 @@ export default function Filter () {
         <Row>
             <Dropdown style={{margin:"10px"}}>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    Select Filter Column
+                    {column === 0 ? 'Select Filter Column'
+                    : column === 1 ? 'Area of Focus'
+                    : column === 2 ? 'Status'
+                    : column === 3 ? 'Budget'
+                    : column === 4 && 'Date'}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                     <Dropdown.Item onSelect={()=>{setColumn(1); setFilterValue('none')}}>Area of Focus</Dropdown.Item>
@@ -49,10 +53,6 @@ export default function Filter () {
 
                 </Dropdown.Menu>
             </Dropdown>
-            {column === 0 && <p>Filtering Column: none</p>}
-            {column === 1 && <p>Filtering Column: Area of Focus</p>}
-            {column === 2 && <p>Filtering Column: Status</p>}
-            {column === 3 && <p>Filtering Column: Budget</p>}
             {column < 3 ?
                 <>
                 <Dropdown style={{margin:"10px"}}>
@@ -126,7 +126,6 @@ export default function Filter () {
                     selectsEnd
                     startDate={startDate}
                     endDate={endDate}
-                    minDate={startDate}
                 />
             </InputGroup>
             <Form.Label>To</Form.Label> 
@@ -139,7 +138,6 @@ export default function Filter () {
                     selectsEnd
                     startDate={startDate}
                     endDate={endDate}
-                    minDate={startDate}
                 />
             </InputGroup>
             <Button type="submit">Filter</Button>

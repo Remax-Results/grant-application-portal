@@ -1,6 +1,6 @@
 
 -- If you need to restart the database, this drop statement will drop everything in the correct order. 
- DROP TABLE budget_wording, greeting, app_question, ce_app_question, question, ce_question, app, ce_notes, notes, ce_app, app, grant_window, focus_area, review_status, "user";
+--  DROP TABLE budget_wording, greeting, app_question, ce_app_question, question, ce_question, app, ce_notes, notes, ce_app, app, grant_window, focus_area, review_status, "user";
 
 --------------------- CREATE TABLES ------------------
 
