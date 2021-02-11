@@ -14,7 +14,7 @@ function GrantApplicationFormInput ({ question, questionChanged, value }) {
                 <Form.Control 
                     required
                     name={question.id} 
-                    value={value} 
+                    value={value}
                     as="textarea" rows={3}
                     onChange={(e) => {
                         // Notify the main state of the new value

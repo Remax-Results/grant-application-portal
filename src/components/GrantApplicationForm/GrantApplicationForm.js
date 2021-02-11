@@ -66,10 +66,7 @@ function GrantApplicationForm(props) {
   // callback provided to components to update the main list of form values
   const questionChanged = (questionId, value) => {
     // use a callback to find the field in the value list and update it
-    setValues((currentValues) => {
-      currentValues[questionId] = value;
-      return currentValues;
-    });
+    setValues({...values, [questionId]: value});
   };
   
 
@@ -81,9 +78,10 @@ function GrantApplicationForm(props) {
         <Container className="formContainer">
         <Row>
         <Col>
+        {JSON.stringify(values)}
           <Form noValidate validated={validated} onSubmit={onSubmit}>
               {
-                questions.map((question) => (
+                questions.map((question, i) => (
                   <GrantApplicationFormInput 
                     key={question.id}
                     questionChanged={questionChanged}
@@ -110,9 +108,9 @@ function GrantApplicationForm(props) {
                   as="select" 
                   onChange={(e) => setFocusAreaId(e.target.value)}
                   required
-                  placeholder="Area of Focus"
+                  custom
                 >
-                  <option>Area of Focus</option>
+                  <option key={'empty'} value={''}>...</option>
                     {
                       focusArea.filter(focus=>focus.id!=5).map((area) => (
                         <option key={area.id} value={area.id}>{area.focus}</option>
