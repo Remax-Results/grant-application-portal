@@ -30,32 +30,20 @@ function GrantApplicationForm(props) {
     } 
    
     setValidated(true);
+
     // send data to server
-    
-          // swal({
-          //   title: "Does the above information look correct to you?",
-          //   text: "Please take a moment to double check your application if you are unsure.",
-          //   icon: "info",
-          //   buttons: true,
-          //   dangerMode: false,
-          // })
-          // .then((willSubmit) => {
-          //   if (willSubmit) {
-              dispatch({ type: 'POST_APPLICATION', 
-              payload: { 
-                  values: values, 
-                  user_id: user.id, 
-                  grant_window_id: grantWindow.id, 
-                  focus_area_id: focusAreaId,
-                  budget: budget
-                } });
-            //   swal("Great! Your application has been submitted.", {
-            //     icon: "success",
-            //   });
-            // } else {
-            //   swal("Hmm... something went wrong. Please try again.");
-            // }
-          // });
+    if (validated) {
+
+      dispatch({ type: 'POST_APPLICATION', 
+      payload: { 
+          values: values, 
+          user_id: user.id, 
+          grant_window_id: grantWindow.id, 
+          focus_area_id: focusAreaId,
+          budget: budget
+        } });
+    }
+  
   }
 
   useEffect(() => {
