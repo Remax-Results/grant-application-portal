@@ -20,21 +20,27 @@ function GrantApplicationForm(props) {
   const [values, setValues] = useState({});
   const [focusAreaId, setFocusAreaId] = useState(0);
   const [budget, setBudget] = useState(0);
+  const [validated, setValidated] = useState(false);
   
   const onSubmit = (e) => {
-    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    } 
    
+    setValidated(true);
     // send data to server
     
-          swal({
-            title: "Does the above information look correct to you?",
-            text: "Please take a moment to double check your application if you are unsure.",
-            icon: "info",
-            buttons: true,
-            dangerMode: false,
-          })
-          .then((willSubmit) => {
-            if (willSubmit) {
+          // swal({
+          //   title: "Does the above information look correct to you?",
+          //   text: "Please take a moment to double check your application if you are unsure.",
+          //   icon: "info",
+          //   buttons: true,
+          //   dangerMode: false,
+          // })
+          // .then((willSubmit) => {
+          //   if (willSubmit) {
               dispatch({ type: 'POST_APPLICATION', 
               payload: { 
                   values: values, 
@@ -43,13 +49,13 @@ function GrantApplicationForm(props) {
                   focus_area_id: focusAreaId,
                   budget: budget
                 } });
-              swal("Great! Your application has been submitted.", {
-                icon: "success",
-              });
-            } else {
-              swal("Hmm... something went wrong. Please try again.");
-            }
-          });
+            //   swal("Great! Your application has been submitted.", {
+            //     icon: "success",
+            //   });
+            // } else {
+            //   swal("Hmm... something went wrong. Please try again.");
+            // }
+          // });
   }
 
   useEffect(() => {
@@ -75,7 +81,7 @@ function GrantApplicationForm(props) {
         <Container className="formContainer">
         <Row>
         <Col>
-          <Form>
+          <Form noValidate validated={validated} onSubmit={onSubmit}>
               {
                 questions.map((question) => (
                   <GrantApplicationFormInput 
@@ -86,21 +92,37 @@ function GrantApplicationForm(props) {
                     className="form" />
                 ))
               }
-              <Form.Label htmlFor="budget">{budgetWording.question_wording}</Form.Label>
-              <Form.Control
-                name="budget"
-                type="number"
-                onChange={(e) => setBudget(e.target.value)}
-              />
+              <Form.Group>
+                <Form.Label htmlFor="budget">{budgetWording.question_wording}</Form.Label>
+                <Form.Control
+                  required
+                  name="budget"
+                  type="number"
+                  onChange={(e) => setBudget(e.target.value)}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Please fill out the question.
+                </Form.Control.Feedback>
+              </Form.Group>
               <p>Please select your area of focus from the list.</p>
-              <Form.Control as="select" onChange={(e) => setFocusAreaId(e.target.value)}>
-                <option>Area of Focus</option>
-                  {
-                    focusArea.filter(focus=>focus.id!=5).map((area) => (
-                      <option key={area.id} value={area.id}>{area.focus}</option>
-                  ))
-                  }
-              </Form.Control>
+              <Form.Group>
+                <Form.Control 
+                  as="select" 
+                  onChange={(e) => setFocusAreaId(e.target.value)}
+                  required
+                  placeholder="Area of Focus"
+                >
+                  <option>Area of Focus</option>
+                    {
+                      focusArea.filter(focus=>focus.id!=5).map((area) => (
+                        <option key={area.id} value={area.id}>{area.focus}</option>
+                    ))
+                    }
+                </Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  Please select a focus area.
+                </Form.Control.Feedback>
+              </Form.Group>
               <br />
               <Button onClick={onSubmit}>Submit Grant Application</Button>
           </Form>

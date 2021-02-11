@@ -12,6 +12,7 @@ function GrantApplicationFormInput ({ question, questionChanged, value }) {
             <Form.Group key={question.id}>
                 <Form.Label htmlFor={question.id}>{question.question_text}</Form.Label>
                 <Form.Control 
+                    required
                     name={question.id} 
                     value={value} 
                     as="textarea" rows={3}
@@ -19,6 +20,9 @@ function GrantApplicationFormInput ({ question, questionChanged, value }) {
                         // Notify the main state of the new value
                         questionChanged(question.id, e.target.value);
                     }} />
+                <Form.Control.Feedback type="invalid">
+                    Please fill out the question.
+                </Form.Control.Feedback>
             </Form.Group>
         </>
     );
