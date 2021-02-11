@@ -8,7 +8,7 @@ export default function Search() {
     const [searchValue, setSearchValue] = useState('');
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch({type:'SEARCH_TABLE', payload: searchValue});
+        dispatch({type:'SEARCH_CE_TABLE', payload: searchValue});
     }
 
     return(
@@ -26,7 +26,7 @@ export default function Search() {
                             <Button type="submit">Search</Button>
                             <Button style={{marginLeft:'10px'}} variant="danger" size="sm" 
                                 onClick={()=>{
-                                    dispatch({type:'FETCH_APP_TABLE_DATA'});
+                                    dispatch({type:'FETCH_CE_APP_TABLE_DATA'});
                                     setSearchValue('');
                                 }}>
                                     Clear Search
