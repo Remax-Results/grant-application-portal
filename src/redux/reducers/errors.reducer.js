@@ -31,6 +31,8 @@ const registrationMessage = (state = '', action) => {
       return 'Invalid email for Community Engagement profile! You must have a results.net domain!'
     case 'REGISTRATION_FAILED':
       return "Oops! That didn't work. The username might already be taken. Try again!";
+    case 'CE_REGISTRATION_FAILED':
+      return "Oops! That didn't work. The username might already be taken. Try again!";
     default:
       return state;
   }
