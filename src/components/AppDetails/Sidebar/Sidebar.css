@@ -44,6 +44,8 @@
     padding: 8px 8px 8px 8px;
     list-style: none;
     height: 60px;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
 }
 
 .nav-text p {
