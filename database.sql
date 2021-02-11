@@ -77,7 +77,7 @@ CREATE TABLE "greeting" (
 CREATE TABLE "ce_app" (
 	"id" SERIAL PRIMARY KEY,
 	"date_received" date NOT NULL DEFAULT CURRENT_DATE,
-	"focus_area" int REFERENCES "focus_area" DEFAULT 5,
+	"focus_area_id" int REFERENCES "focus_area" DEFAULT 5,
 	"user_id" int REFERENCES "user",
 	"review_date" date DEFAULT null,
 	"budget" INT,
