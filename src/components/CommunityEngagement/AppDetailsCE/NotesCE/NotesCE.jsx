@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import NotesTable from './NotesTable.jsx';
+import NotesTableCE from './NotesTableCE.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Button, Modal, InputGroup, FormControl} from 'react-bootstrap';
-import NotesTitle from './NotesTitle.jsx';
+import NotesTitleCE from './NotesTitleCE.jsx';
 import { IoCreateSharp } from "react-icons/io5";
 
 export default function Notes(props) {
@@ -19,8 +19,8 @@ export default function Notes(props) {
 
     return (
         <Container style={{backgroundColor: 'white'}}>
-            <NotesTitle/>
-            {<NotesTable notes={notes} />}
+            <NotesTitleCE/>
+            {<NotesTableCE notes={notes} />}
                 <Button onClick={(event)=>{setShow(true)}}>Create New Note <IoCreateSharp/></Button>
                 <Modal
                     show={show}
