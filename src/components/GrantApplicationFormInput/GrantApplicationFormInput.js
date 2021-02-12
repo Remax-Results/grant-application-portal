@@ -20,9 +20,6 @@ function GrantApplicationFormInput ({ question, questionChanged, value }) {
                         // Notify the main state of the new value
                         questionChanged(question.id, e.target.value);
                     }} />
-                <Form.Control.Feedback type="invalid">
-                    Please fill out the question.
-                </Form.Control.Feedback>
             </Form.Group>
         </>
     );
