@@ -12,8 +12,8 @@ export default function AppTableList(props) {
     const dispatch = useDispatch();
     const history = useHistory();
     const goDetails = async() => {
-        await dispatch({type:'FETCH_DETAILS_DATA', payload: app.id});
-        history.push(`/appdetails/${app.id}`)
+        await dispatch({type:'FETCH_CE_DETAILS_DATA', payload: app.id});
+        history.push(`/ce/appdetails/${app.id}`)
     }
 
     return(

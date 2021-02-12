@@ -35,12 +35,27 @@ router.get('/ce/active', rejectUnauthenticated, (req, res) => { // GET all activ
   });
 });
 
-
-router.get('/:id', rejectUnauthenticated, (req, res) => { // GET all active questions from a specific application
+// GET all questions and answers from a specific results application
+router.get('/:id', rejectUnauthenticated, (req, res) => { 
   if(req.user.admin){
   const sqlText = ` SELECT q.id, q.question_text, aq.answer_text, aq.review_score 
                     FROM question AS q
                     JOIN app_question AS aq ON q.id=aq.question_id
+                    WHERE aq.app_id=$1;`;
+  pool.query(sqlText, [req.params.id]).then(result => {
+      res.send(result.rows); // sending back application questions
+  }).catch((error) => {
+      console.log('error retrieving application questions from the database... -------->', error);
+  });
+}
+});
+
+// Gets All questions and answers from a specific CE application
+router.get('/ce/:id', rejectUnauthenticated, (req, res) => { 
+  if(req.user.admin){
+  const sqlText = ` SELECT q.id, q.question_text, aq.answer_text, aq.review_score 
+                    FROM ce_question AS q
+                    JOIN ce_app_question AS aq ON q.id=aq.question_id
                     WHERE aq.app_id=$1;`;
   pool.query(sqlText, [req.params.id]).then(result => {
       res.send(result.rows); // sending back application questions

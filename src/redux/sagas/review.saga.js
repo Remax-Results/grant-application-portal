@@ -3,8 +3,11 @@ import axios from 'axios';
 
 
 function* updateScore(action){
-
     yield axios.put(`/api/review/`, action.payload);
+}
+
+function* updateCeScore(action){
+  yield axios.put(`/api/review/ce`, action.payload);
 }
 
 
@@ -12,6 +15,7 @@ function* updateScore(action){
 //--------------------WATCHER SAGA---------------------------//
 function* reviewSaga() {
   yield takeLatest('UPDATE_SCORE', updateScore);
+  yield takeLatest('UPDATE_CE_SCORE', updateCeScore);
   // yield takeLatest('UPDATE_STATUS', updateStatus);
 }
 

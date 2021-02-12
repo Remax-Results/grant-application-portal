@@ -26,7 +26,7 @@ export default function Nav() {
 
   return (
     <>
-    {currentPath.startsWith('/report')  ? '' : 
+    {currentPath.startsWith('/report') || currentPath.startsWith('/ce/report')  ? '' : 
     <div className="nav">
       <Link to="/home">
         <img className="rf-logo" src={Icon04} alt="RF Logo"></img>
