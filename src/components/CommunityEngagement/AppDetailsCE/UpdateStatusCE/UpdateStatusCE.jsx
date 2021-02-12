@@ -29,7 +29,7 @@ export default function UpdateStatus() {
 
     return (
         <Col>
-            <Dropdown style={{backgroundColor: "#1C479A !important;"}}>
+            <Dropdown style={{backgroundColor: "#1C479A !important"}}>
               <Dropdown.Toggle id="dropdown-basic">
                   Set Review Status
               </Dropdown.Toggle>
