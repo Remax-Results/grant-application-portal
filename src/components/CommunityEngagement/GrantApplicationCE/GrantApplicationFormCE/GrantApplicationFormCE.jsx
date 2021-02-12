@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import GrantApplicationFormInputCE from '../GrantApplicationFormInputCE/GrantApplicationFormInputCE.jsx';
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import swal from 'sweetalert';
 import './GrantApplicationFormCE.css';
 
 
@@ -16,33 +15,25 @@ function GrantApplicationForm(props) {
   const dispatch = useDispatch();
   const [values, setValues] = useState({});
   const [budget, setBudget] = useState(0);
+  const [validated, setValidated] = useState(false);
   
   const onSubmit = (e) => {
-    e.preventDefault();
-   
-    // send data to server
-    
-          swal({
-            title: "Does the above information look correct to you?",
-            text: "Please take a moment to double check your application if you are unsure.",
-            icon: "info",
-            buttons: true,
-            dangerMode: false,
-          })
-          .then((willSubmit) => {
-            if (willSubmit) {
-              dispatch({ type: 'POST_CE_APPLICATION', 
-              payload: { 
-                  values: values, 
-                  budget: budget
-                } });
-              swal("Great! Your application has been submitted.", {
-                icon: "success",
-              });
-            } else {
-              swal("Hmm... something went wrong. Please try again.");
-            }
-          });
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+      setValidated(false);
+    } else {
+        setValidated(true);
+        
+        // send data to server
+        dispatch({ type: 'POST_CE_APPLICATION', 
+          payload: { 
+            values: values, 
+            budget: budget
+          } 
+        });
+    }
   }
 
   useEffect(() => {
@@ -65,7 +56,7 @@ function GrantApplicationForm(props) {
         <Container className="formContainer">
         <Row>
         <Col>
-          <Form>
+          <Form validated={validated} onSubmit={onSubmit}>
               {
                 questions.map((question) => (
                   <GrantApplicationFormInputCE 
@@ -73,17 +64,19 @@ function GrantApplicationForm(props) {
                     questionChanged={questionChanged}
                     value={values[question.id]}
                     question={question}
+                    required
                     className="form" />
                 ))
               }
               <Form.Label htmlFor="budget">{budgetWording.question_wording}</Form.Label>
               <Form.Control
+                required
                 name="budget"
                 type="number"
                 onChange={(e) => setBudget(e.target.value)}
               />          
               <br />
-              <Button onClick={onSubmit}>Submit Grant Application</Button>
+              <Button type="submit">Submit Grant Application</Button>
           </Form>
         </Col>
         </Row>

@@ -28,9 +28,8 @@ function GrantApplicationForm(props) {
       e.stopPropagation();
       setValidated(false);
     } else {
-   
-    setValidated(true);
-    // send data to server
+      setValidated(true);
+      // send data to server
 
       dispatch({ type: 'POST_APPLICATION', 
       payload: { 
@@ -39,12 +38,10 @@ function GrantApplicationForm(props) {
           grant_window_id: grantWindow.id, 
           focus_area_id: focusAreaId,
           budget: budget
-        } });
+        } 
+      });
     }
-  
   }
-
-  // const required 
 
   useEffect(() => {
     dispatch({ type: 'FETCH_FOCUS_QUESTION' });
