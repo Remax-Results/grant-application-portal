@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import GrantApplicationFormInput from '../GrantApplicationFormInput/GrantApplicationFormInput';
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import swal from 'sweetalert';
 import './GrantApplicationForm.css';
 
 
@@ -27,12 +26,11 @@ function GrantApplicationForm(props) {
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
-    } 
+      setValidated(false);
+    } else {
    
     setValidated(true);
-
     // send data to server
-    if (validated) {
 
       dispatch({ type: 'POST_APPLICATION', 
       payload: { 
@@ -45,6 +43,8 @@ function GrantApplicationForm(props) {
     }
   
   }
+
+  // const required 
 
   useEffect(() => {
     dispatch({ type: 'FETCH_FOCUS_QUESTION' });
@@ -66,8 +66,7 @@ function GrantApplicationForm(props) {
         <Container className="formContainer">
         <Row>
         <Col>
-        {JSON.stringify(values)}
-          <Form noValidate validated={validated} onSubmit={onSubmit}>
+          <Form validated={validated} onSubmit={onSubmit}>
               {
                 questions.map((question, i) => (
                   <GrantApplicationFormInput 
@@ -75,6 +74,7 @@ function GrantApplicationForm(props) {
                     questionChanged={questionChanged}
                     value={values[question.id]}
                     question={question}
+                    required
                     className="form" />
                 ))
               }
@@ -86,9 +86,6 @@ function GrantApplicationForm(props) {
                   type="number"
                   onChange={(e) => setBudget(e.target.value)}
                 />
-                <Form.Control.Feedback type="invalid">
-                  Please fill out the question.
-                </Form.Control.Feedback>
               </Form.Group>
               <p>Please select your area of focus from the list.</p>
               <Form.Group>
@@ -100,17 +97,14 @@ function GrantApplicationForm(props) {
                 >
                   <option key={'empty'} value={''}>...</option>
                     {
-                      focusArea.filter(focus=>focus.id!=5).map((area) => (
+                      focusArea.filter(focus=>focus.id!==5).map((area) => (
                         <option key={area.id} value={area.id}>{area.focus}</option>
                     ))
                     }
                 </Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  Please select a focus area.
-                </Form.Control.Feedback>
               </Form.Group>
               <br />
-              <Button onClick={onSubmit}>Submit Grant Application</Button>
+              <Button type="submit">Submit Grant Application</Button>
           </Form>
         </Col>
         </Row>
