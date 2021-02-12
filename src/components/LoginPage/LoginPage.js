@@ -10,7 +10,7 @@ export default function LoginPage() {
   const history = useHistory();
 
   return (
-    <div className="login_page">
+    <div style={{padding: '66px'}}>
       <LoginForm />
 
       <center style={{paddingTop: '10px'}}>
