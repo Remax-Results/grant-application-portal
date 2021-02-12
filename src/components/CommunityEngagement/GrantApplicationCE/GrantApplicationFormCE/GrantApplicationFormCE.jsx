@@ -24,15 +24,16 @@ function GrantApplicationForm(props) {
       e.stopPropagation();
       setValidated(false);
     } else {
-        setValidated(true);
+      e.preventDefault();
+      setValidated(true);
         
-        // send data to server
-        dispatch({ type: 'POST_CE_APPLICATION', 
-          payload: { 
-            values: values, 
-            budget: budget
-          } 
-        });
+      // send data to server
+      dispatch({ type: 'POST_CE_APPLICATION', 
+        payload: { 
+          values: values, 
+          budget: budget
+        } 
+      });
     }
   }
 

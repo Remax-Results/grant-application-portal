@@ -28,6 +28,7 @@ function GrantApplicationForm(props) {
       e.stopPropagation();
       setValidated(false);
     } else {
+      e.preventDefault();
       setValidated(true);
       // send data to server
 
