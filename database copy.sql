@@ -1,6 +1,6 @@
 
 -- If you need to restart the database, this drop statement will drop everything in the correct order. 
---  DROP TABLE budget_wording, greeting, app_question, ce_app_question, question, ce_question, app, ce_notes, notes, ce_app, app, grant_window, focus_area, review_status, "user";
+-- DROP TABLE budget_wording, greeting, app_question, ce_app_question, question, ce_question, app, ce_notes, notes, ce_app, app, grant_window, focus_area, review_status, "user";
 
 --------------------- CREATE TABLES ------------------
 
@@ -121,7 +121,15 @@ VALUES
 ('hermenegildo@pathways.net', '$2a$10$ImiBzvEVPdzuYzhdAHk45OOzEQnPdQY28mIIedcnEjGNjh4IqXYXC', 'Pathways', 'Pathways promotes cycling in the Twin Cities Community', '(474) 603-6266', 'Anja Hermenegildo', FALSE),
 ('bethney@arrow.org', '$2a$10$f7z103M5uz1v5QJBbP0iP.ynZQiVg79yIuWx4k75NC.il8oKoPpcu', 'Arrow.Org', 'Helping community leaders find a way.','(838) 388-5591', 'Padma Bethney', FALSE ),
 ('illarion@cycleforfitness.net', '$2a$10$AQkXXpA1B5RywJm7hvnmFOy5C17HgOyfpXRKGgN0g8qVbG01iqTnq', 'Cycle for Fitness!', 'We promote the cycling lifestyle as a way to promote health and fitness across the Iron Range', '(515) 764-6521', 'Torquil Illarion', FALSE),
-('emil@mealsforrns.org', '$2a$10$eduvC1aV0bcUIfU1AODR9uNDnOl78zpgytOhBcbhDP/mToA4wVhiS', 'Meals for RNs', 'Providing food services for free for our brave front line workers', '(240) 791-6961', 'Morgan Emil', FALSE);
+('emil@mealsforrns.org', '$2a$10$eduvC1aV0bcUIfU1AODR9uNDnOl78zpgytOhBcbhDP/mToA4wVhiS', 'Meals for RNs', 'Providing food services for free for our brave front line workers', '(240) 791-6961', 'Morgan Emil', FALSE),
+('kwesi@welcomemats.org', '$2a$10$4uoiusxZrsD5fhNNw737SuN.KzCeqflNBFWdKMAXuCvXI1Qt.MLiG', 'Welcome Mats', 'Renovating long-time occupancy homes for elderly members in our community', '(868) 946-7157', 'Kvetoslav Kwesi', FALSE),
+('surya@chimneyproject.org', '$2a$10$V5c9Hw7K4ceXled7SMCN3u7EfUo7qmLfKPEnaXv2.615aw6Ds8U8m', 'The Chimney Project', 'Delivering educational toys and games to underserved communities in summertime when holiday fundraising tends to be more scarce.', '(502) 518-7719', 'Atanasio Surya', FALSE),
+('clancy@inspiration.net', '$2a$10$PzogDJIhyResdRjS3ihC9uKVBlbSJR6E6sgHmKc5momulMICBFRy.', 'Inspiration Network', 'Bringing people in advanced degree professions to schools in communities where they tend not to live in order to engage the dreams of young people with positive role models.', '(219) 456-8816', 'Yolande Clancy', FALSE),
+('nadzieja@uplift.net', '$2a$10$jQnZgGN6SVgzZY7CPb0tH.P3yS0WU5QBRxED4c/.va3hV7Kf8ZNOS', 'Uplift', 'Helping kids gain confidence through weightlifting', '(446) 859-8200', 'Qiana Nadzieja', FALSE),
+('milena@winningeleven.net', '$2a$10$jm5x1HxTdWfOESAw/3Mf0.cOd3aKHx3i79s9RZNqzHdvFYX/cjh1i', 'The Winning Eleven Foundation', 'Using soccer to bring kids from communities across Minnesota together to meet, play, and exchange cultural values', '(236) 672-4956', 'Kevin Milena', FALSE),
+('stepan@tissuerelief.org', '$2a$10$D9gBJe6J/U0yNs5h4ZJS6.UxPhh6HdMLS6LpBw.WRZ8meq5epClrG', 'Tissue Relief Foundation', 'An organization created to raise awareness for the importance of signing up to be a soft tissue donor.', '(544) 608-0019', 'Theodoros Stepan', FALSE),
+('bernardo@codeforall.net', '$2a$10$pOu2uSuH6kDK2hI0E/Ba5enxX6wQFOFuDfCI0KQmmC5jP95vLJg1y', 'Code for All', 'Code for all brings access to coding camps for kids of all ages in the Twin cities metro', '(350) 529-1147', 'Tatenda Bernardo', FALSE);
+
 
 INSERT INTO "grant_window"("start_date", "end_date", "funds_available") 
 VALUES
@@ -141,11 +149,23 @@ VALUES
 ('Pending'), 
 ('Rejected');
 
-INSERT INTO "app"("grant_window_id", "focus_area_id", "user_id", "budget") 
+INSERT INTO "app"("grant_window_id", "focus_area_id", "user_id", "budget", "review_status_id") 
 VALUES
-(1, 3, 2, 2500),
-(1, 1, 3, 1400),
-(1, 2, 4, 2000);
+(1, 3, 2, 2500, 2),
+(1, 1, 3, 1400, 2),
+(1, 2, 4, 2000, 2),
+(1, 2, 5, 1100, 3),
+(1, 1, 6, 500, 2),
+(1, 1, 7, 600, 1),
+(1, 2, 8, 900, 1),
+(1, 4, 9, 2900, 2),
+(1, 1, 10, 800, 1),
+(1, 1, 11, 600, 3),
+(1, 2, 12, 300, 2),
+(1, 3, 13, 1600, 3),
+(1, 2, 14, 400, 2),
+(1, 1, 15, 3000, 2);
+
 
 INSERT INTO "question"("question_text") 
 VALUES 
@@ -195,7 +215,7 @@ VALUES
 
 INSERT INTO "ce_app" ("user_id", "budget")
 VALUES
-(5, 2500);
+(16, 2500);
 
 INSERT INTO "ce_app_question"("app_id", "question_id", "answer_text")
 VALUES
