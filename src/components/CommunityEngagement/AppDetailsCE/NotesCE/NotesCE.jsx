@@ -13,7 +13,7 @@ export default function Notes(props) {
     const [newNote, setNewNote] = useState('');
     const handleSave = async () => {
         setShow(false);
-        await dispatch({type:'POST_NOTE', payload: {note:newNote, app_id:detailsData.id}});
+        await dispatch({type:'POST_CE_NOTE', payload: {note:newNote, app_id:detailsData.id}});
         setNewNote('');
     }
 

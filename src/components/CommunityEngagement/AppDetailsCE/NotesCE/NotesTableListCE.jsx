@@ -25,7 +25,7 @@ export default function NotesTableList(props) {
           })
           .then((willDelete) => {
             if (willDelete) {
-              dispatch({type:'DELETE_NOTE', payload:{note_id: note.id, app_id: detailsData.id}})
+              dispatch({type:'DELETE_CE_NOTE', payload:{note_id: note.id, app_id: detailsData.id}})
               swal("Poof! Your note has been deleted!", {
                 icon: "success",
               });
@@ -39,7 +39,7 @@ export default function NotesTableList(props) {
     };
 
     const handleSave = () => {
-        dispatch({type:'UPDATE_NOTE', payload:{note_id: note.id, note:thisNote, app_id:detailsData.id}});
+        dispatch({type:'UPDATE_CE_NOTE', payload:{note_id: note.id, note:thisNote, app_id:detailsData.id}});
         setShow(false);
     }
          

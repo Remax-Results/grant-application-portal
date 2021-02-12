@@ -24,7 +24,7 @@ function* updateNote(action){
 // ------------CE NOTES SAGAS --------------------//
 function* deleteCeNote(action){
   yield axios.delete(`/api/notes/ce/${action.payload.note_id}`);
-  yield put({type:'FETCH_CE__NOTES', payload: action.payload.app_id});
+  yield put({type:'FETCH_CE_NOTES', payload: action.payload.app_id});
 }
 
 function* fetchCeNotes(action){
