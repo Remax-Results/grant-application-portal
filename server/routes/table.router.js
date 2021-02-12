@@ -70,4 +70,12 @@ router.get(`/budget/:id`, rejectUnauthenticatedAdmin, (req, res) => {
     .catch(error=> console.log('Error retrieving app table data from server', error))
 });
 
+//getting just budget from community engagement application
+router.get(`/budget/ce/:id`, rejectUnauthenticatedAdmin, (req, res) => {
+  const sqlText = `SELECT budget FROM ce_app WHERE id=$1`;
+  pool.query(sqlText, [req.params.id])
+  .then(result => {res.send(result.rows[0])})
+  .catch(error=> console.log('Error retrieving app table data from server', error))
+});
+
 module.exports = router;

@@ -28,6 +28,11 @@ function* fetchDetailsData(action){
   yield put({type:'FETCH_BUDGET', payload: action.payload});
 }
 
+function* fetchCeBudget(action){
+  const response = yield axios.get(`/api/table/budget/ce/${action.payload}`);
+  yield put({type:'SET_BUDGET', payload: response.data});
+}
+
 function* fetchCeDetailsData(action){
   const response = yield axios.get(`/api/table/ce/${action.payload}`);
   yield put({type:'SET_DETAILS_DATA', payload: response.data});
@@ -60,9 +65,10 @@ function* tableSaga() {
   yield takeLatest('FETCH_APP_TABLE_DATA', fetchAppTableData);
   yield takeLatest('FETCH_CE_APP_TABLE_DATA', fetchCeAppTableData);
   yield takeLatest('FETCH_DETAILS_DATA', fetchDetailsData);
-  yield takeLatest('FETCH_CE_DETAILS_DATA', fetchDetailsData);
+  yield takeLatest('FETCH_CE_DETAILS_DATA', fetchCeDetailsData);
   yield takeLatest('UNSET_DETAILS', unsetDetailsData);
   yield takeLatest('FETCH_BUDGET', fetchBudget);
+  yield takeLatest('FETCH_CE_BUDGET', fetchCeBudget);
   yield takeLatest('SORT_ADMIN_TABLE', sortAdminTable);
   yield takeLatest('SORT_ADMIN_CE_TABLE', sortAdminCeTable);
 }

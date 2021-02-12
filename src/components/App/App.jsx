@@ -25,6 +25,9 @@ import QuestionManagement from '../QuestionManagement/QuestionManagement.jsx';
 import PrintableReport from '../PrintableReport/PrintableReport.jsx';
 import GreetingManagement from '../GreetingManagement/GreetingManagement.jsx';
 import RegisterPageCE from '../CommunityEngagement/RegisterPageCE/RegisterPageCE'
+import AppDetailsCE from '../CommunityEngagement/AppDetailsCE/AppDetailsCE.jsx';
+
+
 import './App.css';
 
 class App extends Component {
@@ -164,6 +167,14 @@ class App extends Component {
               exact
               path="/greetingmanagement"
               component={GreetingManagement}
+            />
+            <AdminRoute
+              // AdminRoute ensures the user is an admin
+              // if not logged in, redirects to login
+              // if logged in but not admin, redirects to user homepage
+              exact
+              path="/ce/appdetails/:id"
+              component={AppDetailsCE}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

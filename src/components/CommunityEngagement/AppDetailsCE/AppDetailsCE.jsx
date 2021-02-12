@@ -3,11 +3,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Col, Row, Button} from 'react-bootstrap';
-import TitleCard from './TitleCard/TitleCard.jsx';
-import ScoreComponent from './Scoring/ScoreComponent.jsx';
-import Notes from './Notes/Notes.jsx';
-import Sidebar from './Sidebar/Sidebar';
-import UpdateStatus from './UpdateStatus/UpdateStatus.jsx';
+import TitleCardCE from './TitleCardCE/TitleCardCE.jsx';
+import ScoreComponentCE from './ScoringCE/ScoreComponentCE.jsx';
+import NotesCE from './NotesCE/NotesCE.jsx';
+import SidebarCE from './SidebarCE/SidebarCE';
+import UpdateStatusCE from './UpdateStatusCE/UpdateStatusCE.jsx';
 
 export default function AppDetails(){
     const history = useHistory();
@@ -18,21 +18,21 @@ export default function AppDetails(){
     const notes = useSelector(state => state.notes);
     
     useEffect(() => {
-        dispatch({type: 'FETCH_DETAILS_DATA', payload: id})
+        dispatch({type: 'FETCH_CE_DETAILS_DATA', payload: id})
         return () => {
             dispatch({type: 'UNSET_DETAILS'})
         }
     }, [dispatch, id]);
     return(
         <>
-        <Sidebar detailsData={detailsData} />
+        <SidebarCE detailsData={detailsData} />
         <Container className='container' style={{backgroundColor:'#CECECE'}}>
-            <TitleCard />
-            <ScoreComponent />
-            <Notes notes={notes} detailsData={detailsData}/>
+            <TitleCardCE />
+            <ScoreComponentCE />
+            <NotesCE notes={notes} detailsData={detailsData}/>
             <Container>
                 <Row>
-                    <UpdateStatus />
+                    <UpdateStatusCE />
                     <Col><Button onClick={()=>{window.open(`/#/report/${id}`)}}>View Printable Report</Button></Col>
                     <Col><Button onClick={()=>{history.push('/admin')}}>Back to Admin Main Page</Button></Col>
                 </Row>

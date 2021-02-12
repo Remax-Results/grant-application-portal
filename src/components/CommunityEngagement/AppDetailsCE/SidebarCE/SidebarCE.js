@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Sidebar.css';
 import * as FaIcons from 'react-icons/fa';
 import moment from 'moment';
-import Icon02 from "../../../logos/Icons-02.png";
+import Icon02 from "../../../../logos/Icons-02.png";
 
 
 

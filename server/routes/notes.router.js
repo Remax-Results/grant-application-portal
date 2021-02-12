@@ -59,7 +59,7 @@ router.put(`/`, rejectUnauthenticatedAdmin, (req, res) => {
 // --------------------- CE NOTES ROUTES ---------------------------
 //gets notes on an application
 router.get('/ce/:id', rejectUnauthenticatedAdmin, (req, res) => {
-  const sqlText = `SELECT * FROM notes WHERE ce_app_id=$1 ORDER BY id;`;
+  const sqlText = `SELECT * FROM ce_notes WHERE ce_app_id=$1 ORDER BY id;`;
   pool.query(sqlText, [req.params.id])
   .then(result => {
     res.send(result.rows); 

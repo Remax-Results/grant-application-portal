@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Table} from 'react-bootstrap';
-import NotesTableList from './NotesTableList.jsx';
+import NotesTableListCE from './NotesTableListCE.jsx';
 
 
 export default function NotesTable(props) {
@@ -18,7 +18,7 @@ export default function NotesTable(props) {
                 </tr>
             </thead>
             <tbody>
-                {notes.length > 0 && notes.map(note => (<NotesTableList note={note}/>))}
+                {notes.length > 0 && notes.map(note => (<NotesTableListCE note={note}/>))}
             </tbody>
         </Table>
     )

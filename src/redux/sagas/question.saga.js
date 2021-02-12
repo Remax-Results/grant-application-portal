@@ -72,7 +72,7 @@ function* grantWindowSaga() {
     yield takeLatest('CHANGE_QUESTION_STATUS', changeQuestionStatus);
     yield takeLatest('CHANGE_QUESTION_TEXT', changeQuestionText);
     yield takeLatest('FETCH_Q_AND_A', fetchQandA);
-    yield takeLatest('FETCH_CE_Q_AND_A', fetchQandA);
+    yield takeLatest('FETCH_CE_Q_AND_A', fetchCeQandA);
 }
 
 export default grantWindowSaga;

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import TenPointScale from './TenPointScale.jsx';
+import TenPointScaleCE from './TenPointScaleCE.jsx';
 import {Container, Row} from 'react-bootstrap';
 
 
@@ -16,7 +16,7 @@ export default function Score({q}) {
                 <p>('X' means you do not want a score)</p>
             </Row>
             <Row>
-                {numberLine.map((number) => (<TenPointScale key={number} selected={selectedNumbers >= number} number={number} onSelect={()=>{setSelectedNumbers(number); {dispatch({type:'UPDATE_SCORE', 
+                {numberLine.map((number) => (<TenPointScaleCE key={number} selected={selectedNumbers >= number} number={number} onSelect={()=>{setSelectedNumbers(number); {dispatch({type:'UPDATE_CE_SCORE', 
                             payload: {score: number, q_id: q.id, app_id:detailsData.id}})}}}/>))  }
             </Row>
         </Container>
