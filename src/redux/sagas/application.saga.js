@@ -20,8 +20,8 @@ function* fetchApplication(action){
 function* postApplication(action){
   try{
     yield axios.post(`/api/application`, action.payload);
-    yield axios.post(`/api/mail/confirmation`, )
     yield put ({ type: 'FETCH_APPLICATION' });
+    yield put ({ type: 'POST_EMAIL_CONFIRMATION' });
   }
   catch(error){
     console.log('postApplication saga failed appSaga line 26', error);
@@ -31,11 +31,20 @@ function* postApplication(action){
 function* postCeApplication(action){
   try{
     yield axios.post(`/api/application/ce`, action.payload);
-    yield axios.post(`/api/mail/confirmation`, )
     yield put ({ type: 'FETCH_APPLICATION' });
+    yield put ({ type: 'POST_EMAIL_CONFIRMATION' });
   }
   catch(error){
     console.log('postApplication saga failed appSaga line 26', error);
+  }
+}
+
+function* postEmailConfirmation(action){
+  try{
+    yield axios.post(`/api/mail/confirmation`, )
+  }
+  catch(error){
+    console.log('postEmailConfirmation saga failed appSaga line 26', error);
   }
 }
 
@@ -44,6 +53,7 @@ function* applicationSaga() {
   yield takeLatest('FETCH_APPLICATION', fetchApplication);
   yield takeLatest('POST_APPLICATION', postApplication);
   yield takeLatest('POST_CE_APPLICATION', postCeApplication);
+  yield takeLatest('POST_EMAIL_CONFIRMATION', postEmailConfirmation);
 }
 
 export default applicationSaga;

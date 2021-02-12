@@ -53,10 +53,7 @@ function GrantApplicationForm(props) {
   // callback provided to components to update the main list of form values
   const questionChanged = (questionId, value) => {
     // use a callback to find the field in the value list and update it
-    setValues((currentValues) => {
-      currentValues[questionId] = value;
-      return currentValues;
-    });
+    setValues({...values, [questionId]: value});
   };
   
 
