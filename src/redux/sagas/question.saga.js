@@ -56,6 +56,11 @@ function* fetchQandA(action) {
     yield put({type:'SET_Q_AND_A', payload: response.data});
 }
 
+function* fetchCeQandA(action) {
+    const response = yield axios.get(`/api/question/ce/${action.payload}`);
+    yield put({type:'SET_Q_AND_A', payload: response.data});
+}
+
 //--------------------WATCHER SAGA---------------------------//
 function* grantWindowSaga() {
     yield takeLatest('FETCH_ALL_QUESTIONS', fetchAllQuestions);
@@ -67,6 +72,7 @@ function* grantWindowSaga() {
     yield takeLatest('CHANGE_QUESTION_STATUS', changeQuestionStatus);
     yield takeLatest('CHANGE_QUESTION_TEXT', changeQuestionText);
     yield takeLatest('FETCH_Q_AND_A', fetchQandA);
+    yield takeLatest('FETCH_CE_Q_AND_A', fetchCeQandA);
 }
 
 export default grantWindowSaga;
