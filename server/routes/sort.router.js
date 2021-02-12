@@ -22,7 +22,8 @@ router.get(`/ce/:col/:desc`, rejectUnauthenticatedAdmin, (req, res) => {
       col_name = 'f.focus';
       break;
     case '5':
-      col_name = 'a.date_recieved';
+      col_name = 'a.date_received';
+      break;
     case '6':
       col_name = 'r.status';
       break;
@@ -70,7 +71,8 @@ router.get(`/:col/:desc`, rejectUnauthenticatedAdmin, (req, res) => {
       col_name = 'f.focus';
       break;
     case '5':
-      col_name = 'a.date_recieved';
+      col_name = 'a.date_received';
+      break;
     case '6':
       col_name = 'r.status';
       break;
