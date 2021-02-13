@@ -18,6 +18,7 @@ export default function BudgetWording(props) {
 
     return (
         <div>
+            
             <ListGroup.Item>
                 <Row>
                     <Col xs={8}>
@@ -55,6 +56,7 @@ export default function BudgetWording(props) {
                         </Button>
                     </Col>                    
                     <Col xs={2}>
+                        Both Applications 
                     </Col>
 
                 </Row>
