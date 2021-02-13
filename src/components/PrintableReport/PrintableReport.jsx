@@ -6,6 +6,7 @@ import {Container, Col, Row,  Button} from 'react-bootstrap';
 import ScoreReport from './ScoreReport/ScoreReport.jsx';
 import NotesReport from './NotesReport/NotesReport.jsx';
 import styled from 'styled-components';
+import {formatPhone} from '../Hooks/FormatPhone.hook.jsx';
 
 const SubHeader = styled.p `
     font-size: 1.4rem;
@@ -29,7 +30,7 @@ export default function PrintableReport() {
                 <SubHeader>Contact Info:</SubHeader>
                 {contact_name && <p>{contact_name}</p>}
                 {username && <p>{username}</p>}
-                {phone && <p>{phone}</p>}
+                {phone && <p>{formatPhone(phone)}</p>}
             </Container>
             <Container style={{textAlign:'center'}}>
                 <SubHeader>Organization Background:</SubHeader>
