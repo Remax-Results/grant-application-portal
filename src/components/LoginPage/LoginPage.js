@@ -16,6 +16,7 @@ export default function LoginPage() {
       <center style={{paddingTop: '10px'}}>
         <p>Not registered?</p>
         <Button
+          className="btn login-btn" 
           variant= 'primary'
           type="button"
           onClick={() => {
