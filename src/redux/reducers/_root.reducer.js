@@ -18,6 +18,7 @@ import budget from './budget.reducer';
 import greeting from './greeting.reducer';
 import budgetWording from './budgetWording.reducer';
 import ceAppTableData from './ceAppTableData.reducer';
+import allCeQuestion from './allCeQuestion.reducer';
 
 
 const rootReducer = combineReducers({
@@ -40,6 +41,7 @@ const rootReducer = combineReducers({
   greeting,
   budgetWording,
   ceAppTableData,
+  allCeQuestion,
 });
 
 export default rootReducer;
