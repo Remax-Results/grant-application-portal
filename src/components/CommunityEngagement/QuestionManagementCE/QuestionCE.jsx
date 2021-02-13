@@ -10,14 +10,14 @@ export default function Question(props) {
     const [questionText, setQuestionText] = useState(question.question_text);
 
     const changeQuestionStatus = (event) => {
-        dispatch({type: 'CHANGE_QUESTION_STATUS', payload: {
+        dispatch({type: 'CHANGE_CE_QUESTION_STATUS', payload: {
             questionId: question.id,
             newStatus: event.target.value
         }})
     }
 
     const submitEdit = (event) => {
-        dispatch({type: 'CHANGE_QUESTION_TEXT', payload: {
+        dispatch({type: 'CHANGE_CE_QUESTION_TEXT', payload: {
             questionId: question.id,
             newText: questionText
         }})

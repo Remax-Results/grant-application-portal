@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ListGroup, Container } from 'react-bootstrap';
+import { ListGroup, Container, ButtonGroup, ToggleButton } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Question from './Question.jsx';
+import QuestionCE from '../CommunityEngagement/QuestionManagementCE/QuestionCE.jsx';
 import AddQuestionForm from './AddQuestionForm.jsx';
 import BudgetWording from './BudgetWording.jsx';
 import FocusArea from './FocusArea.jsx';
@@ -14,15 +15,24 @@ import './QuestionManagement.css';
 export default function QuestionManagement() {
 
   const dispatch = useDispatch();
+  const [radioValue, setRadioValue] = useState('1');
+
+  // Radio Toggler that switches between community engagement questions and regular questions.
+  const radios = [
+    { name: 'Results Foundation Questions', value: '1' },
+    { name: 'Community Engagement Questions', value: '2' },
+  ];
 
   // Reducers for all questions.
   const allQuestion = useSelector(state => state.allQuestion);
+  const allCeQuestion = useSelector(state => state.allCeQuestion);
   const budgetWording = useSelector(state => state.budgetWording);
   const focusArea = useSelector(state => state.focusArea);
 
   // Fetch the previous grant windows to populate the table.
   useEffect(() => {
     dispatch({type: 'FETCH_ALL_QUESTIONS'})
+    dispatch({type: 'FETCH_ALL_CE_QUESTIONS'})
     dispatch({type: 'FETCH_BUDGET_WORDING'})
     dispatch({type: 'FETCH_FOCUS_AREA'})
   }, [dispatch])
@@ -30,6 +40,23 @@ export default function QuestionManagement() {
   return (
     <div className="question-manager">
       <h2>Question Manager</h2>
+      <Container style={{textAlign: 'center'}}>
+        <ButtonGroup toggle>
+          {radios.map((radio, idx) => (
+            <ToggleButton
+              key={idx}
+              type="radio"
+              variant="secondary"
+              name="radio"
+              value={radio.value}
+              checked={radioValue === radio.value}
+              onChange={(e) => setRadioValue(e.currentTarget.value)}
+            >
+              {radio.name}
+            </ToggleButton>
+          ))}
+        </ButtonGroup>
+      </Container>
       <Container>
         <ListGroup variant="flush">
           {Object.keys(budgetWording).length > 0 &&
@@ -37,8 +64,12 @@ export default function QuestionManagement() {
           }
         </ListGroup>
         <ListGroup variant="flush">
-          {allQuestion.length > 0 && allQuestion.map(question => 
+          {allQuestion.length > 0 && radioValue === '1' && allQuestion.map(question => 
             (<Question key={question.id} question={question}/>))}
+
+          {allCeQuestion.length > 0 && radioValue === '2' && allCeQuestion.map(question => 
+            (<QuestionCE key={question.id} question={question}/>))}
+          
         </ListGroup>
         
       <AddQuestionForm />
