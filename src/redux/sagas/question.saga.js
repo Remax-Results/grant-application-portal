@@ -71,6 +71,19 @@ function* postNewCeQuestion(action) {
     yield put({ type:'FETCH_ALL_CE_QUESTIONS' });
 }
 
+function* changeCeQuestionStatus(action) {
+    const { questionId, newStatus } = action.payload;
+    yield axios.put(`/api/question/question-status/ce/${questionId}`, {newStatus: newStatus});
+    yield put({ type:'FETCH_ALL_CE_QUESTIONS' });
+
+}
+
+function* changeCeQuestionText(action) {
+    const { questionId, newText } = action.payload;
+    yield axios.put(`/api/question/question-text/ce/${questionId}`, {newText: newText});
+    yield put({ type:'FETCH_ALL_CE_QUESTIONS' });
+}
+
 //--------------------WATCHER SAGA---------------------------//
 function* grantWindowSaga() {
     yield takeLatest('FETCH_ALL_QUESTIONS', fetchAllQuestions);
@@ -83,6 +96,8 @@ function* grantWindowSaga() {
     yield takeLatest('POST_NEW_CE_QUESTION', postNewCeQuestion);
     yield takeLatest('CHANGE_QUESTION_STATUS', changeQuestionStatus);
     yield takeLatest('CHANGE_QUESTION_TEXT', changeQuestionText);
+    yield takeLatest('CHANGE_CE_QUESTION_STATUS', changeCeQuestionStatus);
+    yield takeLatest('CHANGE_CE_QUESTION_TEXT', changeCeQuestionText);
     yield takeLatest('FETCH_Q_AND_A', fetchQandA);
     yield takeLatest('FETCH_CE_Q_AND_A', fetchCeQandA);
 }

@@ -127,6 +127,38 @@ router.post('/ce', rejectUnauthenticatedAdmin, (req, res, next) => {
     });
 });
 
+// Toggles a question between active and inactive.
+router.put('/question-status/ce/:id', rejectUnauthenticatedAdmin, (req, res, next) => { 
+  const sqlText = `
+                  UPDATE ce_question
+                  SET active = $1
+                  WHERE id=$2
+                  ;`
+  pool
+    .query(sqlText, [req.body.newStatus, req.params.id])
+    .then(() => res.sendStatus(201))
+    .catch((err) => {
+      console.log('question/question-status PUT failed ', err);
+      res.sendStatus(500);
+    });
+});
+
+// Update the question text of a particular question.
+router.put('/question-text/ce/:id', rejectUnauthenticatedAdmin, (req, res, next) => {
+  const sqlText = `
+                  UPDATE ce_question
+                  SET question_text = $1
+                  WHERE id=$2
+                  ;`
+  pool
+    .query(sqlText, [req.body.newText, req.params.id])
+    .then(() => res.sendStatus(201))
+    .catch((err) => {
+      console.log('question/question-text PUT failed ', err);
+      res.sendStatus(500);
+    });
+});
+
 
 
 

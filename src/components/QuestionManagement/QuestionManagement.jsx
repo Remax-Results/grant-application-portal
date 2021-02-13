@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Question from './Question.jsx';
 import QuestionCE from '../CommunityEngagement/QuestionManagementCE/QuestionCE.jsx';
 import AddQuestionForm from './AddQuestionForm.jsx';
+import AddQuestionFormCE from '../CommunityEngagement/QuestionManagementCE/AddQuestionFormCE.jsx';
 import BudgetWording from './BudgetWording.jsx';
 import FocusArea from './FocusArea.jsx';
 import AddFocusAreaForm from './AddFocusAreaForm.jsx';
@@ -69,17 +70,22 @@ export default function QuestionManagement() {
 
           {allCeQuestion.length > 0 && radioValue === '2' && allCeQuestion.map(question => 
             (<QuestionCE key={question.id} question={question}/>))}
-          
         </ListGroup>
-        
-      <AddQuestionForm />
-        <h2 style={{paddingBottom: '15px'}}>Focus Area Manager</h2>
-        <ListGroup variant="flush">
-            {focusArea.length > 0 && focusArea.filter(focus=>focus.id!==5).map(focus => (
-              <FocusArea key={focus.id} focusArea={focus} />
-              ))}
-        <AddFocusAreaForm />
-        </ListGroup>
+
+      {radioValue === '1' ?
+        <>
+        <AddQuestionForm />
+          <h2 style={{paddingBottom: '15px'}}>Focus Area Manager</h2>
+          <ListGroup variant="flush">
+              {focusArea.length > 0 && focusArea.filter(focus=>focus.id!==5).map(focus => (
+                <FocusArea key={focus.id} focusArea={focus} />
+                ))}
+          </ListGroup>
+          <AddFocusAreaForm />
+        </>
+        : 
+        <AddQuestionFormCE />
+      }  
       </Container>
     </div>
   );
