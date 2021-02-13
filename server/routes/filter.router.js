@@ -49,7 +49,6 @@ router.get('/focus/:id', rejectUnauthenticatedAdmin, (req, res) => {
   });
 
   router.get('/budget/:low/:high', rejectUnauthenticatedAdmin, (req, res) => {
-      console.log('in budget server', req.params.low, req.params.high);
       const sqlText = `SELECT a.id, a.date_received, a.budget,
                         u.org_name, u.contact_name, u.phone, u.username, f.focus, r.status   
                         FROM "user" as u
@@ -107,7 +106,6 @@ router.get('/ce/search/:id', rejectUnauthenticatedAdmin, (req, res) => {
 });
 
 router.get('/ce/budget/:low/:high', rejectUnauthenticatedAdmin, (req, res) => {
-    console.log('in ce budget server', req.params.low, req.params.high);
     const sqlText = `SELECT a.id, a.date_received, a.budget,
                       u.org_name, u.contact_name, u.phone, u.username, f.focus, r.status   
                       FROM "user" as u
