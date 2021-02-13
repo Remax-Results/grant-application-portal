@@ -5,6 +5,7 @@ import moment from 'moment';
 
 
 export default function AdminTitle() {
+    
     const {start_date, end_date, funds_available} = useSelector(state=>state.currentWindow);
     const appTableData = useSelector(state=>state.appTableData);
 

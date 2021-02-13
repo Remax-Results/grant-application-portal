@@ -16,6 +16,12 @@ export default function AppTableList(props) {
         history.push(`/ce/appdetails/${app.id}`)
     }
 
+    // currency formatter
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      });
+
     return(
         <>
         <tr key={app.id}>
@@ -23,7 +29,7 @@ export default function AppTableList(props) {
             <td>{app.contact_name}</td>
             <td>{app.phone}</td>
             <td><a href={mailText}>{app.username}</a></td>
-            <td>{app.budget}</td>
+            <td>{formatter.format(app.budget)}</td>
             <td>{app.focus}</td>
             <td>{moment(app.date_received).format('LL')}</td>
             <td>{app.status}</td>

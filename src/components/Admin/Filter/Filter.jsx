@@ -33,6 +33,12 @@ export default function Filter () {
     return [date.getFullYear(), mnth, day].join("-");
   }
 
+  // currency formatter
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
+
    return(
     <Container>
         <h3>Filter Settings</h3>
