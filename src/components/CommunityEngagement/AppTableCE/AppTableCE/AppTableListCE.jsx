@@ -5,6 +5,8 @@ import {Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
 import moment from 'moment';
 import { BiDetail } from "react-icons/bi";
+import {formatPhone} from '../../../Hooks/FormatPhone.hook.jsx';
+
 
 export default function AppTableList(props) {
     const {app} = props;
@@ -21,7 +23,7 @@ export default function AppTableList(props) {
         <tr key={app.id}>
             <td>{app.org_name}</td>
             <td>{app.contact_name}</td>
-            <td>{app.phone}</td>
+            <td>{formatPhone(app.phone)}</td>
             <td><a href={mailText}>{app.username}</a></td>
             <td>{app.budget}</td>
             <td>{app.focus}</td>
