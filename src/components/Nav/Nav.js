@@ -62,8 +62,8 @@ export default function Nav() {
                 </Link>
               </>
               :
-              <Link className="nav-link" to="/grantapplication">
-                Grant Application
+              <Link className="nav-link" to="/applications">
+                Previous Applications
               </Link>
             }
             <LogOutButton className="nav-link" />

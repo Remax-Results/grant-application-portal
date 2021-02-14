@@ -1,6 +1,5 @@
-
 -- If you need to restart the database, this drop statement will drop everything in the correct order. 
--- DROP TABLE budget_wording, greeting, app_question, ce_app_question, question, ce_question, app, ce_notes, notes, ce_app, app, grant_window, focus_area, review_status, "user";
+DROP TABLE budget_wording, greeting, app_question, ce_app_question, question, ce_question, app, ce_notes, notes, ce_app, app, grant_window, focus_area, review_status, "user";
 
 --------------------- CREATE TABLES ------------------
 
@@ -128,12 +127,15 @@ VALUES
 ('nadzieja@uplift.net', '$2a$10$jQnZgGN6SVgzZY7CPb0tH.P3yS0WU5QBRxED4c/.va3hV7Kf8ZNOS', 'Uplift', 'Helping kids gain confidence through weightlifting', '(446) 859-8200', 'Qiana Nadzieja', FALSE),
 ('milena@winningeleven.net', '$2a$10$jm5x1HxTdWfOESAw/3Mf0.cOd3aKHx3i79s9RZNqzHdvFYX/cjh1i', 'The Winning Eleven Foundation', 'Using soccer to bring kids from communities across Minnesota together to meet, play, and exchange cultural values', '(236) 672-4956', 'Kevin Milena', FALSE),
 ('stepan@tissuerelief.org', '$2a$10$D9gBJe6J/U0yNs5h4ZJS6.UxPhh6HdMLS6LpBw.WRZ8meq5epClrG', 'Tissue Relief Foundation', 'An organization created to raise awareness for the importance of signing up to be a soft tissue donor.', '(544) 608-0019', 'Theodoros Stepan', FALSE),
-('bernardo@codeforall.net', '$2a$10$pOu2uSuH6kDK2hI0E/Ba5enxX6wQFOFuDfCI0KQmmC5jP95vLJg1y', 'Code for All', 'Code for all brings access to coding camps for kids of all ages in the Twin cities metro', '(350) 529-1147', 'Tatenda Bernardo', FALSE);
+('bernardo@codeforall.net', '$2a$10$pOu2uSuH6kDK2hI0E/Ba5enxX6wQFOFuDfCI0KQmmC5jP95vLJg1y', 'Code for All', 'Code for all brings access to coding camps for kids of all ages in the Twin cities metro', '(350) 529-1147', 'Tatenda Bernardo', FALSE),
+('leo@justadrop.net', '$2a$10$pOu2uSuH6kDK2hI0E/Ba5enxX6wQFOFuDfCI0KQmmC5jP95vLJg1y', 'Just a Drop', 'Just a drop is trying to bring clean drinking water to those who do not have access.', '(240) 230-1410', 'Leo Simeone', FALSE),
+('thomas@sunrisefoundation.net', '$2a$10$pOu2uSuH6kDK2hI0E/Ba5enxX6wQFOFuDfCI0KQmmC5jP95vLJg1y', 'Sunrise Foundation', 'Sunrise Foundation brings underseved youth on camping trips in the Boundary Waters and other areas.', '(213) 312-1452', 'Thomas Haaland', FALSE),
+('emanuel@guidedyouth.net', '$2a$10$pOu2uSuH6kDK2hI0E/Ba5enxX6wQFOFuDfCI0KQmmC5jP95vLJg1y', 'Guided Youth', 'Guided Youth sponsors children to attend summer camps in Minnesota, as well as recreational sports throughout the rest of the year.', '(414) 321-5125', 'Emanuel Jones', FALSE);
 
 
 INSERT INTO "grant_window"("start_date", "end_date", "funds_available") 
 VALUES
-('2020-09-01', '2020-12-30', 20000), ('2021-01-05', '2021-05-21', 20000);
+ ('2020-09-01', '2020-12-30', 20000), ('2021-01-05', '2021-05-21', 20000);
 
 INSERT INTO "focus_area"("focus") 
 VALUES
@@ -151,11 +153,11 @@ VALUES
 
 INSERT INTO "app"("grant_window_id", "focus_area_id", "user_id", "budget", "review_status_id", "date_received") 
 VALUES
-(1, 3, 2, 2500, 2, '2020-09-21'),
-(1, 1, 3, 1400, 2, '2020-10-12'),
-(1, 2, 4, 2000, 2, '2020-10-24'),
-(1, 2, 5, 1100, 3, '2020-11-12'),
-(1, 1, 6, 500, 2, '2020-12-03'),
+(2, 3, 2, 2500, 2, '2021-01-21'),
+(2, 1, 3, 1400, 2, '2021-02-12'),
+(2, 2, 4, 2000, 2, '2021-01-24'),
+(2, 2, 5, 1100, 3, '2021-01-12'),
+(2, 1, 6, 500, 2, '2021-01-06'),
 (2, 1, 7, 600, 1, '2021-01-02'),
 (2, 2, 8, 900, 1, '2021-01-06'),
 (2, 4, 9, 2900, 2, '2021-01-12'),
@@ -164,7 +166,10 @@ VALUES
 (2, 2, 12, 300, 2, '2021-01-27'),
 (2, 3, 13, 1600, 3, '2021-02-02'),
 (2, 2, 14, 400, 2, '2021-02-04'),
-(2, 1, 15, 3000, 2, '2021-02-05');
+(2, 1, 15, 3000, 2, '2021-02-05'),
+(2, 2, 16, 2200, 2, '2021-01-08'),
+(2, 2, 17, 1600, 2, '2021-01-10'),
+(2, 3, 18, 2600, 2, '2021-01-12');
 
 
 INSERT INTO "question"("question_text") 
@@ -211,18 +216,17 @@ VALUES
 
 INSERT INTO "user" ("username", "password", "phone", "contact_name", "remax_employee")
 VALUES
-('lara_the_realtor@results.net', '$2a$10$3iBnDAz5DQ.qZjJrzIHUbe3OGJhQY/Zhgh8JSxdX27fOZWF78H17.', '651-867-5309', 'Lara T. Realtor', true),
+('laurensmith@results.net', '$2a$10$3iBnDAz5DQ.qZjJrzIHUbe3OGJhQY/Zhgh8JSxdX27fOZWF78H17.', '651-867-5309', 'Lara T. Smith', true),
 ('gregboehmer@results.net', '$2a$10$3iBnDAz5DQ.qZjJrzIHUbe3OGJhQY/Zhgh8JSxdX27fOZWF78H17.', '612-423-3142', 'Greg Boehmer', true),
 ('denisewilson@results.net', '$2a$10$3iBnDAz5DQ.qZjJrzIHUbe3OGJhQY/Zhgh8JSxdX27fOZWF78H17.', '612-123-4123', 'Denise Wilson', true),
 ('donnadragoo@results.net', '$2a$10$3iBnDAz5DQ.qZjJrzIHUbe3OGJhQY/Zhgh8JSxdX27fOZWF78H17.', '612-425-5436', 'Donna Dragoo', true),
 ('larryriviera@results.net', '$2a$10$3iBnDAz5DQ.qZjJrzIHUbe3OGJhQY/Zhgh8JSxdX27fOZWF78H17.', '612-126-6425', 'Larry Riviera', true),
 ('ryantemple@results.net', '$2a$10$3iBnDAz5DQ.qZjJrzIHUbe3OGJhQY/Zhgh8JSxdX27fOZWF78H17.', '612-634-9353', 'Ryan Temple', true)
-
 ;
 
 INSERT INTO "ce_app" ("user_id", "budget")
 VALUES
-(16, 2500), (17, 2100), (18, 1100), (19, 1200), (20, 1600), (21, 1600)
+(19, 2500), (20, 2100), (21, 1100), (22, 1200), (23, 1600), (24, 1600)
 ;
 
 INSERT INTO "ce_app_question"("app_id", "question_id", "answer_text")
@@ -238,7 +242,7 @@ VALUES
 (1, 1, 'Helping Hands of MN'),
 (1, 2, 'Feeding the sick and homebound hot and from scratch meals'),
 (1, 3, 'We will pay for the supplies needed to make 200 from scratch meals for homebound hospice patients'),
-(1, 4, 'This supports the community by feeding and lifting the spirits of those unseen by many, it will also get us points with the big guy upstairs because hey helping the sick yo'),
+(1, 4, 'This supports the community by feeding and lifting the spirits of those unseen by many.'),
 (1, 5, 'We would like the requested amount in May, as that is when the charity typically sees its lowest donations but highest need');
 
 INSERT INTO "budget_wording" ("question_wording")

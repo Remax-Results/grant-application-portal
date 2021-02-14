@@ -20,6 +20,8 @@ import budgetWording from './budgetWording.reducer';
 import ceAppTableData from './ceAppTableData.reducer';
 import allCeQuestion from './allCeQuestion.reducer';
 import {filterValue, filterColumn, highBudget, lowBudget} from './filter.reducer';
+import previousApplications from './previousApplications.reducer'
+
 
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
@@ -46,6 +48,7 @@ const rootReducer = combineReducers({
   filterColumn,
   highBudget,
   lowBudget,
+  previousApplications,
 });
 
 export default rootReducer;
