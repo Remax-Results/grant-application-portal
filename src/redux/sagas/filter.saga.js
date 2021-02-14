@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // For the results foundation applicants table
 function* filterBudget(action){
-    const response = yield axios.get(`/api/filter/budget/${action.payload.budgetLow}/${action.payload.budgetHigh}`);
+    const response = yield axios.get(`/api/filter/budget/${action.payload.lowBudget}/${action.payload.highBudget}`);
     yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});
 }
 
@@ -14,14 +14,16 @@ function* filterDates(action){
 }
 
 function* filterFocus(action) {
-    const response = yield axios.get(`/api/filter/focus/${action.payload}`);
+    const response = yield axios.get(`/api/filter/focus/${action.payload.id}`);
     yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});
-
+    yield put({type: 'SET_FILTER_VALUE', payload: action.payload.focus});
 }
 
 function* filterStatus(action) {
     const response = yield axios.get(`/api/filter/status/${action.payload}`);
     yield put({type: 'SET_APP_TABLE_DATA', payload: response.data});
+    yield put({type: 'SET_FILTER_VALUE', payload: action.payload});
+
 }
 
 function* searchTable(action) {
