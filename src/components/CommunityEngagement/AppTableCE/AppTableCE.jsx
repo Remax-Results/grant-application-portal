@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import AppTableListCE from './AppTableListCE.jsx';
 import { Table, Container } from 'react-bootstrap';
 import HeaderDropdownCE from './HeaderDropdownCE.jsx';
-import FilterCE from '../FilterCE/FilterCE';
-import SearchCE from '../SearchCE/SearchCE';
+import FilterCE from './FilterCE/FilterCE';
+import SearchCE from './SearchCE/SearchCE';
 
 
 
