@@ -4,7 +4,7 @@ import './Sidebar.css';
 import * as FaIcons from 'react-icons/fa';
 import moment from 'moment';
 import Icon02 from "../../../logos/Icons-02.png";
-import {formatPhone} from '../../Hooks/FormatPhone.hook.jsx';
+import {formatPhone} from '../../Hooks/Hooks.jsx';
 
 
 function Sidebar(props) {

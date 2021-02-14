@@ -5,7 +5,7 @@ import {Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
 import moment from 'moment';
 import { BiDetail } from "react-icons/bi";
-import {formatPhone} from '../../Hooks/FormatPhone.hook.jsx';
+import {formatPhone} from '../../Hooks/Hooks.jsx';
 
 export default function AppTableList(props) {
     const {app} = props;
