@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Table, Container, Row, ButtonGroup, ToggleButton} from 'react-bootstrap';
-import AppTableCE from '../CommunityEngagement/AppTableCE/AppTableCE/AppTableCE'
+import AppTableCE from '../CommunityEngagement/AppTableCE/AppTableCE'
 import AppTableList from './AppTable/AppTableList.jsx';
 import AdminTitle from './AdminTitle/AdminTitle.jsx';
 import HeaderDropdown from './AppTable/HeaderDropdown.jsx';

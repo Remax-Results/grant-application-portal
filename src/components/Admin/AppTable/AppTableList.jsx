@@ -21,7 +21,7 @@ export default function AppTableList(props) {
 
     return(
         <>
-        <tr key={app.id}>
+        <tr key={app.id} style={{textAlign: 'right'}}>
             <td>{app.org_name}</td>
             <td>{app.contact_name}</td>
             <td>{formatPhone(app.phone)}</td>
