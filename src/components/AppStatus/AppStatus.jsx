@@ -17,7 +17,7 @@ export default function AppStatus(props) {
   
   return (
       
-    <div className="appStatus">
+    <div className="appStatus" >
       
         
       <h2>Welcome Back, {user.contact_name}!</h2>
