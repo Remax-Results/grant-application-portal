@@ -4,7 +4,6 @@ import axios from 'axios';
 
 function* fetchApplication(action){
     const currentWindow = yield axios.get(`/api/grant-window/current-window`);
-    console.log('inside fetchApplication', currentWindow.data.id)
     let axiosRoute = '/api/app-check/'
     // if there is currently a window, add that to the route parameters.
     // otherwise it will run a seperate route without a grant window as a parameter
@@ -48,12 +47,19 @@ function* postEmailConfirmation(action){
   }
 }
 
+function* fetchPreviousApplications(action){
+  const response = yield axios.get('/api/application/previous-applications');
+  yield put({type:'SET_PREVIOUS_APPLICATIONS', payload: response.data});
+}
+
 //--------------------WATCHER SAGA---------------------------//
 function* applicationSaga() {
   yield takeLatest('FETCH_APPLICATION', fetchApplication);
   yield takeLatest('POST_APPLICATION', postApplication);
   yield takeLatest('POST_CE_APPLICATION', postCeApplication);
   yield takeLatest('POST_EMAIL_CONFIRMATION', postEmailConfirmation);
+  yield takeLatest('FETCH_PREVIOUS_APPLICATIONS', fetchApplication);
+
 }
 
 export default applicationSaga;

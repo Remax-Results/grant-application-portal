@@ -136,4 +136,32 @@ router.post('/ce', rejectUnauthenticated, async (req, res) => {
   
 });
 
+
+router.get(`/previous-applications`, rejectUnauthenticated, (req, res) => {
+  let sqlText
+  if (req.user.remax_employee){
+    sqlText = `
+              SELECT * FROM ce_app AS a
+              JOIN review_status AS r ON a.review_status_id = r.id  
+              WHERE user_id=$1
+              ;`
+  } else {
+    sqlText = `
+              SELECT * FROM app AS a
+              JOIN review_status AS r ON a.review_status_id = r.id  
+              WHERE user_id=$1
+              ;`
+  }
+  pool
+    .query(sqlText, [req.user.id])
+    .then((result) => {
+      res.send(result.rows[0])
+    })
+    .catch((err) => {
+      console.log('status check failed', err);
+      res.sendStatus(500);
+    });
+
+});
+
 module.exports = router;

@@ -27,6 +27,7 @@ import GreetingManagement from '../GreetingManagement/GreetingManagement.jsx';
 import RegisterPageCE from '../CommunityEngagement/RegisterPageCE/RegisterPageCE'
 import AppDetailsCE from '../CommunityEngagement/AppDetailsCE/AppDetailsCE.jsx';
 import PrintableReportCE from '../CommunityEngagement/PrintableReportCE/PrintableReportCE.jsx';
+import PreviousApplications from '../PreviousApplications/PreviousApplications.jsx'
 
 
 import './App.css';
@@ -120,6 +121,13 @@ class App extends Component {
               component={LandingPage}
               authRedirect="/user"
               adminRedirect="/admin"
+            />
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/applications"
+              adminRedirect="/admin"
+              component={PreviousApplications}
             />
             <AdminRoute
               // AdminRoute ensures the user is an admin
