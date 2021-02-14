@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {useParams, useHistory} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Container, Col, Row,  Button} from 'react-bootstrap';
+import {Container, Col, Row} from 'react-bootstrap';
 import ScoreReportCE from './ScoreReportCE/ScoreReportCE.jsx';
 import NotesReportCE from './NotesReportCE/NotesReportCE.jsx';
 import styled from 'styled-components';
+import {formatPhone} from '../../Hooks/FormatPhone.hook.jsx';
+
 
 const SubHeader = styled.p `
     font-size: 1.4rem;
@@ -17,7 +19,7 @@ export default function PrintableReport() {
     const dispatch = useDispatch();
     const notes = useSelector(state => state.notes);
     const {budget} = useSelector(state => state.budget);
-    const {org_name, background, focus, phone, status, username, contact_name} = useSelector(state => state.detailsData);
+    const {org_name, focus, phone, username, contact_name} = useSelector(state => state.detailsData);
     const qANDa = useSelector(state => state.qANDa);
     useEffect(() => {dispatch({type: 'FETCH_CE_DETAILS_DATA', payload: id})}, [dispatch, id]);
 
@@ -29,7 +31,7 @@ export default function PrintableReport() {
                 <SubHeader>Contact Info:</SubHeader>
                 {contact_name && <p>{contact_name}</p>}
                 {username && <p>{username}</p>}
-                {phone && <p>{phone}</p>}
+                {phone && <p>{formatPhone(phone)}</p>}
             </Container>
             <Container style={{textAlign:'center'}}>
                 <Row>

@@ -26,7 +26,7 @@ export default function Question(props) {
 
     return (
         <div>
-            <ListGroup.Item>
+            <ListGroup.Item style={{opacity: question.active ? '100%' : '50%'}}>
                 <Row>
                     <Col xs={8}>
                         {editMode ? 

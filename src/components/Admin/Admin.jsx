@@ -13,6 +13,7 @@ export default function Admin() {
     const appTableData = useSelector(state=>state.appTableData);
     const [radioValue, setRadioValue] = useState('1');
 
+    // Options for the radio toggler to switch between community engagement view and regular view.
     const radios = [
         { name: 'Results Foundation Applicants', value: '1' },
         { name: 'Community Engagement', value: '2' },

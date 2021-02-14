@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './RegisterForm.css'
 import {Form, Container, Button} from 'react-bootstrap';
+import {formatPhone} from '../Hooks/FormatPhone.hook.jsx';
+
 
 export default function RegisterForm() {
   const dispatch = useDispatch();
@@ -22,6 +24,7 @@ export default function RegisterForm() {
     if (password !== passwordConfirm){
       dispatch({type: 'PASSWORD_DOES_NOT_MATCH'})
     } else if (username && password && passwordConfirm && orgName && background && phone && contactName){
+      setPhone(formatPhone(phone));
       dispatch({
         type: 'REGISTER',
         payload: {
