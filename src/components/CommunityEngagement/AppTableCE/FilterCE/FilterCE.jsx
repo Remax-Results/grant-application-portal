@@ -3,7 +3,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import {Container, Row, Dropdown, Button, InputGroup, Form, FormControl} from 'react-bootstrap';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import {AiOutlineClear, AiFillFilter, AiOutlineColumnHeight} from 'react-icons/ai';
+import {GiChoice} from 'react-icons/gi';
 
 export default function Filter () {
    const dispatch = useDispatch();
@@ -34,11 +35,11 @@ export default function Filter () {
 
    return(
     <Container>
-        <h3>Filter Settings</h3>
         <Row>
-            <Dropdown style={{margin:"10px"}}>
+            <Dropdown title="Select Filter Column">
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    {column === 0 ? 'Select Filter Column'
+                    <AiFillFilter/> <AiOutlineColumnHeight/>&nbsp;
+                    {column === 0 ? ''
                     : column === 1 ? 'Status'
                     : column === 2 ? 'Budget'
                     : column === 3 && 'Date'}
@@ -52,9 +53,10 @@ export default function Filter () {
             </Dropdown>
             {column < 2 ?
                 <>
-                <Dropdown style={{margin:"10px"}}>
+                <Dropdown title="Filter By Value">
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    Filter By
+                    <AiFillFilter/><GiChoice/>
+                    {filterValue}
                 </Dropdown.Toggle>
                 {column === 1 ?
                         <Dropdown.Menu>
@@ -71,7 +73,6 @@ export default function Filter () {
                     : <Dropdown.Menu>Select Column First</Dropdown.Menu>
                 }
                 </Dropdown>
-                <p>Filtering by: {filterValue}</p>
                 </>
             : column === 2 ? 
                 <Form inline onSubmit={(event)=>{handleBudgetFilter(event)}}>
@@ -129,7 +130,8 @@ export default function Filter () {
         </Form>
             }
             
-            <Button style={{marginLeft:'10px'}} variant="danger" size="sm" 
+            <Button variant="danger" 
+                    title="Clear Filter Settings"
                     onClick={()=>{
                         dispatch({type:'FETCH_CE_APP_TABLE_DATA'});
                         setFilterValue('none');
@@ -137,7 +139,7 @@ export default function Filter () {
                         setBudgetHigh(0);
                         setBudgetLow(0);
                     }}>
-                        Clear Filter
+                        <AiOutlineClear/>
             </Button>
         </Row>
     </Container>

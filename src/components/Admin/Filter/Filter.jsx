@@ -14,8 +14,6 @@ export default function Filter () {
    const filterColumn = useSelector(state=>state.filterColumn);
    const columnMenu = [{column: 1, value: 'Area of Focus'}, {column: 2, value: 'Status'}, {column: 3, value: 'Budget'}, {column: 4, value: 'Dates'}]
    
-  
-
    return(
        <Container>
         <Row>
@@ -33,7 +31,7 @@ export default function Filter () {
             :
                 <DateFilter/>
             }
-            <Button variant="danger" title="Clear Filter"
+            <Button variant="danger" title="Clear Filter Settings"
                     onClick={()=>{
                         dispatch({type:'FETCH_APP_TABLE_DATA'});
                         dispatch({type:'UNSET_FILTER_VALUE'});
