@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './RegisterForm.css'
 import {Form, Container, Button} from 'react-bootstrap';
-import {formatPhone} from '../Hooks/FormatPhone.hook.jsx';
+import {formatPhone} from '../Hooks/Hooks.jsx';
 
 
 export default function RegisterForm() {

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {Container, Form, Row, Col, Button} from 'react-bootstrap';
-
+import {AiOutlineClear, AiOutlineSearch} from 'react-icons/ai';
 
 export default function Search() {
     const dispatch=useDispatch();
@@ -13,23 +13,23 @@ export default function Search() {
 
     return(
         <Container>
-           
                 <Form onSubmit={(event)=>{handleSubmit(event)}}>
                         <Form.Group as={Row}>
                             <Col xs={6}>
                                 <Form.Control
+                                placeholder='Search'
                                 onChange={(event)=>{setSearchValue(event.target.value)}}
                                 value={searchValue}
                                 />
                             </Col>
                         <Col>
-                            <Button type="submit">Search</Button>
-                            <Button style={{marginLeft:'10px'}} variant="danger" size="sm" 
+                            <Button type="submit" title="Search"><AiOutlineSearch/></Button>
+                            <Button style={{marginLeft:'10px'}} variant="danger" title="Clear Search" 
                                 onClick={()=>{
                                     dispatch({type:'FETCH_APP_TABLE_DATA'});
                                     setSearchValue('');
                                 }}>
-                                    Clear Search
+                                    <AiOutlineClear/>
                             </Button>
                         </Col>    
                         </Form.Group>

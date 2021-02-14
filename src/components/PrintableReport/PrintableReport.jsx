@@ -6,7 +6,7 @@ import {Container, Col, Row} from 'react-bootstrap';
 import ScoreReport from './ScoreReport/ScoreReport.jsx';
 import NotesReport from './NotesReport/NotesReport.jsx';
 import styled from 'styled-components';
-import {formatPhone} from '../Hooks/FormatPhone.hook.jsx';
+import {formatPhone} from '../Hooks/Hooks.jsx';
 
 const SubHeader = styled.p `
     font-size: 1.4rem;
