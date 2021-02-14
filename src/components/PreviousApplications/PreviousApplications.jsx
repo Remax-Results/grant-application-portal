@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PreviousApplicationsTable from './PreviousApplicationsTable/PreviousApplicationsTable.jsx';
 
 
 export default function PreviousApplications() {
@@ -16,7 +17,7 @@ export default function PreviousApplications() {
     return (
         <>
         <h2>Inside Previous Applications</h2>
-        {JSON.stringify(previousApplications)}
+        <PreviousApplicationsTable/>
         </>
   );
 }

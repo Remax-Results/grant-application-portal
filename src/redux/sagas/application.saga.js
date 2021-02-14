@@ -58,7 +58,7 @@ function* applicationSaga() {
   yield takeLatest('POST_APPLICATION', postApplication);
   yield takeLatest('POST_CE_APPLICATION', postCeApplication);
   yield takeLatest('POST_EMAIL_CONFIRMATION', postEmailConfirmation);
-  yield takeLatest('FETCH_PREVIOUS_APPLICATIONS', fetchApplication);
+  yield takeLatest('FETCH_PREVIOUS_APPLICATIONS', fetchPreviousApplications);
 
 }
 
