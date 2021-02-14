@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import AppTableListCE from './AppTableListCE.jsx';
-import { Table, Container } from 'react-bootstrap';
+import { Table, Container, Row, Col } from 'react-bootstrap';
 import HeaderDropdownCE from './HeaderDropdownCE.jsx';
 import FilterCE from './FilterCE/FilterCE';
 import SearchCE from './SearchCE/SearchCE';
@@ -14,9 +14,16 @@ export default function AppTable() {
 
     return (
         <>
-            <FilterCE/>
-            <SearchCE/>
-            <h2>Community Engagement Applications</h2>
+            <Row style={{display:'flex', justifyContent:'center'}}><h2>Community Engagement Table</h2></Row>
+            <Row>
+                <Col xs={4}>
+                    <SearchCE/>
+                </Col>
+                <Col xs={8}>
+                    <FilterCE/>
+                </Col>
+            </Row>
+            
             <Container fluid>
                     <Table 
                         striped 

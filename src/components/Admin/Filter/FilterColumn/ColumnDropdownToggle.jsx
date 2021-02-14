@@ -1,7 +1,6 @@
 import React from 'react';
 import {Dropdown} from 'react-bootstrap';
 import {AiFillFilter, AiOutlineColumnHeight} from 'react-icons/ai';
-import {GiChoice} from 'react-icons/gi';
 
 export default function ColumnDropdownToggle({column}){
     return (
