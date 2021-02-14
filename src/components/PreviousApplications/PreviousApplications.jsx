@@ -16,8 +16,7 @@ export default function PreviousApplications() {
 
     return (
         <>
-        <h2>Inside Previous Applications</h2>
-        <PreviousApplicationsTable/>
+            <PreviousApplicationsTable/>
         </>
   );
 }
