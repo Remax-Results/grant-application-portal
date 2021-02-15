@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Table, Container, Row, ButtonGroup, ToggleButton} from 'react-bootstrap';
-import AppTableCE from '../CommunityEngagement/AppTableCE/AppTableCE/AppTableCE'
+import {Table, Container, Row, ButtonGroup, Col, ToggleButton} from 'react-bootstrap';
+import AppTableCE from '../CommunityEngagement/AppTableCE/AppTableCE'
 import AppTableList from './AppTable/AppTableList.jsx';
 import AdminTitle from './AdminTitle/AdminTitle.jsx';
 import HeaderDropdown from './AppTable/HeaderDropdown.jsx';
@@ -51,9 +51,11 @@ export default function Admin() {
             <Container>
                 <AdminTitle />
             </Container>
-            <Row style={{display:'flex', justifyContent:'center'}}><h2>Applications</h2></Row>
-            <Filter />
-            <Search/>
+            <Row style={{display:'flex', justifyContent:'center'}}><h2>Applications Table</h2></Row>
+            <Row>
+                <Col xs={4}><Search/></Col>
+                <Col xs={8}><Filter /></Col>
+            </Row>
             <Container fluid>
                 <Table 
                     striped 

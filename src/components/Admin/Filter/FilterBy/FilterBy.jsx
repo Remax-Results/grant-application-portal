@@ -1,0 +1,33 @@
+import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Dropdown, ButtonGroup} from 'react-bootstrap';
+import FilterFocus from './FilterFocus.jsx';
+import FilterStatus from './FilterStatus.jsx';
+import FilterByDropdown from './FilterByDropDown.jsx';
+
+export default function FilterBy() {
+   const dispatch = useDispatch();
+   const focusArea = useSelector(state=> state.focusArea);
+   const filterColumn = useSelector(state=>state.filterColumn);
+   const reviewStatus = useSelector(state=>state.reviewStatus);
+
+   return(
+    <Dropdown title="Filter By Value">
+        <FilterByDropdown />
+        {filterColumn === 1 ? 
+            <Dropdown.Menu>
+            {focusArea.map((f)=>
+                <FilterFocus f={f}/>
+            )}
+        </Dropdown.Menu>
+        : filterColumn === 2 ?
+            <Dropdown.Menu>
+                {reviewStatus.map((r)=>
+                    <FilterStatus r={r}/>
+                )}
+            </Dropdown.Menu>
+        : <Dropdown.Menu>Select Column First</Dropdown.Menu>
+    }
+    </Dropdown>
+   )
+}

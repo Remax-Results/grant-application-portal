@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {useHistory} from 'react-router-dom';
 import GrantApplicationFormInputCE from '../GrantApplicationFormInputCE/GrantApplicationFormInputCE.jsx';
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './GrantApplicationFormCE.css';
-
-
+import swal from 'sweetalert';
 
 function GrantApplicationForm(props) {
 
@@ -13,6 +13,7 @@ function GrantApplicationForm(props) {
   const questions = useSelector((store) => store.activeQuestion);
   const budgetWording = useSelector((store) => store.budgetWording);
   const dispatch = useDispatch();
+  const history = useHistory();
   const [values, setValues] = useState({});
   const [budget, setBudget] = useState(0);
   const [validated, setValidated] = useState(false);
@@ -33,6 +34,16 @@ function GrantApplicationForm(props) {
           values: values, 
           budget: budget
         } 
+      });
+      // Sweet Alert confirmation for the user.
+      swal({
+        title: "Thank You!",
+        text: "Your application was submitted!",
+        icon: "success",
+        button: "View application history.",
+      })
+      .then((value) => {
+        history.push('/applications')
       });
     }
   }

@@ -38,7 +38,8 @@
 - SweetAlert
 - React-Bootstrap
 - Styled Components
-- Moment
+- Moment.js
+- React Icons
 
 
 
