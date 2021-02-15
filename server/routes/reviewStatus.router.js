@@ -41,7 +41,18 @@ router.put('/', rejectUnauthenticatedAdmin, (req, res) => {
     .catch(error => {
       console.log('error updating review_status_id on the database from the server... -------->', error);
     })
- 
+});
+
+//updating status of CE application - admin only view
+router.put('/ce', rejectUnauthenticatedAdmin, (req, res) => {
+  const sqlText = `UPDATE ce_app SET review_status_id=$1 WHERE id=$2;`;
+  pool.query(sqlText, [req.body.status, req.body.id])
+  .then(result => {
+    res.sendStatus(200);
+  })
+  .catch(error => {
+    console.log('error updating review_status_id on the database from the server... -------->', error);
+  })
 });
 
 module.exports = router;

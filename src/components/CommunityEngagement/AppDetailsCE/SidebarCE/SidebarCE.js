@@ -20,6 +20,12 @@ function Sidebar(props) {
         setSidebar(!sidebar);  
     }
 
+    // currency formatter
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      });
+
     return (
         <>
         
@@ -72,7 +78,7 @@ function Sidebar(props) {
                         <p>
                             <b>Budget:</b>
                             &nbsp;
-                            {budget}
+                            {formatter.format(budget)}
                         </p>
                     </div>
                 </div>

@@ -17,7 +17,7 @@ export default function UpdateStatus() {
           })
           .then((willDelete) => {
             if (willDelete) {
-              dispatch({ type:'UPDATE_STATUS', payload:{ status: rs_id, id: detailsData.id }});
+              dispatch({ type:'UPDATE_CE_STATUS', payload:{ status: rs_id, id: detailsData.id }});
               swal("Status updated!", {
                 icon: "success",
               });

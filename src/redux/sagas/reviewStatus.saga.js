@@ -22,12 +22,18 @@ function* updateStatus(action){
   yield put({type: 'FETCH_ADMIN_REVIEW_STATUS', payload: action.payload.id});
 }
 
+function* updateCeStatus(action){
+  yield axios.put(`/api/review-status/ce`, action.payload);
+  yield put({type: 'FETCH_ADMIN_REVIEW_STATUS', payload: action.payload.id});
+}
+
 //--------------------WATCHER SAGA---------------------------//
 function* reviewStatusSaga() {
   yield takeLatest('FETCH_STATUS_DROPDOWN', fetchStatusDropdown);
   yield takeLatest('FETCH_ADMIN_REVIEW_STATUS', fetchAdminReviewStatus);
   yield takeLatest('FETCH_CURRENT_STATUS', fetchCurrentStatus);
   yield takeLatest('UPDATE_STATUS', updateStatus);
+  yield takeLatest('UPDATE_CE_STATUS', updateCeStatus);
 }
 
 export default reviewStatusSaga;
