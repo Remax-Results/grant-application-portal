@@ -29,7 +29,6 @@ export default function UpdateStatus() {
 
     return (
         <Col>
-        {JSON.stringify(reviewStatus)}
             <Dropdown style={{backgroundColor: "#1C479A !important"}}>
               <Dropdown.Toggle id="dropdown-basic">
                   Set Review Status
