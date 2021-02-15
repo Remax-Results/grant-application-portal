@@ -58,7 +58,7 @@ function GrantApplicationForm(props) {
 
   return (
     <>
-        <Container>
+        <Container className="container">
           <h2 className="headerRow">Grant Application Form</h2>
         
         <Container className="formContainer">

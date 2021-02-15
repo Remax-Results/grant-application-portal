@@ -5,6 +5,7 @@ import { Table, Container, Row, Col } from 'react-bootstrap';
 import HeaderDropdownCE from './HeaderDropdownCE.jsx';
 import FilterCE from './FilterCE/FilterCE';
 import SearchCE from './SearchCE/SearchCE';
+import AdminTitle from '../AdminTitleCE/AdminTitleCE';
 
 
 
@@ -14,6 +15,9 @@ export default function AppTable() {
 
     return (
         <>
+            <Container>
+                <AdminTitle ceAppTableData={ceAppTableData} />
+            </Container>
             <Row style={{display:'flex', justifyContent:'center'}}><h2>Community Engagement Table</h2></Row>
             <Row>
                 <Col xs={4}>

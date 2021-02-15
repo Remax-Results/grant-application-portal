@@ -10,6 +10,12 @@ export default function GrantWindowInfo(props) {
     const { changeEditMode, editMode, currentWindow } = props;
     const dispatch = useDispatch();
 
+    // currency formatter
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    });
+
       // Function to close the current grant window if there is one.
     const closeWindow = () => {
 
@@ -37,7 +43,7 @@ export default function GrantWindowInfo(props) {
   return (
     <div className ="current-grant-window-info">
         <h3>Current Grant Window runs from {moment(currentWindow.start_date).format('LL')} to {moment(currentWindow.end_date).format('LL')}</h3>
-        <h4>Budget: {currentWindow.funds_available}</h4>
+        <h4>Budget: {formatter.format(currentWindow.funds_available)}</h4>
         <h4>Number of applications: {currentWindow.app_count}</h4>
         <Button onClick={(event)=>{changeEditMode(!editMode)}}>Edit Current Grant Window</Button>
         <Button onClick={(event)=>{closeWindow()}}>Close Current Grant Window</Button>

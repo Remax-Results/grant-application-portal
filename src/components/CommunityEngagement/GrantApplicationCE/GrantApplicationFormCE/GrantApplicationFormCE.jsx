@@ -62,7 +62,7 @@ function GrantApplicationForm(props) {
 
   return (
     <>
-        <Container>
+        <Container className="container">
           <h2 className="headerRow">Community Engagement Grant Application Form</h2>
         
         <Container className="formContainer">

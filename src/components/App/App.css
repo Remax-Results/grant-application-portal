@@ -2,7 +2,8 @@ html,
 body,
 #react-root {
   height: 100%;
-  position: relative;
+  /* position: relative; */
+
 }
 
 #main {

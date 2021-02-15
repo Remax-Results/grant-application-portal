@@ -13,7 +13,7 @@ export default function Footer () {
     return (
 
         <>
-            {currentPath.startsWith('/report')  ? '' : 
+            {currentPath.startsWith('/report') || currentPath.startsWith('/ce/report')  ? '' : 
                 <footer>
                     &copy; Created by Team Results from the Vatti Cohort <ImPacman/> at Prime Digital Academy
                 </footer>
