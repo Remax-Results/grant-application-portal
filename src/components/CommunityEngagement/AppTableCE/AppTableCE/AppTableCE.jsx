@@ -15,7 +15,9 @@ export default function AppTable() {
 
     return (
         <>
-            <AdminTitle ceAppTableData={ceAppTableData} />
+            <Container>
+                <AdminTitle ceAppTableData={ceAppTableData} />
+            </Container>
             <FilterCE/>
             <SearchCE/>
             <h2>Community Engagement Applications</h2>
