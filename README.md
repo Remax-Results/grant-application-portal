@@ -39,14 +39,21 @@
 1. Fork and clone the repository from gitHub
 2. Create a database named `results` in postgreSQL
 3. Copy the queries in database.sql into a postreSQL management app like pgAdmin or Postico
-4. From terminal, navigate to the repo folder
+4. From terminal, navigate to the folder where you pulled the repository down.
 5. Enter `npm install` at the command line
-6. Create a .env file in the root folder 
-7. Assign a password in the .env using `SERVER_SESSION_SECRET=[yourpasswordhere]`
-8. At the command line, enter 'npm run server'
-9. Open another terminal window, and navigate to the repo folder
-10. At the command line, enter 'npm run client'
-11. Open the application at `localhost:3000`
+6. If you do not already have one, make an email acocunt with [Microsoft Outlook](https://outlook.live.com/owa/). 
+7. Create a new file in the root folder named '.env'
+8. In the first line of the .env file, make a password by writing the line `SERVER_SESSION_SECRET=[yourpasswordhere]` (Note: the brackets are to point out "yourpasswordhere" is a placeholder, do not use the brackets when setting your password in the actual file. The password in the brackets *must be at least 8 characters long*.
+9. In the next line of the .env file, under the line with SERVER_SESSIN_SECET, make a line that says `MAIL_USERNAME= [your_outlook_account]` (see note about the brackets in step 8). 
+10. In the next line of the .env file, make a line that says, `MAIL_PASSWORD = [your_email_password]`. (see above notes on brackets) When you are finished, the .env file should look like this:  
+
+![Sample .env file](images/sample_env.png)
+
+11. At the command line, enter 'npm run server'
+12. Open another terminal window, and navigate to the repo folder
+13. At the command line, enter 'npm run client'
+14. Open the application on your web browser (this may happen automatically) at the address `localhost:3000`
+
 
 ## Built With
 - HTML
