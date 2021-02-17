@@ -1,3 +1,6 @@
+![REPO SIZE](https://img.shields.io/github/repo-size/sdeda1us/project-finale.svg?style=flat-square)
+![TOP_LANGUAGE](https://img.shields.io/github/languages/top/sdeda1us/project-finale.svg?style=flat-square)
+![FORKS](https://img.shields.io/github/forks/sdeda1us/project-finale.svg?style=social)
 
 # Results Foundation Application Management Portal
   
@@ -8,6 +11,27 @@
   The client side of the applicaiton allows applicants to log in or register their and their orgnaization's information if they have not registered already. From login on the client side, users may fill out and submit a grant application form. Once they have submitted a form, they will be directed to a page that will notify them that their applicaiton was recieved and provide them information about the current grant window.  
 
 ## Screen Shots
+
+### Client Side
+
+#### Grant Appliacation Form
+
+![Grant Application Form](images/grant_application_form.png)
+
+### Administration Side
+
+#### Applications Management Table
+![Applications Management Table](images/applications_table.png)
+
+#### Application Details Page
+![Application Details Page](images/app_details_page.png)
+
+#### Printable Application Report
+![Printable Report](images/printable_report.png)
+
+#### Grant Application Question Manager
+![Question Manager](images/question_manager.png)
+
 
 ## Installation
 
@@ -42,21 +66,20 @@
 - React Icons
 
 
-
 ## Acknowledgment
 
- This application was initially desinged as a the final project by Team Results Foundation of the Vatti Chorot of Prime Digital Academy (Class of February '22). 
+ This application was initially desinged as a the final project by Team Results Foundation of the Vatti Cohort of [Prime Digital Academy](https://primeacademy.io/) (Class of February '22). 
 
  ### Team Results Foundation
-- Julian Booher
-- Lara Lesar
-- Steven Maloney
-- Jordan Newberry
+- [Julian Booher](https://github.com/julianbooher)
+- [Lara Lesar](https://github.com/laramaurine)
+- [Steven Maloney](https://github.com/sdeda1us)
+- [Jordan Newberry](https://github.com/jordanNewberry21)
 
 We would like to thank our client Blaire Molitor for her direction and support in making this project.
 
-We would like to also thank Prime Digital Academy, our colleagues in the Vatti Cohort, and our primary insructor, Mary Mosman.
+We would like to also thank Prime Digital Academy, our colleagues in the Vatti Cohort, and our primary insructor, [Mary Mosman](https://github.com/mbmosman).
 
 ## Support
 
-If you have suggestions or issues, please reach out via email to: steven.maloney@gmail.com
+If you have suggestions or issues, please reach out via email to: [julianjbooher@gmail.com](mailto: julianjbooher@gmail.com), [lara.m.lesar@gmail.com](mailto: lara.m.lesar@gmail.com), [steven.maloney@gmail.com](mailto: steven.maloney@gmail.com), [jordan.newberry@gmail.com](mailto: jordan.newberry@gmail.com). 
