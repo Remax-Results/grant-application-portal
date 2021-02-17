@@ -9,8 +9,8 @@ import BudgetFilter from './BudgetFilter/BudgetFilter.jsx';
 import DateFilter from './DateFilter/DateFilter.jsx';
 
 export default function Filter () {
+
    const dispatch = useDispatch();
-   const filterValue = useSelector(state=>state.filterValue);
    const filterColumn = useSelector(state=>state.filterColumn);
    const columnMenu = [{column: 1, value: 'Area of Focus'}, {column: 2, value: 'Status'}, {column: 3, value: 'Budget'}, {column: 4, value: 'Dates'}]
    
@@ -20,7 +20,7 @@ export default function Filter () {
                 <Dropdown title="Select Filter Column">
                     <ColumnDropdownToggle column = {filterColumn}/>
                     <Dropdown.Menu>
-                        {columnMenu. map((c) => (<ColumnDropdownMenu column = {c.column} value={c.value}/>))}
+                        {columnMenu.map((c) => (<ColumnDropdownMenu column = {c.column} value={c.value}/>))}
                     </Dropdown.Menu>
                 </Dropdown>
             

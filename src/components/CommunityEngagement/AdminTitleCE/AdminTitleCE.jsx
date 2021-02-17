@@ -1,8 +1,6 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import {Card} from 'react-bootstrap';
-import moment from 'moment';
-
 
 export default function AdminTitle({ ceAppTableData }) {
     
@@ -25,8 +23,6 @@ export default function AdminTitle({ ceAppTableData }) {
         <Card>
             <Card.Header style={{backgroundColor: '#1C479A', color: 'white'}}>Welcome, {user.contact_name}!</Card.Header>
             <Card.Text style={{padding: '10px'}}>The Results Foundation has currently approved {formatter.format(ceTotal)} in total Community Engagement grants.</Card.Text>
-
-            
         </Card>
     )
 }
