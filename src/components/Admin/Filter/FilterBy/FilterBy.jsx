@@ -1,12 +1,12 @@
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Dropdown, ButtonGroup} from 'react-bootstrap';
+import {useSelector} from 'react-redux';
+import {Dropdown} from 'react-bootstrap';
 import FilterFocus from './FilterFocus.jsx';
 import FilterStatus from './FilterStatus.jsx';
 import FilterByDropdown from './FilterByDropDown.jsx';
 
 export default function FilterBy() {
-   const dispatch = useDispatch();
+
    const focusArea = useSelector(state=> state.focusArea);
    const filterColumn = useSelector(state=>state.filterColumn);
    const reviewStatus = useSelector(state=>state.reviewStatus);
