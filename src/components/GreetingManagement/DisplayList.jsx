@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {Row, Col, Form, FormControl, FormGroup, Button} from 'react-bootstrap';
 import swal from 'sweetalert';
 
 
 export default function DisplayList({g}) {
+
     const dispatch = useDispatch();
-    const activeGreeting = useSelector(state => state.activeGreeting);
+
     const [header, setHeader] = useState(g.header);
     const [message, setMessage] = useState(g.message);
+    
     const handleSubmit = (event) => {
         event.preventDefault();
         swal({

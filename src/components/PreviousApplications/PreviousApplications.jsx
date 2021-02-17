@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import PreviousApplicationsTable from './PreviousApplicationsTable/PreviousApplicationsTable.jsx';
 
 
 export default function PreviousApplications() {
-    const dispatch = useDispatch();
 
-    // Reducer for the current grant window.
-    const previousApplications = useSelector(state => state.previousApplications);
+    const dispatch = useDispatch();
 
     // Fetch the previous grant windows to populate the table.
     useEffect(() => {
@@ -20,3 +18,5 @@ export default function PreviousApplications() {
         </>
   );
 }
+
+// TODO - Potentially refactor this file tree, this file is extraneous since it didn't end up getting any additional features.
