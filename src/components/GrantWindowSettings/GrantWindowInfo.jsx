@@ -21,8 +21,6 @@ export default function GrantWindowInfo(props) {
 
         swal({
             title: "Are you sure?",
-            // TODO - better message here, also potentially in the future
-            // it will be able to be reopened.
             text: "Once the current grant window is closed, the end date will become today's date and you will not be able to reopen it.",
             icon: "warning",
             buttons: true,

@@ -19,7 +19,7 @@ export default function AppTableList(props) {
         history.push(`/appdetails/${app.id}`)
     }
     
-    console.log(app.phone[5]);
+    
 
     // currency formatter
     const formatter = new Intl.NumberFormat('en-US', {

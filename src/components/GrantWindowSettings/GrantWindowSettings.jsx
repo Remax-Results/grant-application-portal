@@ -22,7 +22,7 @@ export default function GrantWindowSettings(props) {
 
   return (
     <div>
-      {/* {JSON.stringify(currentWindow)} */}
+      
       {currentWindow ?
       <>
         {editMode ? 
