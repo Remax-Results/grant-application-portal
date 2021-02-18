@@ -9,7 +9,7 @@ import {Button} from 'react-bootstrap';
 
 export default function GrantWindowForm() {
 
-  const [startDate, setStartDate] = useState(new Date());
+  const startDate = new Date();
   const [endDate, setEndDate] = useState(null);
   const [budget, setBudget] = useState(0);
   const dispatch = useDispatch();
@@ -22,11 +22,23 @@ export default function GrantWindowForm() {
     return [date.getFullYear(), mnth, day].join("-");
   }
 
+  // function to convert the current date for the start date on the DOM.
+  function convertDom(str) {
+    var date = new Date(str),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [mnth, day, date.getFullYear()].join("/");
+  }
+
+  // onSubmit function for the grant window creation form
+  // sends converted dates of present day and selected end date to database.
   const createGrantWindow = (event) => {
     event.preventDefault();
     // Convert the dates from react-datepicker to SQL dates
     const convertedStartDate = convert(startDate)
     const convertedEndDate = convert(endDate)
+    
+    // Send all necessary info to the saga.
     dispatch({type: 'POST_GRANT_WINDOW', payload: {
       startDate: convertedStartDate, 
       endDate: convertedEndDate,
@@ -37,22 +49,15 @@ export default function GrantWindowForm() {
     return (
       <form onSubmit={event => {createGrantWindow(event)}} className="grant-window-form">
         <h2>Create a New Grant Window</h2>
+        Start Date: {convertDom(startDate)}
         <div className="date-pickers">
-          <DatePicker
-            placeholderText = "Start Date"
-            dateFormat="MM/dd/yyyy"
-            selected={startDate}
-            onChange={date => setStartDate(date)}
-            selectsStart
-            startDate={startDate}
-            endDate={endDate}
-          />
           <DatePicker
             placeholderText = "End Date"
             dateFormat="MM/dd/yyyy"
             selected={endDate}
             onChange={date => setEndDate(date)}
             selectsEnd
+            required
             startDate={startDate}
             endDate={endDate}
             minDate={startDate}
