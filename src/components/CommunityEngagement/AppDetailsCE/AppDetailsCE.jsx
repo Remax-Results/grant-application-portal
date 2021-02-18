@@ -13,7 +13,6 @@ export default function AppDetails(){
     const history = useHistory();
     const {id} = useParams();
     const dispatch = useDispatch();
-    // const qANDa = useSelector(state => state.qANDa);
     const detailsData = useSelector(state => state.detailsData);
     const notes = useSelector(state => state.notes);
     

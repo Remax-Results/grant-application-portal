@@ -56,7 +56,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
               JOIN review_status AS r ON r.id=a.review_status_id 
               WHERE a.id=$1;`;
               pool.query(sqlText, [req.params.id])
-              .then(result => {console.log(result.rows); res.send(result.rows[0])})
+              .then(result => {res.send(result.rows[0])})
               .catch(error=> console.log('Error retrieving app details page data from server', error))
             }
           });

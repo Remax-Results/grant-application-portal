@@ -10,7 +10,7 @@ export default function PreviousApplicationsTable() {
 
     return (
       <div>
-        {/* {JSON.stringify(previousWindows)} */}
+        
         <Container>
           <Row style={{display:'flex', justifyContent:'center'}}><h2>Previous Applications</h2></Row>
           <Table striped bordered hover >
