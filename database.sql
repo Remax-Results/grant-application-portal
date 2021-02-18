@@ -1,8 +1,8 @@
+-- Highlight all of the lines below CREATE TABLES and execute the query.
 
-
-
--- If you need to restart the database, this drop statement will drop everything in the correct order. 
---  DROP TABLE budget_wording, greeting, app_question, ce_app_question, question, ce_question, app, ce_notes, notes, ce_app, app, grant_window, focus_area, review_status, "user";
+-- If you need to restart the database, this DROP statement two lines below will drop all tables in the database in the correct order. 
+-- Remove the '--' tag in front of it before you highlight it and press execute.
+-- DROP TABLE budget_wording, greeting, app_question, ce_app_question, question, ce_question, app, ce_notes, notes, ce_app, app, grant_window, focus_area, review_status, "user";
 
 --------------------- CREATE TABLES ------------------
 
