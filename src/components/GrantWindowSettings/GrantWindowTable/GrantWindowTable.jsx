@@ -19,7 +19,6 @@ export default function GrantWindowTable() {
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Applications</th>
-                        <th>View Period</th>
                     </tr>
                 </thead>
                 <tbody>

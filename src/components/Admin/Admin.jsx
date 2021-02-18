@@ -51,11 +51,13 @@ export default function Admin() {
             <Container>
                 <AdminTitle />
             </Container>
-            <Row style={{display:'flex', justifyContent:'center'}}><h2>Applications Table</h2></Row>
-            <Row>
-                <Col xs={4}><Search/></Col>
-                <Col xs={8}><Filter /></Col>
-            </Row>
+            <Col>
+                <Row style={{display:'flex', justifyContent:'center'}}><h2>Applications Table</h2></Row>
+                <Row>
+                    <Col xs={4}><Search/></Col>
+                    <Col xs={8}><Filter /></Col>
+                </Row>
+            </Col>
             <Container fluid>
                 <Table 
                     striped 

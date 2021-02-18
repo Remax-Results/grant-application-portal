@@ -18,15 +18,17 @@ export default function AppTable() {
             <Container>
                 <AdminTitle ceAppTableData={ceAppTableData} />
             </Container>
-            <Row style={{display:'flex', justifyContent:'center'}}><h2>Community Engagement Table</h2></Row>
-            <Row>
-                <Col xs={4}>
-                    <SearchCE/>
-                </Col>
-                <Col xs={8}>
-                    <FilterCE/>
-                </Col>
-            </Row>
+            <Col>
+                <Row style={{display:'flex', justifyContent:'center'}}><h2>Community Engagement Table</h2></Row>
+                <Row>
+                    <Col xs={4}>
+                        <SearchCE/>
+                    </Col>
+                    <Col xs={8}>
+                        <FilterCE/>
+                    </Col>
+                </Row>
+            </Col>
             
             <Container fluid>
                     <Table 
