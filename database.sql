@@ -1,4 +1,6 @@
 
+
+
 -- If you need to restart the database, this drop statement will drop everything in the correct order. 
 --  DROP TABLE budget_wording, greeting, app_question, ce_app_question, question, ce_question, app, ce_notes, notes, ce_app, app, grant_window, focus_area, review_status, "user";
 
@@ -114,14 +116,14 @@ CREATE TABLE "budget_wording" (
 
 INSERT INTO "user"("username", "password", "org_name", "background", "phone", "contact_name", "admin") 
 VALUES
-('admin', '$2a$10$3iBnDAz5DQ.qZjJrzIHUbe3OGJhQY/Zhgh8JSxdX27fOZWF78H17.', 'Results Foundation', 'Grant-giving non-profit.', '651-123-4567', 'Blaire Molitor', TRUE),
+('admin', '$2a$10$gjd.WRi46NMPv3CKVZaM1eWz70yQNNDXbZSNZRVI2/ecCNhYMgBSC', 'Results Foundation', 'Grant-giving non-profit.', '000-000-0000', 'Blaire Molitor', TRUE),
 ('chester@bowl.com', '$2a$10$oYihePWEyOXnwkQ8Me6v0e8DJhs4swzIh3R62TwdrAaaU3d26snbi', 'Chester Bowl', 'Year-round program providing fun outdoor activities for youth of all ages and from all socio-economic backgrounds.', '612-765-4321', 'Chester A. Bowl', FALSE),
 ('wonderwall@oasis.net', '$2a$10$VzSE4kSvqLqeugiJjLp8mOuanYh5F.8FKGak.cb6K85AyPD5yF2mO', 'The Oasis Foundation', 'Bringing music to underprivileged kids in Liverpool', '4553678923', 'Liam Gallagher', FALSE),
 ('greenthumb@localgardens.org', '$2a$10$t8msWoIPpRDSEAr6p8VJGuwO5oYfIO51dhQNl7IQji.1Sl3Ytd0sS', 'Local Gardens Initiative', 'Community garden initiative designed to teach kids about healthy eating', '2345678901', 'Sara Greenleaf', FALSE);
 
 INSERT INTO "grant_window"("start_date", "end_date", "funds_available") 
 VALUES
-('2021-01-29', '2021-06-21', 20000), ('2020-01-29', '2020-06-21', 20000), ('2019-01-29', '2019-06-21', 20000);
+('2021-01-29', '2021-02-18', 20000);
 
 INSERT INTO "focus_area"("focus") 
 VALUES
@@ -137,11 +139,11 @@ VALUES
 ('Pending'), 
 ('Rejected');
 
-INSERT INTO "app"("grant_window_id", "focus_area_id", "user_id", "budget") 
+INSERT INTO "app"("grant_window_id", "focus_area_id", "user_id", "budget", "date_received") 
 VALUES
-(1, 3, 2, 2500),
-(1, 1, 3, 1400),
-(1, 2, 4, 2000);
+(1, 3, 2, 2500, '2021-02-01'),
+(1, 1, 3, 1400, '2021-02-02'),
+(1, 2, 4, 2000, '2021-02-03');
 
 INSERT INTO "question"("question_text") 
 VALUES 
@@ -187,7 +189,7 @@ VALUES
 
 INSERT INTO "user" ("username", "password", "phone", "contact_name")
 VALUES
-('lara_the_realtor@remaxresults.net', '$2a$10$3iBnDAz5DQ.qZjJrzIHUbe3OGJhQY/Zhgh8JSxdX27fOZWF78H17.', '651-867-5309', 'Lara T. Realtor');
+('larasmith@results.net', '$2a$10$3iBnDAz5DQ.qZjJrzIHUbe3OGJhQY/Zhgh8JSxdX27fOZWF78H17.', '651-867-5309', 'Lara T. Smith');
 
 INSERT INTO "ce_app" ("user_id", "budget")
 VALUES
