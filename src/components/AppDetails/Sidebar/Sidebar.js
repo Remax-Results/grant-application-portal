@@ -10,18 +10,15 @@ import {formatPhone} from '../../Hooks/Hooks.jsx';
 function Sidebar(props) {
 
     const [sidebar, setSidebar] = useState(false);
+    // deconstructed user data from props
     const { budget, focus, contact_name, date_received, phone, username } = props.detailsData;
-
+    // toggle open and close
     const showSidebar = () => setSidebar(!sidebar);
-
     const openNav = () => {
-        setSidebar(!sidebar);
-        
+        setSidebar(!sidebar); 
     }
-
     const closeNav = () => {
         setSidebar(!sidebar);
-       
     }
 
     // currency formatter
@@ -32,7 +29,6 @@ function Sidebar(props) {
 
     return (
         <>
-        
             <div className="navbar">
                 <FaIcons.FaBars onClick={openNav} className="menu-bars" /> 
             </div>
