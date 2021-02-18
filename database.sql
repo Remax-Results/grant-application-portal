@@ -198,8 +198,8 @@ VALUES
 (1, 1, 'Helping Hands of MN'),
 (1, 2, 'Feeding the sick and homebound hot and from scratch meals'),
 (1, 3, 'We will pay for the supplies needed to make 200 from scratch meals for homebound hospice patients'),
-(1, 4, 'This supports the community by feeding and lifting the spirits of those unseen by many, it will also get us points with the big guy upstairs because hey helping the sick yo'),
-(1, 5, 'We would like the requested amount in May, as that is when the charity typically sees its lowest donations but highest need');
+(1, 4, 'This supports the community by feeding and lifting the spirits of those unseen by many.'),
+(1, 5, 'We would like the requested amount in May, as that is when the charity typically sees its lowest donations but highest need.');
 
 INSERT INTO "budget_wording" ("question_wording")
 VALUES ('Budget');

@@ -26,7 +26,7 @@ router.post('/confirmation', (req, res) => {
         from: process.env.MAIL_USERNAME,
         to: req.user.username,
         subject: 'Thank You for your Application',
-        text: 'Thank you for your application, we will be in touch!'
+        text: 'Thank you for your application to the Results Foundation, we will be in touch!'
     }
     transporter.sendMail(mailData, (error, info) => {
         if( error ){
