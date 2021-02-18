@@ -23,7 +23,7 @@ export default function Nav() {
     loginLinkData.path = '/admin';
     loginLinkData.text = 'Admin Dashboard';
   }
-
+  // the nav bar is set up to be rendered out of the printable report page
   return (
     <>
     {currentPath.startsWith('/report') || currentPath.startsWith('/ce/report')  ? '' : 

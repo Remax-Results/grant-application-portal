@@ -8,6 +8,7 @@ import './LandingPage.css';
 
 export default function LandingPage() {
   const dispatch = useDispatch();
+  // fetch greeting info from database
   useEffect(() => {
     dispatch({type: 'FETCH_GREETING'})
     }, [dispatch])
@@ -15,12 +16,9 @@ export default function LandingPage() {
   const history = useHistory();
   
 
-  
+  // mapping over greeting data and displaying
     return (
-      
-
-      
-          
+       
           <Container>
             {greeting.length && greeting.map(g=>(<GreetingList g={g}/>))}
             <center>
