@@ -26,7 +26,7 @@ export default function FocusArea(props) {
 
     return (
         <div>
-            <ListGroup.Item>
+            <ListGroup.Item style={{opacity: focusArea.active ? '100%' : '50%'}}>
                 <Row>
                     <Col xs={8}>
                         {editMode ? 
