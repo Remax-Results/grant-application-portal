@@ -4,9 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function GrantApplicationFormInput ({ question, questionChanged, value }) {
 
-
-
-
     return (
         <>
             <Form.Group key={question.id}>

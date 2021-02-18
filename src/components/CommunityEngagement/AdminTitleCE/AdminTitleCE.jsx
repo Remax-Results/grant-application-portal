@@ -6,7 +6,6 @@ export default function AdminTitle({ ceAppTableData }) {
     
     const user = useSelector(state=>state.user);
     
-
     // currency formatter
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',

@@ -3,7 +3,8 @@ import {useDispatch} from 'react-redux';
 import {Row, Col, Form, FormControl, FormGroup, Button} from 'react-bootstrap';
 import swal from 'sweetalert';
 
-
+// this functional component is displaying the welcome page information
+// in an editable format
 export default function DisplayList({g}) {
 
     const dispatch = useDispatch();

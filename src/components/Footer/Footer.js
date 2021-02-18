@@ -11,7 +11,7 @@ export default function Footer () {
     const currentPath = location.pathname;
 
     return (
-
+        // this footer is set up to render out when navigating to the printable report
         <>
             {currentPath.startsWith('/report') || currentPath.startsWith('/ce/report')  ? '' : 
                 <footer>
