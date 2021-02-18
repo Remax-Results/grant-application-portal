@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
         console.log('error retrieving budget wording from the database... -------->', error);
     });
 });
-
+// update budget wording for budget question, admin route
 router.put('/', rejectUnauthenticatedAdmin, (req, res, next) => {
     const { updatedWording } = req.body;
     const sqlText = `
