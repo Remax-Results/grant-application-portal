@@ -7,6 +7,7 @@ export default function UpdateStatus() {
     const dispatch = useDispatch();
     const reviewStatus = useSelector(state=>state.reviewStatus);
     const detailsData = useSelector(state => state.detailsData);
+    // this function updates the application status
     const handleChange = (event, rs_id) => {
         swal({
             title: "Grant Application Status Change!",

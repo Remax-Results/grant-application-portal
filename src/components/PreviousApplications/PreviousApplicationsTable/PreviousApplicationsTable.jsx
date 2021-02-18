@@ -5,9 +5,9 @@ import {Table, Container, Row} from 'react-bootstrap';
 import PreviousApplicationsTableRow from './PreviousApplicationsTableRow.jsx'
 
 export default function PreviousApplicationsTable() {
-
+  // hook to get users previous applications
   const previousApplications = useSelector(state => state.previousApplications);
-
+    // displaying previous applications in table form
     return (
       <div>
         

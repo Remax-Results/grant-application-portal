@@ -5,7 +5,7 @@ import moment from 'moment';
 
 
 export default function AdminTitle() {
-    
+    // hooks for user and AdminTable data
     const {start_date, end_date, funds_available} = useSelector(state=>state.currentWindow);
     const appTableData = useSelector(state=>state.appTableData);
     const user = useSelector(state=>state.user);
@@ -17,7 +17,7 @@ export default function AdminTitle() {
       });
 
     let disbursement = 0;
-
+    // calculates remaining funds left in the grant window
     const calculateAvailable = () => {
         appTableData.map((app)=>(app.status==='Accepted' ? disbursement += Number(app.budget) : disbursement))
         return disbursement;

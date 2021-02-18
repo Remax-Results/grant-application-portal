@@ -44,7 +44,7 @@ router.get('/previous-applications', rejectUnauthenticated, (req, res) => {
   });
 });
 
-
+// get application details from database for admin AppDetails page
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   if(req.user.admin){
 
