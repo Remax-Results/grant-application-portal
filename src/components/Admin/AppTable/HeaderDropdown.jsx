@@ -5,8 +5,10 @@ import {DropdownButton, Dropdown} from 'react-bootstrap';
 
 
 export default function HeaderDropdown({title, col}) {
+    // dispatch hook
     const dispatch = useDispatch();
-
+    // this functional component captures the necessary table info
+    // to dispatch to the database for the sort function
     return (
         <th>
             <DropdownButton size="sm" title={title}>

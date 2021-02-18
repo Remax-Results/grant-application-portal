@@ -10,17 +10,19 @@ import {formatPhone} from '../../Hooks/Hooks.jsx';
 
 
 export default function AppTableList(props) {
+    // hooks
     const {app} = props;
     const mailText = "mailto:" + app.username;
     const dispatch = useDispatch();
     const history = useHistory();
+    
+    // this function grabs app details on button click
+    // and sends the Admin to AppDetails view with that information
     const goDetails = async() => {
         await dispatch({type:'FETCH_DETAILS_DATA', payload: app.id});
         history.push(`/appdetails/${app.id}`)
     }
     
-    
-
     // currency formatter
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
