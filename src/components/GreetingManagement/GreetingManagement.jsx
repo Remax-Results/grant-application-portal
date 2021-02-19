@@ -15,7 +15,7 @@ export default function GreetingManagement() {
         <Container style={{textAlign:'center'}}>
                 <h2>Set Welcome Page Messages</h2>
             <Container style={{backgroundColor:'white'}}>
-                {greeting.map((g)=> (<DisplayList g={g}/>))}
+                {greeting.map((g)=> (<DisplayList key={g.id} g={g}/>))}
             </Container>
        </Container>
     )

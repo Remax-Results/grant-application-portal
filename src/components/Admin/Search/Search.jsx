@@ -17,6 +17,7 @@ export default function Search() {
                         <Form.Group as={Row}>
                             <Col xs={6}>
                                 <Form.Control
+                                required
                                 placeholder='Search'
                                 onChange={(event)=>{setSearchValue(event.target.value)}}
                                 value={searchValue}

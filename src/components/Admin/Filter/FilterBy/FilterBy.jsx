@@ -16,13 +16,13 @@ export default function FilterBy() {
         {filterColumn === 1 ? 
             <Dropdown.Menu>
             {focusArea.map((f)=>
-                <FilterFocus f={f}/>
+                <FilterFocus key={f.id} f={f}/>
             )}
         </Dropdown.Menu>
         : filterColumn === 2 ?
             <Dropdown.Menu>
                 {reviewStatus.map((r)=>
-                    <FilterStatus r={r}/>
+                    <FilterStatus key={r.id} r={r}/>
                 )}
             </Dropdown.Menu>
         : <Dropdown.Menu>Select Column First</Dropdown.Menu>

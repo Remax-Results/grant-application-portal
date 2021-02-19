@@ -37,7 +37,7 @@ export default function DisplayList({g}) {
             <div key={g.render_position}>
                 <Form onSubmit={(event)=>handleSubmit(event)}>
                     <FormGroup as={Row}>
-                        <Form.Label Col={2}>Header {g.render_position}</Form.Label>
+                        <Form.Label>Header {g.render_position}</Form.Label>
                         <Col lg={8}>
                             <FormControl
                                 
@@ -48,7 +48,7 @@ export default function DisplayList({g}) {
                         </Col>
                     </FormGroup>
                     <FormGroup as={Row}>
-                        <Form.Label col={2}>Text Area {g.render_position}</Form.Label>
+                        <Form.Label>Text Area {g.render_position}</Form.Label>
                         <Col lg={8}>
                             <FormControl
                                     as="textarea"
