@@ -38,7 +38,10 @@ function GrantApplicationForm(props) {
           user_id: user.id, 
           grant_window_id: grantWindow.id, 
           focus_area_id: focusAreaId,
-          budget: budget
+          budget: budget,
+          contact: user.contact_name,
+          email: user.username,
+          org_name: user.org_name
         } 
       });
     }

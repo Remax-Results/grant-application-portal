@@ -20,12 +20,13 @@ const transporter = nodemailer.createTransport( {
 });
 
 router.post('/confirmation', rejectUnauthenticated, (req, res) => {
+    const {contact, email, org_name} = req.body;
     const mailData = {
         from: process.env.MAIL_USERNAME,
         to: req.user.username,
         subject: 'Thank You for your Application',
         text: 'Thank you for your application to the Results Foundation. Your application has been succesfully recieved. We are excited to review your application and we appreciate that you have taken the time to apply. We will contact you about next steps.',
-        html: '<p>Thank you for your application to the Results Foundation. Your application has been succesfully recieved. We are excited to review your application and we appreciate that you have taken the time to apply.</p> <p>We will contact you about next steps.</p><p>Thanks,</p><p>The Results Foundation</p>'
+        html: `<p>Dear ${contact},</p><p>Thank you for your application to the Results Foundation. The application for ${org_name} has been succesfully recieved.</p> We are excited to review your application and we appreciate that you have taken the time to apply.</p> <p>We will contact you about next steps.</p><p>Thanks,</p><p>The Results Foundation</p>`
     }
     transporter.sendMail(mailData, (error, info) => {
         if( error ){
@@ -36,13 +37,14 @@ router.post('/confirmation', rejectUnauthenticated, (req, res) => {
 })
 
 router.post('/notification', rejectUnauthenticated, (req, res) => {
-    console.log('in notification email route');
+    const {contact, email, org_name} = req.body;
     const mailData = {
         from: process.env.MAIL_USERNAME,
         to: process.env.ADMIN_EMAIL,
         subject: 'New Application received',
         text: 'A new application has been submitted to the Results Foundation Grant Application Portal.',
-        html: '<p>A new application has been submitted to the Results Foundation Grant Application Portal.</p>'
+        html: `<p>A new application has been submitted to the Results Foundation Grant Application Portal by an organization named ${org_name}.</p>
+                <p>The contact person for this application is ${contact} and they have been notified at the following email address: ${email}.</p>`
     }
     transporter.sendMail(mailData, (error, info) => {
         if( error ){
