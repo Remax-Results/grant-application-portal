@@ -23,7 +23,7 @@ function* postApplication(action){
     yield put ({ type: 'POST_EMAIL_CONFIRMATION', payload: action.payload });
   }
   catch(error){
-    console.log('postApplication saga failed appSaga line 26', error);
+    console.log('postApplication saga failed appSaga', error);
   }
 }
 
@@ -31,10 +31,20 @@ function* postCeApplication(action){
   try{
     yield axios.post(`/api/application/ce`, action.payload);
     yield put ({ type: 'FETCH_APPLICATION' });
-    //yield put ({ type: 'POST_EMAIL_CONFIRMATION' });
+    yield put ({ type: 'POST_CE_CONFIRMATION', payload: action.payload });
   }
   catch(error){
-    console.log('postApplication saga failed appSaga line 26', error);
+    console.log('postApplication saga failed appSaga', error);
+  }
+}
+
+function* postCeConfirmation(action){
+  try {
+    yield axios.post(`/api/mail/ce/confirmation`, action.payload);
+    yield axios.post(`/api/mail/ce/notification`, action.payload);
+  }
+  catch(error){
+    console.log('postCeConfirmation saga failed appSaga', error);
   }
 }
 
@@ -44,7 +54,7 @@ function* postEmailConfirmation(action){
     yield axios.post(`/api/mail/notification`, action.payload);
   }
   catch(error){
-    console.log('postEmailConfirmation saga failed appSaga line 26', error);
+    console.log('postEmailConfirmation saga failed appSaga', error);
   }
 }
 
@@ -60,7 +70,7 @@ function* applicationSaga() {
   yield takeLatest('POST_CE_APPLICATION', postCeApplication);
   yield takeLatest('POST_EMAIL_CONFIRMATION', postEmailConfirmation);
   yield takeLatest('FETCH_PREVIOUS_APPLICATIONS', fetchPreviousApplications);
-
+  yield takeLatest('POST_CE_CONFIRMATION', postCeConfirmation)
 }
 
 export default applicationSaga;

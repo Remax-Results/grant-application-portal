@@ -54,4 +54,39 @@ router.post('/notification', rejectUnauthenticated, (req, res) => {
     })
 })
 
+router.post('/ce/notification', rejectUnauthenticated, (req, res) => {
+    const {contact, email} = req.body;
+    const mailData = {
+        from: process.env.MAIL_USERNAME,
+        to: process.env.ADMIN_EMAIL,
+        subject: 'New Community Engagement Application received',
+        text: 'A new Community Engagement application has been submitted to the Results Foundation Grant Application Portal.',
+        html: `<p>A new Community Engagement application has been submitted to the Results Foundation Grant Application Portal by ${contact}.</p>
+                <p>The contact person for this application has been notified of receipt at the following email address: ${email}.</p>`
+    }
+    transporter.sendMail(mailData, (error, info) => {
+        if( error ){
+            return console.log('error in transporter.sendMail', error);
+        } 
+        res.send({message:'mail sent', message_id: info.messageId})
+    })
+})
+
+router.post('/ce/confirmation', rejectUnauthenticated, (req, res) => {
+    const {contact} = req.body;
+    const mailData = {
+        from: process.env.MAIL_USERNAME,
+        to: req.user.username,
+        subject: 'Thank You for your Application',
+        text: 'Thank you for your application to the Results Foundation. Your application has been succesfully recieved. We are excited to review your application and we appreciate that you have taken the time to apply. We will contact you about next steps.',
+        html: `<p>Dear ${contact},</p><p>Thank you for your application to the Results Foundation. Your application has been succesfully recieved.</p> We are excited to review your application and we appreciate that you have taken the time to apply.</p> <p>We will contact you about next steps.</p><p>Thanks,</p><p>The Results Foundation</p>`
+    }
+    transporter.sendMail(mailData, (error, info) => {
+        if( error ){
+            return console.log('error in transporter.sendMail', error);
+        } 
+        res.send({message:'mail sent', message_id: info.messageId})
+    })
+})
+
 module.exports = router;

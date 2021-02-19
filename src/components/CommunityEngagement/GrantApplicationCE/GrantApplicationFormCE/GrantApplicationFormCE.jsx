@@ -10,6 +10,7 @@ import swal from 'sweetalert';
 function GrantApplicationForm(props) {
 
   // hooks
+  const user = useSelector((store) => store.user);
   const questions = useSelector((store) => store.activeQuestion);
   const budgetWording = useSelector((store) => store.budgetWording);
   const dispatch = useDispatch();
@@ -32,7 +33,9 @@ function GrantApplicationForm(props) {
       dispatch({ type: 'POST_CE_APPLICATION', 
         payload: { 
           values: values, 
-          budget: budget
+          budget: budget,
+          contact_name: user.contact_name,
+          email: user.username,
         } 
       });
       // Sweet Alert confirmation for the user.
