@@ -21,7 +21,7 @@ export default function Filter () {
                 <Dropdown title="Select Filter Column">
                     <ColumnDropdownToggle column = {filterColumn}/>
                     <Dropdown.Menu>
-                        {columnMenu.map((c) => (<ColumnDropdownMenu column = {c.column} value={c.value}/>))}
+                        {columnMenu.map((c, i) => (<ColumnDropdownMenu key={i} column = {c.column} value={c.value}/>))}
                     </Dropdown.Menu>
                 </Dropdown>
             {filterColumn < 3 ?
