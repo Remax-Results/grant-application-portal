@@ -40,7 +40,8 @@ function* postCeApplication(action){
 
 function* postEmailConfirmation(action){
   try{
-    yield axios.post(`/api/mail/confirmation`, )
+    yield axios.post(`/api/mail/confirmation` );
+    yield axios.post(`/api/mail/notification`);
   }
   catch(error){
     console.log('postEmailConfirmation saga failed appSaga line 26', error);

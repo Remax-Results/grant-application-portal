@@ -6,7 +6,6 @@ import FilterStatus from './FilterStatus.jsx';
 import FilterByDropdown from './FilterByDropDown.jsx';
 
 export default function FilterBy() {
-
    const focusArea = useSelector(state=> state.focusArea);
    const filterColumn = useSelector(state=>state.filterColumn);
    const reviewStatus = useSelector(state=>state.reviewStatus);
@@ -27,7 +26,7 @@ export default function FilterBy() {
                 )}
             </Dropdown.Menu>
         : <Dropdown.Menu>Select Column First</Dropdown.Menu>
-    }
+        }
     </Dropdown>
    )
 }

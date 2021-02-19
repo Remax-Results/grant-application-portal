@@ -9,10 +9,11 @@ import BudgetFilter from './BudgetFilter/BudgetFilter.jsx';
 import DateFilter from './DateFilter/DateFilter.jsx';
 
 export default function Filter () {
-
    const dispatch = useDispatch();
    const filterColumn = useSelector(state=>state.filterColumn);
-   const columnMenu = [{column: 1, value: 'Area of Focus'}, {column: 2, value: 'Status'}, {column: 3, value: 'Budget'}, {column: 4, value: 'Dates'}]
+   const columnMenu = [{column: 1, value: 'Area of Focus'}, 
+            {column: 2, value: 'Status'}, {column: 3, value: 'Budget'}, 
+            {column: 4, value: 'Dates'}]; //Object ceated to pass into the ColumnDropDownMenu function
    
    return(
        <Container>
@@ -23,7 +24,6 @@ export default function Filter () {
                         {columnMenu.map((c) => (<ColumnDropdownMenu column = {c.column} value={c.value}/>))}
                     </Dropdown.Menu>
                 </Dropdown>
-            
             {filterColumn < 3 ?
                 <FilterBy />
             : filterColumn === 3 ? 
