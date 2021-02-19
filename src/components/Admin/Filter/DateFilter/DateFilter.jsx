@@ -8,13 +8,14 @@ export default function DateFilter() {
     const dispatch=useDispatch();
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
+    //function to dispatch the date filter for the table
     const handleDateFilter = (event) => {
         event.preventDefault();
         let startDateConv = convert(startDate);
         let endDateConv = convert(endDate);
         dispatch({type: 'FILTER_DATES', payload: {startDate: startDateConv, endDate:endDateConv}});
     }
- 
+    //Date conversion function
     function convert(str) {
      var date = new Date(str),
        mnth = ("0" + (date.getMonth() + 1)).slice(-2),
