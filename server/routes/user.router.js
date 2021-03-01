@@ -30,15 +30,15 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
-// Handles Ajax request for user information if user is authenticated
+// Route to check if a username exists in the DB.
 router.get('/:username', (req, res) => {
-  const username = req.params;
+  const { username } = req.params;
   
   const queryText = `SELECT username FROM "user" WHERE username = $1`;
 
       pool
       .query(queryText, [username])
-      .then(() => res.sendStatus(201))
+      .then((result) => res.send(result.rows))
       .catch((err) => {
         console.log('User registration failed: ', err);
         res.sendStatus(500);

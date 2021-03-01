@@ -26,7 +26,7 @@ import RegisterPageCE from '../CommunityEngagement/RegisterPageCE/RegisterPageCE
 import AppDetailsCE from '../CommunityEngagement/AppDetailsCE/AppDetailsCE.jsx';
 import PrintableReportCE from '../CommunityEngagement/PrintableReportCE/PrintableReportCE.jsx';
 import PreviousApplications from '../PreviousApplications/PreviousApplications.jsx'
-import SendReset from '../ResetPassword/SendReset/SendReset.jsx';
+import SendReset from '../ResetPassword/ForgotPassword/ForgotPassword.jsx';
 
 
 import './App.css';
