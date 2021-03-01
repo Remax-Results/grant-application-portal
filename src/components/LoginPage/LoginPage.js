@@ -25,6 +25,17 @@ export default function LoginPage() {
         >
           Register
         </Button>
+        <p>Forgot Password?</p>
+        <Button
+          className="btn login-btn" 
+          variant= 'primary'
+          type="button"
+          onClick={() => {
+            history.push('/resetpassword');
+          }}
+        >
+          Reset Password
+        </Button>
       </center>
     </div>
   );
