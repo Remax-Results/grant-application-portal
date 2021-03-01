@@ -38,10 +38,27 @@ const registrationMessage = (state = '', action) => {
   }
 };
 
+// resetMessage holds error message for the password reset components
+const resetMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'CLEAR_RESET_ERROR':
+      return '';
+    case 'LOGIN_INPUT_ERROR':
+      return 'Enter your username and password!';
+    case 'LOGIN_FAILED':
+      return "Oops! The username and password didn't match. Try again!";
+    case 'LOGIN_FAILED_NO_CODE':
+      return 'Oops! Something went wrong! Is the server running?';
+    default:
+      return state;
+  }
+};
+
 // make one object that has keys loginMessage, registrationMessage
 // these will be on the redux state at:
 // state.errors.loginMessage and state.errors.registrationMessage
 export default combineReducers({
   loginMessage,
   registrationMessage,
+  resetMessage,
 });

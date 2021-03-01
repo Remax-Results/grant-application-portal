@@ -26,6 +26,7 @@ import RegisterPageCE from '../CommunityEngagement/RegisterPageCE/RegisterPageCE
 import AppDetailsCE from '../CommunityEngagement/AppDetailsCE/AppDetailsCE.jsx';
 import PrintableReportCE from '../CommunityEngagement/PrintableReportCE/PrintableReportCE.jsx';
 import PreviousApplications from '../PreviousApplications/PreviousApplications.jsx'
+import SendReset from '../ResetPassword/SendReset/SendReset.jsx';
 
 
 import './App.css';
@@ -90,6 +91,17 @@ class App extends Component {
               exact
               path="/ceregistration"
               component={RegisterPageCE}
+              authRedirect="/user"
+              adminRedirect="/admin"
+            />
+            <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - if admin, redirect to "/admin"
+              // - else shows LoginPage at /login
+              exact
+              path="/resetpassword"
+              component={SendReset}
               authRedirect="/user"
               adminRedirect="/admin"
             />

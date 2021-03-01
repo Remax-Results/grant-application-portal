@@ -1,4 +1,4 @@
-.login-header {
+.send-reset-header {
     text-align: center;
     display: block;
     padding: .3rem;
@@ -9,22 +9,23 @@
     justify-content: center;
 }
 
-.login-form{
+.send-reset-form{
     text-align: center;
     background-color: aliceblue;
     padding: 0;
     color: #303030;
     justify-content: center;
     margin: auto;
-    
+    padding-top: 2em;
+    padding-bottom: 2em;
 }
 
-.login-form input {
+.send-reset-form input {
     width: 40%;
     margin: auto;
 }
 
-.login-btn {
+.send-reset-btn {
     margin-bottom: .6rem;
     padding-left: 2.3rem ;
     padding-right: 2.3rem ;

@@ -1,47 +1,43 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './LoginForm.css'
+import './SendReset.css'
 import {Container, Col, Row, Form, Button} from 'react-bootstrap';
 
 
 export default function LoginForm() {
   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
 
-  const loginMessage = useSelector(state => state.errors.loginMessage);
+  const resetMessage = useSelector(state => state.errors.resetMessage);
 
-  const login = (event) => {
+  const reset = (event) => {
     event.preventDefault();
 
-    if (username && password) {
+    if (username) {
       dispatch({
-        type: 'LOGIN',
+        type: 'SEND_RESET',
         payload: {
           username: username,
-          password: password,
         },
       });
-    } else {
-      dispatch({ type: 'LOGIN_INPUT_ERROR' });
-    }
+    } 
   }; // end login
 
     return (
       <Container>
         <Col>
-        <Row className="login-header">
-          <h2>Login</h2>
+        <Row className="send-reset-header">
+          <h2>Reset Password</h2>
         </Row>
-        <Form className="login-form" onSubmit={event => {login(event)}}>
-          {loginMessage && (
+        <Form className="send-reset-form" onSubmit={event => {reset(event)}}>
+          {resetMessage && (
             <h3 style={{marginTop: 0}} className="alert" role="alert">
-              {loginMessage}
+              {resetMessage}
             </h3>
           )}
           <Form.Group>
             <Form.Label htmlFor="username">
-              Email:
+              Please enter your Email:
             </Form.Label>
               <Form.Control
                 type="text"
@@ -51,24 +47,12 @@ export default function LoginForm() {
                 onChange={event => setUsername(event.target.value)}
               />
           </Form.Group>
-          <Form.Group>
-            <Form.Label htmlFor="password">
-              Password:
-            </Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                required
-                value={password}
-                onChange={event => setPassword(event.target.value)}
-              />
-          </Form.Group>
           <Button 
-            className="btn login-btn" 
+            className="btn send-reset-btn" 
             type="submit" 
             name="submit" 
           >
-            Login
+            Reset Password
           </Button>
         </Form>
         </Col>
