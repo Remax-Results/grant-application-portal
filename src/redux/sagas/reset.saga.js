@@ -4,12 +4,12 @@ import axios from 'axios';
 function* sendReset(action){
   try{
     const response = yield axios.get(`/api/user/${action.payload.username}`);
-    
+
     // Check to ensure inputted email exists.
     if (response.data.length > 0){
-      yield put ({type: ''})
+      yield put ({type: 'SEND_RESET_EMAIL', payload: action.payload})
     } else {
-      console.log('email does not exist');
+      yield put ({type: 'EMAIL_DOES_NOT_EXIST'})
     }
   }
   catch(error){

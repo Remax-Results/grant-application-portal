@@ -26,7 +26,7 @@ import RegisterPageCE from '../CommunityEngagement/RegisterPageCE/RegisterPageCE
 import AppDetailsCE from '../CommunityEngagement/AppDetailsCE/AppDetailsCE.jsx';
 import PrintableReportCE from '../CommunityEngagement/PrintableReportCE/PrintableReportCE.jsx';
 import PreviousApplications from '../PreviousApplications/PreviousApplications.jsx'
-import SendReset from '../ResetPassword/ForgotPassword/ForgotPassword.jsx';
+import ForgotPasswordPage from '../ResetPassword/ForgotPasswordPage/ForgotPasswordPage.jsx';
 
 
 import './App.css';
@@ -100,8 +100,8 @@ class App extends Component {
               // - if admin, redirect to "/admin"
               // - else shows LoginPage at /login
               exact
-              path="/resetpassword"
-              component={SendReset}
+              path="/forgotpassword"
+              component={ForgotPasswordPage}
               authRedirect="/user"
               adminRedirect="/admin"
             />
