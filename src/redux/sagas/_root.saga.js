@@ -13,6 +13,7 @@ import questionSaga from './question.saga';
 import uberSaga from './uber.saga';
 import greetingSaga from './greeting.saga';
 import filterSaga from './filter.saga';
+import resetSaga from './reset.saga'
 
 
 export default function* rootSaga() {
@@ -30,6 +31,7 @@ export default function* rootSaga() {
     questionSaga(),
     uberSaga(),
     greetingSaga(),
-    filterSaga()
+    filterSaga(),
+    resetSaga()
   ]);
 }
