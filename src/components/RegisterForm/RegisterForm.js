@@ -154,7 +154,21 @@ export default function RegisterForm() {
             required
             onChange={event => setBackground(event.target.value)}
           />
+          <Form.Label 
+            htmlFor="background"
+            style={{
+              color: background.length < 5000 ?
+              'green'
+              :
+              'red'
+            }}
+          >
+            {background.length} / 5000
+            <br></br>
+          </Form.Label>
+
         </Form.Group>
+            
         <Form.Group style={{textAlign: 'center'}}>
           <Button 
             className="btn" 
