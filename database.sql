@@ -11,7 +11,7 @@ CREATE TABLE "user" (
   "username" VARCHAR (80) UNIQUE NOT NULL,
   "password" VARCHAR (1000) NOT NULL,
   "org_name" VARCHAR (100),
-  "background" VARCHAR (1000),
+  "background" VARCHAR (5000),
   "phone" VARCHAR (25),
   "contact_name" VARCHAR (150),
   "admin" boolean DEFAULT false,
