@@ -23,6 +23,8 @@ export default function RegisterForm() {
     event.preventDefault();
     if (password !== passwordConfirm){
       dispatch({type: 'PASSWORD_DOES_NOT_MATCH'})
+    } else if(background.length > 5000){
+      dispatch({type: 'BACKGROUND_OVER_5000'})
     } else if (username && password && passwordConfirm && orgName && background && phone && contactName){
       setPhone(formatPhone(phone));
       dispatch({
