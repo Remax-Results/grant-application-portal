@@ -29,10 +29,26 @@ const registrationMessage = (state = '', action) => {
       return 'Password does not match Password Confirmation!'
     case 'INVALID_RESULTS_EMAIL':
       return 'Invalid email for Community Engagement profile! You must have a results.net domain!'
+    case 'BACKGROUND_OVER_5000':
+      return 'Your background is over the 5000 character limit!'
     case 'REGISTRATION_FAILED':
       return "Oops! That didn't work. The username might already be taken. Try again!";
     case 'CE_REGISTRATION_FAILED':
       return "Oops! That didn't work. The username might already be taken. Try again!";
+    default:
+      return state;
+  }
+};
+
+// resetMessage holds error message for the password reset components
+const resetMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'CLEAR_RESET_ERROR':
+      return '';
+    case 'EMAIL_DOES_NOT_EXIST':
+      return 'The email you have entered does not exist, have you registered an account?';
+    case 'RESET_PASSWORD_DOES_NOT_MATCH':
+      return 'Password does not match Password Confirmation!'
     default:
       return state;
   }
@@ -44,4 +60,5 @@ const registrationMessage = (state = '', action) => {
 export default combineReducers({
   loginMessage,
   registrationMessage,
+  resetMessage,
 });

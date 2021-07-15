@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './RegisterForm.css'
-import {Form, Container, Button} from 'react-bootstrap';
+import {Form, Container, Button, Alert} from 'react-bootstrap';
 import {formatPhone} from '../Hooks/Hooks.jsx';
 
 
@@ -23,6 +23,8 @@ export default function RegisterForm() {
     event.preventDefault();
     if (password !== passwordConfirm){
       dispatch({type: 'PASSWORD_DOES_NOT_MATCH'})
+    } else if(background.length > 5000){
+      dispatch({type: 'BACKGROUND_OVER_5000'})
     } else if (username && password && passwordConfirm && orgName && background && phone && contactName){
       setPhone(formatPhone(phone));
       dispatch({
@@ -45,9 +47,9 @@ export default function RegisterForm() {
       <Form className="register-form" onSubmit={event => {registerUser(event)}}>
         <h2>Register Organization</h2>
           {registrationMessage && (
-          <h3 className="alert" role="alert">
+          <Alert variant="danger">
             {registrationMessage}
-          </h3>
+          </Alert>
         )}
         <Form.Group>
           <Form.Label htmlFor="username">
@@ -154,7 +156,21 @@ export default function RegisterForm() {
             required
             onChange={event => setBackground(event.target.value)}
           />
+          <Form.Label 
+            htmlFor="background"
+            style={{
+              color: background.length < 5000 ?
+              'green'
+              :
+              'red'
+            }}
+          >
+            {background.length} / 5000
+            <br></br>
+          </Form.Label>
+
         </Form.Group>
+            
         <Form.Group style={{textAlign: 'center'}}>
           <Button 
             className="btn" 

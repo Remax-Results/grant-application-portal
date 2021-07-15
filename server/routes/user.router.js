@@ -30,6 +30,22 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
+// Route to check if a username exists in the DB.
+router.get('/:username', (req, res) => {
+  const { username } = req.params;
+  
+  const queryText = `SELECT username FROM "user" WHERE username = $1`;
+
+      pool
+      .query(queryText, [username])
+      .then((result) => res.send(result.rows))
+      .catch((err) => {
+        console.log('User registration failed: ', err);
+        res.sendStatus(500);
+      });
+  
+});
+
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
@@ -91,5 +107,7 @@ router.post('/logout', (req, res) => {
   req.logout();
   res.sendStatus(200);
 });
+
+
 
 module.exports = router;
