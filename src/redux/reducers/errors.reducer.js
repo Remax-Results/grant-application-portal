@@ -49,6 +49,8 @@ const resetMessage = (state = '', action) => {
       return 'The email you have entered does not exist, have you registered an account?';
     case 'RESET_PASSWORD_DOES_NOT_MATCH':
       return 'Password does not match Password Confirmation!'
+    case 'RESET_CATCH_ALL_SERVER':
+      return 'Something seems to have gone wrong on the server, please refresh and try again.'
     default:
       return state;
   }
