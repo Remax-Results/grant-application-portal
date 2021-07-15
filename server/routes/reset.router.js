@@ -94,7 +94,7 @@ router.put('/email/:username', (req, res) => {
             html: `<p>Dear ${contact_name},</p>
             <p>A password reset has been requested for this account. If you did not request this, feel free to ignore this email. </p>
             <p>To update your password, within an hour of receiving this email, follow this link and complete the form:</p>
-            <p><a href="http://localhost:3000/#/resetpassword/${id}/${token}">Reset Your Password!</a></p>
+            <p><a href="${process.env.URL}resetpassword/${id}/${token}">Reset Your Password!</a></p>
             <p>Thanks,</p>
             <p>The Results Foundation</p>`
         }
